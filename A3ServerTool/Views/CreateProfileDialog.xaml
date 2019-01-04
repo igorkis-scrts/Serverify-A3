@@ -1,0 +1,99 @@
+﻿<mah:CustomDialog x:Class="A3ServerTool.Views.CreateProfileDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:local="clr-namespace:A3ServerTool.Views"
+                  xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                  mc:Ignorable="d"
+                  DataContext="{Binding CreateProfile, Source={StaticResource Locator}}"
+                  Title="Create new profile">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Margin="{StaticResource ControlMargin}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Text="Name"
+                       TextWrapping="Wrap"
+                       FontWeight="Bold"
+                       FontSize="14" />
+            <TextBox x:Name="NameTextBox" Margin="10,0,0,0"
+                     mah:TextBoxHelper.Watermark="Profile name"
+                     HorizontalAlignment="Left"
+                     MinWidth="192"
+                     Text="{Binding ProfileName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+
+            <TextBlock Margin="{StaticResource ControlMargin}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Text="Description"
+                       TextWrapping="Wrap"
+                       FontWeight="Bold"
+                       FontSize="14" />
+            <TextBox x:Name="DescriptionTextBox"
+                     Margin="10,0,0,10"
+                     mah:TextBoxHelper.Watermark="Short profile description"
+                     HorizontalAlignment="Left"
+                     MinWidth="192"
+                     Text="{Binding ProfileDescription, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+
+            <TextBlock Margin="{StaticResource ControlMargin}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Text="Profile type"
+                       TextWrapping="Wrap"
+                       FontWeight="Bold"
+                       FontSize="14" />
+
+            <mah:SplitButton x:Name="GameTypeSplitButton"
+                             Margin="10,0,0,10"
+                             HorizontalAlignment="Left"
+                             HorizontalContentAlignment="Left"
+                             MinWidth="192"
+                             mah:TextBoxHelper.Watermark="Game type"
+                             ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
+                             SelectedItem="{Binding ProfileType}"
+                             SelectedIndex="0">
+
+            </mah:SplitButton>
+
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Style="{DynamicResource MetroFlatButton}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    x:Name="OkButton"
+                    Margin="{StaticResource ControlMargin}"
+                    Content="Create"
+                    Command="{Binding SendMessageCommand}" />
+            <Button Grid.Column="1"
+                    Style="{DynamicResource MetroFlatButton}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    x:Name="CancelButton"
+                    Margin="{StaticResource ControlMargin}"
+                    Content="Cancel" />
+        </Grid>
+
+    </Grid>
+    <!--<dialog:CustomDialog.Content>-->
+    <!--</dialog:CustomDialog.Content>-->
+
+    <!--<dialog:CustomDialog.DialogBottom>-->
+    <!--</dialog:CustomDialog.DialogBottom>-->
+</mah:CustomDialog>
+
