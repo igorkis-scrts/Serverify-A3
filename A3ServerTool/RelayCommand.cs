@@ -41,7 +41,7 @@ namespace A3ServerTool
 
         private void HandleException(Exception ex)
         {
-            new ViewModelLocator().Messages.ShowMessage(ex.Message);
+            //new ViewModelLocator().Messages.ShowMessage(ex.Message);
         }
     }
 }

@@ -20,9 +20,9 @@ namespace A3ServerTool.Views
     /// <summary>
     /// Interaction logic for CreateProfileDialog.xaml
     /// </summary>
-    public partial class CreateProfileDialog : CustomDialog
+    public partial class ProfileDialogView : CustomDialog
     {
-        public CreateProfileDialog()
+        public ProfileDialogView()
         {
             InitializeComponent();
         }

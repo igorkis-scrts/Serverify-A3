@@ -7,10 +7,17 @@
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-             dialog:DialogParticipation.Register="{Binding}"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d"
              DataContext="{Binding Profiles, Source={StaticResource Locator}}"
+             dialog:DialogParticipation.Register="{Binding}"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="LayoutUpdated">
+            <i:InvokeCommandAction Command="{Binding StartupCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,8 +34,8 @@
                Grid.Column="0"
                Grid.ColumnSpan="2"
                HorizontalAlignment="Left"
-               Content="Profiles"
-               Style="{DynamicResource DescriptionHeaderStyle}" />
+               Style="{DynamicResource DescriptionHeaderStyle}"
+               Content="Profiles"/>
 
         <DataGrid x:Name="ProfileDataGrid"
                   Grid.Row="1"
@@ -102,4 +109,5 @@
         </Grid>
     </Grid>
 </UserControl>
+
 

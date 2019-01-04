@@ -33,8 +33,8 @@ namespace A3ServerTool.ViewModels
         public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
 
         //TODO: Get rid of messageManager
-        public CreateProfileViewModel CreateProfile => ServiceLocator.Current.GetInstance<CreateProfileViewModel>();
-        public MessageManager Messages => ServiceLocator.Current.GetInstance<MessageManager>();
+        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>();
+        //public MessageManager Messages => ServiceLocator.Current.GetInstance<MessageManager>();
 
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<SettingsViewModel>();
 
             //TODO: Get rid of messageManager
-            SimpleIoc.Default.Register<MessageManager>();
+            //SimpleIoc.Default.Register<MessageManager>();
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
-            SimpleIoc.Default.Register<CreateProfileViewModel>();
+            SimpleIoc.Default.Register<ProfileDialogViewModel>();
         }
 
         public static void Cleanup()

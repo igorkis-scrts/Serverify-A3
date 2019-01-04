@@ -31,7 +31,7 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="controls:TextBoxHelper.Watermark" Value="Path to source XML with unit stats"></Setter>
+        <Setter Property="controls:TextBoxHelper.Watermark" Value="Path to file"></Setter>
 
     </Style>
 </ResourceDictionary>

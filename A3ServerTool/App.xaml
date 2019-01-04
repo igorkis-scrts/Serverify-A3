@@ -24,7 +24,7 @@
 
             
             <Style x:Key="DescriptionHeaderStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontSize" Value="24" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
 

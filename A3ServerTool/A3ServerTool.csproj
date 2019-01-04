@@ -89,7 +89,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Converters\SelectedItemToContentConverter.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\CreateProfileViewModel.cs" />
+    <Compile Include="ViewModels\ProfileDialogViewModel.cs" />
     <Compile Include="ViewModels\ProfilesViewModel.cs" />
     <Compile Include="ViewModels\PropertyChangedViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -98,8 +98,8 @@
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateProfileDialog.xaml.cs">
-      <DependentUpon>CreateProfileDialog.xaml</DependentUpon>
+    <Compile Include="Views\ProfileDialogView.xaml.cs">
+      <DependentUpon>ProfileDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilesView.xaml.cs">
       <DependentUpon>ProfilesView.xaml</DependentUpon>
@@ -123,7 +123,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateProfileDialog.xaml">
+    <Page Include="Views\ProfileDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,9 @@ using Interchangeable.Helpers;
 
 namespace A3ServerTool.ViewModels
 {
+    /// <summary>
+    /// About view model
+    /// </summary>
     public class AboutViewModel : PropertyChangedViewModel
     {
         private MainViewModel _mainViewModel;
@@ -39,7 +42,7 @@ namespace A3ServerTool.ViewModels
             set
             {
                 _currentVersion = value;
-                OnPropertyChanged("CurrentVersion");
+                OnPropertyChanged();
             }
         }
         private string _currentVersion;
@@ -53,7 +56,7 @@ namespace A3ServerTool.ViewModels
             set
             {
                 _avatar = value;
-                OnPropertyChanged("Avatar");
+                OnPropertyChanged();
             }
         }
         private ImageSource _avatar;
