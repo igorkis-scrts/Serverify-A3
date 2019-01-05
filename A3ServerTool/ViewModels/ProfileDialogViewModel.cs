@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +15,13 @@ namespace A3ServerTool.ViewModels
     /// <summary>
     /// Profile create/edit dialog
     /// </summary>
-    public class ProfileDialogViewModel : PropertyChangedViewModel
+    public class ProfileDialogViewModel : PropertyChangedViewModel, IDataErrorInfo
     {
+
+        #region Properties and fields
+
+        //public bool HasError { get; set; }
+
         private string _profileName;
 
         /// <summary>
@@ -25,6 +32,11 @@ namespace A3ServerTool.ViewModels
             get => _profileName;
             set
             {
+                if (Equals(value, _profileName))
+                {
+                    return;
+                }
+
                 _profileName = value;
                 OnPropertyChanged();
             }
@@ -40,28 +52,42 @@ namespace A3ServerTool.ViewModels
             get => _profileDescription;
             set
             {
+                if (Equals(value, _profileDescription))
+                {
+                    return;
+                }
+
                 _profileDescription = value;
                 OnPropertyChanged();
             }
         }
 
-        private ProfileType _gameType;
+        private ProfileType _profileType;
 
         /// <summary>
         /// Profile type (game)
         /// </summary>
         public ProfileType ProfileType
         {
-            get => _gameType;
+            get => _profileType;
             set
             {
-                _gameType = value;
+                if (Equals(value, _profileType))
+                {
+                    return;
+                }
+
+                _profileType = value;
                 OnPropertyChanged();
             }
         }
 
+        #endregion
+
+        #region Commands
+
         private RelayCommand _okCommand;
-        
+
         /// <summary>
         /// Confirm user actions
         /// </summary>
@@ -72,12 +98,15 @@ namespace A3ServerTool.ViewModels
                 return _okCommand
                        ?? (_okCommand = new RelayCommand(obj =>
                        {
-                           SendMessage(MessageDialogResult.Affirmative, new Profile
-                           {
-                                   Description = ProfileDescription,
-                                   Name = ProfileName,
-                                   Type = ProfileType
-                           });
+                           //var qq = this[nameof(ProfileName)];
+                           //if (HasErrors) return;
+
+                           //SendMessage(MessageDialogResult.Affirmative, new Profile
+                           //{
+                           //    Description = ProfileDescription,
+                           //    Name = ProfileName,
+                           //    Type = ProfileType
+                           //});
                        }));
             }
         }
@@ -93,11 +122,15 @@ namespace A3ServerTool.ViewModels
             {
                 return _cancelCommand
                        ?? (_cancelCommand = new RelayCommand(obj =>
-                       {    
+                       {
                            SendMessage(MessageDialogResult.Canceled);
                        }));
             }
         }
+
+        #endregion
+
+        #region Private methods
 
         /// <summary>
         /// Send result to parent view model (ProfileViewModel in this case)
@@ -109,5 +142,28 @@ namespace A3ServerTool.ViewModels
             var result = new Tuple<MessageDialogResult, Profile>(dialogResult, profile);
             Messenger.Default.Send(result);
         }
+
+        #endregion
+
+        #region IDataErrorInfo members
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(ProfileName) when string.IsNullOrWhiteSpace(ProfileName):
+                        return "Profile name should be not empty";
+                    case nameof(ProfileDescription) when string.IsNullOrWhiteSpace(ProfileName):
+                    default:
+                        return null;
+                }
+            }
+        }
+
+        public string Error => string.Empty;
+
+        #endregion
     }
 }

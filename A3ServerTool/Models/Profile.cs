@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace A3ServerTool.Models
     /// <summary>
     /// Server profile
     /// </summary>
-    public class Profile
+    public class Profile : IDataErrorInfo
     {
         /// <summary>
         /// Name of setting
@@ -30,5 +31,27 @@ namespace A3ServerTool.Models
         /// Server settings
         /// </summary>
         public IServerSettings ServerSettings { get; set; }
+
+        #region IDataErrorInfo members
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Name) when string.IsNullOrWhiteSpace(Name):
+                        return "Profile name should be not empty";
+                    case nameof(Description) when string.IsNullOrWhiteSpace(Description):
+                        return "Profile description should be not empty";
+                    default:
+                        return null;
+                }
+            }
+        }
+
+        public string Error => string.Empty;
+
+        #endregion
     }
 }

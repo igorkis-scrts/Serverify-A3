@@ -9,7 +9,7 @@
                   mc:Ignorable="d"
                   DataContext="{Binding ProfileDialog, Source={StaticResource Locator}}"
                   dialog:DialogParticipation.Register="{Binding}">
-
+      
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -28,9 +28,9 @@
                        FontWeight="Bold"
                        FontSize="14" />
             <TextBox x:Name="NameTextBox" Margin="10,0,0,0"
-                     mah:TextBoxHelper.Watermark="Profile name"
+                     mah:TextBoxHelper.Watermark="Profile name"                     
                      Text="{Binding ProfileName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
-
+           
             <TextBlock Margin="{StaticResource ControlMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
@@ -69,13 +69,27 @@
 
             <DockPanel
                 Margin="0 0 0 10">
-                <Button Style="{DynamicResource MetroFlatButton}"
-                        HorizontalAlignment="Left"
+                <Button HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         x:Name="OkButton"                        
-                        Content="Create"
                         Margin="10 0 0 0"
-                        Command="{Binding OkCommand}" />
+                        Command="{Binding OkCommand}">
+                    <Button.Content>Create</Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameTextBox}" Value="False"></Condition>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>    
+
                 <Button Style="{DynamicResource MetroFlatButton}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
