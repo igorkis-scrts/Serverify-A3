@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace A3ServerTool.Models
 {
@@ -50,6 +51,7 @@ namespace A3ServerTool.Models
             }
         }
 
+        [JsonIgnore]
         public string Error => string.Empty;
 
         #endregion

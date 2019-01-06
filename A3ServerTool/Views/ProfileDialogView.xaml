@@ -90,7 +90,7 @@
                     </Button.Style>
                 </Button>    
 
-                <Button Style="{DynamicResource MetroFlatButton}"
+                <Button Style="{StaticResource MetroFlatButton}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         x:Name="CancelButton"

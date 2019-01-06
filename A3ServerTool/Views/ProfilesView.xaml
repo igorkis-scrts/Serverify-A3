@@ -47,12 +47,12 @@
                   HeadersVisibility="All"
                   ItemsSource="{Binding Path=Profiles}"
                   RowHeaderWidth="20"
+                  IsReadOnly="True"
                   SelectionUnit="FullRow">
             <DataGrid.Columns>
-                <!--<DataGridTextColumn Binding="{Binding Profile}" Header="Name" />-->
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="Auto" />
-                <DataGridTextColumn Binding="{Binding Type}" Header="Game Type" />
-                <DataGridTextColumn Binding="{Binding Description}" Header="Description" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="4*" />
+                <DataGridTextColumn Binding="{Binding Type}" Header="Game Type" Width="4*" />
+                <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="16*" />
             </DataGrid.Columns>
             <DataGrid.Style>
                 <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">

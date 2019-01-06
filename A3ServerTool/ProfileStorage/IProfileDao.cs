@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using A3ServerTool.Models;
 
-namespace A3ServerTool.Profiles
+namespace A3ServerTool.ProfileStorage
 {
     public interface IProfileDao
     {
-        List<Profile> GetAllProfiles();
-        Profile GetProfile();
+        ObservableCollection<Profile> GetAll();
+        Profile Get();
 
         void Insert(Profile profile);
         void Update(Profile profile);

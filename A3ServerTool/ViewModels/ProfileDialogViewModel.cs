@@ -98,15 +98,17 @@ namespace A3ServerTool.ViewModels
                 return _okCommand
                        ?? (_okCommand = new RelayCommand(obj =>
                        {
-                           //var qq = this[nameof(ProfileName)];
-                           //if (HasErrors) return;
+                           SendMessage(MessageDialogResult.Affirmative, new Profile
+                           {
+                               Description = ProfileDescription,
+                               Name = ProfileName,
+                               Type = ProfileType
+                           });
 
-                           //SendMessage(MessageDialogResult.Affirmative, new Profile
-                           //{
-                           //    Description = ProfileDescription,
-                           //    Name = ProfileName,
-                           //    Type = ProfileType
-                           //});
+                           //ProfileDialog can be called multiple times in row,
+                           //we need to clear text boxes
+                           ProfileName = string.Empty;
+                           ProfileDescription = string.Empty;
                        }));
             }
         }
