@@ -78,6 +78,10 @@
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
                             <Setter Property="IsEnabled" Value="False"></Setter>
+                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+                            
                             <Style.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>

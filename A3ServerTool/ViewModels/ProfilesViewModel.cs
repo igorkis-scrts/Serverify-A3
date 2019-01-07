@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Documents;
 using System.Windows.Input;
 using A3ServerTool.Models;
 using A3ServerTool.ProfileStorage;
@@ -42,6 +44,23 @@ namespace A3ServerTool.ViewModels
                     return;
                 }
                 _profiles = value;
+                OnPropertyChanged();
+            }
+
+        }
+
+        private Profile _selectedProfile;
+        public Profile SelectedProfile
+        {
+            get => _selectedProfile;
+            set
+            {
+                if (Equals(_selectedProfile, value))
+                {
+                    return;
+                }
+
+                _selectedProfile = value;
                 OnPropertyChanged();
             }
 
@@ -99,6 +118,33 @@ namespace A3ServerTool.ViewModels
                            ShowDialog();
                        }));
             }
+        }
+
+        private ICommand _deleteProfileCommand;
+        public ICommand DeleteProfileCommand
+        {
+            get
+            {
+                return _deleteProfileCommand ??
+                       (_deleteProfileCommand = new RelayCommand(async obj =>
+                       {
+                           var profileToDelete = SelectedProfile;
+                           if (profileToDelete == null) return;
+
+
+                           var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirmation",
+                               "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
+                           if (dialogResult != MessageDialogResult.Affirmative) return;
+
+                           ProfileDao.Delete(profileToDelete);
+                           RefreshData();
+                       }));
+            }
+        }
+
+        private void RefreshData()
+        {
+            Profiles = ProfileDao.GetAll();
         }
 
         private async void ShowDialog()

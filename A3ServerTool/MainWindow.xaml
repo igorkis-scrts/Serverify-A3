@@ -1,25 +1,36 @@
 ﻿<controls:MetroWindow x:Class="A3ServerTool.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:A3ServerTool"
-        xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
-        xmlns:views="clr-namespace:A3ServerTool.Views"
-        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:converters="clr-namespace:A3ServerTool.Converters"
-        mc:Ignorable="d"
-        BorderBrush="{DynamicResource AccentColorBrush}"
-        BorderThickness="1"
-        ResizeMode="NoResize"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:A3ServerTool"
+                      xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
+                      xmlns:views="clr-namespace:A3ServerTool.Views"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:converters="clr-namespace:A3ServerTool.Converters"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      mc:Ignorable="d"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
                       ShowIconOnTitleBar="True"
                       Padding="10,10,10,10"
                       DataContext="{Binding Main, Source={StaticResource Locator}}"
-                      Title="Arma 3 Server Tool" Height="640" Width="960">
+                      controls:DialogParticipation.Register="{Binding}"
+                      Closing="MainWindow_OnClosing"
+                      Title="Arma 3 Server Tool" 
+                      Height="640" 
+                      Width="960">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding ExitApplicationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.Resources>
-            <converters:SelectedItemToContentConverter x:Key="SelectedItemToContentConverter"/>
+            <converters:SelectedItemToContentConverter x:Key="SelectedItemToContentConverter" />
             <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type controls:HamburgerMenuIconItem}">
                 <Grid x:Name="RootGrid"
                       Height="48"
@@ -39,7 +50,9 @@
                                Text="{Binding Label}" />
                 </Grid>
                 <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:HamburgerMenu}}, Path=IsPaneOpen}" Value="False">
+                    <DataTrigger
+                        Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:HamburgerMenu}}, Path=IsPaneOpen}"
+                        Value="False">
                         <Setter TargetName="RootGrid" Property="ToolTip" Value="{Binding ToolTip, Mode=OneWay}" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
@@ -62,7 +75,7 @@
         </Grid.Resources>
 
         <controls:HamburgerMenu x:Name="HamburgerMenuControl"
-                                Background ="{x:Static SystemParameters.WindowGlassBrush}"
+                                Background="{x:Static SystemParameters.WindowGlassBrush}"
                                 DisplayMode="CompactInline"
                                 IsPaneOpen="False"
                                 ItemTemplate="{StaticResource MenuItemTemplate}"
@@ -85,6 +98,7 @@
                 </MultiBinding>
             </controls:HamburgerMenu.Content>
         </controls:HamburgerMenu>
-        
+
     </Grid>
 </controls:MetroWindow>
+

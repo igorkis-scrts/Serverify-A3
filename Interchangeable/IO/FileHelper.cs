@@ -51,7 +51,34 @@ namespace Interchangeable.IO
                 ? Path.Combine(RootFolder, folderName, fileName) 
                 : Path.Combine(RootFolder, fileName);
 
-            File.WriteAllText(path + fileExtension, content);
+            if (File.Exists(path))
+            {
+                //TODO: throw new exception about file existance
+            }
+            else
+            {
+
+                File.WriteAllText(path + fileExtension, content);
+            }
+        }
+
+        /// <summary>
+        /// Delete file from hard drive
+        /// </summary>
+        public static void Delete(string fileName, string folderName = null)
+        {
+            var path = folderName != null
+                ? Path.Combine(RootFolder, folderName, fileName)
+                : Path.Combine(RootFolder, fileName);
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            else
+            {
+                //TODO: throw new exception about nonexistance
+            }
         }
     }
 }

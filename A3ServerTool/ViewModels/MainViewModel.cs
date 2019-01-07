@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -14,6 +15,9 @@ namespace A3ServerTool.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly IDialogCoordinator _dialogCoordinator = DialogCoordinator.Instance;
+
+        private HamburgerMenuItemCollection _menuItems;
         public HamburgerMenuItemCollection MenuItems
         {
             get => _menuItems;
@@ -24,8 +28,8 @@ namespace A3ServerTool.ViewModels
                 //OnPropertyChanged();
             }
         }
-        private HamburgerMenuItemCollection _menuItems;
 
+        private HamburgerMenuItemCollection _menuOptionItems;
         public HamburgerMenuItemCollection MenuOptionItems
         {
             get => _menuOptionItems;
@@ -36,7 +40,32 @@ namespace A3ServerTool.ViewModels
                 //OnPropertyChanged();
             }
         }
-        private HamburgerMenuItemCollection _menuOptionItems;
+
+        private ICommand _exitApplicationCommand;
+        public ICommand ExitApplicationCommand
+        {
+            get
+            {
+                return _exitApplicationCommand ??
+                       (_exitApplicationCommand = new RelayCommand(async obj =>
+                       {
+                           var dialogSettings = new MetroDialogSettings()
+                           {
+                               AffirmativeButtonText = "Quit",
+                               NegativeButtonText = "Cancel",
+                               AnimateShow = true,
+                               AnimateHide = false
+                           };
+
+                           var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm exit",
+                               "Are you sure that you want to quit?",
+                               MessageDialogStyle.AffirmativeAndNegative, dialogSettings);
+                           if (dialogResult != MessageDialogResult.Affirmative) return;
+
+                           Application.Current.Shutdown();
+                       }));
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.

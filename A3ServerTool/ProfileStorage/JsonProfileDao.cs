@@ -11,13 +11,13 @@ namespace A3ServerTool.ProfileStorage
 {
     public class JsonProfileDao : IProfileDao
     {
-        private readonly string _storageFolder = "Profiles";
-        private readonly string _fileExtension = ".json";
+        private const string StorageFolder = "Profiles";
+        private const string FileExtension = ".json";
 
         public ObservableCollection<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
-            var files = FileHelper.GetSpecificFiles(_fileExtension, _storageFolder);
+            var files = FileHelper.GetSpecificFiles(FileExtension, StorageFolder);
 
             //TODO: Parallel?
             if (files.Any())
@@ -40,7 +40,7 @@ namespace A3ServerTool.ProfileStorage
         public void Insert(Profile profile)
         {
             var json = JsonConvert.SerializeObject(profile);
-            FileHelper.Save(json, profile.Name, _fileExtension, _storageFolder);
+            FileHelper.Save(json, profile.Name, FileExtension, StorageFolder);
         }
 
         public void Update(Profile profile)
@@ -50,7 +50,7 @@ namespace A3ServerTool.ProfileStorage
 
         public void Delete(Profile profile)
         {
-            throw new NotImplementedException();
+            FileHelper.Delete(profile.Name + FileExtension, StorageFolder);
         }
     }
 }

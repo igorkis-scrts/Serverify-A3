@@ -30,6 +30,22 @@
             </Setter.Value>
         </Setter>
         <Setter Property="controls:TextBoxHelper.Watermark" Value="Path to file"></Setter>
+    </Style>
 
+    <Style TargetType="{x:Type dialogs:MessageDialog}" BasedOn="{StaticResource {x:Type dialogs:BaseMetroDialog}}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource MetroFlatButton}" TargetType="{x:Type Button}">
+                <!--<Setter Property="controls:ControlsHelper.ContentCharacterCasing" Value="Upper"></Setter>-->
+                <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+            </Style>
+
+            <Style x:Key="AccentedDialogSquareButton"
+                   BasedOn="{StaticResource MetroFlatButton}"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+            </Style>
+        </Style.Resources>
     </Style>
 </ResourceDictionary>
