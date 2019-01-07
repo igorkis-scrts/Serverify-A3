@@ -19,10 +19,8 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
-            <BooleanToVisibilityConverter x:Key="BoolToVisibility">
-            </BooleanToVisibilityConverter>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
 
-            
             <Style x:Key="DescriptionHeaderStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
