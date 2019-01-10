@@ -93,19 +93,39 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Style="{StaticResource MetroFlatButton}" Grid.Row="0" Grid.Column="0" MinWidth="80" Height="28" HorizontalAlignment="Center" Margin="{StaticResource ControlMargin}">
+            <Button Style="{StaticResource MetroFlatButton}" 
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    MinWidth="80" 
+                    Height="28" 
+                    HorizontalAlignment="Center" 
+                    Margin="{StaticResource ControlMargin}">
+                
                 <DockPanel>
                     <iconPacks:PackIconMaterial Kind="Check" DockPanel.Dock="Left"></iconPacks:PackIconMaterial>
                     <TextBlock Margin="4 0 0 0" ><Bold>Choose</Bold></TextBlock>
                 </DockPanel>
             </Button>
 
-            <Button Style="{StaticResource MetroFlatButton}" Grid.Row="1" Grid.Column="0" MinWidth="80" Height="28"
-                    HorizontalAlignment="Center" Margin="{StaticResource ControlMargin}" Content="Create"
+            <Button Style="{StaticResource MetroFlatButton}" 
+                    Grid.Row="1" 
+                    Grid.Column="0" 
+                    MinWidth="80" 
+                    Height="28"
+                    HorizontalAlignment="Center" 
+                    Margin="{StaticResource ControlMargin}" 
+                    Content="Create"
                     Command="{Binding CreateProfileCommand}">
             </Button>
-            <Button Style="{StaticResource MetroFlatButton}" Grid.Row="1" Grid.Column="1" MinWidth="80" Height="28"
-                    HorizontalAlignment="Center" Margin="{StaticResource ControlMargin}" Content="Edit">
+            <Button Style="{StaticResource MetroFlatButton}" 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    MinWidth="80" 
+                    Height="28"
+                    HorizontalAlignment="Center" 
+                    Margin="{StaticResource ControlMargin}" 
+                    Content="Edit"
+                    Command="{Binding EditProfileCommand}">
             </Button>
             <Button Style="{StaticResource MetroFlatButton}" 
                     Grid.Row="1" 

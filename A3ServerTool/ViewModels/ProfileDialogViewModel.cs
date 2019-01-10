@@ -20,66 +20,111 @@ namespace A3ServerTool.ViewModels
 
         #region Properties and fields
 
-        //public bool HasError { get; set; }
+        private Profile _profile = new Profile();
 
-        private string _profileName;
+        /// <summary>
+        /// Flag to unregister view model when we don't need it
+        /// </summary>
+        public bool IsExpired { get; set; }
+
+        private string _headerText = "Create profile";
+        public string HeaderText
+        {
+            get => _headerText;
+            set
+            {
+                if (Equals(value, _headerText))
+                {
+                    return;
+                }
+
+                _headerText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _buttonText = "Create";
+        public string ButtonText
+        {
+            get => _buttonText;
+            set
+            {
+                if (Equals(value, _buttonText))
+                {
+                    return;
+                }
+
+                _buttonText = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Profile name
         /// </summary>
         public string ProfileName
         {
-            get => _profileName;
+            get => _profile.Name;
             set
             {
-                if (Equals(value, _profileName))
+                if (Equals(value, _profile.Name))
                 {
                     return;
                 }
 
-                _profileName = value;
+                _profile.Name = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _profileDescription;
 
         /// <summary>
         /// Profile description
         /// </summary>
         public string ProfileDescription
         {
-            get => _profileDescription;
+            get => _profile.Description;
             set
             {
-                if (Equals(value, _profileDescription))
+                if (Equals(value, _profile.Description))
                 {
                     return;
                 }
 
-                _profileDescription = value;
+                _profile.Description = value;
                 OnPropertyChanged();
             }
         }
 
-        private ProfileType _profileType;
-
         /// <summary>
-        /// Profile type (game)
+        /// Profile type
         /// </summary>
         public ProfileType ProfileType
         {
-            get => _profileType;
+            get => _profile.Type;
             set
             {
-                if (Equals(value, _profileType))
+                if (Equals(value, _profile.Type))
                 {
                     return;
                 }
 
-                _profileType = value;
+                _profile.Type = value;
                 OnPropertyChanged();
             }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public ProfileDialogViewModel()
+        {
+            Messenger.Default.Register<Profile>
+            (
+                this,
+                RecieveProfile
+            );
         }
 
         #endregion
@@ -98,17 +143,8 @@ namespace A3ServerTool.ViewModels
                 return _okCommand
                        ?? (_okCommand = new RelayCommand(obj =>
                        {
-                           SendMessage(MessageDialogResult.Affirmative, new Profile
-                           {
-                               Description = ProfileDescription,
-                               Name = ProfileName,
-                               Type = ProfileType
-                           });
-
-                           //ProfileDialog can be called multiple times in row,
-                           //we need to clear text boxes
-                           ProfileName = string.Empty;
-                           ProfileDescription = string.Empty;
+                           SendMessage(MessageDialogResult.Affirmative, _profile);
+                           IsExpired = true;
                        }));
             }
         }
@@ -126,6 +162,7 @@ namespace A3ServerTool.ViewModels
                        ?? (_cancelCommand = new RelayCommand(obj =>
                        {
                            SendMessage(MessageDialogResult.Canceled);
+                           IsExpired = true;
                        }));
             }
         }
@@ -137,12 +174,31 @@ namespace A3ServerTool.ViewModels
         /// <summary>
         /// Send result to parent view model (ProfileViewModel in this case)
         /// </summary>
-        /// <param name="dialogResult"></param>
-        /// <param name="profile"></param>
         private void SendMessage(MessageDialogResult dialogResult, Profile profile = null)
         {
             var result = new Tuple<MessageDialogResult, Profile>(dialogResult, profile);
             Messenger.Default.Send(result);
+        }
+
+        private void RecieveProfile(Profile profile)
+        {
+            _profile = profile;
+
+            HeaderText = "Edit profile";
+            ButtonText = "Edit";
+            UpdateView();
+        }
+
+        /// <summary>
+        /// When profile for edit is recieved 
+        /// we need to update the view to populate controls with actual data
+        /// </summary>
+        /// <remarks>TODO: find better way</remarks>
+        private void UpdateView()
+        {
+            OnPropertyChanged(nameof(ProfileName));
+            OnPropertyChanged(nameof(ProfileType));
+            OnPropertyChanged(nameof(ProfileDescription));
         }
 
         #endregion

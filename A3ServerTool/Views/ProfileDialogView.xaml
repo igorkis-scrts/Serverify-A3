@@ -17,7 +17,9 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Margin="0 0 0 0" Style="{StaticResource DescriptionHeaderStyle}">Create profile</Label>
+        <Label Grid.Row="0" Margin="0 0 0 0" 
+               Style="{StaticResource DescriptionHeaderStyle}"
+               Content="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></Label>
             
         <StackPanel Grid.Row="1">
             <TextBlock Margin="{StaticResource ControlMargin}"
@@ -29,7 +31,7 @@
                        FontSize="14" />
             <TextBox x:Name="NameTextBox" Margin="10,0,0,0"
                      mah:TextBoxHelper.Watermark="Profile name"                     
-                     Text="{Binding ProfileName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+                     Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
            
             <TextBlock Margin="{StaticResource ControlMargin}"
                        HorizontalAlignment="Left"
@@ -41,7 +43,7 @@
             <TextBox x:Name="DescriptionTextBox"
                      Margin="10,0,0,0"
                      mah:TextBoxHelper.Watermark="Short profile description"
-                     Text="{Binding ProfileDescription, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+                     Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
             <TextBlock Margin="{StaticResource ControlMargin}"
                        HorizontalAlignment="Left"
@@ -56,7 +58,7 @@
                              HorizontalContentAlignment="Left"
                              mah:TextBoxHelper.Watermark="Game type"
                              ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
-                             SelectedItem="{Binding ProfileType}"
+                             SelectedItem="{Binding ProfileType, Mode=TwoWay}"
                              SelectedIndex="0">
 
             </mah:SplitButton>
@@ -73,8 +75,8 @@
                         VerticalAlignment="Center"
                         x:Name="OkButton"                        
                         Margin="10 0 0 0"
-                        Command="{Binding OkCommand}">
-                    <Button.Content>Create</Button.Content>
+                        Command="{Binding OkCommand}"
+                        Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
                             <Setter Property="IsEnabled" Value="False"></Setter>

@@ -15,8 +15,8 @@ namespace A3ServerTool
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            //CloseApplicationCommand handles app exit
-            //, ordinary exit mechanism is turned off
+            //CloseApplicationCommand in viewmodel handles app exit,
+            //ordinary exit mechanism is turned off
             e.Cancel = true;
         }
     }

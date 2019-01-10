@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Input;
 using A3ServerTool.Models;
 using A3ServerTool.ProfileStorage;
 using A3ServerTool.Views;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Practices.ServiceLocation;
 
 namespace A3ServerTool.ViewModels
 {
@@ -15,9 +19,8 @@ namespace A3ServerTool.ViewModels
     {
         private readonly MainViewModel _mainViewModel;
 
-        private readonly IDialogCoordinator _dialogCoordinator;
-        private readonly ProfileDialogView _profileDialogView = new ProfileDialogView();
-        private readonly CustomDialog _customDialog = new CustomDialog();
+        private readonly IDialogCoordinator _dialogCoordinator; 
+        private readonly CustomDialog _customDialog = new CustomDialog(); //TODO: isn't it a little MVVM break?
 
         private bool _isRegistered;
 
@@ -132,12 +135,33 @@ namespace A3ServerTool.ViewModels
                            if (profileToDelete == null) return;
 
 
-                           var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirmation",
+                           var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm deletion",
                                "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
                            if (dialogResult != MessageDialogResult.Affirmative) return;
 
                            ProfileDao.Delete(profileToDelete);
                            RefreshData();
+                       }));
+            }
+        }
+
+        private ICommand _editProfileCommand;
+        public ICommand EditProfileCommand
+        {
+            get
+            {
+                return _editProfileCommand ??
+                       (_editProfileCommand = new RelayCommand(async obj =>
+                       {
+                           var profileToEdit = SelectedProfile;
+                           if (profileToEdit == null) return;
+
+                           ShowDialog();
+                           Messenger.Default.Send(SelectedProfile);
+
+                           //TODO: Save to HDD, storage
+
+                           //RefreshData();
                        }));
             }
         }
@@ -148,8 +172,8 @@ namespace A3ServerTool.ViewModels
         }
 
         private async void ShowDialog()
-        {
-            _customDialog.Content = _profileDialogView;
+        {           
+            _customDialog.Content = new ProfileDialogView(); //MVVM break, obviously :(
             await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
         }
 
@@ -164,6 +188,27 @@ namespace A3ServerTool.ViewModels
                 Profiles.Add(DialogResult.Item2);
                 //TODO:asynchrously (or task/thread usage) save object to local storage
             }
+
+            ClearDialogServicesAsync();
+        }
+
+        /// <summary>
+        /// Clears view models when we don't need 'em
+        /// </summary>
+        /// <remarks>Since ServiceLocator creates new instance of ProfileDialogVM every time we're calling it,
+        /// we need to manualy unregister that VMs after it's usage so there will be no memory leak</remarks>
+        private async void ClearDialogServicesAsync()
+        {
+            await Task.Run(() =>
+            {
+                var servicesToClear = ServiceLocator.Current.GetAllInstances<ProfileDialogViewModel>()
+                    .Where(service => service.IsExpired).ToList();
+
+                foreach (var service in servicesToClear)
+                {
+                    SimpleIoc.Default.Unregister(service);
+                }
+            });
         }
     }
 }
