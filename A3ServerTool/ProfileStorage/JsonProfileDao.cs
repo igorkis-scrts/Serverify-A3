@@ -39,7 +39,7 @@ namespace A3ServerTool.ProfileStorage
 
         public void Insert(Profile profile)
         {
-            var json = JsonConvert.SerializeObject(profile);
+            var json = JsonConvert.SerializeObject(profile, Formatting.Indented);
             FileHelper.Save(json, profile.Name, FileExtension, StorageFolder);
         }
 

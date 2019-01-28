@@ -10,6 +10,7 @@ using A3ServerTool.ProfileStorage;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using Interchangeable;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
 
@@ -69,8 +70,8 @@ namespace A3ServerTool.ViewModels
 
         }
 
-        private Tuple<MessageDialogResult, Profile> _dialogResult;
-        public Tuple<MessageDialogResult, Profile> DialogResult
+        private DialogResult<Profile> _dialogResult;
+        public DialogResult<Profile> DialogResult
         {
             get => _dialogResult;
             set
@@ -104,7 +105,7 @@ namespace A3ServerTool.ViewModels
                 {
                     if (_isRegistered) return;
 
-                    Messenger.Default.Register<Tuple<MessageDialogResult, Profile>>(this, ProcessMessage);
+                    Messenger.Default.Register<DialogResult<Profile>>(this, ProcessMessage);
                     _isRegistered = true;
                 });
             }
@@ -177,15 +178,15 @@ namespace A3ServerTool.ViewModels
             await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
         }
 
-        private async void ProcessMessage(Tuple<MessageDialogResult, Profile> messageContent)
+        private async void ProcessMessage(DialogResult<Profile> messageContent)
         {
             DialogResult = messageContent;
             await _dialogCoordinator.HideMetroDialogAsync(this, _customDialog);
 
-            if (DialogResult.Item1 == MessageDialogResult.Affirmative)
+            if (DialogResult.MessageResult == MessageDialogResult.Affirmative)
             {
-                ProfileDao.Insert(DialogResult.Item2);
-                Profiles.Add(DialogResult.Item2);
+                ProfileDao.Insert(DialogResult.ObjectResult);
+                Profiles.Add(DialogResult.ObjectResult);
                 //TODO:asynchrously (or task/thread usage) save object to local storage
             }
 

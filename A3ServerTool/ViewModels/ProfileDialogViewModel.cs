@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Interchangeable;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace A3ServerTool.ViewModels
@@ -176,7 +177,8 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         private void SendMessage(MessageDialogResult dialogResult, Profile profile = null)
         {
-            var result = new Tuple<MessageDialogResult, Profile>(dialogResult, profile);
+            var result = new DialogResult<Profile>(dialogResult, profile);
+            //var result = new Tuple<MessageDialogResult, Profile>(dialogResult, profile);
             Messenger.Default.Send(result);
         }
 
