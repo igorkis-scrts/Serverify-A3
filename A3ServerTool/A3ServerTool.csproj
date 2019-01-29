@@ -86,6 +86,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
+    <Compile Include="Models\CurrentProfile.cs" />
     <Compile Include="Models\ProfileType.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\IServerSettings.cs" />
