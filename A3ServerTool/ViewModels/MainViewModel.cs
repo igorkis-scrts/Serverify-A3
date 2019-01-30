@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -16,6 +17,18 @@ namespace A3ServerTool.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private readonly IDialogCoordinator _dialogCoordinator = DialogCoordinator.Instance;
+
+        private Profile _currentProfile;
+        public Profile CurrentProfile
+        {
+            get => _currentProfile;
+            set
+            {
+                if (Equals(value, _currentProfile)) return;
+                _currentProfile = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private HamburgerMenuItemCollection _menuItems;
         public HamburgerMenuItemCollection MenuItems
@@ -92,7 +105,7 @@ namespace A3ServerTool.ViewModels
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Account},
                     Label = "Profiles",
                     ToolTip = "Server profiles",
-                    Tag = new ProfilesViewModel(ServiceLocator.Current.GetInstance<IDialogCoordinator>())
+                    Tag = new ProfilesViewModel(ServiceLocator.Current.GetInstance<IDialogCoordinator>(), this)
                 },
 
                 new HamburgerMenuIconItem

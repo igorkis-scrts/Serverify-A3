@@ -8,6 +8,7 @@ using System.Windows.Input;
 using A3ServerTool.Models;
 using A3ServerTool.ProfileStorage;
 using A3ServerTool.Views;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -16,7 +17,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace A3ServerTool.ViewModels
 {
-    public class ProfilesViewModel : PropertyChangedViewModel
+    public class ProfilesViewModel : ViewModelBase
     {
         private readonly MainViewModel _mainViewModel;
 
@@ -48,7 +49,7 @@ namespace A3ServerTool.ViewModels
                     return;
                 }
                 _profiles = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
 
         }
@@ -65,7 +66,7 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _selectedProfile = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
 
         }
@@ -81,14 +82,15 @@ namespace A3ServerTool.ViewModels
                     return;
                 }
                 _dialogResult = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
 
-        public ProfilesViewModel(IDialogCoordinator dialogCoordinator)
+        public ProfilesViewModel(IDialogCoordinator dialogCoordinator, MainViewModel viewModel)
         {
             _dialogCoordinator = dialogCoordinator;
+            _mainViewModel = viewModel;
             Profiles = ProfileDao.GetAll();
         }
 
@@ -108,6 +110,19 @@ namespace A3ServerTool.ViewModels
                     Messenger.Default.Register<DialogResult<Profile>>(this, ProcessMessage);
                     _isRegistered = true;
                 });
+            }
+        }
+
+        private ICommand _selectProfileCommand;
+        public ICommand SelectProfileCommand
+        {
+            get
+            {
+                return _selectProfileCommand ??
+                       (_selectProfileCommand = new RelayCommand(obj =>
+                       {
+                           _mainViewModel.CurrentProfile = SelectedProfile;
+                       }));
             }
         }
 

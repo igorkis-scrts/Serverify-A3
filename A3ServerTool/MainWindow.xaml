@@ -91,17 +91,18 @@
                 <Setter Property="PaneBackground" Value="{DynamicResource WhiteBrush}" />
                 <Setter Property="PaneForeground" Value="{DynamicResource TextBrush}" />
                 <Setter Property="ShowSelectionIndicator" Value="True" />
+                <Setter Property="Background" Value="LightGray" />
             </Style>
         </ResourceDictionary>
 
     </Window.Resources>
 
     <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands ShowLastSeparator="False">
-            <Label>Current profile:</Label>
-            <mah:SplitButton>
-
-            </mah:SplitButton>
+        <mah:WindowCommands ShowLastSeparator="True">
+            <Label Content="Current profile:" VerticalAlignment="Center"/>
+            <Label Content="{Binding CurrentProfile.Name, TargetNullValue='Nothing'}" FontWeight="Bold" VerticalAlignment="Center" />
+            <Button Content="Change profile"
+                    ToolTip="Select (or create) another profile to work with" />
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     

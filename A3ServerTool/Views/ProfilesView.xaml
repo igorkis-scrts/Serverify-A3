@@ -80,64 +80,78 @@
                 </Style>
             </DataGrid.RowStyle>-->
         </DataGrid>
-        <Grid Grid.Row="2"
-              Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="0.5*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
 
-            <Button Style="{StaticResource MetroFlatButton}" 
-                    Grid.Row="0" 
-                    Grid.Column="0" 
-                    MinWidth="80" 
-                    Height="28" 
+        <DockPanel Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Background="LightGray">
+            
+            <Button Style="{StaticResource MetroFlatButton}"
+                    DockPanel.Dock="Left"
+                    MinWidth="48" 
+                    MinHeight="48"
+                    MaxWidth="96"
+                    MaxHeight="96"
+                    Width="64"
                     HorizontalAlignment="Center" 
-                    Margin="{StaticResource ControlMargin}">
-                
-                <DockPanel>
-                    <iconPacks:PackIconMaterial Kind="Check" DockPanel.Dock="Left"></iconPacks:PackIconMaterial>
-                    <TextBlock Margin="4 0 0 0" ><Bold>Choose</Bold></TextBlock>
-                </DockPanel>
+                    Margin="{StaticResource ControlMargin}"
+                    Command="{Binding SelectProfileCommand}">
+
+                <StackPanel>
+                    <iconPacks:PackIconMaterial Kind="Check" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                    <TextBlock HorizontalAlignment="Center" Text="Select"/>
+                </StackPanel>
             </Button>
 
-            <Button Style="{StaticResource MetroFlatButton}" 
-                    Grid.Row="1" 
-                    Grid.Column="0" 
-                    MinWidth="80" 
-                    Height="28"
+            <Button Style="{StaticResource MetroFlatButton}"
+                    DockPanel.Dock="Left"
+                    MinWidth="48" 
+                    MinHeight="48"
+                    MaxWidth="96"
+                    MaxHeight="96"
+                    Width="64"
                     HorizontalAlignment="Center" 
                     Margin="{StaticResource ControlMargin}" 
-                    Content="Create"
                     Command="{Binding CreateProfileCommand}">
+
+                <StackPanel>
+                    <iconPacks:PackIconMaterial Kind="Floppy" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                    <TextBlock HorizontalAlignment="Center" Text="Create"></TextBlock>
+                </StackPanel>
             </Button>
-            <Button Style="{StaticResource MetroFlatButton}" 
-                    Grid.Row="1" 
-                    Grid.Column="1" 
-                    MinWidth="80" 
-                    Height="28"
+            <Button Style="{StaticResource MetroFlatButton}"
+                    DockPanel.Dock="Left"
+                    MinWidth="48" 
+                    MinHeight="48"
+                    MaxWidth="96"
+                    MaxHeight="96"
+                    Width="64"
                     HorizontalAlignment="Center" 
                     Margin="{StaticResource ControlMargin}" 
-                    Content="Edit"
                     Command="{Binding EditProfileCommand}">
+
+                <StackPanel>
+                    <iconPacks:PackIconMaterial Kind="Pencil" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                    <TextBlock HorizontalAlignment="Center" Text="Edit"/>
+                </StackPanel>
             </Button>
-            <Button Style="{StaticResource MetroFlatButton}" 
-                    Grid.Row="1" 
-                    Grid.Column="2" 
-                    MinWidth="80" 
-                    Height="28"
-                    HorizontalAlignment="Center" 
-                    Margin="{StaticResource ControlMargin}" 
-                    Content="Delete"
+            <Button Style="{StaticResource MetroFlatButton}"
+                    DockPanel.Dock="Left"
+                    MinWidth="48" 
+                    MinHeight="48"
+                    MaxWidth="96"
+                    MaxHeight="96"
+                    Width="64"
+                    Margin="{StaticResource ControlMargin}"
                     Command="{Binding DeleteProfileCommand}">
+
+                <StackPanel>
+                    <iconPacks:PackIconMaterial Kind="Delete" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                    <TextBlock HorizontalAlignment="Center" Text="Delete"/>
+                </StackPanel>
             </Button>
-        </Grid>
+            <DockPanel/>
+        </DockPanel>
     </Grid>
 </UserControl>
 

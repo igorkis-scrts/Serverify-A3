@@ -9,7 +9,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Shared.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.IconPacks;component/Themes/IconPacks.xaml" />
+        <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro.IconPacks.Material;component/Themes/IconPacks.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="BrowseMetroTextBox"
