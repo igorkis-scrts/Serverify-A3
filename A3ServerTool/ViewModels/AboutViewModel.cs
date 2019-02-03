@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using GalaSoft.MvvmLight;
 using Interchangeable.Helpers;
 
 namespace A3ServerTool.ViewModels
@@ -16,7 +17,7 @@ namespace A3ServerTool.ViewModels
     /// <summary>
     /// About view model
     /// </summary>
-    public class AboutViewModel : PropertyChangedViewModel
+    public class AboutViewModel : ViewModelBase
     {
         private MainViewModel _mainViewModel;
 
@@ -42,7 +43,7 @@ namespace A3ServerTool.ViewModels
             set
             {
                 _currentVersion = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private string _currentVersion;
@@ -56,7 +57,7 @@ namespace A3ServerTool.ViewModels
             set
             {
                 _avatar = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         private ImageSource _avatar;

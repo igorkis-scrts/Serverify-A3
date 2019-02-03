@@ -32,25 +32,41 @@ namespace A3ServerTool.ProfileStorage
             return profiles;
         }
 
-        public Profile Get()
+        public Profile Get(Profile profile)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(p => Equals(profile.Id, p.Id));
+        }
+
+
+        public void SaveOrUpdate(Profile profile)
+        {
+            var profileToSave = Get(profile);
+
+            if (profileToSave != null)
+            {
+                Update(profile);
+            }
+            else
+            {
+                Insert(profile);
+            }
         }
 
         public void Insert(Profile profile)
         {
             var json = JsonConvert.SerializeObject(profile, Formatting.Indented);
-            FileHelper.Save(json, profile.Name, FileExtension, StorageFolder);
+            FileHelper.Save(json, profile.Id.ToString(), FileExtension, StorageFolder);
         }
 
         public void Update(Profile profile)
         {
-            throw new NotImplementedException();
+            var json = JsonConvert.SerializeObject(profile, Formatting.Indented);
+            FileHelper.Update(json, profile.Id.ToString(), FileExtension, StorageFolder);
         }
 
         public void Delete(Profile profile)
         {
-            FileHelper.Delete(profile.Name + FileExtension, StorageFolder);
+            FileHelper.Delete(profile.Id + FileExtension, StorageFolder);
         }
     }
 }

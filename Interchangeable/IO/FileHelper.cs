@@ -6,7 +6,7 @@ using System.Linq;
 namespace Interchangeable.IO
 {
     /// <summary>
-    /// Various methods for I/O things
+    /// Various methods for I/O things, context dependent
     /// </summary>
     /// TODO: Is singleton really necessary here?
     /// TODO: Class rename?
@@ -32,6 +32,11 @@ namespace Interchangeable.IO
                 ? Path.Combine(RootFolder, folderName)
                 : RootFolder;
 
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             return new DirectoryInfo(path)
                 .GetFiles("*" + fileExtension, SearchOption.TopDirectoryOnly)
                 .ToList();
@@ -48,19 +53,39 @@ namespace Interchangeable.IO
             }
 
             var path = folderName != null 
-                ? Path.Combine(RootFolder, folderName, fileName) 
-                : Path.Combine(RootFolder, fileName);
+                ? Path.Combine(RootFolder, folderName, fileName) + fileExtension
+                : Path.Combine(RootFolder, fileName) + fileExtension;
 
             if (File.Exists(path))
             {
-                //TODO: throw new exception about file existance
+                throw new Exception("File already exists!");
             }
-            else
-            {
 
-                File.WriteAllText(path + fileExtension, content);
-            }
+            File.WriteAllText(path, content);
         }
+
+        /// <summary>
+        /// Updates existing file
+        /// </summary>
+        public static void Update(string content, string fileName, string fileExtension, string folderName = null)
+        {
+            if (!Directory.Exists(RootFolder + folderName))
+            {
+                Directory.CreateDirectory(RootFolder + folderName);
+            }
+
+            var path = folderName != null
+                ? Path.Combine(RootFolder, folderName, fileName) + fileExtension
+                : Path.Combine(RootFolder, fileName) + fileExtension;
+
+            if (!File.Exists(path))
+            {
+                throw new Exception("File already exists!");
+            }
+
+            File.WriteAllText(path, content);
+        }
+
 
         /// <summary>
         /// Delete file from hard drive
@@ -77,7 +102,7 @@ namespace Interchangeable.IO
             }
             else
             {
-                //TODO: throw new exception about nonexistance
+                throw new FileNotFoundException("File is not exists.");
             }
         }
     }

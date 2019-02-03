@@ -8,6 +8,12 @@
              DataContext="{Binding Settings, Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Блядь, ну хоть здесь-то заработает?</TextBlock>
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               Style="{StaticResource DescriptionHeaderStyle}"
+               Margin="{StaticResource ControlMargin}"
+               Content="Settings"/>
     </Grid>
 </UserControl>

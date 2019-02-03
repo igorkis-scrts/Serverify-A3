@@ -12,13 +12,13 @@ namespace Interchangeable
     /// </summary>
     public struct DialogResult<T>
     {
-        public MessageDialogResult MessageResult;
-        public T ObjectResult;
+        public MessageDialogResult Message;
+        public T Object;
 
         public DialogResult(MessageDialogResult messageResult, T objectResult)
         {
-            MessageResult = messageResult;
-            ObjectResult = objectResult;
+            Message = messageResult;
+            Object = objectResult;
         }
     }
 }

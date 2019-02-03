@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
 using A3ServerTool.Models;
 using A3ServerTool.ProfileStorage;
@@ -68,7 +66,6 @@ namespace A3ServerTool.ViewModels
                 _selectedProfile = value;
                 RaisePropertyChanged();
             }
-
         }
 
         private DialogResult<Profile> _dialogResult;
@@ -156,28 +153,29 @@ namespace A3ServerTool.ViewModels
                            if (dialogResult != MessageDialogResult.Affirmative) return;
 
                            ProfileDao.Delete(profileToDelete);
+                           _mainViewModel.CurrentProfile.Name = _mainViewModel.CurrentProfile.Name + " (deleted)";
+
                            RefreshData();
                        }));
             }
         }
 
         private ICommand _editProfileCommand;
+
         public ICommand EditProfileCommand
         {
             get
             {
                 return _editProfileCommand ??
-                       (_editProfileCommand = new RelayCommand(async obj =>
+                       (_editProfileCommand = new RelayCommand(obj =>
                        {
                            var profileToEdit = SelectedProfile;
                            if (profileToEdit == null) return;
 
+
                            ShowDialog();
                            Messenger.Default.Send(SelectedProfile);
-
-                           //TODO: Save to HDD, storage
-
-                           //RefreshData();
+                        
                        }));
             }
         }
@@ -198,10 +196,15 @@ namespace A3ServerTool.ViewModels
             DialogResult = messageContent;
             await _dialogCoordinator.HideMetroDialogAsync(this, _customDialog);
 
-            if (DialogResult.MessageResult == MessageDialogResult.Affirmative)
+            if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                ProfileDao.Insert(DialogResult.ObjectResult);
-                Profiles.Add(DialogResult.ObjectResult);
+                    ProfileDao.SaveOrUpdate(DialogResult.Object);
+                    RefreshData();
+
+                if (Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
+                {
+                    _mainViewModel.CurrentProfile = DialogResult.Object;
+                }
                 //TODO:asynchrously (or task/thread usage) save object to local storage
             }
 
@@ -213,9 +216,9 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         /// <remarks>Since ServiceLocator creates new instance of ProfileDialogVM every time we're calling it,
         /// we need to manualy unregister that VMs after it's usage so there will be no memory leak</remarks>
-        private async void ClearDialogServicesAsync()
+        private void ClearDialogServicesAsync()
         {
-            await Task.Run(() =>
+            Task.Run(() =>
             {
                 var servicesToClear = ServiceLocator.Current.GetAllInstances<ProfileDialogViewModel>()
                     .Where(service => service.IsExpired).ToList();
@@ -225,6 +228,7 @@ namespace A3ServerTool.ViewModels
                     SimpleIoc.Default.Unregister(service);
                 }
             });
+            //TODO: catch exceptions
         }
     }
 }

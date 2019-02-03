@@ -13,6 +13,16 @@
              dialog:DialogParticipation.Register="{Binding}"
              d:DesignHeight="450" d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}" x:Key="ButtonWithDependency">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=SelectedProfile}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="LayoutUpdated">
             <i:InvokeCommandAction Command="{Binding StartupCommand}" />
@@ -30,11 +40,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        
         <Label Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="2"
                HorizontalAlignment="Left"
                Style="{StaticResource DescriptionHeaderStyle}"
+               Margin="{StaticResource ControlMargin}"
                Content="Profiles"/>
 
         <DataGrid x:Name="ProfileDataGrid"
@@ -85,8 +97,8 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    Background="LightGray">
-            
-            <Button Style="{StaticResource MetroFlatButton}"
+
+            <Button Style="{StaticResource ButtonWithDependency}"
                     DockPanel.Dock="Left"
                     MinWidth="48" 
                     MinHeight="48"
@@ -119,7 +131,7 @@
                     <TextBlock HorizontalAlignment="Center" Text="Create"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource MetroFlatButton}"
+            <Button Style="{StaticResource ButtonWithDependency}"
                     DockPanel.Dock="Left"
                     MinWidth="48" 
                     MinHeight="48"
@@ -127,7 +139,7 @@
                     MaxHeight="96"
                     Width="64"
                     HorizontalAlignment="Center" 
-                    Margin="{StaticResource ControlMargin}" 
+                    Margin="{StaticResource ControlMargin}"
                     Command="{Binding EditProfileCommand}">
 
                 <StackPanel>
@@ -135,8 +147,7 @@
                     <TextBlock HorizontalAlignment="Center" Text="Edit"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource MetroFlatButton}"
-                    DockPanel.Dock="Left"
+            <Button Style="{StaticResource ButtonWithDependency}" DockPanel.Dock="Left"
                     MinWidth="48" 
                     MinHeight="48"
                     MaxWidth="96"
@@ -144,7 +155,6 @@
                     Width="64"
                     Margin="{StaticResource ControlMargin}"
                     Command="{Binding DeleteProfileCommand}">
-
                 <StackPanel>
                     <iconPacks:PackIconMaterial Kind="Delete" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
                     <TextBlock HorizontalAlignment="Center" Text="Delete"/>

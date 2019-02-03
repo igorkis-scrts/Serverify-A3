@@ -16,7 +16,7 @@ namespace A3ServerTool.ViewModels
     /// <summary>
     /// Profile create/edit dialog
     /// </summary>
-    public class ProfileDialogViewModel : PropertyChangedViewModel, IDataErrorInfo
+    public class ProfileDialogViewModel : ViewModelBase, IDataErrorInfo
     {
 
         #region Properties and fields
@@ -40,7 +40,7 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _headerText = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -56,7 +56,7 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _buttonText = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -74,7 +74,7 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _profile.Name = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -93,7 +93,7 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _profile.Description = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -111,7 +111,7 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _profile.Type = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -178,7 +178,6 @@ namespace A3ServerTool.ViewModels
         private void SendMessage(MessageDialogResult dialogResult, Profile profile = null)
         {
             var result = new DialogResult<Profile>(dialogResult, profile);
-            //var result = new Tuple<MessageDialogResult, Profile>(dialogResult, profile);
             Messenger.Default.Send(result);
         }
 
@@ -198,9 +197,9 @@ namespace A3ServerTool.ViewModels
         /// <remarks>TODO: find better way</remarks>
         private void UpdateView()
         {
-            OnPropertyChanged(nameof(ProfileName));
-            OnPropertyChanged(nameof(ProfileType));
-            OnPropertyChanged(nameof(ProfileDescription));
+            RaisePropertyChanged(nameof(ProfileName));
+            RaisePropertyChanged(nameof(ProfileType));
+            RaisePropertyChanged(nameof(ProfileDescription));
         }
 
         #endregion

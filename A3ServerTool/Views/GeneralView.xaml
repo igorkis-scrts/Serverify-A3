@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="A3ServerTool.Views.GeneralView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:A3ServerTool.Views"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:controls="clr-namespace:A3ServerTool.Views.A3"
+             mc:Ignorable="d"
+             DataContext="{Binding General, Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               Style="{StaticResource DescriptionHeaderStyle}"
+               Margin="{StaticResource ControlMargin}"
+               Content="Settings"/>
+
+        <mah:MetroAnimatedSingleRowTabControl Grid.Row="1">
+            <TabItem Header="General">
+                <controls:MainView/>
+            </TabItem>
+            <TabItem Header="Security"></TabItem>
+            <TabItem Header="Missions"></TabItem>
+            <TabItem Header="Modifications"></TabItem>
+            <TabItem Header="Performance"></TabItem>
+            <TabItem Header="Difficulty"></TabItem>
+            <TabItem Header="Other"></TabItem>
+        </mah:MetroAnimatedSingleRowTabControl>
+            
+    </Grid>
+</UserControl>

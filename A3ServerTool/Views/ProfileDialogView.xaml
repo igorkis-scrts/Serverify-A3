@@ -8,44 +8,45 @@
                   xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                   mc:Ignorable="d"
                   DataContext="{Binding ProfileDialog, Source={StaticResource Locator}}"
-                  dialog:DialogParticipation.Register="{Binding}">
+                  dialog:DialogParticipation.Register="{Binding}"
+                  Title="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
       
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <dialog:CustomDialog.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Margin="0 0 0 0" 
+            <!--<Label Grid.Row="0" Margin="0 0 0 0" 
                Style="{StaticResource DescriptionHeaderStyle}"
-               Content="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></Label>
-            
-        <StackPanel Grid.Row="1">
-            <TextBlock Margin="{StaticResource ControlMargin}"
+               Content="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+            <StackPanel Grid.Row="0">
+                <TextBlock Margin="{StaticResource ControlMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Text="Name"
                        TextWrapping="Wrap"
                        FontWeight="Bold"
                        FontSize="14" />
-            <TextBox x:Name="NameTextBox" Margin="10,0,0,0"
+                <TextBox x:Name="NameTextBox" Margin="8,0,0,0"
                      mah:TextBoxHelper.Watermark="Profile name"                     
                      Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
-           
-            <TextBlock Margin="{StaticResource ControlMargin}"
+
+                <TextBlock Margin="{StaticResource ControlMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Text="Description"
                        TextWrapping="Wrap"
                        FontWeight="Bold"
                        FontSize="14" />
-            <TextBox x:Name="DescriptionTextBox"
-                     Margin="10,0,0,0"
+                <TextBox x:Name="DescriptionTextBox"
+                     Margin="8,0,0,0"
                      mah:TextBoxHelper.Watermark="Short profile description"
                      Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
-            <TextBlock Margin="{StaticResource ControlMargin}"
+                <TextBlock Margin="{StaticResource ControlMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Text="Profile type"
@@ -53,64 +54,74 @@
                        FontWeight="Bold"
                        FontSize="14" />
 
-            <mah:SplitButton x:Name="GameTypeSplitButton"
-                             Margin="10,0,0,10"
+                <mah:SplitButton x:Name="GameTypeSplitButton"
+                             Margin="8,0,0,0"
                              HorizontalContentAlignment="Left"
                              mah:TextBoxHelper.Watermark="Game type"
                              ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
                              SelectedItem="{Binding ProfileType, Mode=TwoWay}"
-                             SelectedIndex="0">
+                             SelectedIndex="0"/>
 
-            </mah:SplitButton>
+                <TextBlock Margin="{StaticResource ControlMargin}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Text="Store current server settings in this profile"
+                           TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           FontSize="14" />
 
-        </StackPanel>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+                <mah:ToggleSwitch Margin="8,0,0,8"
+                                  OnLabel="Yes"
+                                  OffLabel="No" 
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  IsEnabled="False"
+                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" FontSize="14" />
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <DockPanel
-                Margin="0 0 0 10">
-                <Button HorizontalAlignment="Left"
+                <DockPanel>
+                    <Button HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         x:Name="OkButton"                        
-                        Margin="10 0 0 0"
+                            Margin="{StaticResource ControlMargin}"
                         Command="{Binding OkCommand}"
                         Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
-                            <Setter Property="IsEnabled" Value="False"></Setter>
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
-                            <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
-                            <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
-                            
-                            <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameTextBox}" Value="False"></Condition>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="True"></Setter>
-                                </MultiDataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>    
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
+                                <Setter Property="IsEnabled" Value="False"></Setter>
+                                <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                                <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
 
-                <Button Style="{StaticResource MetroFlatButton}"
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameTextBox}" Value="False"></Condition>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="IsEnabled" Value="True"></Setter>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button Style="{StaticResource MetroFlatButton}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         x:Name="CancelButton"
-                        Margin="0 0 0 0"
+                        Margin="{StaticResource ControlMargin}"
                         Content="Cancel"
                         Command="{Binding CancelCommand}"/>
-            </DockPanel>
+                </DockPanel>
+            </Grid>
         </Grid>
+    </dialog:CustomDialog.Content>
 
-    </Grid>
-    <!--<dialog:CustomDialog.Content>-->
-    <!--</dialog:CustomDialog.Content>-->
-
-    <!--<dialog:CustomDialog.DialogBottom>-->
-    <!--</dialog:CustomDialog.DialogBottom>-->
+    <!--<dialog:CustomDialog.DialogBottom>      
+    </dialog:CustomDialog.DialogBottom>-->
 </mah:CustomDialog>
 

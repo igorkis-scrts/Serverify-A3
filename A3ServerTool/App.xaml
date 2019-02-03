@@ -26,7 +26,6 @@
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
             
-
             <Thickness x:Key="ControlMargin">4 4 4 4</Thickness>
             
             <ResourceDictionary.MergedDictionaries>

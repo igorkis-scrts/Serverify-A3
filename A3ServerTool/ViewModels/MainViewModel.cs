@@ -24,7 +24,7 @@ namespace A3ServerTool.ViewModels
             get => _currentProfile;
             set
             {
-                if (Equals(value, _currentProfile)) return;
+                //if (Equals(value, _currentProfile)) return;
                 _currentProfile = value;
                 RaisePropertyChanged();
             }
@@ -92,13 +92,13 @@ namespace A3ServerTool.ViewModels
         {
             MenuItems = new HamburgerMenuItemCollection
             {
-                //new HamburgerMenuIconItem
-                //{
-                //    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
-                //    Label = "Server",
-                //    ToolTip = "General game server tuning",
-                //    Tag = new GeneralViewModel(this)
-                //},
+                new HamburgerMenuIconItem
+                {
+                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
+                    Label = "Server",
+                    ToolTip = "General game server tuning",
+                    Tag = new GeneralViewModel(this)
+                },
 
                 new HamburgerMenuIconItem
                 {

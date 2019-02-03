@@ -101,8 +101,8 @@
         <mah:WindowCommands ShowLastSeparator="True">
             <Label Content="Current profile:" VerticalAlignment="Center"/>
             <Label Content="{Binding CurrentProfile.Name, TargetNullValue='Nothing'}" FontWeight="Bold" VerticalAlignment="Center" />
-            <Button Content="Change profile"
-                    ToolTip="Select (or create) another profile to work with" />
+            <!--<Button Content="Change profile"
+                    ToolTip="Select (or create) another profile to work with" />-->
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     
@@ -137,9 +137,9 @@
             </DataTemplate>
 
             <!--  templates for view models  -->
-            <!--<DataTemplate DataType="{x:Type viewModels:GeneralViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:GeneralViewModel}">
                 <views:GeneralView DataContext="{Binding}" />
-            </DataTemplate>-->
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:AboutViewModel}">
                 <views:AboutView DataContext="{Binding}" />
             </DataTemplate>
