@@ -10,7 +10,9 @@
                       xmlns:converters="clr-namespace:A3ServerTool.Converters"
                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                       mc:Ignorable="d"
-                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderBrush="{StaticResource ControlSecondaryColorBrush}"
+                      WindowTitleBrush="{StaticResource ControlSecondaryColorBrush}"
+                      TitleForeground="Black"
                       BorderThickness="1"
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
@@ -19,7 +21,8 @@
                       DataContext="{Binding Main, Source={StaticResource Locator}}"
                       mah:DialogParticipation.Register="{Binding}"
                       Closing="MainWindow_OnClosing"
-                      Title="Arma 3 Server Tool" 
+                      WindowCloseButtonStyle="{DynamicResource CleanCloseWindowButtonStyle}"
+                      Title="Arma 3 Server Tool"
                       Height="640" 
                       Width="960">
     <i:Interaction.Triggers>
@@ -33,6 +36,20 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Themes/HamburgerMenuTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="CleanCloseWindowButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MetroWindowButtonStyle}">
+
+                <Setter Property="Foreground" Value="Black"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#EB2F2F" />
+                        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="#7C0000" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
             <DataTemplate x:Key="HamburgerMenuItem" DataType="{x:Type mah:HamburgerMenuGlyphItem}">
                 <Grid Height="48">
@@ -88,7 +105,7 @@
                    TargetType="{x:Type mah:HamburgerMenu}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
                 <Setter Property="OptionsItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
-                <Setter Property="PaneBackground" Value="{DynamicResource WhiteBrush}" />
+                <Setter Property="PaneBackground" Value="{StaticResource ControlSecondaryColorBrush}" />
                 <Setter Property="PaneForeground" Value="{DynamicResource TextBrush}" />
                 <Setter Property="ShowSelectionIndicator" Value="True" />
                 <Setter Property="Background" Value="LightGray" />

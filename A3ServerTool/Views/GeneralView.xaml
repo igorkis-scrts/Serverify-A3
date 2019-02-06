@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:A3ServerTool.Views"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:controls="clr-namespace:A3ServerTool.Views.A3"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              DataContext="{Binding General, Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -16,15 +17,17 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
+        
         <Label Grid.Row="0"
                Grid.Column="0"
-               Grid.ColumnSpan="2"
                HorizontalAlignment="Left"
                Style="{StaticResource DescriptionHeaderStyle}"
                Margin="{StaticResource ControlMargin}"
-               Content="Settings"/>
+               Content="Server"/>
 
-        <mah:MetroAnimatedSingleRowTabControl Grid.Row="1">
+        <mah:MetroAnimatedSingleRowTabControl 
+            Grid.Row="1"
+            Grid.Column="0">
             <TabItem Header="General">
                 <controls:MainView/>
             </TabItem>
@@ -35,6 +38,27 @@
             <TabItem Header="Difficulty"></TabItem>
             <TabItem Header="Other"></TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
-            
+
+        <DockPanel Grid.Row="2"
+                   Grid.Column="0"
+            Background="{StaticResource ControlSecondaryColorBrush}" Margin="0">
+            <Button Style="{StaticResource SecondaryColorFlatButton}"
+                        DockPanel.Dock="Left"
+                        MinWidth="48"
+                        MinHeight="48"
+                        MaxWidth="96"
+                        MaxHeight="96"
+                        Width="64"
+                        HorizontalAlignment="Center"
+                        Margin="{StaticResource ControlMargin}"
+                        Command="{Binding StartServerCommand}">
+
+                <StackPanel>
+                    <iconPacks:PackIconMaterial Kind="Server" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                    <TextBlock HorizontalAlignment="Center" Text="Launch" />
+                </StackPanel>
+            </Button>
+            <DockPanel />
+        </DockPanel>
     </Grid>
 </UserControl>

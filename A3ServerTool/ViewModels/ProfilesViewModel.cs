@@ -169,14 +169,9 @@ namespace A3ServerTool.ViewModels
                 return _editProfileCommand ??
                        (_editProfileCommand = new RelayCommand(obj =>
                        {
-                           var profileToEdit = SelectedProfile;
-                           if (profileToEdit == null) return;
-
-
                            ShowDialog();
-                           Messenger.Default.Send(SelectedProfile);
-                        
-                       }));
+                           Messenger.Default.Send(SelectedProfile);                      
+                       }, obj => SelectedProfile != null));
             }
         }
 
@@ -198,8 +193,7 @@ namespace A3ServerTool.ViewModels
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                    ProfileDao.SaveOrUpdate(DialogResult.Object);
-                    RefreshData();
+                ProfileDao.SaveOrUpdate(DialogResult.Object);
 
                 if (Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
                 {
@@ -208,6 +202,7 @@ namespace A3ServerTool.ViewModels
                 //TODO:asynchrously (or task/thread usage) save object to local storage
             }
 
+            RefreshData();
             ClearDialogServicesAsync();
         }
 

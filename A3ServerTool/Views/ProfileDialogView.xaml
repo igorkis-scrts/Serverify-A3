@@ -59,8 +59,10 @@
                              HorizontalContentAlignment="Left"
                              mah:TextBoxHelper.Watermark="Game type"
                              ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
+                             IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
                              SelectedItem="{Binding ProfileType, Mode=TwoWay}"
-                             SelectedIndex="0"/>
+                             SelectedIndex="0"
+                             ToolTip="You can only change this value only on new profile creation."    />
 
                 <TextBlock Margin="{StaticResource ControlMargin}"
                            HorizontalAlignment="Left"
@@ -86,8 +88,9 @@
                 <DockPanel>
                     <Button HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        MinWidth="64"
                         x:Name="OkButton"                        
-                            Margin="{StaticResource ControlMargin}"
+                        Margin="{StaticResource ControlMargin}"
                         Command="{Binding OkCommand}"
                         Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         <Button.Style>
@@ -110,6 +113,7 @@
                     </Button>
 
                     <Button Style="{StaticResource MetroFlatButton}"
+                        MinWidth="64"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         x:Name="CancelButton"
@@ -121,7 +125,8 @@
         </Grid>
     </dialog:CustomDialog.Content>
 
-    <!--<dialog:CustomDialog.DialogBottom>      
+    <!--<dialog:CustomDialog.DialogBottom> 
+    For some reason validation stops working in this tag
     </dialog:CustomDialog.DialogBottom>-->
 </mah:CustomDialog>
 

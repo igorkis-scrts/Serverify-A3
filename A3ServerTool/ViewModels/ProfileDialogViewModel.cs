@@ -28,6 +28,26 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         public bool IsExpired { get; set; }
 
+
+        private bool _isEditMode;
+        /// <summary>
+        /// Flag to check if profile is edited in this dialog instance
+        /// </summary>
+        public bool IsEditMode
+        {
+            get => _isEditMode;
+            set
+            {
+                if (Equals(value, _isEditMode))
+                {
+                    return;
+                }
+
+                _isEditMode = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private string _headerText = "Create profile";
         public string HeaderText
         {
@@ -144,6 +164,18 @@ namespace A3ServerTool.ViewModels
                 return _okCommand
                        ?? (_okCommand = new RelayCommand(obj =>
                        {
+                           switch (ProfileType)
+                           {
+                               case (ProfileType.Arma3):
+                                   _profile.ServerSettings = new A3ServerSettings();
+                                   break;
+
+                               case ProfileType.Dayz:
+                                   break;
+                               default:
+                                   throw new ArgumentOutOfRangeException();
+                           }
+
                            SendMessage(MessageDialogResult.Affirmative, _profile);
                            IsExpired = true;
                        }));
@@ -187,6 +219,8 @@ namespace A3ServerTool.ViewModels
 
             HeaderText = "Edit profile";
             ButtonText = "Edit";
+            IsEditMode = true;
+            
             UpdateView();
         }
 

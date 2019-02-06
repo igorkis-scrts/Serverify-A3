@@ -14,7 +14,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}" x:Key="ButtonWithDependency">
+        <Style TargetType="Button" BasedOn="{StaticResource SecondaryColorFlatButton}" x:Key="ButtonWithDependency">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=SelectedProfile}" Value="{x:Null}">
                     <Setter Property="IsEnabled" Value="False"></Setter>
@@ -22,7 +22,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="LayoutUpdated">
             <i:InvokeCommandAction Command="{Binding StartupCommand}" />
@@ -40,21 +40,23 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <Label Grid.Row="0"
-               Grid.Column="0"
-               Grid.ColumnSpan="2"
-               HorizontalAlignment="Left"
-               Style="{StaticResource DescriptionHeaderStyle}"
-               Margin="{StaticResource ControlMargin}"
-               Content="Profiles"/>
+
+        <DockPanel Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Left"
+                   Style="{StaticResource DescriptionHeaderStyle}"
+                   Margin="{StaticResource ControlMargin}"
+                   Content="Profiles" />
+        </DockPanel>
+
 
         <DataGrid x:Name="ProfileDataGrid"
                   Grid.Row="1"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
                   Margin="5"
-                  AutoGenerateColumns="False"               
+                  AutoGenerateColumns="False"
                   HeadersVisibility="Column"
                   ItemsSource="{Binding Path=Profiles}"
                   RowHeaderWidth="20"
@@ -63,8 +65,7 @@
                   IsReadOnly="True"
                   SelectionUnit="FullRow"
                   SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"
-                  SelectionMode="Single"
-                  >
+                  SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="4*" />
                 <DataGridTextColumn Binding="{Binding Type}" Header="Game Type" Width="4*" />
@@ -96,72 +97,71 @@
         <DockPanel Grid.Row="2"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Background="LightGray">
-
+            Background="{StaticResource ControlSecondaryColorBrush}" Margin="0">
             <Button Style="{StaticResource ButtonWithDependency}"
-                    DockPanel.Dock="Left"
-                    MinWidth="48" 
-                    MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
-                    Width="64"
-                    HorizontalAlignment="Center" 
-                    Margin="{StaticResource ControlMargin}"
-                    Command="{Binding SelectProfileCommand}">
+                        DockPanel.Dock="Left"
+                        MinWidth="48"
+                        MinHeight="48"
+                        MaxWidth="96"
+                        MaxHeight="96"
+                        Width="64"
+                        HorizontalAlignment="Center"
+                        Margin="{StaticResource ControlMargin}"
+                        Command="{Binding SelectProfileCommand}">
 
-                <StackPanel>
-                    <iconPacks:PackIconMaterial Kind="Check" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
-                    <TextBlock HorizontalAlignment="Center" Text="Select"/>
-                </StackPanel>
-            </Button>
+                    <StackPanel>
+                        <iconPacks:PackIconMaterial Kind="Check" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                        <TextBlock HorizontalAlignment="Center" Text="Select" />
+                    </StackPanel>
+                </Button>
 
-            <Button Style="{StaticResource MetroFlatButton}"
-                    DockPanel.Dock="Left"
-                    MinWidth="48" 
-                    MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
-                    Width="64"
-                    HorizontalAlignment="Center" 
-                    Margin="{StaticResource ControlMargin}" 
-                    Command="{Binding CreateProfileCommand}">
+                <Button Style="{StaticResource SecondaryColorFlatButton}"
+                        DockPanel.Dock="Left"
+                        MinWidth="48"
+                        MinHeight="48"
+                        MaxWidth="96"
+                        MaxHeight="96"
+                        Width="64"
+                        HorizontalAlignment="Center"
+                        Margin="{StaticResource ControlMargin}"
+                        Command="{Binding CreateProfileCommand}">
 
-                <StackPanel>
-                    <iconPacks:PackIconMaterial Kind="Floppy" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
-                    <TextBlock HorizontalAlignment="Center" Text="Create"></TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Style="{StaticResource ButtonWithDependency}"
-                    DockPanel.Dock="Left"
-                    MinWidth="48" 
-                    MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
-                    Width="64"
-                    HorizontalAlignment="Center" 
-                    Margin="{StaticResource ControlMargin}"
-                    Command="{Binding EditProfileCommand}">
+                    <StackPanel>
+                        <iconPacks:PackIconMaterial Kind="Floppy" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                        <TextBlock HorizontalAlignment="Center" Text="Create"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonWithDependency}"
+                        DockPanel.Dock="Left"
+                        MinWidth="48"
+                        MinHeight="48"
+                        MaxWidth="96"
+                        MaxHeight="96"
+                        Width="64"
+                        HorizontalAlignment="Center"
+                        Margin="{StaticResource ControlMargin}"
+                        Command="{Binding EditProfileCommand}">
 
-                <StackPanel>
-                    <iconPacks:PackIconMaterial Kind="Pencil" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
-                    <TextBlock HorizontalAlignment="Center" Text="Edit"/>
-                </StackPanel>
-            </Button>
-            <Button Style="{StaticResource ButtonWithDependency}" DockPanel.Dock="Left"
-                    MinWidth="48" 
-                    MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
-                    Width="64"
-                    Margin="{StaticResource ControlMargin}"
-                    Command="{Binding DeleteProfileCommand}">
-                <StackPanel>
-                    <iconPacks:PackIconMaterial Kind="Delete" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
-                    <TextBlock HorizontalAlignment="Center" Text="Delete"/>
-                </StackPanel>
-            </Button>
-            <DockPanel/>
-        </DockPanel>
+                    <StackPanel>
+                        <iconPacks:PackIconMaterial Kind="Pencil" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                        <TextBlock HorizontalAlignment="Center" Text="Edit" />
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonWithDependency}" DockPanel.Dock="Left"
+                        MinWidth="48"
+                        MinHeight="48"
+                        MaxWidth="96"
+                        MaxHeight="96"
+                        Width="64"
+                        Margin="{StaticResource ControlMargin}"
+                        Command="{Binding DeleteProfileCommand}">
+                    <StackPanel>
+                        <iconPacks:PackIconMaterial Kind="Delete" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                        <TextBlock HorizontalAlignment="Center" Text="Delete" />
+                    </StackPanel>
+                </Button>
+                <DockPanel />
+            </DockPanel>
     </Grid>
 </UserControl>
 

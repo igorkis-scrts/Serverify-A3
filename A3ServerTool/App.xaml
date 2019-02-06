@@ -8,7 +8,8 @@
              d1P1:Ignorable="d"
              xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:models="clr-namespace:A3ServerTool.Models">
+             xmlns:models="clr-namespace:A3ServerTool.Models"
+             xmlns:converters="clr-namespace:A3ServerTool.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:A3ServerTool.ViewModels" />
@@ -20,12 +21,21 @@
             </ObjectDataProvider>
 
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+
+            <Color x:Key="EtherealGrey">#EEEEEE</Color>
+            <SolidColorBrush x:Key="ControlSecondaryColorBrush" Color="{StaticResource EtherealGrey}" />
 
             <Style x:Key="DescriptionHeaderStyle" TargetType="Label">
+                <Setter Property="Margin" Value="12"/>
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
-            
+
+            <Style x:Key="SecondaryColorFlatButton" TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
+                <Setter Property="Background" Value="{StaticResource ControlSecondaryColorBrush}"/>
+            </Style>
+
             <Thickness x:Key="ControlMargin">4 4 4 4</Thickness>
             
             <ResourceDictionary.MergedDictionaries>
