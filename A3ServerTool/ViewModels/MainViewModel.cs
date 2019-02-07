@@ -86,6 +86,15 @@ namespace A3ServerTool.ViewModels
         public MainViewModel()
         {
             CreateMenuItems();
+            //TODO: save last used profile
+            //ServerSettingsFactory
+            if (CurrentProfile == null)
+            {
+                CurrentProfile = new Profile
+                {
+                    ServerSettings = new A3ServerSettings()
+                };
+            }
         }
 
         private void CreateMenuItems()

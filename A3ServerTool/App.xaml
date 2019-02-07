@@ -36,7 +36,8 @@
                 <Setter Property="Background" Value="{StaticResource ControlSecondaryColorBrush}"/>
             </Style>
 
-            <Thickness x:Key="ControlMargin">4 4 4 4</Thickness>
+            <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
+            <Thickness x:Key="LabelMargin">8 2 8 2</Thickness>
             
             <ResourceDictionary.MergedDictionaries>
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->

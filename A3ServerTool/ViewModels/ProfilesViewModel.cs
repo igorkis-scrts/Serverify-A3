@@ -119,7 +119,7 @@ namespace A3ServerTool.ViewModels
                        (_selectProfileCommand = new RelayCommand(obj =>
                        {
                            _mainViewModel.CurrentProfile = SelectedProfile;
-                       }));
+                       }, obj => SelectedProfile != null));
             }
         }
 
@@ -144,19 +144,15 @@ namespace A3ServerTool.ViewModels
                 return _deleteProfileCommand ??
                        (_deleteProfileCommand = new RelayCommand(async obj =>
                        {
-                           var profileToDelete = SelectedProfile;
-                           if (profileToDelete == null) return;
-
-
                            var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm deletion",
                                "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
                            if (dialogResult != MessageDialogResult.Affirmative) return;
 
-                           ProfileDao.Delete(profileToDelete);
+                           ProfileDao.Delete(SelectedProfile);
                            _mainViewModel.CurrentProfile.Name = _mainViewModel.CurrentProfile.Name + " (deleted)";
 
                            RefreshData();
-                       }));
+                       }, obj => SelectedProfile != null));
             }
         }
 

@@ -23,7 +23,7 @@
                Content="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
             <StackPanel Grid.Row="0">
-                <TextBlock Margin="{StaticResource ControlMargin}"
+                <TextBlock Margin="{StaticResource LabelMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Text="Name"
@@ -34,7 +34,7 @@
                      mah:TextBoxHelper.Watermark="Profile name"                     
                      Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
-                <TextBlock Margin="{StaticResource ControlMargin}"
+                <TextBlock Margin="{StaticResource  LabelMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Text="Description"
@@ -46,7 +46,7 @@
                      mah:TextBoxHelper.Watermark="Short profile description"
                      Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
-                <TextBlock Margin="{StaticResource ControlMargin}"
+                <TextBlock Margin="{StaticResource LabelMargin}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Text="Profile type"
@@ -64,7 +64,7 @@
                              SelectedIndex="0"
                              ToolTip="You can only change this value only on new profile creation."    />
 
-                <TextBlock Margin="{StaticResource ControlMargin}"
+                <TextBlock Margin="{StaticResource LabelMargin}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Text="Store current server settings in this profile"

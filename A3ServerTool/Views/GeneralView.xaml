@@ -28,8 +28,8 @@
         <mah:MetroAnimatedSingleRowTabControl 
             Grid.Row="1"
             Grid.Column="0">
-            <TabItem Header="General">
-                <controls:MainView/>
+            <TabItem Header="Details">
+                <controls:DetailsView/>
             </TabItem>
             <TabItem Header="Security"></TabItem>
             <TabItem Header="Missions"></TabItem>
@@ -53,8 +53,8 @@
                         Margin="{StaticResource ControlMargin}"
                         Command="{Binding StartServerCommand}">
 
-                <StackPanel>
-                    <iconPacks:PackIconMaterial Kind="Server" HorizontalAlignment="Center"></iconPacks:PackIconMaterial>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="Server" HorizontalAlignment="Center"/>
                     <TextBlock HorizontalAlignment="Center" Text="Launch" />
                 </StackPanel>
             </Button>

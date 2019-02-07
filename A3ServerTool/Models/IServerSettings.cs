@@ -17,5 +17,10 @@ namespace A3ServerTool.Models
         /// Server port
         /// </summary>
         string Port { get; set; }
+
+        /// <summary>
+        /// Path to server executable
+        /// </summary>
+        string ExecutablePath { get; set; }
     }
 }

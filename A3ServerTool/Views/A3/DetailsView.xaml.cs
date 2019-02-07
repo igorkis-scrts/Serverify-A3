@@ -18,9 +18,9 @@ namespace A3ServerTool.Views.A3
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class DetailsView : UserControl
     {
-        public MainView()
+        public DetailsView()
         {
             InitializeComponent();
         }

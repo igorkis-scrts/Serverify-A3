@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="A3ServerTool.Views.A3.MainView"
+﻿<UserControl x:Class="A3ServerTool.Views.A3.DetailsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,14 +6,15 @@
              xmlns:local="clr-namespace:A3ServerTool.Views.A3"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding General, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Label Margin="4"
+            <Label Margin="{StaticResource LabelMargin}"
                    HorizontalAlignment="Left"
                    Content="Server name"
                    FontWeight="Bold"
@@ -22,8 +23,9 @@
                  mah:TextBoxHelper.Watermark="Server name"                     
                  Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
+            
             <!--TODO: add port info (something about range 2302-2306)-->
-            <Label Margin="{StaticResource ControlMargin}"
+            <Label Margin="{StaticResource LabelMargin}"
                    HorizontalAlignment="Left"
                    Content="Port"
                    FontWeight="Bold"
@@ -32,7 +34,19 @@
                  HorizontalAlignment="Left"
                  MinWidth="64"
                  mah:TextBoxHelper.Watermark="Port"     
-                 Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+                 Text="{Binding Port, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+            
+            <Label Margin="{StaticResource LabelMargin}"
+                   HorizontalAlignment="Left"
+                   Content="Server path"
+                   FontWeight="Bold"
+                   FontSize="14" />
+            <TextBox x:Name="BrowseInputTextBox" Margin="{StaticResource ControlMargin}"
+                     mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
+                     mah:TextBoxHelper.Watermark="Path to server executable"                  
+                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                     Style="{StaticResource BrowseMetroTextBox}"/>
+        
         </StackPanel>
     </Grid>
 </UserControl>
