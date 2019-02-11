@@ -30,12 +30,7 @@ namespace A3ServerTool.ViewModels
         public AboutViewModel About => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public ProfilesViewModel Profiles => ServiceLocator.Current.GetInstance<ProfilesViewModel>();
         public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-
-
-        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());
-        
-        //TODO: Get rid of messageManager
-        //public MessageManager Messages => ServiceLocator.Current.GetInstance<MessageManager>();
+        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());      
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -50,8 +45,6 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
 
-            //TODO: Get rid of messageManager
-            //SimpleIoc.Default.Register<MessageManager>();
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
         }

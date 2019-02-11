@@ -165,7 +165,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageManager.cs" />
+    <Compile Include="ExceptionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

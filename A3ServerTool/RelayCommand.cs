@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using A3ServerTool.ViewModels;
 
 namespace A3ServerTool
 {
@@ -39,9 +38,9 @@ namespace A3ServerTool
             }
         }
 
-        private void HandleException(Exception ex)
+        private void HandleException(Exception exception)
         {
-            //new ViewModelLocator().Messages.ShowMessage(ex.Message);
+            ExceptionHandler.Instance.ShowMessage(exception);
         }
     }
 }

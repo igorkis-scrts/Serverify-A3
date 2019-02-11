@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:A3ServerTool"
              StartupUri="MainWindow.xaml"
+             DispatcherUnhandledException="App_OnDispatcherUnhandledException"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              d1P1:Ignorable="d"
