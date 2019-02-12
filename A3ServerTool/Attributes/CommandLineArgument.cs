@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Attributes
 {
     /// <summary>
-    /// Where server setting stores parameters in actual server environment
+    /// For settings that passed to server executable as command line arguments
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class SettingSource : Attribute
+    public class CommandLineArgument : Attribute
     {
-        public SettingSourceType SourceType { get; set; }
-    } 
+        public string Argument { get; set; }
+    }
 }
