@@ -14,7 +14,6 @@
                       WindowTitleBrush="{StaticResource ControlSecondaryColorBrush}"
                       TitleForeground="Black"
                       BorderThickness="1"
-                      ResizeMode="NoResize"
                       WindowStartupLocation="CenterScreen"
                       ShowIconOnTitleBar="True"
                       Padding="10,10,10,10"
@@ -117,7 +116,7 @@
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands ShowLastSeparator="True">
             <Label Content="Current profile:" VerticalAlignment="Center"/>
-            <Label Content="{Binding CurrentProfile.Name, TargetNullValue='Nothing'}" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="{Binding CurrentProfile.Name, TargetNullValue='N/A'}" FontWeight="Bold" VerticalAlignment="Center" />
             <!--<Button Content="Change profile"
                     ToolTip="Select (or create) another profile to work with" />-->
         </mah:WindowCommands>

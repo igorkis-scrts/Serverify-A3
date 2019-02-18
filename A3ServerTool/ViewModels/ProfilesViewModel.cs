@@ -132,6 +132,7 @@ namespace A3ServerTool.ViewModels
                        (_createProfileCommand = new RelayCommand(obj =>
                        {
                            ShowDialog();
+                           Messenger.Default.Send(_mainViewModel.CurrentProfile);
                        }));
             }
         }
@@ -166,7 +167,7 @@ namespace A3ServerTool.ViewModels
                        (_editProfileCommand = new RelayCommand(obj =>
                        {
                            ShowDialog();
-                           Messenger.Default.Send(SelectedProfile);                      
+                           Messenger.Default.Send(SelectedProfile ?? _mainViewModel.CurrentProfile);                      
                        }, obj => SelectedProfile != null));
             }
         }
@@ -200,7 +201,7 @@ namespace A3ServerTool.ViewModels
 
             RefreshData();
             ClearDialogServicesAsync();
-        }
+        }        
 
         /// <summary>
         /// Clears view models when we don't need 'em

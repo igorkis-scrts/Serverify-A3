@@ -15,6 +15,15 @@ namespace A3ServerTool.Models
     /// </summary>
     public class Profile : IDataErrorInfo, INotifyPropertyChanged
     {
+
+        public Profile() {}
+
+        [JsonConstructor]
+        public Profile(IServerSettings serverSettings)
+        {
+            ServerSettings = serverSettings;
+        }
+
         /// <summary>
         /// Identifier
         /// </summary>

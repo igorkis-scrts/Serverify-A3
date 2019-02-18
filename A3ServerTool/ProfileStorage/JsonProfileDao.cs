@@ -14,6 +14,14 @@ namespace A3ServerTool.ProfileStorage
         private const string StorageFolder = "Profiles";
         private const string FileExtension = ".json";
 
+        private readonly JsonSerializerSettings _serializerSettings;
+
+        public JsonProfileDao(JsonSerializerSettings settings)
+        {
+            _serializerSettings = settings;
+            _serializerSettings.TypeNameHandling = TypeNameHandling.Objects;
+        }
+
         public ObservableCollection<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
@@ -25,7 +33,7 @@ namespace A3ServerTool.ProfileStorage
                 foreach (var file in files)
                 {
                     var json = File.ReadAllText(file.FullName);
-                    profiles.Add(JsonConvert.DeserializeObject<Profile>(json));
+                    profiles.Add(JsonConvert.DeserializeObject<Profile>(json, _serializerSettings));
                 }
             }
 
@@ -54,13 +62,13 @@ namespace A3ServerTool.ProfileStorage
 
         public void Insert(Profile profile)
         {
-            var json = JsonConvert.SerializeObject(profile, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(profile, Formatting.Indented, _serializerSettings);
             FileHelper.Save(json, profile.Id.ToString(), FileExtension, StorageFolder);
         }
 
         public void Update(Profile profile)
         {
-            var json = JsonConvert.SerializeObject(profile, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(profile, Formatting.Indented, _serializerSettings);
             FileHelper.Update(json, profile.Id.ToString(), FileExtension, StorageFolder);
         }
 

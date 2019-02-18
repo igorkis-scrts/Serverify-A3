@@ -14,7 +14,7 @@ using MahApps.Metro.Controls.Dialogs;
 namespace A3ServerTool.ViewModels
 {
     /// <summary>
-    /// Profile create/edit dialog
+    /// Profile creation/editing dialog
     /// </summary>
     public class ProfileDialogViewModel : ViewModelBase, IDataErrorInfo
     {
@@ -28,10 +28,9 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         public bool IsExpired { get; set; }
 
-
         private bool _isEditMode;
         /// <summary>
-        /// Flag to check if profile is edited in this dialog instance
+        /// Is dialog in edit form
         /// </summary>
         public bool IsEditMode
         {
@@ -44,6 +43,25 @@ namespace A3ServerTool.ViewModels
                 }
 
                 _isEditMode = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private bool _hasToSave;
+        /// <summary>
+        /// Flag to check if current profile is needed to be saved
+        /// </summary>
+        public bool HasToSaveCurrentProfile
+        {
+            get => _hasToSave;
+            set
+            {
+                if (Equals(value, _hasToSave))
+                {
+                    return;
+                }
+
+                _hasToSave = value;
                 RaisePropertyChanged();
             }
         }
@@ -164,16 +182,18 @@ namespace A3ServerTool.ViewModels
                 return _okCommand
                        ?? (_okCommand = new RelayCommand(obj =>
                        {
-                           switch (ProfileType)
+                           if (!HasToSaveCurrentProfile)
                            {
-                               case (ProfileType.Arma3):
+                               switch(ProfileType)
+                               {
+                                   case (ProfileType.Arma3):
                                    _profile.ServerSettings = new A3ServerSettings();
                                    break;
 
-                               case ProfileType.Dayz:
-                                   break;
-                               default:
-                                   throw new ArgumentOutOfRangeException();
+                                   case ProfileType.Dayz:
+                                   default:
+                                   throw new NotImplementedException();
+                               }
                            }
 
                            SendMessage(MessageDialogResult.Affirmative, _profile);
@@ -209,6 +229,16 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         private void SendMessage(MessageDialogResult dialogResult, Profile profile = null)
         {
+            if (!HasToSaveCurrentProfile)
+            {
+                //switch (ProfileType)
+                //{
+                //    case ProfileType.Arma3:
+                //        profile.ServerSettings = new A3ServerSettings();;
+                //        break;
+                //}
+            }
+
             var result = new DialogResult<Profile>(dialogResult, profile);
             Messenger.Default.Send(result);
         }
@@ -219,8 +249,9 @@ namespace A3ServerTool.ViewModels
 
             HeaderText = "Edit profile";
             ButtonText = "Edit";
+
             IsEditMode = true;
-            
+
             UpdateView();
         }
 

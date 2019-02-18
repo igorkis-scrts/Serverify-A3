@@ -20,8 +20,8 @@
                    FontWeight="Bold"
                    FontSize="14" />
             <TextBox Margin="{StaticResource ControlMargin}"
-                 mah:TextBoxHelper.Watermark="Server name"                     
-                 Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+                 mah:TextBoxHelper.Watermark="Name in server browser"                     
+                 Text="{Binding Name, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
             
             <!--TODO: add port info (something about range 2302-2306)-->

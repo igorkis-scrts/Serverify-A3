@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using Interchangeable;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.IconPacks;
@@ -55,6 +57,7 @@ namespace A3ServerTool.ViewModels
         }
 
         private ICommand _exitApplicationCommand;
+
         public ICommand ExitApplicationCommand
         {
             get
@@ -67,14 +70,14 @@ namespace A3ServerTool.ViewModels
                                AffirmativeButtonText = "Quit",
                                NegativeButtonText = "Cancel",
                                AnimateShow = true,
-                               AnimateHide = false
+                               AnimateHide = true
                            };
 
                            var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm exit",
                                "Are you sure that you want to quit?",
                                MessageDialogStyle.AffirmativeAndNegative, dialogSettings);
-                           if (dialogResult != MessageDialogResult.Affirmative) return;
 
+                           if (dialogResult != MessageDialogResult.Affirmative) return;
                            Application.Current.Shutdown();
                        }));
             }
@@ -90,10 +93,7 @@ namespace A3ServerTool.ViewModels
             //ServerSettingsFactory
             if (CurrentProfile == null)
             {
-                CurrentProfile = new Profile
-                {
-                    ServerSettings = new A3ServerSettings()
-                };
+                CurrentProfile = new Profile(new A3ServerSettings());
             }
         }
 

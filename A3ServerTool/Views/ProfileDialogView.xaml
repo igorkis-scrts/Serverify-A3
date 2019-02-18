@@ -10,7 +10,7 @@
                   DataContext="{Binding ProfileDialog, Source={StaticResource Locator}}"
                   dialog:DialogParticipation.Register="{Binding}"
                   Title="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-      
+
     <dialog:CustomDialog.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -77,15 +77,17 @@
                                   OffLabel="No" 
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Top"
-                                  IsEnabled="False"
-                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" FontSize="14" />
+                                  Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" FontSize="14"
+                                  IsEnabled="{Binding IsEditMode}"
+                                  IsChecked="{Binding HasToSaveCurrentProfile}"/>
             </StackPanel>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="11*"></ColumnDefinition>
+                    <ColumnDefinition Width="136*"/>
                 </Grid.ColumnDefinitions>
 
-                <DockPanel>
+                <DockPanel Grid.ColumnSpan="2">
                     <Button HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         MinWidth="64"
