@@ -133,6 +133,7 @@ namespace A3ServerTool.ViewModels
                        {
                            ShowDialog();
                            Messenger.Default.Send(_mainViewModel.CurrentProfile);
+                           Messenger.Default.Send(ViewMode.New);
                        }));
             }
         }
@@ -167,7 +168,8 @@ namespace A3ServerTool.ViewModels
                        (_editProfileCommand = new RelayCommand(obj =>
                        {
                            ShowDialog();
-                           Messenger.Default.Send(SelectedProfile ?? _mainViewModel.CurrentProfile);                      
+                           Messenger.Default.Send(SelectedProfile ?? _mainViewModel.CurrentProfile);
+                           Messenger.Default.Send(ViewMode.Edit);
                        }, obj => SelectedProfile != null));
             }
         }
@@ -204,7 +206,7 @@ namespace A3ServerTool.ViewModels
         }        
 
         /// <summary>
-        /// Clears view models when we don't need 'em
+        /// Clears view models when we don't need them
         /// </summary>
         /// <remarks>Since ServiceLocator creates new instance of ProfileDialogVM every time we're calling it,
         /// we need to manualy unregister that VMs after it's usage so there will be no memory leak</remarks>

@@ -78,7 +78,7 @@
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Top"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" FontSize="14"
-                                  IsEnabled="{Binding IsEditMode}"
+                                  IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
                                   IsChecked="{Binding HasToSaveCurrentProfile}"/>
             </StackPanel>
             <Grid Grid.Row="1">

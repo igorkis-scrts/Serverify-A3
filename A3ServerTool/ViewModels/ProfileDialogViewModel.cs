@@ -159,11 +159,8 @@ namespace A3ServerTool.ViewModels
 
         public ProfileDialogViewModel()
         {
-            Messenger.Default.Register<Profile>
-            (
-                this,
-                RecieveProfile
-            );
+            Messenger.Default.Register<ViewMode>(this, HandleViewState);
+            Messenger.Default.Register<Profile>(this, RecieveProfile);
         }
 
         #endregion
@@ -246,25 +243,27 @@ namespace A3ServerTool.ViewModels
         private void RecieveProfile(Profile profile)
         {
             _profile = profile;
-
-            HeaderText = "Edit profile";
-            ButtonText = "Edit";
-
-            IsEditMode = true;
-
-            UpdateView();
         }
 
-        /// <summary>
-        /// When profile for edit is recieved 
-        /// we need to update the view to populate controls with actual data
-        /// </summary>
-        /// <remarks>TODO: find better way</remarks>
-        private void UpdateView()
+
+        private void HandleViewState(ViewMode mode)
         {
-            RaisePropertyChanged(nameof(ProfileName));
-            RaisePropertyChanged(nameof(ProfileType));
-            RaisePropertyChanged(nameof(ProfileDescription));
+            switch (mode)
+            {
+                case ViewMode.Edit:
+                    HeaderText = "Edit profile";
+                    ButtonText = "Edit";
+                    IsEditMode = true;
+                    break;
+                case ViewMode.New:
+                    HeaderText = "Create profile";
+                    ButtonText = "Create";
+                    IsEditMode = false;
+                    break;
+                case ViewMode.None:
+                default:
+                    break;
+            }
         }
 
         #endregion
