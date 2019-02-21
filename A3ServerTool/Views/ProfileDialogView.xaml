@@ -22,79 +22,76 @@
                Style="{StaticResource DescriptionHeaderStyle}"
                Content="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-            <StackPanel Grid.Row="0">
-                <TextBlock Margin="{StaticResource LabelMargin}"
+            <StackPanel Grid.Row="0"
+                        Margin="0 0 0 4">
+                <Label Margin="{StaticResource LabelMargin}"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Text="Name"
-                       TextWrapping="Wrap"
+                       Content="Name"
                        FontWeight="Bold"
                        FontSize="14" />
-                <TextBox x:Name="NameTextBox" Margin="8,0,0,0"
-                     mah:TextBoxHelper.Watermark="Profile name"                     
-                     Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
 
-                <TextBlock Margin="{StaticResource  LabelMargin}"
+                <TextBox x:Name="NameTextBox"
+                         Margin="{StaticResource ControlMargin}"
+                         mah:TextBoxHelper.Watermark="Profile name"
+                         Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label Margin="{StaticResource LabelMargin}"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Text="Description"
-                       TextWrapping="Wrap"
+                       Content="Description"
                        FontWeight="Bold"
                        FontSize="14" />
+
                 <TextBox x:Name="DescriptionTextBox"
-                     Margin="8,0,0,0"
-                     mah:TextBoxHelper.Watermark="Short profile description"
-                     Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+                         Margin="{StaticResource ControlMargin}"
+                         mah:TextBoxHelper.Watermark="Short profile description"
+                         Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-                <TextBlock Margin="{StaticResource LabelMargin}"
+                <Label Margin="{StaticResource LabelMargin}"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Text="Profile type"
-                       TextWrapping="Wrap"
+                       Content="Profile type"
                        FontWeight="Bold"
                        FontSize="14" />
 
                 <mah:SplitButton x:Name="GameTypeSplitButton"
-                             Margin="8,0,0,0"
-                             HorizontalContentAlignment="Left"
-                             mah:TextBoxHelper.Watermark="Game type"
-                             ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
-                             IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
-                             SelectedItem="{Binding ProfileType, Mode=TwoWay}"
-                             SelectedIndex="0"
-                             ToolTip="You can only change this value only on new profile creation."    />
+                                 Margin="{StaticResource ControlMargin}"
+                                 HorizontalContentAlignment="Left"
+                                 mah:TextBoxHelper.Watermark="Game type"
+                                 ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
+                                 IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
+                                 SelectedItem="{Binding ProfileType, Mode=TwoWay}"
+                                 SelectedIndex="0"
+                                 ToolTip="You can only change this value only on new profile creation." />
 
-                <TextBlock Margin="{StaticResource LabelMargin}"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Text="Store current server settings in this profile"
-                           TextWrapping="Wrap"
-                           FontWeight="Bold"
-                           FontSize="14" />
+                <Label Margin="{StaticResource LabelMargin}"
+                       HorizontalAlignment="Left"
+                       Content="Store current server settings in this profile"
+                       FontWeight="Bold"
+                       FontSize="14"
+                       Visibility="{Binding VisibilityState}" />
 
-                <mah:ToggleSwitch Margin="8,0,0,8"
+                <mah:ToggleSwitch Margin="{StaticResource ControlMargin}"
                                   OnLabel="Yes"
-                                  OffLabel="No" 
+                                  OffLabel="No"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Top"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" FontSize="14"
-                                  IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
-                                  IsChecked="{Binding HasToSaveCurrentProfile}"/>
+                                  Visibility="{Binding VisibilityState}"
+                                  IsChecked="{Binding HasToSaveCurrentProfile}" />
             </StackPanel>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="11*"></ColumnDefinition>
-                    <ColumnDefinition Width="136*"/>
+                    <ColumnDefinition Width="136*" />
                 </Grid.ColumnDefinitions>
 
                 <DockPanel Grid.ColumnSpan="2">
                     <Button HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        MinWidth="64"
-                        x:Name="OkButton"                        
-                        Margin="{StaticResource ControlMargin}"
-                        Command="{Binding OkCommand}"
-                        Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                            VerticalAlignment="Center"
+                            MinWidth="64"
+                            x:Name="OkButton"
+                            Margin="{StaticResource ControlMargin}"
+                            Command="{Binding OkCommand}"
+                            Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
                                 <Setter Property="IsEnabled" Value="False"></Setter>
@@ -105,9 +102,11 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameTextBox}" Value="False"></Condition>
+                                            <Condition
+                                                Binding="{Binding Path=(Validation.HasError), ElementName=NameTextBox}"
+                                                Value="False" />
                                         </MultiDataTrigger.Conditions>
-                                        <Setter Property="IsEnabled" Value="True"></Setter>
+                                        <Setter Property="IsEnabled" Value="True" />
                                     </MultiDataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -115,13 +114,13 @@
                     </Button>
 
                     <Button Style="{StaticResource MetroFlatButton}"
-                        MinWidth="64"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        x:Name="CancelButton"
-                        Margin="{StaticResource ControlMargin}"
-                        Content="Cancel"
-                        Command="{Binding CancelCommand}"/>
+                            MinWidth="64"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            x:Name="CancelButton"
+                            Margin="{StaticResource ControlMargin}"
+                            Content="Cancel"
+                            Command="{Binding CancelCommand}" />
                 </DockPanel>
             </Grid>
         </Grid>

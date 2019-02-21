@@ -64,7 +64,7 @@
                   VerticalAlignment="Top"
                   IsReadOnly="True"
                   SelectionUnit="FullRow"
-                  SelectedItem="{Binding SelectedProfile, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="4*" />
@@ -76,6 +76,11 @@
                     <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
                 </Style>
             </DataGrid.Style>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EditProfileCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <!--<DataGrid.RowStyle>
                 <Style BasedOn="{StaticResource MetroDataGridRow}" TargetType="{x:Type DataGridRow}">
                     <Style.Triggers>

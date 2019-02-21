@@ -168,7 +168,7 @@ namespace A3ServerTool.ViewModels
                        (_editProfileCommand = new RelayCommand(obj =>
                        {
                            ShowDialog();
-                           Messenger.Default.Send(SelectedProfile ?? _mainViewModel.CurrentProfile);
+                           Messenger.Default.Send(SelectedProfile);
                            Messenger.Default.Send(ViewMode.Edit);
                        }, obj => SelectedProfile != null));
             }

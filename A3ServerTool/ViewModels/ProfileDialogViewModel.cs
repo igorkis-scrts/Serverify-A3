@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
@@ -18,9 +19,6 @@ namespace A3ServerTool.ViewModels
     /// </summary>
     public class ProfileDialogViewModel : ViewModelBase, IDataErrorInfo
     {
-
-        #region Properties and fields
-
         private Profile _profile = new Profile();
 
         /// <summary>
@@ -28,21 +26,23 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         public bool IsExpired { get; set; }
 
-        private bool _isEditMode;
+
+        private Visibility _visibility;
+
         /// <summary>
-        /// Is dialog in edit form
+        /// Hide certain controls depending on caller
         /// </summary>
-        public bool IsEditMode
+        public Visibility VisibilityState
         {
-            get => _isEditMode;
+            get => _visibility;
             set
             {
-                if (Equals(value, _isEditMode))
+                if (Equals(value, _visibility))
                 {
                     return;
                 }
 
-                _isEditMode = value;
+                _visibility = value;
                 RaisePropertyChanged();
             }
         }
@@ -153,19 +153,11 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-        #endregion
-
-        #region Constructors
-
         public ProfileDialogViewModel()
         {
             Messenger.Default.Register<ViewMode>(this, HandleViewState);
             Messenger.Default.Register<Profile>(this, RecieveProfile);
         }
-
-        #endregion
-
-        #region Commands
 
         private RelayCommand _okCommand;
 
@@ -217,9 +209,6 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Send result to parent view model (ProfileViewModel in this case)
@@ -243,8 +232,12 @@ namespace A3ServerTool.ViewModels
         private void RecieveProfile(Profile profile)
         {
             _profile = profile;
-        }
 
+            //TODO: Maybe another, nicer way exists? so many questions, so little anwsers...
+            RaisePropertyChanged(nameof(ProfileName));
+            RaisePropertyChanged(nameof(ProfileType));
+            RaisePropertyChanged(nameof(ProfileDescription));
+        }
 
         private void HandleViewState(ViewMode mode)
         {
@@ -253,20 +246,18 @@ namespace A3ServerTool.ViewModels
                 case ViewMode.Edit:
                     HeaderText = "Edit profile";
                     ButtonText = "Edit";
-                    IsEditMode = true;
+                    VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.New:
                     HeaderText = "Create profile";
                     ButtonText = "Create";
-                    IsEditMode = false;
+                    VisibilityState = Visibility.Visible;
                     break;
                 case ViewMode.None:
                 default:
                     break;
             }
         }
-
-        #endregion
 
         #region IDataErrorInfo members
 
