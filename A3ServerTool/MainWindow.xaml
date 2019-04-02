@@ -116,9 +116,18 @@
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands ShowLastSeparator="True">
             <Label Content="Current profile:" VerticalAlignment="Center"/>
-            <Label Content="{Binding CurrentProfile.Name, TargetNullValue='N/A'}" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label FontWeight="Bold" 
+                   VerticalAlignment="Center"
+                   Content="{Binding CurrentProfile.Name, FallbackValue='N/A', TargetNullValue='N/A'}">
+                <!--<Label.Content>
+                    <PriorityBinding>
+                        <Binding Path="CurrentProfile.Name" TargetNullValue="N/A"/>
+                        <Binding Source="N/A"/>
+                    </PriorityBinding>
+                </Label.Content>-->
+            </Label>
             <!--<Button Content="Change profile"
-                    ToolTip="Select (or create) another profile to work with" />-->
+                    ToolTip="Select (or create) another profile to work with" />-->            
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     
