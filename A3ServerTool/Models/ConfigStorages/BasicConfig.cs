@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
 using A3ServerTool.Attributes;
 
-namespace A3ServerTool.ProfileStorage.ConfigStorages
+namespace A3ServerTool.Models.ConfigStorages
 {
     /// <summary>
     /// Class that represents "basic.cfg" file. 
@@ -9,6 +13,8 @@ namespace A3ServerTool.ProfileStorage.ConfigStorages
     /// </summary>
     public class BasicConfig
     {
+        public static readonly string FileName = "basic";
+
         /// <summary>
         /// Another default parameter, intentionally read-only
         /// </summary>
@@ -122,5 +128,52 @@ namespace A3ServerTool.ProfileStorage.ConfigStorages
         /// </summary>
         [BasicConfigProperty(PropertyName = "viewDistance")]
         public int ObjectViewDistance { get; set; }
+
+
+        /// <summary>
+        /// Parse string of properies into new BasicConfig object
+        /// </summary>
+        public static BasicConfig Parse(IEnumerable<string> textProperties)
+        {
+            textProperties = textProperties.ToList();
+            if (!textProperties.Any()) return null;
+
+            var nameToValueDictionary = new Dictionary<string, string>();
+            foreach (var property in textProperties)
+            {
+                var splittedProperty = property.Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
+                if (splittedProperty.Length != 2) continue;
+                splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
+
+                nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
+            }
+
+            var result = new BasicConfig();
+            var properties = typeof(BasicConfig).GetProperties();
+
+            foreach (var property in properties)
+            {
+                var attribute = property.GetCustomAttributes(true).FirstOrDefault() as BasicConfigProperty;
+                if(attribute == null) continue;;
+                if(attribute.IgnoreParsing) continue;
+
+                nameToValueDictionary.TryGetValue(attribute.PropertyName, out var value);
+
+                if (property.PropertyType == typeof(int))
+                {
+                    property.SetValue(result, Convert.ToInt32(value));
+                }
+                else if (property.PropertyType == typeof(float))
+                {
+                    property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
+                }
+                else if (property.PropertyType == typeof(string))
+                {
+                    property.SetValue(result, Convert.ToString(value));
+                }
+            }
+
+            return result;
+        }
     }
 }

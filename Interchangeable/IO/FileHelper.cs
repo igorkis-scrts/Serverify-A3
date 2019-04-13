@@ -6,13 +6,14 @@ using System.Linq;
 namespace Interchangeable.IO
 {
     /// <summary>
-    /// Various methods for I/O things, context dependent
+    /// Various methods for I/O things
     /// </summary>
     /// TODO: Is singleton really necessary here?
     /// TODO: Class rename?
     public class FileHelper
     {
         private static FileHelper _instance;
+        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
 
         private FileHelper() {}
 
@@ -21,74 +22,50 @@ namespace Interchangeable.IO
             return _instance ?? (_instance = new FileHelper());
         }
 
-        public static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
+        /// <summary>
+        /// Get files from directory
+        /// </summary>
+        public static List<FileInfo> GetAllFiles(DirectoryInfo directory)
+        {
+            if(directory == null) return new List<FileInfo>();
+
+            return directory
+                .GetFiles("*", SearchOption.TopDirectoryOnly)
+                .ToList();
+        }
 
         /// <summary>
-        /// Get all specified files from folder
+        /// Get all folders that path contains
         /// </summary>
-        public static List<FileInfo> GetSpecificFiles(string fileExtension, string folderName = null)
+        public static List<DirectoryInfo> GetFolder(string folderName)
         {
-            var path = folderName != null
-                ? Path.Combine(RootFolder, folderName)
-                : RootFolder;
-
-            if (!Directory.Exists(path))
+            if (string.IsNullOrWhiteSpace(folderName))
             {
-                Directory.CreateDirectory(path);
+                return null;
             }
 
-            return new DirectoryInfo(path)
-                .GetFiles("*" + fileExtension, SearchOption.TopDirectoryOnly)
+            return new DirectoryInfo(Path.Combine(RootFolder, folderName))
+                .GetDirectories()
                 .ToList();
         }
 
         /// <summary>
         /// Saves strings to hard drive
         /// </summary>
-        public static void Save(string content, string fileName, string fileExtension, string folderName = null)
+        public static void Save(SaveDataDto dto)
         {
-            if (!Directory.Exists(RootFolder + folderName))
+            var path = RootFolder + Path.Combine(dto.Folders.Select(x => x).ToArray());
+
+            if (!Directory.Exists(path))
             {
-                Directory.CreateDirectory(RootFolder + folderName);
+                Directory.CreateDirectory(path);
             }
 
-            var path = folderName != null 
-                ? Path.Combine(RootFolder, folderName, fileName) + fileExtension
-                : Path.Combine(RootFolder, fileName) + fileExtension;
-
-            if (File.Exists(path))
-            {
-                throw new Exception("File already exists!");
-            }
-
-            File.WriteAllText(path, content);
+            File.WriteAllText(dto.GetFullPath(), dto.Content);
         }
 
         /// <summary>
-        /// Updates existing file
-        /// </summary>
-        public static void Update(string content, string fileName, string fileExtension, string folderName = null)
-        {
-            if (!Directory.Exists(RootFolder + folderName))
-            {
-                Directory.CreateDirectory(RootFolder + folderName);
-            }
-
-            var path = folderName != null
-                ? Path.Combine(RootFolder, folderName, fileName) + fileExtension
-                : Path.Combine(RootFolder, fileName) + fileExtension;
-
-            if (!File.Exists(path))
-            {
-                throw new Exception("File already exists!");
-            }
-
-            File.WriteAllText(path, content);
-        }
-
-
-        /// <summary>
-        /// Delete file from hard drive
+        /// Deletes a file from hard drive
         /// </summary>
         public static void Delete(string fileName, string folderName = null)
         {
@@ -104,6 +81,22 @@ namespace Interchangeable.IO
             {
                 throw new FileNotFoundException("File is not exists.");
             }
+        }
+
+        /// <summary>
+        /// Creates new folder
+        /// </summary>
+        public static void CreateFolder(string folderName)
+        {
+            Directory.CreateDirectory(Path.Combine(RootFolder, folderName));
+        }
+
+        /// <summary>
+        /// Checks if folder exists in application location
+        /// </summary>
+        public static bool CheckIfFolderExists(string folderName)
+        {
+            return Directory.Exists(Path.Combine(RootFolder, folderName));
         }
     }
 }
