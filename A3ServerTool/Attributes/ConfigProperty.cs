@@ -3,10 +3,10 @@
 namespace A3ServerTool.Attributes
 {
     /// <summary>
-    /// Provides attributes that helps with basic.cfg parsing
+    /// Provides attributes that helps with basic.cfg and config.cfg parsing
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    class BasicConfigProperty : Attribute
+    class ConfigProperty : Attribute
     {
         /// <summary>
         /// Actual representation of property in basic.cfg

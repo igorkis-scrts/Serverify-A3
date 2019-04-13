@@ -18,44 +18,44 @@ namespace A3ServerTool.Models.ConfigStorages
         /// <summary>
         /// Another default parameter, intentionally read-only
         /// </summary>
-        [BasicConfigProperty(PropertyName = "adapter", IgnoreParsing = true)]
+        [ConfigProperty(PropertyName = "adapter", IgnoreParsing = true)]
         public int Adapter { get; } = -1;
 
         /// <summary>
         /// Another default parameter, intentionally read-only
         /// </summary>
-        [BasicConfigProperty(PropertyName = "3D_Performance", IgnoreParsing = true)]
+        [ConfigProperty(PropertyName = "3D_Performance", IgnoreParsing = true)]
         public float Performance3D { get; } = 1;
 
         /// <summary>
         /// Resolution width, intentionally read-only
         /// </summary>
-        [BasicConfigProperty(PropertyName = "Resolution_W", IgnoreParsing = true)]
+        [ConfigProperty(PropertyName = "Resolution_W", IgnoreParsing = true)]
         public int ResolutionWidth { get; } = 0;
 
         /// <summary>
         /// Resolution height, intentionally read-only
         /// </summary>
-        [BasicConfigProperty(PropertyName = "Resolution_H", IgnoreParsing = true)]
+        [ConfigProperty(PropertyName = "Resolution_H", IgnoreParsing = true)]
         public int ResolutionHeight { get; } = 0;
 
         /// <summary>
         /// Resolution... bpp? Intentionally read-only
         /// </summary>
-        [BasicConfigProperty(PropertyName = "Resolution_Bpp", IgnoreParsing = true)]
+        [ConfigProperty(PropertyName = "Resolution_Bpp", IgnoreParsing = true)]
         public int ResolutionBpp { get; } = 32;
 
         /// <summary>
         /// Window screen mode, intentionally read-only
         /// </summary>
-        [BasicConfigProperty(PropertyName = "Windowed", IgnoreParsing = true)]
+        [ConfigProperty(PropertyName = "Windowed", IgnoreParsing = true)]
         public int IsWindowed { get; } = 0;
 
         /// <summary>
         /// Maximum number of packets (aggregate messages) that can be sent in one simulation cycle ("frame"). 
         /// Increasing this value can decrease lag on high upload bandwidth servers.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MaxMsgSend")]
+        [ConfigProperty(PropertyName = "MaxMsgSend")]
         public int MaxMessagesSend { get; set; }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace A3ServerTool.Models.ConfigStorages
         /// Small messages are packed to larger packets(aggregate messages).
         /// Guaranteed packets(aggregate messages) are used for non-repetitive events like shooting.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MaxSizeGuaranteed")]
+        [ConfigProperty(PropertyName = "MaxSizeGuaranteed")]
         public int MaxSizeGuaranteed { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace A3ServerTool.Models.ConfigStorages
         /// Non-guaranteed packets(aggregate messages) are used  for repetitive updates like soldier or vehicle position.
         /// Increasing this value may improve bandwidth requirement, but it may increase lag.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MaxSizeNonguaranteed")]
+        [ConfigProperty(PropertyName = "MaxSizeNonguaranteed")]
         public int MaxSizeNonguaranteed { get; set; }
 
         /// <summary>
@@ -80,14 +80,14 @@ namespace A3ServerTool.Models.ConfigStorages
         /// This value helps server to estimate bandwidth available.
         /// Increasing it to too optimistic values can increase lag and CPU load, as too many messages will be sent but discarded.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MinBandwidth")]
+        [ConfigProperty(PropertyName = "MinBandwidth")]
         public int MinBandwidth { get; set; }
 
         /// <summary>
         /// Bandwidth the server is guaranteed to never have (in bps).
         /// This value helps the server to estimate bandwidth available.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MaxBandwidth")]
+        [ConfigProperty(PropertyName = "MaxBandwidth")]
         public int MaxBandwdith { get; set; }
 
         /// <summary>
@@ -95,85 +95,38 @@ namespace A3ServerTool.Models.ConfigStorages
         /// Using a smaller value can make units observed by binoculars or sniper rifle to move smoother at the trade off of
         /// increased network traffic.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MinErrorToSend")]
+        [ConfigProperty(PropertyName = "MinErrorToSend")]
         public float MinErrorToSend { get; set; }
 
         /// <summary>
         /// Minimal error to send updates across network for near units.
         /// Using larger value can reduce traffic sent for near units. Used to control client to server traffic as well.
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MinErrorToSendNear")]
+        [ConfigProperty(PropertyName = "MinErrorToSendNear")]
         public float MinErrorToSendNear { get; set; }
 
         /// <summary>
         /// Maximum size of user generated content (custom faces, clan logos etc)
         /// </summary>
-        [BasicConfigProperty(PropertyName = "MaxCustomFileSize")]
+        [ConfigProperty(PropertyName = "MaxCustomFileSize")]
         public int MaxCustomFileSize { get; set; }
 
         /// <summary>
         /// Maximum packet size
         /// </summary>
-        [BasicConfigProperty(PropertyName = "maxPacketSize")]
+        [ConfigProperty(PropertyName = "maxPacketSize")]
         public int MaxPacketSize { get; set; }
 
         /// <summary>
         /// Terrain render distance
         /// </summary>
-        [BasicConfigProperty(PropertyName = "terrainGrid")]
+        [ConfigProperty(PropertyName = "terrainGrid")]
         public int TerrainGridViewDistance { get; set; }
 
         /// <summary>
         /// Object view distance
         /// </summary>
-        [BasicConfigProperty(PropertyName = "viewDistance")]
+        [ConfigProperty(PropertyName = "viewDistance")]
         public int ObjectViewDistance { get; set; }
-
-
-        /// <summary>
-        /// Parse string of properies into new BasicConfig object
-        /// </summary>
-        public static BasicConfig Parse(IEnumerable<string> textProperties)
-        {
-            textProperties = textProperties.ToList();
-            if (!textProperties.Any()) return null;
-
-            var nameToValueDictionary = new Dictionary<string, string>();
-            foreach (var property in textProperties)
-            {
-                var splittedProperty = property.Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
-                if (splittedProperty.Length != 2) continue;
-                splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
-
-                nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
-            }
-
-            var result = new BasicConfig();
-            var properties = typeof(BasicConfig).GetProperties();
-
-            foreach (var property in properties)
-            {
-                var attribute = property.GetCustomAttributes(true).FirstOrDefault() as BasicConfigProperty;
-                if(attribute == null) continue;;
-                if(attribute.IgnoreParsing) continue;
-
-                nameToValueDictionary.TryGetValue(attribute.PropertyName, out var value);
-
-                if (property.PropertyType == typeof(int))
-                {
-                    property.SetValue(result, Convert.ToInt32(value));
-                }
-                else if (property.PropertyType == typeof(float))
-                {
-                    property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                else if (property.PropertyType == typeof(string))
-                {
-                    property.SetValue(result, Convert.ToString(value));
-                }
-            }
-
-            return result;
-        }
     }
 }
