@@ -54,8 +54,9 @@ namespace Interchangeable.IO
         /// </summary>
         public static void Save(SaveDataDto dto)
         {
-            var path = RootFolder + Path.Combine(dto.Folders.Select(x => x).ToArray());
+            if (dto == null) return;
 
+            var path = RootFolder + Path.Combine(dto.Folders.Select(x => x).ToArray());
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -80,6 +81,30 @@ namespace Interchangeable.IO
             else
             {
                 throw new FileNotFoundException("File is not exists.");
+            }
+        }
+
+        /// <summary>
+        /// Deletes a folder with all it's content from hard drive
+        /// </summary>
+        public static void DeleteFolder(SaveDataDto dto)
+        {
+            if (dto == null) return;
+
+            var path = Path.Combine(RootFolder, Path.Combine(dto.Folders.ToArray()));
+
+            if (Directory.Exists(path))
+            {
+                foreach(var file in GetAllFiles(new DirectoryInfo(path)))
+                {
+                    file.Delete();
+                }
+
+                Directory.Delete(path);
+            }
+            else
+            {
+                throw new DirectoryNotFoundException("Directory not found!");
             }
         }
 

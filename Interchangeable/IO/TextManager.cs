@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Interchangeable.IO
 {
+    /// <summary>
+    /// Provides helper methods to handle 
+    /// </summary>
     public static class TextManager
     {
         private const int BufferSize = 128;
@@ -22,7 +23,10 @@ namespace Interchangeable.IO
             return File.ReadAllText(file.FullName);
         }
 
-
+        /// <summary>
+        /// Read text file line by line
+        /// </summary>
+        /// <returns>List of strings</returns>
         public static List<string> ReadFileLineByLine(FileInfo file)
         {
             if (file == null) return null;

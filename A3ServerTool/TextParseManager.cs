@@ -18,7 +18,7 @@ namespace A3ServerTool
         public static T Parse<T>(IEnumerable<string> textProperties)
         {
             textProperties = textProperties.ToList();
-            if (!textProperties.Any()) return default(T);
+            if (!textProperties.Any()) return default;
 
             var nameToValueDictionary = new Dictionary<string, string>();
             foreach (var property in textProperties)
@@ -31,12 +31,11 @@ namespace A3ServerTool
             }
 
             var result = (T)Activator.CreateInstance(typeof(T));
-            var properties = typeof(T).GetProperties();
 
-            foreach (var property in properties)
+            foreach (var property in typeof(T).GetProperties())
             {
                 var attribute = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
-                if (attribute == null || attribute.IgnoreParsing) continue;
+                if (attribute?.IgnoreParsing != false) continue;
 
                 nameToValueDictionary.TryGetValue(attribute.PropertyName, out var value);
 
@@ -57,10 +56,27 @@ namespace A3ServerTool
             return result;
         }
 
-        public static List<string> ToTextlines<T>(T instance)
+        public static List<string> ConvertToTextLines<T>(T instance)
         {
-            //TODO: get each property and turn it into list of strings filled with values from instance
-            throw new NotImplementedException();
+            var result = new List<string>();
+
+            foreach (var property in instance.GetType().GetProperties())
+            {
+                var attribute = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
+
+                var line = attribute.PropertyName + " = " + property.GetValue(instance, null) + ";";
+
+                if (attribute.PropertyName == "maxPacketSize")
+                {
+                    result.AddRange(new[] { "class sockets", "{", line, "};" });
+                }
+                else
+                {
+                    result.Add(line);
+                }
+            }
+
+            return result;
         }
     }
 }
