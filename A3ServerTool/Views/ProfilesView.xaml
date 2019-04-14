@@ -68,7 +68,6 @@
                   SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="4*" />
-                <DataGridTextColumn Binding="{Binding Type}" Header="Game Type" Width="4*" />
                 <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="16*" />
             </DataGrid.Columns>
             <DataGrid.Style>
@@ -128,6 +127,7 @@
                     MaxHeight="96"
                     Width="64"
                     HorizontalAlignment="Center"
+                    ToolTip="Save current settings into new profile"
                     Margin="{StaticResource ControlMargin}"
                     Command="{Binding CreateProfileCommand}">
 

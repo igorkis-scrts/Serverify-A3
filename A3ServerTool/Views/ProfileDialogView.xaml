@@ -48,26 +48,11 @@
 
                 <Label Margin="{StaticResource LabelMargin}"
                        HorizontalAlignment="Left"
-                       Content="Profile type"
-                       FontWeight="Bold"
-                       FontSize="14" />
-
-                <mah:SplitButton x:Name="GameTypeSplitButton"
-                                 Margin="{StaticResource ControlMargin}"
-                                 HorizontalContentAlignment="Left"
-                                 mah:TextBoxHelper.Watermark="Game type"
-                                 ItemsSource="{Binding Source={StaticResource EnumGameTypes}}"
-                                 IsEnabled="{Binding IsEditMode, Converter={StaticResource InverseBoolConverter}}"
-                                 SelectedItem="{Binding ProfileType, Mode=TwoWay}"
-                                 SelectedIndex="0"
-                                 ToolTip="You can only change this value only on new profile creation." />
-
-                <Label Margin="{StaticResource LabelMargin}"
-                       HorizontalAlignment="Left"
-                       Content="Store current server settings in this profile"
+                       Content="Save current settings"
                        FontWeight="Bold"
                        FontSize="14"
-                       Visibility="{Binding VisibilityState}" />
+                       Visibility="{Binding VisibilityState}"
+                       ToolTip="Saves current profile settings in this profile."/>
 
                 <mah:ToggleSwitch Margin="{StaticResource ControlMargin}"
                                   OnLabel="Yes"
@@ -94,7 +79,7 @@
                             Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
-                                <Setter Property="IsEnabled" Value="False"></Setter>
+                                <Setter Property="IsEnabled" Value="False"/>
                                 <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
                                 <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
                                 <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
