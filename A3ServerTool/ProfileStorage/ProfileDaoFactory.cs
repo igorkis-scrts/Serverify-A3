@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace A3ServerTool.ProfileStorage
 {
     /// <summary>
-    /// Factory that gives the user the right DAO
+    /// Provides factory that gives the user the right DAO
     /// </summary>
     public class ProfileDaoFactory
     {
