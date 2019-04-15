@@ -82,17 +82,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attributes\ConfigProperty.cs" />
     <Compile Include="Attributes\CommandLineArgument.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
-    <Compile Include="Models\A3ServerSettings.cs" />
-    <Compile Include="Models\ProfileType.cs" />
+    <Compile Include="Models\ArgumentSettings.cs" />
+    <Compile Include="Models\IProfile.cs" />
     <Compile Include="Models\Profile.cs" />
-    <Compile Include="Models\IServerSettings.cs" />
     <Compile Include="Models\ServerLauncher.cs" />
-    <Compile Include="Attributes\SettingSource.cs" />
-    <Compile Include="Models\SettingSourceType.cs" />
+    <Compile Include="Models\ConfigStorages\BasicConfig.cs" />
     <Compile Include="ProfileStorage\DaoType.cs" />
     <Compile Include="ProfileStorage\ProfileDaoFactory.cs" />
     <Compile Include="ProfileStorage\IProfileDao.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Converters\SelectedItemToContentConverter.cs" />
+    <Compile Include="TextParseManager.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\GeneralViewModel.cs" />
     <Compile Include="ViewModels\ProfileDialogViewModel.cs" />
@@ -109,6 +109,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\A3\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A3\NetworkView.xaml.cs">
+      <DependentUpon>NetworkView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -138,6 +141,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\A3\DetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\A3\NetworkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

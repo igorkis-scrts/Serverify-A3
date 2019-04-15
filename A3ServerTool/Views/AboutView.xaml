@@ -14,7 +14,7 @@
                        HorizontalAlignment="Center" 
                        Margin="{StaticResource ControlMargin}">
                 <Run FontWeight="Bold" 
-                     Text="Socrates's Universal Server Tool" />
+                     Text="Socrates's A3 Server Tool" />
             </TextBlock>
             <TextBlock Text="{Binding CurrentVersion}" 
                        HorizontalAlignment="Center"

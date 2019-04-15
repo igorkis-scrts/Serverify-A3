@@ -31,29 +31,33 @@
             <TabItem Header="Details">
                 <controls:DetailsView/>
             </TabItem>
-            <TabItem Header="Security"></TabItem>
+            <TabItem Header="Network">
+                <controls:NetworkView/>
+            </TabItem>
+            <!--<TabItem Header="Security"></TabItem>
             <TabItem Header="Missions"></TabItem>
             <TabItem Header="Modifications"></TabItem>
             <TabItem Header="Performance"></TabItem>
             <TabItem Header="Difficulty"></TabItem>
-            <TabItem Header="Other"></TabItem>
+            <TabItem Header="Other"></TabItem>-->
         </mah:MetroAnimatedSingleRowTabControl>
 
         <DockPanel Grid.Row="2"
                    Grid.Column="0"
-            Background="{StaticResource ControlSecondaryColorBrush}" Margin="0">
-            <Button Style="{StaticResource SecondaryColorFlatButton}"
-                        DockPanel.Dock="Left"
-                        MinWidth="48"
-                        MinHeight="48"
-                        MaxWidth="96"
-                        MaxHeight="96"
-                        Width="64"
-                        HorizontalAlignment="Center"
-                        Margin="{StaticResource ControlMargin}"
-                        Command="{Binding StartServerCommand}">
-
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                   Background="{StaticResource ControlSecondaryColorBrush}" Margin="0">
+            <Button Style ="{StaticResource SecondaryColorFlatButton}"
+                DockPanel.Dock="Left"
+                MinWidth="48"
+                MinHeight="48"
+                MaxWidth="96"
+                MaxHeight="96"
+                Width="64"
+                HorizontalAlignment="Center"
+                Margin="{StaticResource ControlMargin}"
+                Command="{Binding StartServerCommand}">
+              
+                <StackPanel HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
                     <iconPacks:PackIconMaterial Kind="Server" HorizontalAlignment="Center"/>
                     <TextBlock HorizontalAlignment="Center" Text="Launch" />
                 </StackPanel>
