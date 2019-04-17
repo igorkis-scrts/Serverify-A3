@@ -101,6 +101,8 @@
     <Compile Include="Converters\SelectedItemToContentConverter.cs" />
     <Compile Include="TextParseManager.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\GeneralSubViewModels\BasicViewModel.cs" />
+    <Compile Include="ViewModels\GeneralSubViewModels\DetailsViewModel.cs" />
     <Compile Include="ViewModels\GeneralViewModel.cs" />
     <Compile Include="ViewModels\ProfileDialogViewModel.cs" />
     <Compile Include="ViewModels\ProfilesViewModel.cs" />
@@ -110,8 +112,8 @@
     <Compile Include="Views\A3\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\A3\NetworkView.xaml.cs">
-      <DependentUpon>NetworkView.xaml</DependentUpon>
+    <Compile Include="Views\A3\BasicView.xaml.cs">
+      <DependentUpon>BasicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -144,7 +146,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\A3\NetworkView.xaml">
+    <Page Include="Views\A3\BasicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

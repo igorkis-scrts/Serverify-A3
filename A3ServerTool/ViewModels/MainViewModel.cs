@@ -93,7 +93,7 @@ namespace A3ServerTool.ViewModels
             //ServerSettingsFactory
             if (CurrentProfile == null)
             {
-                CurrentProfile = new Profile(new A3ServerSettings());
+                CurrentProfile = new Profile(new ArgumentSettings(), Guid.NewGuid());
             }
         }
 

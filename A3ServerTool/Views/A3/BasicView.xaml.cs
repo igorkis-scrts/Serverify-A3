@@ -18,9 +18,9 @@ namespace A3ServerTool.Views.A3
     /// <summary>
     /// Interaction logic for NetworkView.xaml
     /// </summary>
-    public partial class NetworkView : UserControl
+    public partial class BasicView : UserControl
     {
-        public NetworkView()
+        public BasicView()
         {
             InitializeComponent();
         }

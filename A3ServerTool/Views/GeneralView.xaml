@@ -28,11 +28,11 @@
         <mah:MetroAnimatedSingleRowTabControl 
             Grid.Row="1"
             Grid.Column="0">
-            <TabItem Header="Details">
+            <TabItem Header="General">
                 <controls:DetailsView/>
             </TabItem>
-            <TabItem Header="Network">
-                <controls:NetworkView/>
+            <TabItem Header="Network settings">
+                <controls:BasicView/>
             </TabItem>
             <!--<TabItem Header="Security"></TabItem>
             <TabItem Header="Missions"></TabItem>

@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
+using Newtonsoft.Json;
 
 namespace A3ServerTool.Models
 {
-    public class A3ServerSettings : IServerSettings, INotifyPropertyChanged
+    public class ArgumentSettings : INotifyPropertyChanged, IDataErrorInfo
     {
         /// <inheritdoc/>
-        [SettingSource(SourceType = SettingSourceType.None)]
         public string Name
         {
             get => _name;
@@ -26,10 +26,7 @@ namespace A3ServerTool.Models
         }
         private string _name;
 
-
         // <inheritdoc/>
-        [SettingSource(SourceType = SettingSourceType.Argument)]
-        [CommandLineArgument(Argument = "port")]
         public string Port
         {
             get => _port;
@@ -42,9 +39,7 @@ namespace A3ServerTool.Models
         }
         private string _port;
 
-
         /// <inheritdoc/>
-        [SettingSource(SourceType = SettingSourceType.None)]
         public string ExecutablePath
         {
             get => _executablePath;
@@ -57,6 +52,7 @@ namespace A3ServerTool.Models
         }
         private string _executablePath;
 
+
         #region INotifyPropertyChanged members
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -68,5 +64,31 @@ namespace A3ServerTool.Models
         }
 
         #endregion
+
+        #region IDataErrorInfo
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Name) when string.IsNullOrWhiteSpace(Name):
+                        return "Name of server must be specified.";
+                    case nameof(Port) when string.IsNullOrWhiteSpace(Port):
+                        return "Server port must be specified.";
+                    case nameof(ExecutablePath) when string.IsNullOrWhiteSpace(ExecutablePath):
+                        return "Server path can't be empty.";
+                    default:
+                         return null;
+                }
+            }
+        }
+
+        [JsonIgnore]
+        public string Error => string.Empty;
+
+        #endregion
+
     }
 }

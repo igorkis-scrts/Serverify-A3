@@ -83,7 +83,7 @@ namespace A3ServerTool.ProfileStorage
             {
                 var basicDto = new SaveDataDto
                 {
-                    Content = string.Join("\r\n", TextParseManager.ConvertToTextLines(profile.BasicConfig)),
+                    Content = string.Join("\r\n", TextParseManager.ConvertToText(profile.BasicConfig)),
                     FileExtension = BasicConfig.FileExtension,
                     FileName = BasicConfig.FileName,
                     Folders = new List<string>

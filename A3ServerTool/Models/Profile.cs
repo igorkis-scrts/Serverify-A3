@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using A3ServerTool.Annotations;
+using A3ServerTool.Models.ConfigStorages;
 using Newtonsoft.Json;
 
 namespace A3ServerTool.Models
@@ -15,26 +17,20 @@ namespace A3ServerTool.Models
     /// </summary>
     public class Profile : IDataErrorInfo, INotifyPropertyChanged
     {
-
-        public Profile() {}
+        public Profile() { }
 
         [JsonConstructor]
-        public Profile(IServerSettings serverSettings)
+        public Profile(ArgumentSettings argumentSettings, Guid id)
         {
-            ServerSettings = serverSettings;
+            ArgumentSettings = argumentSettings;
+            Id = id;
         }
 
-        /// <summary>
-        /// Identifier
-        /// </summary>
-        public Guid Id = Guid.NewGuid();
+        /// <inheritdoc />
+        [JsonProperty]
+        public Guid Id { get; }
 
-
-        private string _name;
-
-        /// <summary>
-        /// Name of setting
-        /// </summary>
+        /// <inheritdoc />
         public string Name
         {
             get => _name;
@@ -45,29 +41,9 @@ namespace A3ServerTool.Models
                 OnPropertyChanged();
             }
         }
+        private string _name;
 
-        private ProfileType _type;
-
-        /// <summary>
-        /// Profile type
-        /// </summary>
-        public ProfileType Type
-        {
-            get => _type;
-            set
-            {
-                if (Equals(value, _type)) return;
-                _type = value;
-                OnPropertyChanged();
-            }
-
-        }
-
-        private string _description;
-
-        /// <summary>
-        /// Short description of server profile
-        /// </summary>
+        /// <inheritdoc />
         public string Description
         {
             get => _description;
@@ -78,13 +54,10 @@ namespace A3ServerTool.Models
                 OnPropertyChanged();
             }
         }
+        private string _description;
 
-        private IServerSettings _serverSettings;
-
-        /// <summary>
-        /// Server settings
-        /// </summary>
-        public IServerSettings ServerSettings
+        /// <inheritdoc />
+        public ArgumentSettings ArgumentSettings
         {
             get => _serverSettings;
             set
@@ -94,6 +67,22 @@ namespace A3ServerTool.Models
                 OnPropertyChanged();
             }
         }
+        private ArgumentSettings _serverSettings;
+
+        /// <inheritdoc />
+        [JsonIgnore]
+        public BasicConfig BasicConfig
+        {
+            get => _basicConfig;
+            set
+            {
+                if (Equals(value, _basicConfig)) return;
+                _basicConfig = value;
+                OnPropertyChanged();
+            }
+        }
+        private BasicConfig _basicConfig;
+
 
         #region IDataErrorInfo members
 

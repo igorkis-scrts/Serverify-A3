@@ -16,6 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
+using A3ServerTool.ViewModels.GeneralSubViewModels;
 
 namespace A3ServerTool.ViewModels
 {
@@ -30,7 +31,10 @@ namespace A3ServerTool.ViewModels
         public AboutViewModel About => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public ProfilesViewModel Profiles => ServiceLocator.Current.GetInstance<ProfilesViewModel>();
         public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());      
+        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());
+
+        public DetailsViewModel Details => ServiceLocator.Current.GetInstance<DetailsViewModel>();
+        public BasicViewModel Basic => ServiceLocator.Current.GetInstance<BasicViewModel>();
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -41,12 +45,15 @@ namespace A3ServerTool.ViewModels
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ProfilesViewModel>();
-            SimpleIoc.Default.Register<GeneralViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
 
+            SimpleIoc.Default.Register<GeneralViewModel>();
+            SimpleIoc.Default.Register<DetailsViewModel>();
+
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
+            SimpleIoc.Default.Register<BasicViewModel>();
         }
 
         public static void Cleanup()

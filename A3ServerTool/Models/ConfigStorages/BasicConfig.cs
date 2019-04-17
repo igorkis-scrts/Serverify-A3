@@ -14,6 +14,7 @@ namespace A3ServerTool.Models.ConfigStorages
     public class BasicConfig
     {
         public static readonly string FileName = "basic";
+        public static readonly string FileExtension = ".cfg";
 
         /// <summary>
         /// Another default parameter, intentionally read-only

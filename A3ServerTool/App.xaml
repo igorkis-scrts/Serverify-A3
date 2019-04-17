@@ -15,11 +15,11 @@
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:A3ServerTool.ViewModels" />
 
-            <ObjectDataProvider x:Key="EnumGameTypes" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <!--<ObjectDataProvider x:Key="EnumGameTypes" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
                 <ObjectDataProvider.MethodParameters>
                     <x:Type TypeName="models:ProfileType"></x:Type>
                 </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
+            </ObjectDataProvider>-->
 
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />

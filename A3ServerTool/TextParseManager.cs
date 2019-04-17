@@ -56,7 +56,7 @@ namespace A3ServerTool
             return result;
         }
 
-        public static List<string> ConvertToTextLines<T>(T instance)
+        public static List<string> ConvertToText<T>(T instance)
         {
             var result = new List<string>();
 
