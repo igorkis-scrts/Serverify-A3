@@ -18,13 +18,13 @@ namespace A3ServerTool.ViewModels
     public class ProfilesViewModel : ViewModelBase
     {
         private readonly MainViewModel _mainViewModel;
+        private readonly IProfileDirector _profileDirector;
 
         private readonly IDialogCoordinator _dialogCoordinator; 
         private readonly CustomDialog _customDialog = new CustomDialog(); //TODO: isn't it a little MVVM break?
 
         private bool _isRegistered;
 
-        private IProfileDao _profileDao;
         public IProfileDao ProfileDao
         {
             get
@@ -35,8 +35,8 @@ namespace A3ServerTool.ViewModels
                 return _profileDao;
             }
         }
+        private IProfileDao _profileDao;
 
-        private ObservableCollection<Profile> _profiles;
         public ObservableCollection<Profile> Profiles
         {
             get => _profiles;
@@ -49,10 +49,9 @@ namespace A3ServerTool.ViewModels
                 _profiles = value;
                 RaisePropertyChanged();
             }
-
         }
+        private ObservableCollection<Profile> _profiles;
 
-        private Profile _selectedProfile;
         public Profile SelectedProfile
         {
             get => _selectedProfile;
@@ -67,8 +66,8 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private Profile _selectedProfile;
 
-        private DialogResult<Profile> _dialogResult;
         public DialogResult<Profile> DialogResult
         {
             get => _dialogResult;
@@ -82,10 +81,14 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private DialogResult<Profile> _dialogResult;
 
 
-        public ProfilesViewModel(IDialogCoordinator dialogCoordinator, MainViewModel viewModel)
+        public ProfilesViewModel(IDialogCoordinator dialogCoordinator, MainViewModel viewModel
+            , IProfileDao profileDao, IProfileDirector profileDirector)
         {
+            _profileDao = profileDao;
+            _profileDirector = profileDirector;
             _dialogCoordinator = dialogCoordinator;
             _mainViewModel = viewModel;
             Profiles = ProfileDao.GetAll();
@@ -110,7 +113,6 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-        private ICommand _selectProfileCommand;
         public ICommand SelectProfileCommand
         {
             get
@@ -119,11 +121,11 @@ namespace A3ServerTool.ViewModels
                        (_selectProfileCommand = new RelayCommand(obj =>
                        {
                            _mainViewModel.CurrentProfile = SelectedProfile;
-                       }, obj => SelectedProfile != null));
+                       }, _ => SelectedProfile != null));
             }
         }
+        private ICommand _selectProfileCommand;
 
-        private ICommand _createProfileCommand;
         public ICommand CreateProfileCommand
         {
             get
@@ -137,8 +139,8 @@ namespace A3ServerTool.ViewModels
                        }));
             }
         }
+        private ICommand _createProfileCommand;
 
-        private ICommand _deleteProfileCommand;
         public ICommand DeleteProfileCommand
         {
             get
@@ -151,14 +153,13 @@ namespace A3ServerTool.ViewModels
                            if (dialogResult != MessageDialogResult.Affirmative) return;
 
                            ProfileDao.Delete(SelectedProfile);
-                           _mainViewModel.CurrentProfile.Name = _mainViewModel.CurrentProfile.Name + " (deleted)";
+                           _mainViewModel.CurrentProfile = null;
 
                            RefreshData();
-                       }, obj => SelectedProfile != null));
+                       }, _ => SelectedProfile != null));
             }
         }
-
-        private ICommand _editProfileCommand;
+        private ICommand _deleteProfileCommand;
 
         public ICommand EditProfileCommand
         {
@@ -170,9 +171,10 @@ namespace A3ServerTool.ViewModels
                            ShowDialog();
                            Messenger.Default.Send(SelectedProfile);
                            Messenger.Default.Send(ViewMode.Edit);
-                       }, obj => SelectedProfile != null));
+                       }, _ => SelectedProfile != null));
             }
         }
+        private ICommand _editProfileCommand;
 
         private void RefreshData()
         {
@@ -180,7 +182,7 @@ namespace A3ServerTool.ViewModels
         }
 
         private async void ShowDialog()
-        {           
+        {
             _customDialog.Content = new ProfileDialogView(); //MVVM break, obviously :(
             await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
         }
@@ -192,25 +194,26 @@ namespace A3ServerTool.ViewModels
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                ProfileDao.SaveOrUpdate(DialogResult.Object);
+                _profileDirector.SaveStorage(DialogResult.Object);
+
+                ProfileDao.Save(DialogResult.Object);
 
                 if (Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
                 {
                     _mainViewModel.CurrentProfile = DialogResult.Object;
                 }
-                //TODO:asynchrously (or task/thread usage) save object to local storage
             }
 
             RefreshData();
-            ClearDialogServicesAsync();
-        }        
+            ClearDialogServices();
+        }
 
         /// <summary>
         /// Clears view models when we don't need them
         /// </summary>
         /// <remarks>Since ServiceLocator creates new instance of ProfileDialogVM every time we're calling it,
         /// we need to manualy unregister that VMs after it's usage so there will be no memory leak</remarks>
-        private void ClearDialogServicesAsync()
+        private void ClearDialogServices()
         {
             Task.Run(() =>
             {

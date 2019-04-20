@@ -28,6 +28,9 @@
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding ExitApplicationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Window.Resources>
@@ -126,8 +129,7 @@
                     </PriorityBinding>
                 </Label.Content>-->
             </Label>
-            <!--<Button Content="Change profile"
-                    ToolTip="Select (or create) another profile to work with" />-->            
+            <Button Content="Save"/>            
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     

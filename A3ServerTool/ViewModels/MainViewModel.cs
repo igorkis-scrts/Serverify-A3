@@ -20,7 +20,6 @@ namespace A3ServerTool.ViewModels
     {
         private readonly IDialogCoordinator _dialogCoordinator = DialogCoordinator.Instance;
 
-        private Profile _currentProfile;
         public Profile CurrentProfile
         {
             get => _currentProfile;
@@ -31,8 +30,8 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private Profile _currentProfile;
 
-        private HamburgerMenuItemCollection _menuItems;
         public HamburgerMenuItemCollection MenuItems
         {
             get => _menuItems;
@@ -40,11 +39,11 @@ namespace A3ServerTool.ViewModels
             {
                 if (Equals(value, _menuItems)) return;
                 _menuItems = value;
-                //OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
+        private HamburgerMenuItemCollection _menuItems;
 
-        private HamburgerMenuItemCollection _menuOptionItems;
         public HamburgerMenuItemCollection MenuOptionItems
         {
             get => _menuOptionItems;
@@ -52,11 +51,10 @@ namespace A3ServerTool.ViewModels
             {
                 if (Equals(value, _menuOptionItems)) return;
                 _menuOptionItems = value;
-                //OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
-
-        private ICommand _exitApplicationCommand;
+        private HamburgerMenuItemCollection _menuOptionItems;
 
         public ICommand ExitApplicationCommand
         {
@@ -82,19 +80,34 @@ namespace A3ServerTool.ViewModels
                        }));
             }
         }
+        private ICommand _exitApplicationCommand;
+
+        public ICommand WindowLoadedCommand
+        {
+            get
+            {
+                return _windowLoadedCommand ??
+                       (_windowLoadedCommand = new RelayCommand(_ =>
+                       {
+                           CreateMenuItems();
+
+                           //TODO: save last used profile
+                           //ServerSettingsFactory
+                           if (CurrentProfile == null)
+                           {
+                               //CurrentProfile = new Profile(new ArgumentSettings(), Guid.NewGuid());
+                               CurrentProfile = new Profile(Guid.NewGuid());
+                           }
+                       }));
+            }
+        }
+        private ICommand _windowLoadedCommand;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            CreateMenuItems();
-            //TODO: save last used profile
-            //ServerSettingsFactory
-            if (CurrentProfile == null)
-            {
-                CurrentProfile = new Profile(new ArgumentSettings(), Guid.NewGuid());
-            }
         }
 
         private void CreateMenuItems()
@@ -106,7 +119,7 @@ namespace A3ServerTool.ViewModels
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
                     Label = "Server",
                     ToolTip = "General game server tuning",
-                    Tag = new GeneralViewModel(this)
+                    Tag = ServiceLocator.Current.GetInstance<GeneralViewModel>()
                 },
 
                 new HamburgerMenuIconItem
@@ -114,7 +127,7 @@ namespace A3ServerTool.ViewModels
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Account},
                     Label = "Profiles",
                     ToolTip = "Server profiles",
-                    Tag = new ProfilesViewModel(ServiceLocator.Current.GetInstance<IDialogCoordinator>(), this)
+                    Tag = ServiceLocator.Current.GetInstance<ProfilesViewModel>()
                 },
 
                 new HamburgerMenuIconItem
@@ -122,7 +135,7 @@ namespace A3ServerTool.ViewModels
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Settings},
                     Label = "Settings",
                     ToolTip = "Application settings",
-                    Tag = new SettingsViewModel(this)
+                    Tag = ServiceLocator.Current.GetInstance<SettingsViewModel>()
                 }
             };
 
@@ -133,7 +146,7 @@ namespace A3ServerTool.ViewModels
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Help},
                     Label = "About",
                     ToolTip = "Some help.",
-                    Tag = new AboutViewModel(this)
+                    Tag = ServiceLocator.Current.GetInstance<AboutViewModel>()
                 }
             };
         }

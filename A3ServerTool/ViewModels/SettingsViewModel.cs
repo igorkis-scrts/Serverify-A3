@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace A3ServerTool.ViewModels
 {
-    public class SettingsViewModel
+    public class SettingsViewModel : ViewModelBase
     {
-        private MainViewModel _mainViewModel;
-
-        public SettingsViewModel(MainViewModel mainViewModel)
+        public SettingsViewModel()
         {
-            _mainViewModel = mainViewModel;
         }
     }
 }

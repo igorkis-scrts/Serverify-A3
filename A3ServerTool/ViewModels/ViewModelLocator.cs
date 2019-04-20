@@ -17,6 +17,8 @@ using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
 using A3ServerTool.ViewModels.GeneralSubViewModels;
+using A3ServerTool.Models;
+using A3ServerTool.ProfileStorage;
 
 namespace A3ServerTool.ViewModels
 {
@@ -32,7 +34,6 @@ namespace A3ServerTool.ViewModels
         public ProfilesViewModel Profiles => ServiceLocator.Current.GetInstance<ProfilesViewModel>();
         public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());
-
         public DetailsViewModel Details => ServiceLocator.Current.GetInstance<DetailsViewModel>();
         public BasicViewModel Basic => ServiceLocator.Current.GetInstance<BasicViewModel>();
 
@@ -47,13 +48,14 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<ProfilesViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
-
             SimpleIoc.Default.Register<GeneralViewModel>();
             SimpleIoc.Default.Register<DetailsViewModel>();
-
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
             SimpleIoc.Default.Register<BasicViewModel>();
+
+            SimpleIoc.Default.Register<IProfileDao, JsonProfileDao>();
+            SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
         }
 
         public static void Cleanup()

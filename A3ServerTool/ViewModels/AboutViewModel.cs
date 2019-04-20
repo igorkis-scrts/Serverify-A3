@@ -19,12 +19,8 @@ namespace A3ServerTool.ViewModels
     /// </summary>
     public class AboutViewModel : ViewModelBase
     {
-        private MainViewModel _mainViewModel;
-
-        public AboutViewModel(MainViewModel mainViewModel)
+        public AboutViewModel()
         {
-            _mainViewModel = mainViewModel;
-
             Application.Current.Dispatcher.Invoke(() =>
             {
                 CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();

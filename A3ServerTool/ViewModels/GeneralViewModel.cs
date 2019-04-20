@@ -25,7 +25,7 @@ namespace A3ServerTool.ViewModels
                 return _startServerCommand ??
                        (_startServerCommand = new RelayCommand(obj =>
                           {
-                          }, obj => CheckValidation()));
+                          }, _ => CheckValidation()));
             }
         }
         private ICommand _startServerCommand;
