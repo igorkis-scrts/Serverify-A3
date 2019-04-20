@@ -9,7 +9,7 @@ namespace A3ServerTool
     /// <summary>
     /// Provides instruments to convert array of text lines into object and back
     /// </summary>
-    public static class TextParseManager
+    public static class TextParseHandler
     {
         /// <summary>
         /// Converts lines of properties with values from config file into object instance
