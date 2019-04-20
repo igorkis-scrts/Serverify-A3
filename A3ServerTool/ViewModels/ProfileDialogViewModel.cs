@@ -66,7 +66,6 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-        private string _headerText = "Create profile";
         public string HeaderText
         {
             get => _headerText;
@@ -81,8 +80,8 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private string _headerText = "Create profile";
 
-        private string _buttonText = "Create";
         public string ButtonText
         {
             get => _buttonText;
@@ -97,6 +96,7 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private string _buttonText = "Create";
 
         /// <summary>
         /// Profile name
@@ -135,24 +135,6 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-        /// <summary>
-        /// Profile type
-        /// </summary>
-        public ProfileType ProfileType
-        {
-            get => _profile.Type;
-            set
-            {
-                if (Equals(value, _profile.Type))
-                {
-                    return;
-                }
-
-                _profile.Type = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public ProfileDialogViewModel()
         {
             Messenger.Default.Register<ViewMode>(this, HandleViewState);
@@ -173,16 +155,7 @@ namespace A3ServerTool.ViewModels
                        {
                            if (!HasToSaveCurrentProfile)
                            {
-                               switch(ProfileType)
-                               {
-                                   case (ProfileType.Arma3):
-                                   _profile.ServerSettings = new A3ServerSettings();
-                                   break;
-
-                                   case ProfileType.Dayz:
-                                   default:
-                                   throw new NotImplementedException();
-                               }
+                               _profile.ArgumentSettings = new ArgumentSettings();
                            }
 
                            SendMessage(MessageDialogResult.Affirmative, _profile);
@@ -233,9 +206,8 @@ namespace A3ServerTool.ViewModels
         {
             _profile = profile;
 
-            //TODO: Maybe another, nicer way exists? so many questions, so little anwsers...
+            //TODO: Maybe another, nicer way exists? So many questions, so little anwsers...
             RaisePropertyChanged(nameof(ProfileName));
-            RaisePropertyChanged(nameof(ProfileType));
             RaisePropertyChanged(nameof(ProfileDescription));
         }
 
