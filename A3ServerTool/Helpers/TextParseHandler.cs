@@ -63,6 +63,7 @@ namespace A3ServerTool
             foreach (var property in instance.GetType().GetProperties())
             {
                 var attribute = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
+                if (attribute == null) continue;
 
                 var line = attribute.PropertyName + " = " + property.GetValue(instance, null) + ";";
 

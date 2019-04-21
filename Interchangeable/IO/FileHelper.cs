@@ -50,6 +50,20 @@ namespace Interchangeable.IO
         }
 
         /// <summary>
+        /// Get file
+        /// </summary>
+        public static FileInfo GetFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return null;
+            }
+
+            return new FileInfo(Path.Combine(RootFolder, path));
+        }
+
+
+        /// <summary>
         /// Saves strings to hard drive
         /// </summary>
         public static void Save(SaveDataDto dto)

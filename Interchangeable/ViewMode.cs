@@ -13,6 +13,7 @@ namespace Interchangeable
     {
         None = 0,
         Edit = 1,
-        New = 2
+        New = 2,
+        Save = 3
     }
 }
