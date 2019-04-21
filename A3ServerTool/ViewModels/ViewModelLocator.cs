@@ -18,7 +18,7 @@ using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
 using A3ServerTool.ViewModels.GeneralSubViewModels;
 using A3ServerTool.Models;
-using A3ServerTool.ProfileStorage;
+using A3ServerTool.Storage;
 
 namespace A3ServerTool.ViewModels
 {
@@ -44,6 +44,10 @@ namespace A3ServerTool.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<IDao<Profile>, JsonProfileDao>();
+            SimpleIoc.Default.Register<BasicConfigDao>();
+            SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ProfilesViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
@@ -53,9 +57,6 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
             SimpleIoc.Default.Register<BasicViewModel>();
-
-            SimpleIoc.Default.Register<IProfileDao, JsonProfileDao>();
-            SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
         }
 
         public static void Cleanup()

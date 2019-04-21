@@ -129,7 +129,7 @@
                     </PriorityBinding>
                 </Label.Content>-->
             </Label>
-            <Button Content="Save"/>            
+            <Button Content="Save" Command="{Binding SaveProfileCommand}" Foreground="Black"/>            
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     
