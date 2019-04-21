@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using A3ServerTool.Models;
-using A3ServerTool.ProfileStorage;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -17,25 +16,15 @@ namespace A3ServerTool.ViewModels
 {
     public class ProfilesViewModel : ViewModelBase
     {
+        public const string Token = nameof(ProfilesViewModel);
+
         private readonly MainViewModel _mainViewModel;
         private readonly IProfileDirector _profileDirector;
 
-        private readonly IDialogCoordinator _dialogCoordinator; 
+        private readonly IDialogCoordinator _dialogCoordinator = DialogCoordinator.Instance;
         private readonly CustomDialog _customDialog = new CustomDialog(); //TODO: isn't it a little MVVM break?
 
         private bool _isRegistered;
-
-        public IProfileDao ProfileDao
-        {
-            get
-            {
-                if (_profileDao != null) return _profileDao;
-
-                _profileDao = ProfileDaoFactory.GetDao(DaoType.Json);
-                return _profileDao;
-            }
-        }
-        private IProfileDao _profileDao;
 
         public ObservableCollection<Profile> Profiles
         {
@@ -84,14 +73,11 @@ namespace A3ServerTool.ViewModels
         private DialogResult<Profile> _dialogResult;
 
 
-        public ProfilesViewModel(IDialogCoordinator dialogCoordinator, MainViewModel viewModel
-            , IProfileDao profileDao, IProfileDirector profileDirector)
+        public ProfilesViewModel(MainViewModel viewModel, IProfileDirector profileDirector)
         {
-            _profileDao = profileDao;
             _profileDirector = profileDirector;
-            _dialogCoordinator = dialogCoordinator;
             _mainViewModel = viewModel;
-            Profiles = ProfileDao.GetAll();
+            Profiles = _profileDirector.GetAll();
         }
 
         //A tricky (and stupid too) way to beat the 
@@ -103,11 +89,12 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return new RelayCommand(obj =>
+                return new RelayCommand(_ =>
                 {
                     if (_isRegistered) return;
 
-                    Messenger.Default.Register<DialogResult<Profile>>(this, ProcessMessage);
+                    Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessage);
+                    Messenger.Default.Register<string>(this, MainViewModel.Token, DoByRequest);
                     _isRegistered = true;
                 });
             }
@@ -146,14 +133,14 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _deleteProfileCommand ??
-                       (_deleteProfileCommand = new RelayCommand(async obj =>
+                       (_deleteProfileCommand = new RelayCommand(async _ =>
                        {
                            var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm deletion",
                                "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
                            if (dialogResult != MessageDialogResult.Affirmative) return;
 
-                           ProfileDao.Delete(SelectedProfile);
-                           _mainViewModel.CurrentProfile = null;
+                           _profileDirector.Delete(SelectedProfile);
+                           _mainViewModel.CurrentProfile = new Profile(Guid.NewGuid());
 
                            RefreshData();
                        }, _ => SelectedProfile != null));
@@ -178,7 +165,7 @@ namespace A3ServerTool.ViewModels
 
         private void RefreshData()
         {
-            Profiles = ProfileDao.GetAll();
+            Profiles = _profileDirector.GetAll();
         }
 
         private async void ShowDialog()
@@ -195,8 +182,6 @@ namespace A3ServerTool.ViewModels
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
                 _profileDirector.SaveStorage(DialogResult.Object);
-
-                ProfileDao.Save(DialogResult.Object);
 
                 if (Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
                 {
@@ -226,6 +211,16 @@ namespace A3ServerTool.ViewModels
                 }
             });
             //TODO: catch exceptions
+        }
+
+        //TODO: change string to enum
+        /// <summary>
+        /// Updates datagrid by requests from other view models
+        /// </summary>
+        /// <param name="request">message to do something in this viewmodel</param>
+        private void DoByRequest(string request)
+        {
+            Profiles = _profileDirector.GetAll();
         }
     }
 }

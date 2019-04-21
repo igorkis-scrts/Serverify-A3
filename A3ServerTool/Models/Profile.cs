@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using A3ServerTool.Annotations;
-using A3ServerTool.Models.ConfigStorages;
+using A3ServerTool.Models.Config;
 using Newtonsoft.Json;
 
 namespace A3ServerTool.Models
@@ -15,15 +15,17 @@ namespace A3ServerTool.Models
     /// <summary>
     /// Server profile
     /// </summary>
-    public class Profile : IDataErrorInfo, INotifyPropertyChanged
+    public class Profile : IDataErrorInfo, INotifyPropertyChanged, ICloneable
     {
-        public Profile() { }
+        public Profile(Guid id)
+        {
+            Id = id;
+        }
 
         [JsonConstructor]
-        public Profile(ArgumentSettings argumentSettings, Guid id)
+        public Profile(ArgumentSettings argumentSettings, Guid id) : this(id)
         {
             ArgumentSettings = argumentSettings;
-            Id = id;
         }
 
         /// <inheritdoc />
@@ -67,7 +69,7 @@ namespace A3ServerTool.Models
                 OnPropertyChanged();
             }
         }
-        private ArgumentSettings _serverSettings;
+        private ArgumentSettings _serverSettings = new ArgumentSettings();
 
         /// <inheritdoc />
         [JsonIgnore]
@@ -81,7 +83,7 @@ namespace A3ServerTool.Models
                 OnPropertyChanged();
             }
         }
-        private BasicConfig _basicConfig;
+        private BasicConfig _basicConfig = new BasicConfig();
 
 
         #region IDataErrorInfo members
@@ -115,6 +117,14 @@ namespace A3ServerTool.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region ICloneable
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
 
         #endregion

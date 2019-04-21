@@ -19,13 +19,13 @@ namespace A3ServerTool.ViewModels
     /// </summary>
     public class ProfileDialogViewModel : ViewModelBase, IDataErrorInfo
     {
-        private Profile _profile = new Profile();
+        private Profile _profile = new Profile(Guid.NewGuid());
+        private ViewMode _viewMode;
 
         /// <summary>
         /// Flag to unregister view model when we don't need it
         /// </summary>
         public bool IsExpired { get; set; }
-
 
         private Visibility _visibility;
 
@@ -46,8 +46,8 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
-
         private bool _hasToSave;
+
         /// <summary>
         /// Flag to check if current profile is needed to be saved
         /// </summary>
@@ -116,7 +116,6 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-
         /// <summary>
         /// Profile description
         /// </summary>
@@ -141,8 +140,6 @@ namespace A3ServerTool.ViewModels
             Messenger.Default.Register<Profile>(this, RecieveProfile);
         }
 
-        private RelayCommand _okCommand;
-
         /// <summary>
         /// Confirm user actions
         /// </summary>
@@ -155,7 +152,7 @@ namespace A3ServerTool.ViewModels
                        {
                            if (!HasToSaveCurrentProfile)
                            {
-                               _profile.ArgumentSettings = new ArgumentSettings();
+                               _profile = new Profile(Guid.NewGuid());
                            }
 
                            SendMessage(MessageDialogResult.Affirmative, _profile);
@@ -163,8 +160,7 @@ namespace A3ServerTool.ViewModels
                        }));
             }
         }
-
-        private RelayCommand _cancelCommand;
+        private RelayCommand _okCommand;
 
         /// <summary>
         /// Cancel any user input
@@ -181,30 +177,33 @@ namespace A3ServerTool.ViewModels
                        }));
             }
         }
-
+        private RelayCommand _cancelCommand;
 
         /// <summary>
         /// Send result to parent view model (ProfileViewModel in this case)
         /// </summary>
         private void SendMessage(MessageDialogResult dialogResult, Profile profile = null)
         {
-            if (!HasToSaveCurrentProfile)
-            {
-                //switch (ProfileType)
-                //{
-                //    case ProfileType.Arma3:
-                //        profile.ServerSettings = new A3ServerSettings();;
-                //        break;
-                //}
-            }
-
             var result = new DialogResult<Profile>(dialogResult, profile);
-            Messenger.Default.Send(result);
+
+            switch(_viewMode)
+            {
+                case ViewMode.New:
+                case ViewMode.Edit:
+                    Messenger.Default.Send(result, "ProfilesViewModel");
+                    break;
+                case ViewMode.Save:
+                    Messenger.Default.Send(result, "MainViewModel");
+                    break;
+            }
         }
 
         private void RecieveProfile(Profile profile)
         {
-            _profile = profile;
+            if(profile != null)
+            {
+                _profile = profile.Clone() as Profile;
+            }
 
             //TODO: Maybe another, nicer way exists? So many questions, so little anwsers...
             RaisePropertyChanged(nameof(ProfileName));
@@ -213,6 +212,7 @@ namespace A3ServerTool.ViewModels
 
         private void HandleViewState(ViewMode mode)
         {
+            _viewMode = mode;
             switch (mode)
             {
                 case ViewMode.Edit:
@@ -223,7 +223,14 @@ namespace A3ServerTool.ViewModels
                 case ViewMode.New:
                     HeaderText = "Create profile";
                     ButtonText = "Create";
+                    HasToSaveCurrentProfile = true;
                     VisibilityState = Visibility.Visible;
+                    break;
+                case ViewMode.Save:
+                    HeaderText = "Save profile";
+                    ButtonText = "Save";
+                    HasToSaveCurrentProfile = true;
+                    VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.None:
                 default:

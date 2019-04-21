@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Models;
+using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -18,7 +19,11 @@ namespace A3ServerTool.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public const string Token = nameof(MainViewModel);
+
         private readonly IDialogCoordinator _dialogCoordinator = DialogCoordinator.Instance;
+        private readonly CustomDialog _customDialog = new CustomDialog();
+        private readonly IProfileDirector _profileDirector;
 
         public Profile CurrentProfile
         {
@@ -90,12 +95,10 @@ namespace A3ServerTool.ViewModels
                        (_windowLoadedCommand = new RelayCommand(_ =>
                        {
                            CreateMenuItems();
-
-                           //TODO: save last used profile
-                           //ServerSettingsFactory
+                           Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessageResult);
+                           //TODO: if there is no last used profile - create it
                            if (CurrentProfile == null)
                            {
-                               //CurrentProfile = new Profile(new ArgumentSettings(), Guid.NewGuid());
                                CurrentProfile = new Profile(Guid.NewGuid());
                            }
                        }));
@@ -103,11 +106,35 @@ namespace A3ServerTool.ViewModels
         }
         private ICommand _windowLoadedCommand;
 
+        public ICommand SaveProfileCommand
+        {
+            get
+            {
+                return _saveProfileCommand ??
+                       (_saveProfileCommand = new RelayCommand(async _ =>
+                       {
+                           if (_profileDirector.ExistOnStorage(CurrentProfile))
+                           {
+                               _profileDirector.SaveStorage(CurrentProfile);
+                           }
+                           else
+                           {
+                               _customDialog.Content = new ProfileDialogView();
+                               await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
+                               Messenger.Default.Send(CurrentProfile);
+                               Messenger.Default.Send(ViewMode.Save);
+                           }
+                       }));
+            }
+        }
+        private ICommand _saveProfileCommand;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IProfileDirector director)
         {
+            _profileDirector = director;
         }
 
         private void CreateMenuItems()
@@ -149,6 +176,19 @@ namespace A3ServerTool.ViewModels
                     Tag = ServiceLocator.Current.GetInstance<AboutViewModel>()
                 }
             };
+        }
+
+        private async void ProcessMessageResult(DialogResult<Profile> messageContent)
+        {
+            var dialogResult = messageContent;
+            await _dialogCoordinator.HideMetroDialogAsync(this, _customDialog);
+
+            if (dialogResult.Message == MessageDialogResult.Affirmative)
+            {
+                _profileDirector.SaveStorage(dialogResult.Object);
+                CurrentProfile = dialogResult.Object;
+                Messenger.Default.Send("update", Token);
+            }
         }
     }
 }

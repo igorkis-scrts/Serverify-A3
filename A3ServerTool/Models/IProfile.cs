@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using A3ServerTool.Models.ConfigStorages;
+using A3ServerTool.Models.Config;
 
 namespace A3ServerTool.Models
 {
     public interface IProfile
-    {   
+    {
         /// <summary>
         /// Profile identifier
         /// </summary>
