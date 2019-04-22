@@ -63,7 +63,7 @@ namespace A3ServerTool.Models.Config
         /// Increasing this value can decrease lag on high upload bandwidth servers.
         /// </summary>
         [ConfigProperty(PropertyName = "MaxMsgSend")]
-        public int MaxMessagesSend { get; set; } = 128;
+        public int? MaxMessagesSend { get; set; } = 128;
 
         /// <summary>
         /// Maximum size (payload) of guaranteed packet in bytes (without headers).
@@ -71,7 +71,7 @@ namespace A3ServerTool.Models.Config
         /// Guaranteed packets(aggregate messages) are used for non-repetitive events like shooting.
         /// </summary>
         [ConfigProperty(PropertyName = "MaxSizeGuaranteed")]
-        public int MaxSizeGuaranteed { get; set; } = 512;
+        public int? MaxSizeGuaranteed { get; set; } = 512;
 
         /// <summary>
         /// Maximum size (payload) of non-guaranteed packet in bytes (without headers).

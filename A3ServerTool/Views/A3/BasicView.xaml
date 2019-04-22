@@ -15,26 +15,40 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <!--TODO: ADD TOOLTIPS AND PROPERTIES-->
-            <!--Text="{Binding Name, ValidatesOnDataErrors=True, Mode=TwoWay,  
-                            UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"-->
             <Label Margin="{StaticResource LabelMargin}"
                    HorizontalAlignment="Left"
                    Content="Maximum Messages Send"
                    FontWeight="Bold"
                    FontSize="14" />
-            <TextBox x:Name="MaxMessagesSendTextBox"
-                     Margin="{StaticResource ControlMargin}"
-                     mah:TextBoxHelper.Watermark="Maximum number of packets"/>
+
+            <mah:NumericUpDown x:Name="MaxMessagesSendNumericBox"
+                                        Maximum="4096"
+                                        Minimum="0"
+                                        Margin="{StaticResource ControlMargin}"
+                                        TextAlignment="Left"
+                                        HorizontalAlignment="Left"
+                                        MinWidth="96"
+                                        MaxWidth="128"
+                                        Speedup="True"                                       
+                                        Value="{Binding MaxMessagesSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+
 
             <Label Margin="{StaticResource LabelMargin}"
                    HorizontalAlignment="Left"
                    Content="Maximum Size Guaranteed"
                    FontWeight="Bold"
                    FontSize="14" />
-            <TextBox x:Name="MaxSizeGuaranteedTextBox"
-                     Margin="{StaticResource ControlMargin}"
-                     mah:TextBoxHelper.Watermark="Maximum size (payload) of guaranteed packet in bytes" />
+            <mah:NumericUpDown x:Name="MaxSizeGuaranteedNumericBox"
+                                        Maximum="4096"
+                                        Minimum="0"
+                                        Margin="{StaticResource ControlMargin}"
+                                        TextAlignment="Left"
+                                        HorizontalAlignment="Left"
+                                        MinWidth="96"
+                                        MaxWidth="128"
+                                        Speedup="True"
+                                        Value="{Binding MaxSizeGuaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+            
 
             <Label Margin="{StaticResource LabelMargin}"
                    HorizontalAlignment="Left"

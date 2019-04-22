@@ -1,4 +1,5 @@
 ﻿using A3ServerTool.Models;
+using A3ServerTool.Models.Config;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,29 @@ namespace A3ServerTool.ViewModels.GeneralSubViewModels
     {
         private readonly GeneralViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        public BasicConfig CurrentBasicConfig => _parentViewModel.CurrentProfile.BasicConfig;
+
+        public int? MaxMessagesSend
+        {
+            get => CurrentBasicConfig.MaxMessagesSend;
+            set
+            {
+                if (Equals(value, CurrentBasicConfig.MaxMessagesSend)) return;
+                CurrentBasicConfig.MaxMessagesSend = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int? MaxSizeGuaranteed
+        {
+            get => CurrentBasicConfig.MaxSizeGuaranteed;
+            set
+            {
+                if (Equals(value, CurrentBasicConfig.MaxSizeGuaranteed)) return;
+                CurrentBasicConfig.MaxSizeGuaranteed = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public BasicViewModel(GeneralViewModel viewModel)
         {
@@ -25,9 +48,37 @@ namespace A3ServerTool.ViewModels.GeneralSubViewModels
 
         #region IDataErrorInfo
 
-        public string this[string columnName] => throw new NotImplementedException();
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(MaxMessagesSend) when MaxMessagesSend < 0:
+                        return "MaxMessagesSend must be more than zero.";
+                    case nameof(MaxSizeGuaranteed) when MaxSizeGuaranteed < 0:
+                        return "MaxSizeGuaranteed must be more than zero.";
+                    default:
+                        return null;
+                }
+            }
+        }
 
-        public string Error => throw new NotImplementedException();
+        public string Error
+        {
+            get
+            {
+                if(MaxMessagesSend < 0 || MaxMessagesSend == null)
+                {
+                    return "MaxMessagesSend must be more than zero.";
+                }
+                if (MaxSizeGuaranteed < 0 || MaxSizeGuaranteed == null)
+                {
+                    return "MaxSizeGuaranteed must be more than zero.";
+                }
+                return string.Empty;
+            }
+        }
 
         #endregion
     }
