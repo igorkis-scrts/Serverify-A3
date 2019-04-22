@@ -112,6 +112,15 @@ namespace A3ServerTool.ViewModels
                            if (_profileDirector.ExistOnStorage(CurrentProfile))
                            {
                                _profileDirector.SaveStorage(CurrentProfile);
+
+                               var dialogSettings = new MetroDialogSettings
+                               {
+                                   AffirmativeButtonText = "OK",
+                                   ColorScheme = MetroDialogColorScheme.Accented
+                               };
+
+                               await ((MetroWindow)Application.Current.MainWindow)
+                                   .ShowMessageAsync("Success", "Profile was saved.", MessageDialogStyle.Affirmative, dialogSettings);
                            }
                            else
                            {
