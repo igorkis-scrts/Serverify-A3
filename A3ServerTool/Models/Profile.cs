@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using A3ServerTool.Annotations;
 using A3ServerTool.Models.Config;
 using Newtonsoft.Json;
@@ -85,6 +81,8 @@ namespace A3ServerTool.Models
         }
         private BasicConfig _basicConfig = new BasicConfig();
 
+        [JsonIgnore]
+        public string BasicConfigString => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
 
         #region IDataErrorInfo members
 

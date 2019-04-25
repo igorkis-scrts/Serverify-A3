@@ -80,7 +80,7 @@ namespace A3ServerTool.Models.Config
         /// Increasing this value may improve bandwidth requirement, but it may increase lag.
         /// </summary>
         [ConfigProperty(PropertyName = "MaxSizeNonguaranteed")]
-        public int MaxSizeNonguaranteed { get; set; } = 256;
+        public int? MaxSizeNonguaranteed { get; set; } = 256;
 
         /// <summary>
         /// Bandwidth the server is guaranteed to have (in bps).
@@ -88,14 +88,14 @@ namespace A3ServerTool.Models.Config
         /// Increasing it to too optimistic values can increase lag and CPU load, as too many messages will be sent but discarded.
         /// </summary>
         [ConfigProperty(PropertyName = "MinBandwidth")]
-        public int MinBandwidth { get; set; } = 128;
+        public int? MinBandwidth { get; set; } = 128;
 
         /// <summary>
         /// Bandwidth the server is guaranteed to never have (in bps).
         /// This value helps the server to estimate bandwidth available.
         /// </summary>
         [ConfigProperty(PropertyName = "MaxBandwidth")]
-        public int MaxBandwdith { get; set; } = 2000;
+        public int? MaxBandwidth { get; set; } = 2000;
 
         /// <summary>
         /// Minimal error to send updates across network.
@@ -103,37 +103,37 @@ namespace A3ServerTool.Models.Config
         /// increased network traffic.
         /// </summary>
         [ConfigProperty(PropertyName = "MinErrorToSend")]
-        public float MinErrorToSend { get; set; } = 0.001F;
+        public float? MinErrorToSend { get; set; } = 0.001F;
 
         /// <summary>
         /// Minimal error to send updates across network for near units.
         /// Using larger value can reduce traffic sent for near units. Used to control client to server traffic as well.
         /// </summary>
         [ConfigProperty(PropertyName = "MinErrorToSendNear")]
-        public float MinErrorToSendNear { get; set; } = 0.01F;
+        public float? MinErrorToSendNear { get; set; } = 0.01F;
 
         /// <summary>
         /// Maximum size of user generated content (custom faces, clan logos etc)
         /// </summary>
         [ConfigProperty(PropertyName = "MaxCustomFileSize")]
-        public int MaxCustomFileSize { get; set; } = 160;
+        public int? MaxCustomFileSize { get; set; } = 160;
 
         /// <summary>
         /// Maximum packet size
         /// </summary>
         [ConfigProperty(PropertyName = "maxPacketSize")]
-        public int MaxPacketSize { get; set; } = 1400;
+        public int? MaxPacketSize { get; set; } = 1400;
 
         /// <summary>
         /// Terrain render distance
         /// </summary>
         [ConfigProperty(PropertyName = "terrainGrid")]
-        public float TerrainGridViewDistance { get; set; } = 25.0F;
+        public float? TerrainGridViewDistance { get; set; } = 25.0F;
 
         /// <summary>
         /// Object view distance
         /// </summary>
         [ConfigProperty(PropertyName = "viewDistance")]
-        public int ObjectViewDistance { get; set; } = 2000;
+        public int? ObjectViewDistance { get; set; } = 2000;
     }
 }
