@@ -21,18 +21,26 @@ namespace A3ServerTool.Models
             _basicDao = basicDao;
         }
 
+        /// <inheritdoc/>
         public void Delete(Profile profile)
         {
             _profileDao.Delete(profile);
         }
 
+        /// <inheritdoc/>
+        public Profile GetById(Guid id)
+        {
+            return _profileDao.Get(new Profile(id));
+        }
+
+        /// <inheritdoc/>
         public bool ExistOnStorage(Profile profile)
         {
-            var tt = _profileDao.Get(profile);
             return _profileDao.Get(profile) != null;
         }
 
-        public ObservableCollection<Profile> GetAll()
+        /// <inheritdoc/>
+        public IList<Profile> GetAll()
         {
             var profiles = _profileDao.GetAll();
 
@@ -41,7 +49,7 @@ namespace A3ServerTool.Models
                 profile.BasicConfig = _basicDao.Get(profile);
             }
 
-            return new ObservableCollection<Profile>(profiles);
+            return profiles;
         }
 
         /// <inheritdoc/>
@@ -52,11 +60,5 @@ namespace A3ServerTool.Models
 
             //create same thing for basic.cfg, config.cfg etc
         }
-
-        //public void Construct(IProfileBuilder profileBuilder)
-        //{
-        //    profileBuilder.BuildArguments();
-        //    profileBuilder.BuildBasicConfig();
-        //}
     }
 }
