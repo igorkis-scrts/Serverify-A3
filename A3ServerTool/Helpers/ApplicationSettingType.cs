@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace A3ServerTool.Helpers
 {
     /// <summary>
-    /// Provides a profile handler that can do anything
+    /// Application setting types
     /// </summary>
-    public static class ProfileCoordinator
+    public enum ApplicationSettingType
     {
-
+        None = 0,
+        LastUsedProfile = 1
     }
 }
