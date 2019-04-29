@@ -77,7 +77,8 @@ namespace A3ServerTool.ViewModels
         {
             _profileDirector = profileDirector;
             _mainViewModel = viewModel;
-            Profiles = _profileDirector.GetAll();
+
+            RefreshData();
         }
 
         //A tricky (and stupid too) way to beat the 
@@ -165,7 +166,7 @@ namespace A3ServerTool.ViewModels
 
         private void RefreshData()
         {
-            Profiles = _profileDirector.GetAll();
+            Profiles = new ObservableCollection<Profile>(_profileDirector.GetAll());
         }
 
         private async void ShowDialog()
@@ -215,12 +216,12 @@ namespace A3ServerTool.ViewModels
 
         //TODO: change string to enum
         /// <summary>
-        /// Updates datagrid by requests from other view models
+        /// Updates datagrid by requests from other view models.
         /// </summary>
-        /// <param name="request">message to do something in this viewmodel</param>
+        /// <param name="request">message to do something in this viewmodel.</param>
         private void DoByRequest(string request)
         {
-            Profiles = _profileDirector.GetAll();
+            RefreshData();
         }
     }
 }

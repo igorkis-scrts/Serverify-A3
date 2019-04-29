@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
@@ -92,8 +93,13 @@ namespace A3ServerTool.ViewModels
                        {
                            CreateMenuItems();
                            Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessageResult);
-                           //TODO: if there is no last used profile - create it
-                           if (CurrentProfile == null)
+
+                           var lastProfileId = (Guid) SettingsCoordinator.Retrieve(ApplicationSettingType.LastUsedProfile);
+                           if(lastProfileId != Guid.Empty)
+                           {
+                               CurrentProfile = _profileDirector.GetById(lastProfileId);
+                           }
+                           else
                            {
                                CurrentProfile = new Profile(Guid.NewGuid());
                            }
@@ -192,6 +198,8 @@ namespace A3ServerTool.ViewModels
             {
                 _profileDirector.SaveStorage(dialogResult.Object);
                 CurrentProfile = dialogResult.Object;
+                SettingsCoordinator.Save(ApplicationSettingType.LastUsedProfile, CurrentProfile.Id);
+
                 Messenger.Default.Send("update", Token);
             }
         }

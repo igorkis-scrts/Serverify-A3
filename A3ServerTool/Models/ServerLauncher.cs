@@ -11,20 +11,19 @@ namespace A3ServerTool.Models
         //TODO: Builder pattern for server properties
         //TODO: grab every setting and throw it into appropriate place using SettingSource
 
-        //temporary, obviously, this is proof of concept
-        public void Run(string port, string name, string path)
+        public void Run(IProfile profile)
         {
-            var server = new System.Diagnostics.Process
-            {
-                StartInfo =
-                {
-                    FileName = path,
-                    Arguments = "-port=" + port,
-                    UseShellExecute = false,
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized //maybe make this thing as setting in Settings?
-                }
-            };
-            server.Start();
+            //var server = new System.Diagnostics.Process
+            //{
+            //    StartInfo =
+            //    {
+            //        FileName = path,
+            //        Arguments = "-port=" + port,
+            //        UseShellExecute = false,
+            //        WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized
+            //    }
+            //};
+            //server.Start();
         }
     }
 }
