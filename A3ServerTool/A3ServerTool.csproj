@@ -97,9 +97,10 @@
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Helpers\SettingsCoordinator.cs" />
+    <Compile Include="Helpers\ApplicationSettingType.cs" />
     <Compile Include="Models\Config\IConfig.cs" />
     <Compile Include="Models\IProfileBuilder.cs" />
-    <Compile Include="Helpers\ProfileCoordinator.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
     <Compile Include="Models\IProfile.cs" />
     <Compile Include="Models\IProfileDirector.cs" />
