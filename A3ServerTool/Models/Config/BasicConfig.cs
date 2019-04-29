@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using A3ServerTool.Attributes;
+﻿using A3ServerTool.Attributes;
 
 namespace A3ServerTool.Models.Config
 {
     /// <summary>
-    /// Class that represents "basic.cfg" file. 
+    /// Provides a representation of "basic.cfg" file. 
     /// For better expanation please visit <see href="https://community.bistudio.com/wiki/basic.cfg">BIS Wiki</see>
     /// </summary>
     public class BasicConfig : IConfig
