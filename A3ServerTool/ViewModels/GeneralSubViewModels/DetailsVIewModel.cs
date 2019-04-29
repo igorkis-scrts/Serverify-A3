@@ -55,7 +55,7 @@ namespace A3ServerTool.ViewModels.GeneralSubViewModels
             get
             {
                 return _browseCommand ??
-                       (_browseCommand = new RelayCommand(obj =>
+                       (_browseCommand = new RelayCommand(_ =>
                        {
                            using (var fileDialog = new OpenFileDialog())
                            {

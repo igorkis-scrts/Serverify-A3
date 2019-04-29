@@ -10,12 +10,14 @@ namespace A3ServerTool.ViewModels
     public class GeneralViewModel : ViewModelBase
     {
         private readonly MainViewModel _mainViewModel;
+        private readonly IServerLauncher _launcher;
 
         public Profile CurrentProfile => _mainViewModel.CurrentProfile;
 
-        public GeneralViewModel(MainViewModel viewModel)
+        public GeneralViewModel(MainViewModel viewModel, IServerLauncher launcher)
         {
             _mainViewModel = viewModel;
+            _launcher = launcher;
         }
 
         public ICommand StartServerCommand
@@ -23,14 +25,13 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _startServerCommand ??
-                       (_startServerCommand = new RelayCommand(obj =>
+                       (_startServerCommand = new RelayCommand(_ =>
                           {
-
+                              _launcher.Run(CurrentProfile);
                           }, _ => CheckValidation()));
             }
         }
         private ICommand _startServerCommand;
-
 
         private bool CheckValidation()
         {

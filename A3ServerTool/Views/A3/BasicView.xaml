@@ -11,220 +11,221 @@
     DataContext="{Binding Basic, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Maximum Messages Send"
-                FontSize="14"
-                FontWeight="Bold" />
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Maximum Messages Send"
+                    FontSize="14"
+                    FontWeight="Bold" />
 
-            <mah:NumericUpDown
-                x:Name="MaxMessagesSendNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MaxMessagesSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <mah:NumericUpDown
+                    x:Name="MaxMessagesSendNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MaxMessagesSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Maximum Size Guaranteed"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="MaxSizeGuaranteedNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MaxSizeGuaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Maximum Size Guaranteed"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MaxSizeGuaranteedNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MaxSizeGuaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Maximum Size Nonguaranteed"
-                FontSize="14"
-                FontWeight="Bold" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Maximum Size Nonguaranteed"
+                    FontSize="14"
+                    FontWeight="Bold" />
 
-            <mah:NumericUpDown
-                x:Name="MaxSizeNonGuaranteedNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MaxSizeNonguaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <mah:NumericUpDown
+                    x:Name="MaxSizeNonGuaranteedNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MaxSizeNonguaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Minimum Bandwidth"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="MinBandwidthNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MinBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Minimum Bandwidth"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MinBandwidthNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MinBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Maximum Bandwidth"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="MaxBandwidthNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MaxBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Maximum Bandwidth"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MaxBandwidthNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MaxBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Minimum Error To Send"
-                FontSize="14"
-                FontWeight="Bold"
- />
-            <mah:NumericUpDown
-                x:Name="MinErrorToSendNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                StringFormat=" {0:F3}"
-                Interval=".001"
-                Value="{Binding MinErrorToSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Minimum Error To Send"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MinErrorToSendNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Interval=".001"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    StringFormat="{}{0:F3}"
+                    TextAlignment="Left"
+                    Value="{Binding MinErrorToSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Minimum Error To Send Near"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="MinErrorToSendNearNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                StringFormat=" {0:F3}"
-                Interval=".001"
-                Value="{Binding MinErrorToSendNear, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-        </StackPanel>
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Minimum Error To Send Near"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MinErrorToSendNearNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Interval=".001"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    StringFormat="{}{0:F3}"
+                    TextAlignment="Left"
+                    Value="{Binding MinErrorToSendNear, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+            </StackPanel>
 
-        <StackPanel Grid.Column="1">
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Maximum Custom File Size"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="MaxCustomFileSizeNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MaxCustomFileSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+            <StackPanel Grid.Column="1">
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Maximum Custom File Size"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MaxCustomFileSizeNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MaxCustomFileSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Terrain Grid View Distance"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="TerrainGridViewDistanceNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                StringFormat=" {0:F3}"
-                Interval=".001"
-                Value="{Binding TerrainGridViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Terrain Grid View Distance"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="TerrainGridViewDistanceNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Interval=".001"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    StringFormat="{}{0:F3}"
+                    TextAlignment="Left"
+                    Value="{Binding TerrainGridViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Object View Distance"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="ObjectViewDistanceNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding ObjectViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Object View Distance"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="ObjectViewDistanceNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding ObjectViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Maximum Packet Size"
-                FontSize="14"
-                FontWeight="Bold" />
-            <mah:NumericUpDown
-                x:Name="MaxPacketSizeNumericBox"
-                MinWidth="96"
-                MaxWidth="128"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Maximum="4096"
-                Minimum="0"
-                Speedup="True"
-                TextAlignment="Left"
-                Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-        </StackPanel>
-    </Grid>
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Maximum Packet Size"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    x:Name="MaxPacketSizeNumericBox"
+                    MinWidth="96"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Maximum="4096"
+                    Minimum="0"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

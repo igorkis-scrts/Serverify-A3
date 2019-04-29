@@ -44,10 +44,6 @@ namespace A3ServerTool.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<IDao<Profile>, JsonProfileDao>();
-            SimpleIoc.Default.Register<BasicConfigDao>();
-            SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
-
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ProfilesViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();

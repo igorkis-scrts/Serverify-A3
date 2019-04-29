@@ -27,6 +27,8 @@ namespace A3ServerTool
             var customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             CultureInfo.CurrentCulture = customCulture;
+
+            Bindings.Register();
         }
     }
 }

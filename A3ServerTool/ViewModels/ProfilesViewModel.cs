@@ -106,7 +106,7 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _selectProfileCommand ??
-                       (_selectProfileCommand = new RelayCommand(obj =>
+                       (_selectProfileCommand = new RelayCommand(_ =>
                        {
                            _mainViewModel.CurrentProfile = SelectedProfile;
                        }, _ => SelectedProfile != null));
@@ -119,7 +119,7 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _createProfileCommand ??
-                       (_createProfileCommand = new RelayCommand(obj =>
+                       (_createProfileCommand = new RelayCommand(_ =>
                        {
                            ShowDialog();
                            Messenger.Default.Send(_mainViewModel.CurrentProfile);
@@ -154,7 +154,7 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _editProfileCommand ??
-                       (_editProfileCommand = new RelayCommand(obj =>
+                       (_editProfileCommand = new RelayCommand(_ =>
                        {
                            ShowDialog();
                            Messenger.Default.Send(SelectedProfile);
