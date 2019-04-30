@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attributes\WrappingClass.cs" />
     <Compile Include="Attributes\ConfigProperty.cs" />
     <Compile Include="Attributes\CommandLineArgument.cs" />
     <Compile Include="Bindings.cs" />
@@ -113,12 +114,14 @@
     <Compile Include="Models\ServerLauncher\ServerLauncher.cs" />
     <Compile Include="Models\Config\BasicConfig.cs" />
     <Compile Include="Storage\BasicConfigDao.cs" />
+    <Compile Include="Storage\IConfigDao.cs" />
     <Compile Include="Storage\IDao.cs" />
     <Compile Include="Storage\JsonProfileDao.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Converters\SelectedItemToContentConverter.cs" />
     <Compile Include="Helpers\TextParseHandler.cs" />
+    <Compile Include="Storage\ServerConfigDao.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\GeneralSubViewModels\BasicViewModel.cs" />
     <Compile Include="ViewModels\GeneralSubViewModels\DetailsViewModel.cs" />
@@ -133,6 +136,9 @@
     </Compile>
     <Compile Include="Views\A3\BasicView.xaml.cs">
       <DependentUpon>BasicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A3\SecurityView.xaml.cs">
+      <DependentUpon>SecurityView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -166,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\A3\BasicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\A3\SecurityView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

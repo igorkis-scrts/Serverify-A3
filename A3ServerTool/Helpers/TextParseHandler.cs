@@ -1,8 +1,9 @@
-﻿using System;
+﻿using A3ServerTool.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using A3ServerTool.Attributes;
+using System.Text;
 
 namespace A3ServerTool
 {
@@ -34,10 +35,11 @@ namespace A3ServerTool
 
             foreach (var property in typeof(T).GetProperties())
             {
-                var attribute = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
-                if (attribute?.IgnoreParsing != false) continue;
+                var stringName = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
 
-                nameToValueDictionary.TryGetValue(attribute.PropertyName, out var value);
+                if (stringName?.IgnoreParsing != false) continue;
+
+                nameToValueDictionary.TryGetValue(stringName.PropertyName, out var value);
 
                 if (property.PropertyType == typeof(int))
                 {
@@ -62,19 +64,59 @@ namespace A3ServerTool
 
             foreach (var property in instance.GetType().GetProperties())
             {
-                var attribute = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
-                if (attribute == null) continue;
+                var stringName = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
+                var wrappingClasses = property.GetCustomAttributes(typeof(WrappingClass), false).Cast<WrappingClass>().ToArray();
 
-                var line = attribute.PropertyName + " = " + property.GetValue(instance, null) + ";";
+                if (stringName == null) continue;
 
-                if (attribute.PropertyName == "maxPacketSize")
+                var line = stringName.PropertyName + " = " + property.GetValue(instance, null) + ";";
+
+                if (wrappingClasses.Any())
                 {
-                    result.AddRange(new[] { "class sockets", "{", line, "};" });
+                    result.AddRange(WrapParameter(wrappingClasses, line));
                 }
                 else
                 {
                     result.Add(line);
                 }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Generates text content for wrapped properties in config file.
+        /// </summary>
+        /// <param name="classes">WrappingClass attributes.</param>
+        /// <param name="parameterLine">ParameterLine to insert.</param>
+        /// <returns>List with nested properties.</returns>
+        private static List<string> WrapParameter(IList<WrappingClass> classes, string parameterLine)
+        {
+            //I wish someday we will get nested properties
+            if (classes?.Any() != true) return new List<string>();
+
+            var result = new List<string>();
+            int maxTab = 0;
+
+            for(int i = 0; i < classes.Count(); i++)
+            {
+                if(i != 0)
+                {
+                    var tab = new string('\t', i);
+                    maxTab = i;
+                    result.AddRange(new[] { tab + "class " + classes[i].ClassName, tab + "{" });
+                }
+                else
+                {
+                    result.AddRange(new[] { "class " + classes[i].ClassName, "{" });
+                }
+            }
+
+            result.Add(new string('\t', maxTab + 1) + parameterLine);
+
+            for (int i = 0; i < classes.Count(); i++)
+            {
+                result.Add(new string('\t', maxTab - i) + "};");
             }
 
             return result;

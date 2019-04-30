@@ -1,11 +1,6 @@
-﻿using System;
+﻿using A3ServerTool.Storage;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using A3ServerTool.Models.Config;
-using A3ServerTool.Storage;
 
 namespace A3ServerTool.Models
 {
@@ -14,11 +9,13 @@ namespace A3ServerTool.Models
     {
         private readonly IDao<Profile> _profileDao;
         private readonly BasicConfigDao _basicDao;
+        private readonly ServerConfigDao _serverDao;
 
-        public ProfileDirector(IDao<Profile> profileDao, BasicConfigDao basicDao)
+        public ProfileDirector(IDao<Profile> profileDao, BasicConfigDao basicDao, ServerConfigDao serverDao)
         {
             _profileDao = profileDao;
             _basicDao = basicDao;
+            _serverDao = serverDao;
         }
 
         /// <inheritdoc/>
@@ -44,9 +41,10 @@ namespace A3ServerTool.Models
         {
             var profiles = _profileDao.GetAll();
 
-            foreach(var profile in profiles)
+            foreach (var profile in profiles)
             {
                 profile.BasicConfig = _basicDao.Get(profile);
+                profile.ServerConfig = _serverDao.Get(profile);
             }
 
             return profiles;
@@ -57,8 +55,7 @@ namespace A3ServerTool.Models
         {
             _profileDao.Save(profile);
             _basicDao.Save(profile);
-
-            //create same thing for basic.cfg, config.cfg etc
+            _serverDao.Save(profile);
         }
     }
 }

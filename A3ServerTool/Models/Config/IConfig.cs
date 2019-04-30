@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace A3ServerTool.Models.Config
+﻿namespace A3ServerTool.Models.Config
 {
     /// <summary>
-    /// Provides common interface for config files
+    /// Provides common interface for config files.
     /// </summary>
     public interface IConfig
     {
         /// <summary>
-        /// Config file name
+        /// Gets config file name.
         /// </summary>
         string FileName { get; }
 
         /// <summary>
-        /// Config file extension 
+        /// Gets config file extension.
         /// </summary>
         string FileExtension { get; }
 
         /// <summary>
-        /// Config file location
+        /// Gets or sets config file location.
         /// </summary>
-        string FileLocation { get; }
+        string FileLocation { get; set; }
     }
 }

@@ -35,12 +35,10 @@ namespace A3ServerTool.Models
         private string AppendProfileSettings(Profile profile)
         {
             var builder = new StringBuilder();
+            builder.Append("-cfg=").Append(profile.BasicConfig.FileLocation);
+            builder.Append("-config").Append(profile.ServerConfig.FileLocation);
 
-            builder.Append("-cfg=" + profile.BasicConfigString);
-
-            var tt = builder.ToString();
-
-            return tt;
+            return builder.ToString();
         }
     }
 }

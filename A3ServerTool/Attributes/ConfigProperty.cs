@@ -3,18 +3,18 @@
 namespace A3ServerTool.Attributes
 {
     /// <summary>
-    /// Provides attributes that helps with basic.cfg and config.cfg parsing
+    /// Provides attributes that helps with config files parsing.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    class ConfigProperty : Attribute
+    internal sealed class ConfigProperty : Attribute
     {
         /// <summary>
-        /// Actual representation of property in basic.cfg
+        ///  Gets or sets actual representation of property in config file.
         /// </summary>
         public string PropertyName { get; set; }
 
         /// <summary>
-        /// Is property needed to parse
+        /// Gets or sets a value for enabling/disabling property parsing.
         /// </summary>
         public bool IgnoreParsing { get; set; }
     }

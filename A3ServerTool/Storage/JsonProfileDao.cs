@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using A3ServerTool.Models;
-using A3ServerTool.Storage;
 using Interchangeable.IO;
 using Newtonsoft.Json;
 
@@ -12,7 +11,6 @@ namespace A3ServerTool.Storage
 {
     public class JsonProfileDao : IDao<Profile>
     {
-        private const string StorageFolder = "Profiles";
         private const string FileExtension = ".json";
 
         private readonly JsonSerializerSettings _serializerSettings;
@@ -25,16 +23,16 @@ namespace A3ServerTool.Storage
                 ObjectCreationHandling = ObjectCreationHandling.Replace
             };
 
-            if (!FileHelper.CheckIfFolderExists(StorageFolder))
+            if (!FileHelper.CheckIfFolderExists(Profile.StorageFolder))
             {
-                FileHelper.CreateFolder(StorageFolder);
+                FileHelper.CreateFolder(Profile.StorageFolder);
             }
         }
 
         IList<Profile> IDao<Profile>.GetAll()
         {
             var profiles = new List<Profile>();
-            var profileFolders = FileHelper.GetFolder(StorageFolder);
+            var profileFolders = FileHelper.GetFolder(Profile.StorageFolder);
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -44,15 +42,6 @@ namespace A3ServerTool.Storage
                 Profile profile;
                 var metadata = files.FirstOrDefault(x => x.Extension == FileExtension);
                 profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
-
-                //var configFiles = files.Where(x => x.Extension == BasicConfig.FileExtension);
-                //foreach (var file in configFiles)
-                //{
-                //    var properties = TextManager.ReadFileLineByLine(file);
-                //    profile.BasicConfig = TextParseHandler.Parse<BasicConfig>(properties);
-
-                //    //TODO: Same thing for config.cfg
-                //}
 
                 profiles.Add(profile);
             });
@@ -63,7 +52,7 @@ namespace A3ServerTool.Storage
         public ObservableCollection<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
-            var profileFolders = FileHelper.GetFolder(StorageFolder);
+            var profileFolders = FileHelper.GetFolder(Profile.StorageFolder);
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -74,14 +63,6 @@ namespace A3ServerTool.Storage
                 var metadata = files.FirstOrDefault(x => x.Extension == FileExtension);
                 profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
 
-                //var configFiles = files.Where(x => x.Extension == BasicConfig.FileExtension);
-                //foreach (var file in configFiles)
-                //{
-                //    var properties = TextManager.ReadFileLineByLine(file);
-                //    profile.BasicConfig = TextParseHandler.Parse<BasicConfig>(properties);
-
-                //    //TODO: Same thing for config.cfg
-                //}
 
                 profiles.Add(profile);
             });
@@ -104,7 +85,7 @@ namespace A3ServerTool.Storage
                 FileName = "Main",
                 Folders = new List<string>
                 {
-                    StorageFolder,
+                    Profile.StorageFolder,
                     item.Id.ToString()
                 }
             };
@@ -117,7 +98,7 @@ namespace A3ServerTool.Storage
             {
                 Folders = new List<string>
                 {
-                    StorageFolder,
+                    Profile.StorageFolder,
                     item.Id.ToString()
                 }
             };
