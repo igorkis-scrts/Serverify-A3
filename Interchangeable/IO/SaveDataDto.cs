@@ -4,27 +4,27 @@ using System.IO;
 namespace Interchangeable.IO
 {
     /// <summary>
-    /// A simple class to send parameters to FileHelper in a packed way
+    /// Represents file to save.
     /// </summary>
     public class SaveDataDto
     {
         /// <summary>
-        /// File content in text format
+        /// Gets or sets file content in text format.
         /// </summary>
         public string Content { get; set; }
 
         /// <summary>
-        /// Extension of file
+        /// Gets or sets extension of file.
         /// </summary>
         public string FileExtension { get; set; }
 
         /// <summary>
-        /// Name of file
+        /// Gets or sets name of file.
         /// </summary>
         public string FileName { get; set; }
 
         /// <summary>
-        /// Array of folders where file will be contained
+        /// Gets or sets array of folders where file will be contained.
         /// </summary>
         /// <remarks> 
         /// Folders will be concated together one by one, path to executable location is already included.
@@ -32,7 +32,7 @@ namespace Interchangeable.IO
         public List<string> Folders { get; set; } = new List<string>();
 
         /// <summary>
-        /// Provides full path to writable file
+        /// Gets full path to where file will be written.
         /// </summary>
         public string GetFullPath()
         {

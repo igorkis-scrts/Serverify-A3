@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Interchangeable
 {
     /// <summary>
-    /// Little enum for creational views - editing existing instance of object or creating completely new
+    /// Enum for creational views - editing existing instance of object or creating completely new.
     /// </summary>
     public enum ViewMode
     {

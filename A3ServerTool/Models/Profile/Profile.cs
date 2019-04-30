@@ -11,8 +11,10 @@ namespace A3ServerTool.Models
     /// <summary>
     /// Server profile
     /// </summary>
-    public class Profile : IDataErrorInfo, INotifyPropertyChanged, ICloneable
+    public class Profile : IProfile, IDataErrorInfo, INotifyPropertyChanged, ICloneable
     {
+        public const string StorageFolder = "Profiles";
+
         public Profile(Guid id)
         {
             Id = id;
@@ -83,6 +85,23 @@ namespace A3ServerTool.Models
 
         [JsonIgnore]
         public string BasicConfigString => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
+
+        /// <inheritdoc />
+        [JsonIgnore]
+        public ServerConfig ServerConfig
+        {
+            get => _serverConfig;
+            set
+            {
+                if (Equals(value, _serverConfig)) return;
+                _serverConfig = value;
+                OnPropertyChanged();
+            }
+        }
+        private ServerConfig _serverConfig = new ServerConfig();
+
+        [JsonIgnore]
+        public string ServerConfigString => ServerConfig != null ? ServerConfig.FileLocation : string.Empty;
 
         #region IDataErrorInfo members
 

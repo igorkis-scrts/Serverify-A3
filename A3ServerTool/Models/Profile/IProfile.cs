@@ -30,8 +30,13 @@ namespace A3ServerTool.Models
         ArgumentSettings ArgumentSettings { get; }
 
         /// <summary>
-        /// Represents basic.cfg
+        /// Gets or sets basic config.
         /// </summary>
         BasicConfig BasicConfig { get; set; }
+
+        /// <summary>
+        /// Gets or sets server config.
+        /// </summary>
+        ServerConfig ServerConfig { get; set; }
     }
 }
