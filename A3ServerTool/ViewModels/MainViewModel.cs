@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
@@ -97,7 +98,14 @@ namespace A3ServerTool.ViewModels
                            var lastProfileId = (Guid) SettingsCoordinator.Retrieve(ApplicationSettingType.LastUsedProfile);
                            if(lastProfileId != Guid.Empty)
                            {
-                               CurrentProfile = _profileDirector.GetById(lastProfileId);
+                               var profilesViewModel = ServiceLocator.Current.GetInstance<ProfilesViewModel>();
+                               if (profilesViewModel != null)
+                               {
+                                   var profile = profilesViewModel.Profiles
+                                        .ToList()
+                                        .Find(x => x.Id == lastProfileId);
+                                   CurrentProfile = profile ?? _profileDirector.GetById(lastProfileId);
+                               }
                            }
                            else
                            {
