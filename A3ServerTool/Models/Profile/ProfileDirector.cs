@@ -27,7 +27,10 @@ namespace A3ServerTool.Models
         /// <inheritdoc/>
         public Profile GetById(Guid id)
         {
-            return _profileDao.Get(new Profile(id));
+           var profile = _profileDao.Get(new Profile(id));
+           profile.BasicConfig = _basicDao.Get(profile);
+           profile.ServerConfig = _serverDao.Get(profile);
+           return profile;
         }
 
         /// <inheritdoc/>

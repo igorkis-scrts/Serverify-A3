@@ -49,8 +49,13 @@ namespace A3ServerTool
                 {
                     property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
                 }
+                //else if(property.PropertyType == typeof(IEnumerable<string>))
+                //{
+
+                //}
                 else if (property.PropertyType == typeof(string))
                 {
+                    value = value?.Replace("\"", string.Empty);
                     property.SetValue(result, Convert.ToString(value));
                 }
             }
@@ -69,7 +74,23 @@ namespace A3ServerTool
 
                 if (stringName == null) continue;
 
-                var line = stringName.PropertyName + " = " + property.GetValue(instance, null) + ";";
+                var value = property.GetValue(instance, null);
+
+                if ((property.PropertyType == typeof(int) || property.PropertyType == typeof(float)) && value == null)
+                {
+                    continue;
+                }
+
+                if (property.PropertyType == typeof(string))
+                {
+                    value = "\"" + value + "\"";
+                }
+                else if(property.PropertyType == typeof(bool))
+                {
+                    value = value.ToString().ToLowerInvariant();
+                }
+
+                var line = stringName.PropertyName + " = " + value + ";";
 
                 if (wrappingClasses.Any())
                 {
