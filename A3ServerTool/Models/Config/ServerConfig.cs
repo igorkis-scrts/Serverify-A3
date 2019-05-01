@@ -23,7 +23,7 @@ namespace A3ServerTool.Models.Config
         public string FileLocation { get; set; }
 
         /// <summary>
-        /// Gets or sets servername visible in the game browser.
+        /// Gets or sets server name visible in the game browser.
         /// </summary>
         [ConfigProperty(PropertyName = "hostname")]
         public string HostName { get; set; } = string.Empty;
@@ -316,14 +316,14 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets a value for only allowing files with certain extensions to be loaded via loadFile command.
         /// </summary>
-        [ConfigProperty(PropertyName = "missionWhitelist[]")]
+        [ConfigProperty(PropertyName = "allowedLoadFileExtensions[]")]
         public List<string> FileExtensionsWhitelist { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value for only allowing files with certain extensions 
         /// to be loaded via preprocessFile/preprocessFileLineNumber.
         /// </summary>
-        [ConfigProperty(PropertyName = "allowedLoadFileExtensions[]")]
+        [ConfigProperty(PropertyName = "allowedPreprocessFileExtensions[]")]
         public List<string> PreprocessFileExtensionsWhitelist { get; set; } = new List<string>();
 
         /// <summary>

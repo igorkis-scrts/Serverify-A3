@@ -10,7 +10,7 @@ namespace A3ServerTool.Models.Config
     {
         /// <inheritdoc/>
         public string FileName { get; } = "basic";
-       
+
         /// <inheritdoc/>
         public string FileExtension { get; } = ".cfg";
 
