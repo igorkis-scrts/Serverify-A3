@@ -46,7 +46,8 @@
 
             <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
             <Thickness x:Key="LabelMargin">4 2 8 2</Thickness>
-
+            <Thickness x:Key="GroupBoxMargin">12 4 12 4</Thickness>
+            
             <ResourceDictionary.MergedDictionaries>
                 <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />

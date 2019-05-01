@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
 
@@ -29,23 +30,29 @@
             Content="Server"
             Style="{StaticResource DescriptionHeaderStyle}" />
 
-        <mah:MetroAnimatedSingleRowTabControl Grid.Row="1" Grid.Column="0">
+        <mah:MetroAnimatedSingleRowTabControl
+            Grid.Row="1"
+            Grid.Column="0"
+            mah:TabControlHelper.Underlined="SelectedTabItem">
             <TabItem Header="General">
                 <controls:GeneralView />
+            </TabItem>
+            <TabItem Header="Security">
+                <controls:SecurityView />
             </TabItem>
             <TabItem Header="Network">
                 <controls:NetworkView />
             </TabItem>
-            <!--<TabItem Header="Security"></TabItem>
-            <TabItem Header="Missions"></TabItem>
+            <!--<TabItem Header="Missions"></TabItem>
             <TabItem Header="Modifications"></TabItem>
             <TabItem Header="Performance"></TabItem>
             <TabItem Header="Difficulty"></TabItem>
             <TabItem Header="Other"></TabItem>-->
         </mah:MetroAnimatedSingleRowTabControl>
 
+        <DockPanel Grid.Row="2" Grid.ColumnSpan="1" />
         <DockPanel
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="0"
             Margin="0"
             Background="{StaticResource ControlSecondaryColorBrush}">

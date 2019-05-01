@@ -36,6 +36,7 @@ namespace A3ServerTool.ViewModels
         public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());
         public GeneralViewModel General => ServiceLocator.Current.GetInstance<GeneralViewModel>();
         public NetworkViewModel Network => ServiceLocator.Current.GetInstance<NetworkViewModel>();
+        public SecurityViewModel Security => ServiceLocator.Current.GetInstance<SecurityViewModel>();
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -53,6 +54,7 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
             SimpleIoc.Default.Register<NetworkViewModel>();
+            SimpleIoc.Default.Register<SecurityViewModel>();
         }
 
         public static void Cleanup()

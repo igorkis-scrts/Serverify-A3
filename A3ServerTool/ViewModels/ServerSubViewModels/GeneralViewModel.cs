@@ -50,13 +50,27 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// <summary>
         /// Gets or sets password required to connect to server. 
         /// </summary>
-        public string Password
+        public string ServerPassword
         {
             get => CurrentProfile?.ServerConfig.Password;
             set
             {
                 if (Equals(value, CurrentProfile.ServerConfig.Password)) return;
                 CurrentProfile.ServerConfig.Password = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets password required to connect to server. 
+        /// </summary>
+        public int? MaximumAmountOfPlayers
+        {
+            get => CurrentProfile?.ServerConfig.MaximumAmountOfPlayers;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.MaximumAmountOfPlayers)) return;
+                CurrentProfile.ServerConfig.MaximumAmountOfPlayers = value;
                 RaisePropertyChanged();
             }
         }

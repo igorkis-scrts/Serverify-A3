@@ -8,14 +8,14 @@ using System.Text;
 namespace A3ServerTool
 {
     /// <summary>
-    /// Provides instruments to convert array of text lines into object and back
+    /// Provides instruments to convert array of text lines into object and back.
     /// </summary>
     public static class TextParseHandler
     {
         /// <summary>
-        /// Converts lines of properties with values from config file into object instance
+        /// Converts lines of properties with values from config file into object instance.
         /// </summary>
-        /// <returns>Instance of T class filled with properties</returns>
+        /// <returns>Instance of T class filled with properties.</returns>
         public static T Parse<T>(IEnumerable<string> textProperties)
         {
             textProperties = textProperties.ToList();
@@ -45,9 +45,23 @@ namespace A3ServerTool
                 {
                     property.SetValue(result, Convert.ToInt32(value));
                 }
+                else if(property.PropertyType == typeof(int?))
+                {
+                    if (int.TryParse(value, out int nullInt))
+                    {
+                        property.SetValue(result, nullInt);
+                    }
+                }
                 else if (property.PropertyType == typeof(float))
                 {
                     property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
+                }
+                else if (property.PropertyType == typeof(float?))
+                {
+                    if (float.TryParse(value, out float nullFloat))
+                    {
+                        property.SetValue(result, nullFloat);
+                    }
                 }
                 //else if(property.PropertyType == typeof(IEnumerable<string>))
                 //{
@@ -88,6 +102,13 @@ namespace A3ServerTool
                 else if(property.PropertyType == typeof(bool))
                 {
                     value = value.ToString().ToLowerInvariant();
+                }
+                else if(property.PropertyType == typeof(int?))
+                {
+                    if(!int.TryParse(value?.ToString(), out int nullInt))
+                    {
+                        continue;
+                    }
                 }
 
                 var line = stringName.PropertyName + " = " + value + ";";

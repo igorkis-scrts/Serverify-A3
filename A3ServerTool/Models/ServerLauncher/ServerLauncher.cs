@@ -36,6 +36,7 @@ namespace A3ServerTool.Models
         {
             var builder = new StringBuilder();
             builder.Append("-cfg=").Append(profile.BasicConfig.FileLocation);
+            builder.Append(" ");
             builder.Append("-config").Append(profile.ServerConfig.FileLocation);
 
             return builder.ToString();

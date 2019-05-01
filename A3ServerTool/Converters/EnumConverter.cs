@@ -14,7 +14,6 @@ namespace A3ServerTool.Converters
         {
             return((Enum)value).ToString();
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;

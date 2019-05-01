@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
 
 namespace A3ServerTool.Models.Config
@@ -31,18 +32,21 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets password to protect admin access. 
         /// </summary>
+        /// <remarks>Password stored in plain text because it is stored the same way in config file.</remarks>
         [ConfigProperty(PropertyName = "passwordAdmin")]
         public string AdminPassword { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets password required to connect to server. 
         /// </summary>
+        /// <remarks>Password stored in plain text because it is stored the same way in config file.</remarks>
         [ConfigProperty(PropertyName = "password")]
         public string Password { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. 
         /// </summary>
+        /// <remarks>Password stored in plain text because it is stored the same way in config file.</remarks>
         [ConfigProperty(PropertyName = "serverCommandPassword")]
         public string ServerCommandPassword { get; set; } = string.Empty;
 
@@ -334,6 +338,7 @@ namespace A3ServerTool.Models.Config
 
         //TODO: allowedVotedAdminCmds[]
         //TODO: allowedVoteCmds[]
+        //TODO: Missions
         //https://community.bistudio.com/wiki/Arma_3:_Mission_voting
     }
 }

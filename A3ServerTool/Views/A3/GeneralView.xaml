@@ -6,58 +6,100 @@
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:b="clr-namespace:A3ServerTool.Behaviours"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     d:DesignHeight="450"
     d:DesignWidth="800"
     DataContext="{Binding General, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <StackPanel>
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Server name"
-                FontSize="14"
-                FontWeight="Bold" />
-            <TextBox
-                x:Name="ServerNameTextBox"
-                Margin="{StaticResource ControlMargin}"
-                mah:TextBoxHelper.Watermark="Name in server browser"
-                Text="{Binding Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <!--  TODO: add port info (something about range 2302-2306)  -->
+                <!--<Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Port"
+                    FontSize="14"
+                    FontWeight="Bold"/>
+                <TextBox
+                    x:Name="PortTextBox"
+                    MinWidth="64"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.Watermark="Port"
+                    Text="{Binding Port, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />-->
 
-            <!--  TODO: add port info (something about range 2302-2306)  -->
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Port"
-                FontSize="14"
-                FontWeight="Bold" />
-            <TextBox
-                x:Name="PortTextBox"
-                MinWidth="64"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                mah:TextBoxHelper.Watermark="Port"
-                Text="{Binding Port, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                <GroupBox Margin="{StaticResource GroupBoxMargin}" Header="Common settings">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="Server name"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            x:Name="ServerNameTextBox"
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.Watermark="Name in server browser"
+                            Text="{Binding Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-            <Label
-                Margin="{StaticResource LabelMargin}"
-                HorizontalAlignment="Left"
-                Content="Server path"
-                FontSize="14"
-                FontWeight="Bold" />
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="Password"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <PasswordBox
+                            x:Name="ServerPasswordTextBox"
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.Watermark="Password to join the server"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Style="{StaticResource MetroButtonRevealedPasswordBox}">
+                            <i:Interaction.Behaviors>
+                                <b:PasswordBehaviour Password="{Binding ServerPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
+                            </i:Interaction.Behaviors>
+                        </PasswordBox>
+                        <!--Text="{Binding Password, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"-->
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="Maximum amount of players"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            x:Name="MaxMessagesSendNumericBox"
+                            MinWidth="96"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            Maximum="255"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            Value="{Binding MaximumAmountOfPlayers, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    </StackPanel>
+                </GroupBox>
 
-            <TextBox
-                x:Name="ServerExecutableTextBox"
-                Margin="{StaticResource ControlMargin}"
-                mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
-                mah:TextBoxHelper.Watermark="Path to server executable"
-                Style="{StaticResource BrowseMetroTextBox}"
-                Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-        </StackPanel>
-    </Grid>
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="Server path"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <TextBox
+                    x:Name="ServerExecutableTextBox"
+                    Margin="{StaticResource ControlMargin}"
+                    mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
+                    mah:TextBoxHelper.Watermark="Path to server executable"
+                    Style="{StaticResource BrowseMetroTextBox}"
+                    Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

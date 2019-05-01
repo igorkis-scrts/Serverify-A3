@@ -95,7 +95,9 @@
     <Compile Include="Attributes\WrappingClass.cs" />
     <Compile Include="Attributes\ConfigProperty.cs" />
     <Compile Include="Attributes\CommandLineArgument.cs" />
+    <Compile Include="Behaviours\PasswordBehaviour.cs" />
     <Compile Include="Bindings.cs" />
+    <Compile Include="Converters\BoolToIntConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\GeneralViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\SecurityViewModel.cs" />
     <Compile Include="ViewModels\ServerViewModel.cs" />
     <Compile Include="ViewModels\ProfileDialogViewModel.cs" />
     <Compile Include="ViewModels\ProfilesViewModel.cs" />
