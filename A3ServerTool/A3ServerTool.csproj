@@ -97,7 +97,6 @@
     <Compile Include="Attributes\CommandLineArgument.cs" />
     <Compile Include="Behaviours\PasswordBehaviour.cs" />
     <Compile Include="Bindings.cs" />
-    <Compile Include="Converters\BoolToIntConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />

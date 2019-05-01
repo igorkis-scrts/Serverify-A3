@@ -86,6 +86,26 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        public string WelcomeMessages
+        {
+            get
+            {
+                var messages = CurrentProfile?.ServerConfig.WelcomeMessages;
+                if (messages != null)
+                {
+                    return string.Join("\n", messages);
+                }
+                return null;
+            }
+            set
+            {
+                var valueAsArray = value.Split('\n');
+                if (Equals(valueAsArray, CurrentProfile?.ServerConfig.WelcomeMessages)) return;
+                CurrentProfile.ServerConfig.WelcomeMessages = valueAsArray;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand BrowseCommand
         {
             get

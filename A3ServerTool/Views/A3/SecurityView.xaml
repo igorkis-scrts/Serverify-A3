@@ -18,7 +18,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <StackPanel>
+            <StackPanel Grid.Column="0">
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -35,6 +35,20 @@
                         <b:PasswordBehaviour Password="{Binding AdminPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </i:Interaction.Behaviors>
                 </PasswordBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="Server-side scripting">
+                    <PasswordBox
+                        x:Name="ServerCommandPasswordTextBox"
+                        Margin="{StaticResource ControlMargin}"
+                        mah:TextBoxHelper.ClearTextButton="True"
+                        mah:TextBoxHelper.Watermark="Password for serverCommand server-side scripting"
+                        Style="{StaticResource MetroButtonRevealedPasswordBox}">
+                        <i:Interaction.Behaviors>
+                            <b:PasswordBehaviour Password="{Binding ServerCommandPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                        </i:Interaction.Behaviors>
+                    </PasswordBox>
+                </Expander>
             </StackPanel>
         </Grid>
     </ScrollViewer>

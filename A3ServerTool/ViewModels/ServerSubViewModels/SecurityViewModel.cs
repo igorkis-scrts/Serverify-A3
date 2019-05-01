@@ -35,6 +35,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. . 
+        /// </summary>
+        public string ServerCommandPassword
+        {
+            get => CurrentProfile?.ServerConfig.ServerCommandPassword;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.ServerCommandPassword)) return;
+                CurrentProfile.ServerConfig.ServerCommandPassword = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public SecurityViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;

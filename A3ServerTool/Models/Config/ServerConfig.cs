@@ -57,10 +57,16 @@ namespace A3ServerTool.Models.Config
         public int? MaximumAmountOfPlayers { get; set; }
 
         /// <summary>
-        /// Gets or sets two lines welcome message. Must be two lines(?).
+        /// Gets or sets welcome messages.
         /// </summary>
         [ConfigProperty(PropertyName = "motd[]")]
-        public string[] WelcomeMessage { get; set; } = new string[2];
+        public string[] WelcomeMessages { get; set; } = new string[2];
+
+        /// <summary>
+        /// Gets or sets the interval in seconds between welcome messages. 
+        /// </summary>
+        [ConfigProperty(PropertyName = "motdInterval")]
+        public int? IntervalBetweenWelcomeMessages { get; set; } = 3;
 
         /// <summary>
         /// Gets or sets whitelisted Uids for admin access to server.

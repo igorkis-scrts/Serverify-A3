@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace A3ServerTool
 {
@@ -16,19 +17,39 @@ namespace A3ServerTool
         /// Converts lines of properties with values from config file into object instance.
         /// </summary>
         /// <returns>Instance of T class filled with properties.</returns>
-        public static T Parse<T>(IEnumerable<string> textProperties)
+        public static T Parse<T>(IEnumerable<string> configProperties)
         {
-            textProperties = textProperties.ToList();
+            var textProperties = configProperties.ToArray();
             if (!textProperties.Any()) return default;
 
             var nameToValueDictionary = new Dictionary<string, string>();
-            foreach (var property in textProperties)
-            {
-                var splittedProperty = property.Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
-                if (splittedProperty.Length != 2) continue;
-                splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
 
-                nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
+            for (int i = 0; i < textProperties.Length; i++)
+            {
+                var splittedProperty = textProperties[i].Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
+                if (splittedProperty.Length != 2) continue;
+
+                if (splittedProperty[0].Contains("[]"))
+                {
+                    string value = string.Empty;
+
+                    for(int j = i + 1; j < textProperties.Length; j++)
+                    {
+                        if(textProperties[j] == "};")
+                        {
+                            value = Regex.Replace(value, @"[^\S ]+", "");
+                            nameToValueDictionary.Add(splittedProperty[0], value?.Replace("\"", string.Empty));
+                            break;
+                        }
+
+                        value += textProperties[j];
+                    }
+                }
+                else
+                {
+                    splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
+                    nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
+                }
             }
 
             var result = (T)Activator.CreateInstance(typeof(T));
@@ -63,15 +84,16 @@ namespace A3ServerTool
                         property.SetValue(result, nullFloat);
                     }
                 }
-                //else if(property.PropertyType == typeof(IEnumerable<string>))
-                //{
-
-                //}
+                else if (property.PropertyType == typeof(List<string>) || property.PropertyType == typeof(string[]))
+                {
+                    property.SetValue(result, value?.Split(','));
+                }
                 else if (property.PropertyType == typeof(string))
                 {
                     value = value?.Replace("\"", string.Empty);
                     property.SetValue(result, Convert.ToString(value));
                 }
+
             }
 
             return result;
@@ -98,6 +120,11 @@ namespace A3ServerTool
                 if (property.PropertyType == typeof(string))
                 {
                     value = "\"" + value + "\"";
+                }
+                else if (property.PropertyType == typeof(List<string>) || property.PropertyType == typeof(string[]))
+                {
+                    value = ParseArrayProperty(value);
+                    if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
                 }
                 else if(property.PropertyType == typeof(bool))
                 {
@@ -162,6 +189,37 @@ namespace A3ServerTool
             }
 
             return result;
+        }
+
+        private static string ParseArrayProperty(object property)
+        {
+            if (property == null) return string.Empty;
+
+            var valueAsArray = property as string[];
+            if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;
+
+            //TODO: new attribute to check if property has empty lines 
+            for (int i = 0; i < valueAsArray.Length; i++)
+            {
+                valueAsArray[i] = Regex.Replace(valueAsArray[i], @"[^\S ]+", "");
+
+                if (string.IsNullOrWhiteSpace(valueAsArray[i]))
+                {
+                    valueAsArray[i] = Regex.Replace(valueAsArray[i], @"\s+", "");
+                }
+
+                if(!valueAsArray[i].Contains("\"\""))
+                {
+                    valueAsArray[i] = "\"" + valueAsArray[i] + "\"";
+                }
+            }
+
+            if (valueAsArray.Any())
+            {
+                valueAsArray[0] = "\t" + valueAsArray[0];
+            }
+
+            return "{\n" + string.Join("\n\t,", valueAsArray) + "\n}";
         }
     }
 }
