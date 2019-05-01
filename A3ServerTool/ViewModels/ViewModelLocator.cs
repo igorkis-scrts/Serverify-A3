@@ -16,7 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
-using A3ServerTool.ViewModels.GeneralSubViewModels;
+using A3ServerTool.ViewModels.ServerSubViewModels;
 using A3ServerTool.Models;
 using A3ServerTool.Storage;
 
@@ -29,13 +29,13 @@ namespace A3ServerTool.ViewModels
     public class ViewModelLocator
     {
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
-        public GeneralViewModel General => ServiceLocator.Current.GetInstance<GeneralViewModel>();
+        public ServerViewModel Server => ServiceLocator.Current.GetInstance<ServerViewModel>();
         public AboutViewModel About => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public ProfilesViewModel Profiles => ServiceLocator.Current.GetInstance<ProfilesViewModel>();
         public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());
-        public DetailsViewModel Details => ServiceLocator.Current.GetInstance<DetailsViewModel>();
-        public BasicViewModel Basic => ServiceLocator.Current.GetInstance<BasicViewModel>();
+        public GeneralViewModel General => ServiceLocator.Current.GetInstance<GeneralViewModel>();
+        public NetworkViewModel Network => ServiceLocator.Current.GetInstance<NetworkViewModel>();
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -48,11 +48,11 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<ProfilesViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<ServerViewModel>();
             SimpleIoc.Default.Register<GeneralViewModel>();
-            SimpleIoc.Default.Register<DetailsViewModel>();
             SimpleIoc.Default.Register<IDialogCoordinator, DialogCoordinator>();
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
-            SimpleIoc.Default.Register<BasicViewModel>();
+            SimpleIoc.Default.Register<NetworkViewModel>();
         }
 
         public static void Cleanup()

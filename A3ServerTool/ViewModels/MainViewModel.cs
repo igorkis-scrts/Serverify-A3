@@ -165,7 +165,7 @@ namespace A3ServerTool.ViewModels
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
                     Label = "Server",
                     ToolTip = "General game server tuning",
-                    Tag = ServiceLocator.Current.GetInstance<GeneralViewModel>()
+                    Tag = ServiceLocator.Current.GetInstance<ServerViewModel>()
                 },
 
                 new HamburgerMenuIconItem

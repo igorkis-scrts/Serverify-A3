@@ -123,19 +123,19 @@
     <Compile Include="Helpers\TextParseHandler.cs" />
     <Compile Include="Storage\ServerConfigDao.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\GeneralSubViewModels\BasicViewModel.cs" />
-    <Compile Include="ViewModels\GeneralSubViewModels\DetailsViewModel.cs" />
-    <Compile Include="ViewModels\GeneralViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\NetworkViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\GeneralViewModel.cs" />
+    <Compile Include="ViewModels\ServerViewModel.cs" />
     <Compile Include="ViewModels\ProfileDialogViewModel.cs" />
     <Compile Include="ViewModels\ProfilesViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\A3\DetailsView.xaml.cs">
-      <DependentUpon>DetailsView.xaml</DependentUpon>
+    <Compile Include="Views\A3\GeneralView.xaml.cs">
+      <DependentUpon>GeneralView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\A3\BasicView.xaml.cs">
-      <DependentUpon>BasicView.xaml</DependentUpon>
+    <Compile Include="Views\A3\NetworkView.xaml.cs">
+      <DependentUpon>NetworkView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\A3\SecurityView.xaml.cs">
       <DependentUpon>SecurityView.xaml</DependentUpon>
@@ -143,8 +143,8 @@
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GeneralView.xaml.cs">
-      <DependentUpon>GeneralView.xaml</DependentUpon>
+    <Compile Include="Views\ServerView.xaml.cs">
+      <DependentUpon>ServerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfileDialogView.xaml.cs">
       <DependentUpon>ProfileDialogView.xaml</DependentUpon>
@@ -167,11 +167,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\A3\DetailsView.xaml">
+    <Page Include="Views\A3\GeneralView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\A3\BasicView.xaml">
+    <Page Include="Views\A3\NetworkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GeneralView.xaml">
+    <Page Include="Views\ServerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace A3ServerTool.Views.A3
 {
     /// <summary>
-    /// Interaction logic for NetworkView.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class BasicView : UserControl
+    public partial class GeneralView : UserControl
     {
-        public BasicView()
+        public GeneralView()
         {
             InitializeComponent();
         }

@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    DataContext="{Binding General, Source={StaticResource Locator}}"
+    DataContext="{Binding Server, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid>
@@ -31,10 +31,10 @@
 
         <mah:MetroAnimatedSingleRowTabControl Grid.Row="1" Grid.Column="0">
             <TabItem Header="General">
-                <controls:DetailsView />
+                <controls:GeneralView />
             </TabItem>
             <TabItem Header="Network">
-                <controls:BasicView />
+                <controls:NetworkView />
             </TabItem>
             <!--<TabItem Header="Security"></TabItem>
             <TabItem Header="Missions"></TabItem>

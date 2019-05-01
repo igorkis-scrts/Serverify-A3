@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace A3ServerTool.ViewModels.GeneralSubViewModels
+namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
-    public class DetailsViewModel : ViewModelBase, IDataErrorInfo
+    /// <summary>
+    /// Represents common server properties.
+    /// </summary>
+    /// <seealso cref="GalaSoft.MvvmLight.ViewModelBase" />
+    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
+    public class GeneralViewModel : ViewModelBase, IDataErrorInfo
     {
-        private readonly GeneralViewModel _parentViewModel;
+        private readonly ServerViewModel _parentViewModel;
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
@@ -28,13 +33,30 @@ namespace A3ServerTool.ViewModels.GeneralSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets server name visible in the game browser.
+        /// </summary>
         public string Name
         {
-            get => CurrentProfile?.ArgumentSettings?.Name;
+            get => CurrentProfile?.ServerConfig.HostName;
             set
             {
-                if (Equals(value, CurrentProfile.ArgumentSettings.Name)) return;
-                CurrentProfile.ArgumentSettings.Name = value;
+                if (Equals(value, CurrentProfile.ServerConfig.HostName)) return;
+                CurrentProfile.ServerConfig.HostName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets password required to connect to server. 
+        /// </summary>
+        public string Password
+        {
+            get => CurrentProfile?.ServerConfig.Password;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.Password)) return;
+                CurrentProfile.ServerConfig.Password = value;
                 RaisePropertyChanged();
             }
         }
@@ -71,7 +93,7 @@ namespace A3ServerTool.ViewModels.GeneralSubViewModels
         }
         private ICommand _browseCommand;
 
-        public DetailsViewModel(GeneralViewModel viewModel)
+        public GeneralViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
         }

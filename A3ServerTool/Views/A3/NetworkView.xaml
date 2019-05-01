@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="A3ServerTool.Views.A3.BasicView"
+    x:Class="A3ServerTool.Views.A3.NetworkView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    DataContext="{Binding Basic, Source={StaticResource Locator}}"
+    DataContext="{Binding Network, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">

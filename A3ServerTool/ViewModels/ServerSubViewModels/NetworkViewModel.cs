@@ -5,14 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace A3ServerTool.ViewModels.GeneralSubViewModels
+namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
     /// <summary>
     /// Represents basic.cfg as VM
     /// </summary>
-    public class BasicViewModel : ViewModelBase, IDataErrorInfo
+    public class NetworkViewModel : ViewModelBase, IDataErrorInfo
     {
-        private readonly GeneralViewModel _parentViewModel;
+        private readonly ServerViewModel _parentViewModel;
 
         public BasicConfig CurrentBasicConfig => _parentViewModel.CurrentProfile.BasicConfig;
 
@@ -137,7 +137,7 @@ namespace A3ServerTool.ViewModels.GeneralSubViewModels
             }
         }
 
-        public BasicViewModel(GeneralViewModel viewModel)
+        public NetworkViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
         }
