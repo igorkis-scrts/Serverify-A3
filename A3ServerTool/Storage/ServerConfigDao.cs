@@ -17,7 +17,7 @@ namespace A3ServerTool.Storage
         public ServerConfig Get(IProfile profile)
         {
             var file = FileHelper.GetFile(Path.Combine(Profile.StorageFolder, profile.Id.ToString(),
-                   profile.BasicConfig.FileName) + profile.BasicConfig.FileExtension);
+                   profile.ServerConfig.FileName) + profile.ServerConfig.FileExtension);
             if (file == null) return null;
 
             var properties = TextManager.ReadFileLineByLine(file);
