@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
+using Interchangeable.Enums;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
 

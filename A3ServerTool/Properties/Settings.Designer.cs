@@ -37,13 +37,13 @@ namespace A3ServerTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("English")]
-        public string Language {
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
+        public global::System.Globalization.CultureInfo DefaultLanguage {
             get {
-                return ((string)(this["Language"]));
+                return ((global::System.Globalization.CultureInfo)(this["DefaultLanguage"]));
             }
             set {
-                this["Language"] = value;
+                this["DefaultLanguage"] = value;
             }
         }
     }

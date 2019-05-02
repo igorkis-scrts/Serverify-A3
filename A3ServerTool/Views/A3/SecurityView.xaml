@@ -42,6 +42,7 @@
                         x:Name="ServerCommandPasswordTextBox"
                         Margin="{StaticResource ControlMargin}"
                         mah:TextBoxHelper.ClearTextButton="True"
+                        mah:TextBoxHelper.UseFloatingWatermark="True"
                         mah:TextBoxHelper.Watermark="Password for serverCommand server-side scripting"
                         Style="{StaticResource MetroButtonRevealedPasswordBox}">
                         <i:Interaction.Behaviors>

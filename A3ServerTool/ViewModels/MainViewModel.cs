@@ -8,6 +8,7 @@ using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
+using Interchangeable.Enums;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.IconPacks;

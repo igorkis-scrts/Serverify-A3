@@ -12,6 +12,7 @@ namespace A3ServerTool.Helpers
     public enum ApplicationSettingType
     {
         None = 0,
-        LastUsedProfile = 1
+        LastUsedProfile = 1,
+        DefaultLanguage = 2
     }
 }

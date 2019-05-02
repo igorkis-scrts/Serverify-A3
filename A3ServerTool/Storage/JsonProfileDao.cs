@@ -23,7 +23,7 @@ namespace A3ServerTool.Storage
                 ObjectCreationHandling = ObjectCreationHandling.Replace
             };
 
-            if (!FileHelper.CheckIfFolderExists(Profile.StorageFolder))
+            if (!FileHelper.CheckFolderExistence(Profile.StorageFolder))
             {
                 FileHelper.CreateFolder(Profile.StorageFolder);
             }

@@ -5,8 +5,8 @@
     <Setting Name="LastUsedProfile" Type="System.Guid" Scope="User">
       <Value Profile="(Default)">00000000-0000-0000-0000-000000000000</Value>
     </Setting>
-    <Setting Name="Language" Type="System.String" Scope="User">
-      <Value Profile="(Default)">English</Value>
+    <Setting Name="DefaultLanguage" Type="System.Globalization.CultureInfo" Scope="User">
+      <Value Profile="(Default)">en-US</Value>
     </Setting>
   </Settings>
 </SettingsFile>

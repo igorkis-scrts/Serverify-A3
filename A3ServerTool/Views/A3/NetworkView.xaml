@@ -26,7 +26,6 @@
                     FontWeight="Bold" />
 
                 <mah:NumericUpDown
-                    x:Name="MaxMessagesSendNumericBox"
                     MinWidth="96"
                     MaxWidth="128"
                     Margin="{StaticResource ControlMargin}"
@@ -44,7 +43,6 @@
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:NumericUpDown
-                    x:Name="MaxSizeGuaranteedNumericBox"
                     MinWidth="96"
                     MaxWidth="128"
                     Margin="{StaticResource ControlMargin}"

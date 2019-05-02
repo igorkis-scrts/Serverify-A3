@@ -34,13 +34,13 @@
             Grid.Row="1"
             Grid.Column="0"
             mah:TabControlHelper.Underlined="SelectedTabItem">
-            <TabItem Header="General">
+            <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}">
                 <controls:GeneralView />
             </TabItem>
-            <TabItem Header="Security">
+            <TabItem Header="{DynamicResource LocalizableSecurityTabTitle}">
                 <controls:SecurityView />
             </TabItem>
-            <TabItem Header="Network">
+            <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}">
                 <controls:NetworkView />
             </TabItem>
             <!--<TabItem Header="Missions"></TabItem>

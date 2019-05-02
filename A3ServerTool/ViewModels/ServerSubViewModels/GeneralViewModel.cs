@@ -99,7 +99,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
             set
             {
-                var valueAsArray = value.Split('\n');
+                var valueAsArray = value?.Split('\n');
                 if (Equals(valueAsArray, CurrentProfile?.ServerConfig.WelcomeMessages)) return;
                 CurrentProfile.ServerConfig.WelcomeMessages = valueAsArray;
                 RaisePropertyChanged();
@@ -122,7 +122,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
 
                                ExecutablePath = fileDialog.FileName;
                            }
-                       })); //TODO: Validate main fields
+                       }));
             }
         }
         private ICommand _browseCommand;

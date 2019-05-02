@@ -1,19 +1,89 @@
-﻿<UserControl x:Class="A3ServerTool.Views.SettingsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:A3ServerTool.Views"
-             mc:Ignorable="d" 
-             DataContext="{Binding Settings, Source={StaticResource Locator}}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Label Grid.Row="0"
-               Grid.Column="0"
-               Grid.ColumnSpan="2"
-               HorizontalAlignment="Left"
-               Style="{StaticResource DescriptionHeaderStyle}"
-               Margin="{StaticResource ControlMargin}"
-               Content="Settings"/>
-    </Grid>
+﻿<UserControl
+    x:Class="A3ServerTool.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:A3ServerTool.Views"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Left"
+                Content="{DynamicResource LocalizableSettingsHeader}"
+                Style="{StaticResource DescriptionHeaderStyle}" />
+
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <Label
+                    Margin="{DynamicResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableSettingsLanguageTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+
+                <ComboBox
+                    MinWidth="128"
+                    MaxWidth="256"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=Language, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=Language}"
+                    SelectedValuePath="Value" />
+
+            </StackPanel>
+            <DockPanel
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0"
+                Background="{StaticResource ControlSecondaryColorBrush}">
+                <Button
+                    Width="64"
+                    MinWidth="48"
+                    MinHeight="48"
+                    MaxWidth="96"
+                    MaxHeight="96"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Center"
+                    Command="{Binding SaveSettingsCommand}"
+                    DockPanel.Dock="Left"
+                    Style="{StaticResource SecondaryColorFlatButton}">
+
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="ContentSave" />
+                        <TextBlock HorizontalAlignment="Center" Text="Save" />
+                    </StackPanel>
+                </Button>
+                <DockPanel />
+            </DockPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

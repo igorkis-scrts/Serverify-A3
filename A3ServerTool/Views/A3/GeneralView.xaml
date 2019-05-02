@@ -45,6 +45,7 @@
                             FontWeight="Bold" />
                         <TextBox
                             Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="Name in server browser"
                             Text="{Binding Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
@@ -57,13 +58,13 @@
                         <PasswordBox
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="Password to join the server"
                             Style="{StaticResource MetroButtonRevealedPasswordBox}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding ServerPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>
                         </PasswordBox>
-                        <!--  Text="{Binding Password, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"  -->
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
@@ -109,7 +110,7 @@
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
-                            mah:TextBoxHelper.Watermark="Welcome"
+                            mah:TextBoxHelper.Watermark="Welcome message on the server."
                             AcceptsReturn="True"
                             Text="{Binding WelcomeMessages, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>

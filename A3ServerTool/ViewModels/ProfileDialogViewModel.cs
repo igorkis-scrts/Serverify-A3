@@ -10,6 +10,7 @@ using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
+using Interchangeable.Enums;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace A3ServerTool.ViewModels

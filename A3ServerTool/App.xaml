@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:inter="clr-namespace:Interchangeable.Enums;assembly=Interchangeable"
     xmlns:local="clr-namespace:A3ServerTool"
     xmlns:models="clr-namespace:A3ServerTool.Models"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -19,14 +20,18 @@
                 x:Key="Locator"
                 d:IsDataSource="True" />
 
-            <!--<ObjectDataProvider x:Key="EnumGameTypes" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <!--<ObjectDataProvider
+                x:Key="Languages"
+                MethodName="GetValues"
+                ObjectType="{x:Type system:Enum}">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="models:ProfileType"></x:Type>
+                    <x:Type TypeName="inter:Language" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>-->
 
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
 
             <Color x:Key="EtherealGrey">#EEEEEE</Color>
             <SolidColorBrush x:Key="ControlSecondaryColorBrush" Color="{StaticResource EtherealGrey}" />
@@ -47,8 +52,12 @@
             <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
             <Thickness x:Key="LabelMargin">4 2 8 2</Thickness>
             <Thickness x:Key="GroupBoxMargin">12 4 12 4</Thickness>
-            
+
             <ResourceDictionary.MergedDictionaries>
+                <!--  Localization  -->
+                <ResourceDictionary Source="Resources/Lang.xaml" />
+                <!--<ResourceDictionary Source="Resources/Lang.ru-RU.xaml" />-->
+
                 <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
