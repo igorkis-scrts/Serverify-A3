@@ -43,7 +43,10 @@ namespace A3ServerTool.Behaviours
 
         protected override void OnDetaching()
         {
-            AssociatedObject.PasswordChanged -= PasswordBox_PasswordChanged;
+            if(AssociatedObject != null)
+            {
+                AssociatedObject.PasswordChanged -= PasswordBox_PasswordChanged;
+            }
             base.OnDetaching();
         }
 
