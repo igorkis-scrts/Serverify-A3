@@ -29,7 +29,7 @@ namespace Interchangeable.IO
         /// <returns>List of strings</returns>
         public static List<string> ReadFileLineByLine(FileInfo file)
         {
-            if (file == null) return null;
+            if (file == null || !file.Exists) return new List<string>();
 
             var result = new List<string>();
 

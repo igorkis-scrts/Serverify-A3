@@ -133,9 +133,17 @@ namespace Interchangeable.IO
         /// <summary>
         /// Checks if folder exists in application location
         /// </summary>
-        public static bool CheckIfFolderExists(string folderName)
+        public static bool CheckFolderExistence(string folderName)
         {
             return Directory.Exists(Path.Combine(RootFolder, folderName));
+        }
+
+        /// <summary>
+        /// Checks if file exists in application location
+        /// </summary>
+        public static bool CheckFileExistence(string path)
+        {
+            return File.Exists(path);
         }
     }
 }
