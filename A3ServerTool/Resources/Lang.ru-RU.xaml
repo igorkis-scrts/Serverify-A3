@@ -17,6 +17,7 @@
     <!--  General view  -->
     <v:String x:Key="LocalizableCommonSettingsGroupTitle">Общие настройки</v:String>
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Взаимодействие с игроками</v:String>
+    <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless-клиент</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Имя сервера</v:String>
     <v:String x:Key="LocalizableServerNameWatermark">Имя в браузере серверов</v:String>
@@ -37,12 +38,17 @@
     <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Интервал между сообщениями</v:String>
     <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Интервал между приветственными сообщениями в секундах.</v:String>
 
+    <v:String x:Key="LocalizableHeadlessClientTitle">IP-адреса headless-клиентов</v:String>
+    <v:String x:Key="LocalizableLocalClientTitle">IP-адреса локальных клиентов</v:String>
+    <v:String x:Key="LocalizableHeadlessClientWatermark">IP-адреса через запятую</v:String>
+
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Пароль для получения прав администратора</v:String>
 
     <v:String x:Key="LocalizableAdminIdsTitle">ID администраторов</v:String>
-    <v:String x:Key="LocalizableAdminIdsWatermark">UIDы, один за другим через запятую</v:String>
+    <v:String x:Key="LocalizableAdminIdsWatermark">UIDы через запятую</v:String>
     <v:String x:Key="LocalizableAdminIdsTooltip">Белый список UIDов, которые могут получить доступ к правам администратора на сервере.</v:String>
 
 </ResourceDictionary>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -130,6 +131,74 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the headless client IP adresses.
+        /// </summary>
+        public string HeadlessClientIps
+        {
+            get
+            {
+                var ips = CurrentProfile?.ServerConfig.HeadlessClientIps;
+                if (ips != null)
+                {
+                    return string.Join(",", ips);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.HeadlessClientIps = null;
+                }
+                else
+                {
+                    if (value != null)
+                    {
+                        value = Regex.Replace(value, @"\s+", "");
+                    }
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.HeadlessClientIps)) return;
+                    CurrentProfile.ServerConfig.HeadlessClientIps = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the local client IP adresses.
+        /// </summary>
+        public string LocalClientIps
+        {
+            get
+            {
+                var ips = CurrentProfile?.ServerConfig.LocalClientIps;
+                if (ips != null)
+                {
+                    return string.Join(",", ips);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.LocalClientIps = null;
+                }
+                else
+                {
+                    if(value != null)
+                    {
+                        value = Regex.Replace(value, @"\s+", "");
+                    }
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.LocalClientIps)) return;
+                    CurrentProfile.ServerConfig.LocalClientIps = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public ICommand BrowseCommand
         {
             get
@@ -170,6 +239,12 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         return "Port can't be null or empty.";
                     case nameof(ExecutablePath) when string.IsNullOrWhiteSpace(ExecutablePath):
                         return "Server path can't be null or empty.";
+                    case nameof(HeadlessClientIps) when !string.IsNullOrWhiteSpace(HeadlessClientIps) 
+                            && Regex.Matches(HeadlessClientIps, "[a-zA-Z]").Count > 0:
+                    case nameof(LocalClientIps) when !string.IsNullOrWhiteSpace(LocalClientIps)
+                            && Regex.Matches(LocalClientIps, "[a-zA-Z]").Count > 0:
+                        return "IPs can be only numbers.";
+
                     default:
                         return null;
                 }

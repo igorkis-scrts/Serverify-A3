@@ -53,7 +53,7 @@
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="{DynamicResource LocalizableMaxPlayersTitle}"                            
+                            Content="{DynamicResource LocalizableMaxPlayersTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
                         <mah:NumericUpDown
@@ -79,8 +79,8 @@
                 <TextBox
                     Margin="{StaticResource ControlMargin}"
                     mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
-                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
                     mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
                     Style="{StaticResource BrowseMetroTextBox}"
                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
@@ -98,9 +98,9 @@
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableWelcomeMessagesWatermark}"
-                            ToolTip="{DynamicResource LocalizableWelcomeMessagesTooltip}"
                             AcceptsReturn="True"
-                            Text="{Binding WelcomeMessages, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                            Text="{Binding WelcomeMessages, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableWelcomeMessagesTooltip}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
@@ -118,6 +118,35 @@
                             Speedup="True"
                             ToolTip="{DynamicResource LocalizableIntervalBetweenMessagesTooltip}"
                             Value="{Binding IntervalBetweenWelcomeMessages, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    </StackPanel>
+                </Expander>
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableHeadlessClientGroupTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableHeadlessClientTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableHeadlessClientWatermark}"
+                            Text="{Binding HeadlessClientIps, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableLocalClientTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableHeadlessClientWatermark}"
+                            Text="{Binding LocalClientIps, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>
