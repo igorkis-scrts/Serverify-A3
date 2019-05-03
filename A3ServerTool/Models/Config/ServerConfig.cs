@@ -66,7 +66,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets the interval in seconds between welcome messages. 
         /// </summary>
         [ConfigProperty(PropertyName = "motdInterval")]
-        public int? IntervalBetweenWelcomeMessages { get; set; } = 3;
+        public int? IntervalBetweenWelcomeMessages { get; set; }
 
         /// <summary>
         /// Gets or sets whitelisted Uids for admin access to server.

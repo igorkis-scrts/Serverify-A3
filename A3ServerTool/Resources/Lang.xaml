@@ -10,4 +10,31 @@
     <v:String x:Key="LocalizableSettingsHeader">Settings</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Language</v:String>
 
+    <!--  Server view  -->
+    <v:String x:Key="LocalizableServerViewTitle">Server</v:String>
+    <v:String x:Key="LocalizableLaunchButtonTitle">Launch</v:String>
+
+    <!--  General view  -->
+    <v:String x:Key="LocalizableCommonSettingsGroupTitle">Common Settings</v:String>
+    <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Interactions With Players</v:String>
+
+    <v:String x:Key="LocalizableServerNameTitle">Server Name</v:String>
+    <v:String x:Key="LocalizableServerNameWatermark">Name in server browser</v:String>
+
+    <v:String x:Key="LocalizablePasswordTitle">Password</v:String>
+    <v:String x:Key="LocalizablePasswordWatermark">Password to join the server</v:String>
+
+    <v:String x:Key="LocalizableMaxPlayersTitle">Max Players</v:String>
+    <v:String x:Key="LocalizableMaxPlayersTooltip">The maximum number of players that can connect to server.</v:String>
+
+    <v:String x:Key="LocalizableServerExecLocationTitle">Server Executable File Location</v:String>
+    <v:String x:Key="LocalizableServerExecWatermark">Path to server executable file</v:String>
+    
+    <v:String x:Key="LocalizableWelcomeMessagesTitle">Message Of The Day</v:String>
+    <v:String x:Key="LocalizableWelcomeMessagesWatermark">Welcome messages</v:String>
+    <v:String x:Key="LocalizableWelcomeMessagesTooltip">Messages that players will see in chat on joining the server. Press Enter to create new line.</v:String>
+
+    <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Interval Between Messages</v:String>
+    <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Interval between welcome messages in seconds.</v:String>
+
 </ResourceDictionary>

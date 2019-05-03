@@ -86,6 +86,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the welcome messages.
+        /// </summary>
         public string WelcomeMessages
         {
             get
@@ -102,6 +105,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 var valueAsArray = value?.Split('\n');
                 if (Equals(valueAsArray, CurrentProfile?.ServerConfig.WelcomeMessages)) return;
                 CurrentProfile.ServerConfig.WelcomeMessages = valueAsArray;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the interval between welcome messages.
+        /// </summary>
+        public int? IntervalBetweenWelcomeMessages
+        {
+            get => CurrentProfile?.ServerConfig.IntervalBetweenWelcomeMessages;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IntervalBetweenWelcomeMessages)) return;
+                CurrentProfile.ServerConfig.IntervalBetweenWelcomeMessages = value;
                 RaisePropertyChanged();
             }
         }

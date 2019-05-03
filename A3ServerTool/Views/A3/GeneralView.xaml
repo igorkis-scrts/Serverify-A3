@@ -20,46 +20,31 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <!--  TODO: add port info (something about range 2302-2306)  -->
-                <!--<Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Port"
-                    FontSize="14"
-                    FontWeight="Bold"/>
-                <TextBox
-                    x:Name="PortTextBox"
-                    MinWidth="64"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    mah:TextBoxHelper.Watermark="Port"
-                    Text="{Binding Port, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />-->
-
-                <GroupBox Margin="{StaticResource GroupBoxMargin}" Header="Common settings">
+                <GroupBox Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableCommonSettingsGroupTitle}">
                     <StackPanel>
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="Server Name"
+                            Content="{DynamicResource LocalizableServerNameTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
                         <TextBox
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
-                            mah:TextBoxHelper.Watermark="Name in server browser"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerNameWatermark}"
                             Text="{Binding Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="Password"
+                            Content="{DynamicResource LocalizablePasswordTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
                         <PasswordBox
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
-                            mah:TextBoxHelper.Watermark="Password to join the server"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizablePasswordWatermark}"
                             Style="{StaticResource MetroButtonRevealedPasswordBox}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding ServerPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
@@ -68,7 +53,7 @@
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="Maximum Amount Of Players"
+                            Content="{DynamicResource LocalizableMaxPlayersTitle}"                            
                             FontSize="14"
                             FontWeight="Bold" />
                         <mah:NumericUpDown
@@ -77,9 +62,10 @@
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
                             Maximum="255"
-                            Minimum="0"
+                            Minimum="1"
                             Speedup="True"
                             TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableMaxPlayersTooltip}"
                             Value="{Binding MaximumAmountOfPlayers, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>
                 </GroupBox>
@@ -87,32 +73,51 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="Path To Server Executable"
+                    Content="{DynamicResource LocalizableServerExecLocationTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <TextBox
                     Margin="{StaticResource ControlMargin}"
                     mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
-                    mah:TextBoxHelper.Watermark="Path to server executable"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
                     Style="{StaticResource BrowseMetroTextBox}"
                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Expander Margin="{StaticResource GroupBoxMargin}" Header="Player interactions">
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizablePlayerInteractionsGroupTitle}">
                     <StackPanel>
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="Message Of The Day"
+                            Content="{DynamicResource LocalizableWelcomeMessagesTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
                         <TextBox
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
-                            mah:TextBoxHelper.Watermark="Welcome message on the server."
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableWelcomeMessagesWatermark}"
+                            ToolTip="{DynamicResource LocalizableWelcomeMessagesTooltip}"
                             AcceptsReturn="True"
                             Text="{Binding WelcomeMessages, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableIntervalBetweenMessagesTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Minimum="1"
+                            Speedup="True"
+                            ToolTip="{DynamicResource LocalizableIntervalBetweenMessagesTooltip}"
+                            Value="{Binding IntervalBetweenWelcomeMessages, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

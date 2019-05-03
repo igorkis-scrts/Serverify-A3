@@ -10,4 +10,31 @@
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>
 
+    <!--  Server view  -->
+    <v:String x:Key="LocalizableServerViewTitle">Сервер</v:String>
+    <v:String x:Key="LocalizableLaunchButtonTitle">Запуск</v:String>
+
+    <!--  General view  -->
+    <v:String x:Key="LocalizableCommonSettingsGroupTitle">Общие настройки</v:String>
+    <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Взаимодействие с игроками</v:String>
+
+    <v:String x:Key="LocalizableServerNameTitle">Имя сервера</v:String>
+    <v:String x:Key="LocalizableServerNameWatermark">Имя в браузере серверов</v:String>
+
+    <v:String x:Key="LocalizablePasswordTitle">Пароль</v:String>
+    <v:String x:Key="LocalizablePasswordWatermark">Пароль для присоединения к серверу</v:String>
+
+    <v:String x:Key="LocalizableMaxPlayersTitle">Количество игроков</v:String>
+    <v:String x:Key="LocalizableMaxPlayersTooltip">Максимальное количество игроков, которые могут присоединиться к серверу.</v:String>
+
+    <v:String x:Key="LocalizableServerExecLocationTitle">Местоположение файла сервера</v:String>
+    <v:String x:Key="LocalizableServerExecWatermark">Путь до исполняемого файла сервера</v:String>
+
+    <v:String x:Key="LocalizableWelcomeMessagesTitle">Приветственное сообщение</v:String>
+    <v:String x:Key="LocalizableWelcomeMessagesWatermark">Текст сообщения</v:String>
+    <v:String x:Key="LocalizableWelcomeMessagesTooltip">Сообщения, которые увидит игрок после присоединения к серверу. Нажмите Enter для создания новой строки.</v:String>
+
+    <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Интервал между сообщениями</v:String>
+    <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Интервал между приветственными сообщениями в секундах.</v:String>
+
 </ResourceDictionary>
