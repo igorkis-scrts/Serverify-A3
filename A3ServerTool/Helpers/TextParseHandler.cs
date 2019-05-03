@@ -84,9 +84,18 @@ namespace A3ServerTool
                         property.SetValue(result, nullFloat);
                     }
                 }
-                else if (property.PropertyType == typeof(List<string>) || property.PropertyType == typeof(string[]))
+                else if (property.PropertyType == typeof(string[]))
                 {
                     property.SetValue(result, value?.Split(','));
+                }
+                else if(property.PropertyType == typeof(List<string>))
+                {
+                    if(value != null)
+                    {
+                        value = Regex.Replace(value, @"\s+", "");
+                    }
+
+                    property.SetValue(result, value?.Split(',').ToList());
                 }
                 else if (property.PropertyType == typeof(string))
                 {
@@ -121,9 +130,22 @@ namespace A3ServerTool
                 {
                     value = "\"" + value + "\"";
                 }
-                else if (property.PropertyType == typeof(List<string>) || property.PropertyType == typeof(string[]))
+                else if (property.PropertyType == typeof(string[]))
                 {
-                    value = ParseArrayProperty(value);
+                    if (value is string[] valueAsArray)
+                    {
+                        value = ParseArrayProperty((string[])value);
+                    }
+
+                    if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
+                }
+                else if(property.PropertyType == typeof(List<string>))
+                {
+                    if (value is List<string> valueAsList)
+                    {
+                        value = ParseArrayProperty(valueAsList.ToArray());
+                    }
+
                     if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
                 }
                 else if(property.PropertyType == typeof(bool))
@@ -191,11 +213,8 @@ namespace A3ServerTool
             return result;
         }
 
-        private static string ParseArrayProperty(object property)
+        private static string ParseArrayProperty(string[] valueAsArray)
         {
-            if (property == null) return string.Empty;
-
-            var valueAsArray = property as string[];
             if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;
 
             //TODO: new attribute to check if property has empty lines 

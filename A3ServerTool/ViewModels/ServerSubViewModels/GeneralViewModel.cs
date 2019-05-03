@@ -102,10 +102,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
             set
             {
-                var valueAsArray = value?.Split('\n');
-                if (Equals(valueAsArray, CurrentProfile?.ServerConfig.WelcomeMessages)) return;
-                CurrentProfile.ServerConfig.WelcomeMessages = valueAsArray;
-                RaisePropertyChanged();
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.WelcomeMessages = null;
+                }
+                else
+                {
+                    var valueAsArray = value?.Split('\n');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.WelcomeMessages)) return;
+                    CurrentProfile.ServerConfig.WelcomeMessages = valueAsArray;
+                    RaisePropertyChanged();
+                }
             }
         }
 

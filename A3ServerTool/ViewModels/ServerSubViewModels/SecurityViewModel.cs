@@ -1,12 +1,8 @@
 ﻿using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -32,6 +28,36 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 if (Equals(value, CurrentProfile.ServerConfig.AdminPassword)) return;
                 CurrentProfile.ServerConfig.AdminPassword = value;
                 RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the admin IDs.
+        /// </summary>
+        public string AdminIds
+        {
+            get
+            {
+                var ids = CurrentProfile?.ServerConfig.AdminUids;
+                if (ids != null)
+                {
+                    return string.Join(",", ids);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.AdminUids = null;
+                }
+                else
+                {
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.AdminUids)) return;
+                    CurrentProfile.ServerConfig.AdminUids = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
             }
         }
 
@@ -62,6 +88,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 switch (columnName)
                 {
+                    case nameof(AdminIds) when !string.IsNullOrWhiteSpace(AdminIds) && Regex.Matches(AdminIds, @"[a-zA-Z]").Count > 0:
+                        return "Admin identifiers can be only numbers.";
                     default:
                         return null;
                 }

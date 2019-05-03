@@ -22,19 +22,34 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="Admin password"
+                    Content="{DynamicResource LocalizableAdminPasswordTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <PasswordBox
                     x:Name="AdminPasswordTextBox"
                     Margin="{StaticResource ControlMargin}"
                     mah:TextBoxHelper.ClearTextButton="True"
-                    mah:TextBoxHelper.Watermark="Password for admin rights on server"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableAdminPasswordWatermark}"
                     Style="{StaticResource MetroButtonRevealedPasswordBox}">
                     <i:Interaction.Behaviors>
                         <b:PasswordBehaviour Password="{Binding AdminPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </i:Interaction.Behaviors>
                 </PasswordBox>
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableAdminIdsTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <TextBox
+                    Margin="{StaticResource ControlMargin}"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableAdminIdsWatermark}"
+                    Text="{Binding AdminIds, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    ToolTip="{DynamicResource LocalizableAdminIdsTooltip}" />
+
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="Server-side scripting">

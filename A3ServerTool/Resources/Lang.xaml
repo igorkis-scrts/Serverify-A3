@@ -29,7 +29,7 @@
 
     <v:String x:Key="LocalizableServerExecLocationTitle">Server Executable File Location</v:String>
     <v:String x:Key="LocalizableServerExecWatermark">Path to server executable file</v:String>
-    
+
     <v:String x:Key="LocalizableWelcomeMessagesTitle">Message Of The Day</v:String>
     <v:String x:Key="LocalizableWelcomeMessagesWatermark">Welcome messages</v:String>
     <v:String x:Key="LocalizableWelcomeMessagesTooltip">Messages that players will see in chat on joining the server. Press Enter to create new line.</v:String>
@@ -37,4 +37,12 @@
     <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Interval Between Messages</v:String>
     <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Interval between welcome messages in seconds.</v:String>
 
+    <!--  Security view  -->
+    <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
+    <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>
+    
+    <v:String x:Key="LocalizableAdminIdsTitle">Admin IDs</v:String>
+    <v:String x:Key="LocalizableAdminIdsWatermark">UIDs one by one through comma</v:String>
+    <v:String x:Key="LocalizableAdminIdsTooltip">Whitelisted player IDs that allow to gain admin rights on server.</v:String>
+    
 </ResourceDictionary>

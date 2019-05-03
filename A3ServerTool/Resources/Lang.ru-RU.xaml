@@ -37,4 +37,12 @@
     <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Интервал между сообщениями</v:String>
     <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Интервал между приветственными сообщениями в секундах.</v:String>
 
+    <!--  Security view  -->
+    <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>
+    <v:String x:Key="LocalizableAdminPasswordWatermark">Пароль для получения прав администратора</v:String>
+
+    <v:String x:Key="LocalizableAdminIdsTitle">ID администраторов</v:String>
+    <v:String x:Key="LocalizableAdminIdsWatermark">UIDы, один за другим через запятую</v:String>
+    <v:String x:Key="LocalizableAdminIdsTooltip">Белый список UIDов, которые могут получить доступ к правам администратора на сервере.</v:String>
+
 </ResourceDictionary>
