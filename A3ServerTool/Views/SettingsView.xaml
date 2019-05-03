@@ -39,7 +39,10 @@
                 Content="{DynamicResource LocalizableSettingsHeader}"
                 Style="{StaticResource DescriptionHeaderStyle}" />
 
-            <StackPanel Grid.Row="1" Grid.Column="0">
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="{StaticResource ControlMargin}">
                 <Label
                     Margin="{DynamicResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -47,7 +50,7 @@
                     FontSize="14"
                     FontWeight="Bold" />
 
-                <ComboBox
+                <!--<ComboBox
                     MinWidth="128"
                     MaxWidth="256"
                     Margin="{StaticResource ControlMargin}"
@@ -56,7 +59,17 @@
                     DisplayMemberPath="Description"
                     ItemsSource="{Binding Path=Language, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
                     SelectedValue="{Binding Path=Language}"
-                    SelectedValuePath="Value" />
+                    SelectedValuePath="Value" />-->
+
+                <ComboBox
+                    MinWidth="256"
+                    MaxWidth="256"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="DisplayName"
+                    ItemsSource="{Binding Cultures, Mode=OneTime}"
+                    SelectedItem="{Binding Culture, Mode=TwoWay}" />
 
             </StackPanel>
             <DockPanel

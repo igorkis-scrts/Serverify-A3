@@ -1,13 +1,6 @@
 ﻿using A3ServerTool.Helpers;
 using GalaSoft.MvvmLight;
-using Interchangeable;
-using Interchangeable.Enums;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
 using System.Windows.Input;
 
@@ -15,24 +8,29 @@ namespace A3ServerTool.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Gets or sets application language.
-        /// </summary>
-        public Language Language
+        public List<CultureInfo> Cultures
         {
-            get => _language;
+            get
+            {
+                return App.Languages;
+            }
+        }
+
+        public CultureInfo Culture
+        {
+            get => _culture;
             set
             {
-                if (Equals(value, _language))
+                if (Equals(value, _culture))
                 {
                     return;
                 }
 
-                _language = value;
+                _culture = value;
                 RaisePropertyChanged();
             }
         }
-        private Language _language;
+        private CultureInfo _culture;
 
         /// <summary>
         /// Gets the window loaded command.
@@ -40,17 +38,6 @@ namespace A3ServerTool.ViewModels
         public ICommand WindowLoadedCommand => _windowLoadedCommand ??
                        (_windowLoadedCommand = new RelayCommand(_ =>
                        {
-                           var language = (CultureInfo) SettingsCoordinator.Retrieve(ApplicationSettingType.DefaultLanguage);
-
-                           //TODO: temporary solution, should get rid of Language enum entirely
-                           if (language.ToString() == "ru-RU")
-                           {
-                               Language = Language.Russian;
-                           }
-                           else
-                           {
-                               Language = Language.English;
-                           }
                        }));
         private ICommand _windowLoadedCommand;
 
@@ -63,19 +50,26 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _saveSettingsCommand ??
-                       (_saveSettingsCommand = new RelayCommand(async _ =>
+                       (_saveSettingsCommand = new RelayCommand(_ =>
                        {
-                           var tiedCulture = Language.GetType()
-                                .GetField(Language.ToString())
-                                .GetCustomAttributes(typeof(RepresentedCultureInfo), false)
-                                .Cast<RepresentedCultureInfo>()
-                                .FirstOrDefault();
-
-                           App.Language = new CultureInfo(tiedCulture.Culture);
-                           SettingsCoordinator.Save(ApplicationSettingType.DefaultLanguage, App.Language);
+                           ApplyAndSaveSettings();
                        }));
             }
         }
         private ICommand _saveSettingsCommand;
+
+        public SettingsViewModel()
+        {
+            Culture = (CultureInfo)SettingsCoordinator.Retrieve(ApplicationSettingType.DefaultLanguage);
+        }
+
+        /// <summary>
+        /// Saves the language settings.
+        /// </summary>
+        private void ApplyAndSaveSettings()
+        {
+            App.Language = Culture;
+            SettingsCoordinator.Save(ApplicationSettingType.DefaultLanguage, Culture);
+        }
     }
 }

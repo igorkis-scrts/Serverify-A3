@@ -33,6 +33,7 @@
         <mah:MetroAnimatedSingleRowTabControl
             Grid.Row="1"
             Grid.Column="0"
+            Margin="{StaticResource ControlMargin}"
             mah:TabControlHelper.Underlined="SelectedTabItem">
             <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}">
                 <controls:GeneralView />

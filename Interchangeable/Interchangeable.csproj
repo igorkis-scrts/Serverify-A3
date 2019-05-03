@@ -50,14 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DialogResult.cs" />
-    <Compile Include="Enums\Language.cs" />
     <Compile Include="Helpers\ValueDescription.cs" />
     <Compile Include="Helpers\DownloadHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="IO\FileHelper.cs" />
     <Compile Include="IO\SaveDataDto.cs" />
     <Compile Include="IO\TextManager.cs" />
-    <Compile Include="RepresentedCultureInfo.cs" />
     <Compile Include="SecureStringHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\ViewMode.cs" />

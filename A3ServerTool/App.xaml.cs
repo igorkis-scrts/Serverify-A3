@@ -15,6 +15,8 @@ namespace A3ServerTool
     /// </summary>
     public partial class App : Application
     {
+        public static List<CultureInfo> Languages { get; } = new List<CultureInfo>();
+
         public App()
         {
             InitializeComponent();
@@ -72,6 +74,7 @@ namespace A3ServerTool
                     Application.Current.Resources.MergedDictionaries.Add(dict);
                 }
 
+                ApplyDot();
                 LanguageChanged(Application.Current, new EventArgs());
             }
         }
@@ -80,14 +83,25 @@ namespace A3ServerTool
         {
             base.OnStartup(e);
 
+            Languages.Clear();
+            Languages.Add(new CultureInfo("en-US"));
+            Languages.Add(new CultureInfo("ru-RU"));
+
             LanguageChanged += App_LanguageChanged;
             Language = A3ServerTool.Properties.Settings.Default.DefaultLanguage;
 
+            Bindings.Register();
+        }
+
+        /// <summary>
+        /// Applies the dot instead of comma for current culture.
+        /// </summary>
+        private static void ApplyDot()
+        {
             var customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             CultureInfo.CurrentCulture = customCulture;
-
-            Bindings.Register();
         }
+
     }
 }
