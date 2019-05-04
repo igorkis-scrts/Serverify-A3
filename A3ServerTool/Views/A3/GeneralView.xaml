@@ -81,12 +81,34 @@
                     mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
+                    IsReadOnly="True"
                     Style="{StaticResource BrowseMetroTextBox}"
                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizablePlayerInteractionsGroupTitle}">
                     <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVotingTresholdTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval=".1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            StringFormat="{}{0:F2}%"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableVotingTresholdTooltip}"
+                            Value="{Binding VotingTreshold, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
@@ -153,5 +175,3 @@
         </Grid>
     </ScrollViewer>
 </UserControl>
-
-<!--<Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">-->

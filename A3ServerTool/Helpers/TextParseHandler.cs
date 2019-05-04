@@ -121,11 +121,6 @@ namespace A3ServerTool
 
                 var value = property.GetValue(instance, null);
 
-                if ((property.PropertyType == typeof(int) || property.PropertyType == typeof(float)) && value == null)
-                {
-                    continue;
-                }
-
                 if (property.PropertyType == typeof(string))
                 {
                     value = "\"" + value + "\"";
@@ -155,6 +150,13 @@ namespace A3ServerTool
                 else if(property.PropertyType == typeof(int?))
                 {
                     if(!int.TryParse(value?.ToString(), out int nullInt))
+                    {
+                        continue;
+                    }
+                }
+                else if (property.PropertyType == typeof(float?))
+                {
+                    if (!float.TryParse(value?.ToString(), out float nullFloat))
                     {
                         continue;
                     }

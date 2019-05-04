@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
     xmlns:views="clr-namespace:A3ServerTool.Views"
-    Title="Arma 3 Server Tool"
+    Title="Socrates's Arma 3 Server Tool"
     Width="960"
     Height="640"
     Padding="10,10,10,10"

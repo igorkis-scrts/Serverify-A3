@@ -42,6 +42,9 @@
     <v:String x:Key="LocalizableLocalClientTitle">Local Client IPs</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IPs one by one through comma</v:String>
 
+    <v:String x:Key="LocalizableVotingTresholdTitle">Voting Treshold</v:String>
+    <v:String x:Key="LocalizableVotingTresholdTooltip">Percentage of votes needed to confirm a vote</v:String>
+    
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>

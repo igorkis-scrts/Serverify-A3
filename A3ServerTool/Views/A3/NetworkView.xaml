@@ -115,7 +115,6 @@
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:NumericUpDown
-                    x:Name="MinErrorToSendNumericBox"
                     MinWidth="96"
                     MaxWidth="128"
                     Margin="{StaticResource ControlMargin}"

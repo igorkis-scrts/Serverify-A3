@@ -42,6 +42,8 @@
     <v:String x:Key="LocalizableLocalClientTitle">IP-адреса локальных клиентов</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IP-адреса через запятую</v:String>
 
+    <v:String x:Key="LocalizableVotingTresholdTitle">Порог голосования</v:String>
+    <v:String x:Key="LocalizableVotingTresholdTooltip">Процент голосов, необходимый для подтверждения голосования.</v:String>
 
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>

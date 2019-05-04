@@ -199,6 +199,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the voting treshold.
+        /// </summary>
+        public float? VotingTreshold
+        {
+            get => CurrentProfile?.ServerConfig.VoteThreshold;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.VoteThreshold)) return;
+                CurrentProfile.ServerConfig.VoteThreshold = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand BrowseCommand
         {
             get
