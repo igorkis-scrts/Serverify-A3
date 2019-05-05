@@ -223,16 +223,13 @@ namespace A3ServerTool
             for (int i = 0; i < valueAsArray.Length; i++)
             {
                 valueAsArray[i] = Regex.Replace(valueAsArray[i], @"[^\S ]+", "");
+                valueAsArray[i] = valueAsArray[i].Replace("\"", string.Empty);
 
                 if (string.IsNullOrWhiteSpace(valueAsArray[i]))
                 {
                     valueAsArray[i] = Regex.Replace(valueAsArray[i], @"\s+", "");
                 }
-
-                if(!valueAsArray[i].Contains("\"\""))
-                {
-                    valueAsArray[i] = "\"" + valueAsArray[i] + "\"";
-                }
+                valueAsArray[i] = "\"" + valueAsArray[i] + "\"";
             }
 
             if (valueAsArray.Any())
