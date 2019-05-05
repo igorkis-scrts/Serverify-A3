@@ -152,6 +152,31 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the value that represents that if server is LAN.
+        /// </summary>
+        public bool IsLan
+        {
+            get => CurrentProfile.ServerConfig.IsLan;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IsLan)) return;
+                CurrentProfile.ServerConfig.IsLan = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int? DisconnectTimeout
+        {
+            get => CurrentProfile.ServerConfig.DisconnectTimeout;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.DisconnectTimeout)) return;
+                CurrentProfile.ServerConfig.DisconnectTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public NetworkViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;

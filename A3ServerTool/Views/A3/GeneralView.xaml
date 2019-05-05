@@ -8,8 +8,8 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="640"
+    d:DesignWidth="960"
     DataContext="{Binding General, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -59,7 +59,7 @@
                         <mah:NumericUpDown
                             MinWidth="96"
                             MaxWidth="128"
-                            Margin="{StaticResource ControlMargin}"
+                            Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
                             Maximum="255"
                             Minimum="1"
@@ -67,22 +67,6 @@
                             TextAlignment="Left"
                             ToolTip="{DynamicResource LocalizableMaxPlayersTooltip}"
                             Value="{Binding MaximumAmountOfPlayers, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-
-                        <Label
-                            Margin="{StaticResource LabelMargin}"
-                            HorizontalAlignment="Left"
-                            Content="{DynamicResource LocalizableLanModeTitle}"
-                            FontSize="14"
-                            FontWeight="Bold" />
-                        <mah:ToggleSwitch
-                            Margin="{StaticResource ControlMargin}"
-                            HorizontalAlignment="Left"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            IsChecked="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                            ToolTip="{DynamicResource LocalizableLanModeTooltip}" />
-
                     </StackPanel>
                 </GroupBox>
 
@@ -169,7 +153,7 @@
                         <mah:NumericUpDown
                             MinWidth="128"
                             MaxWidth="128"
-                            Margin="{StaticResource ControlMargin}"
+                            Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
                             mah:TextBoxHelper.ClearTextButton="True"
                             Minimum="1"
@@ -200,7 +184,7 @@
                             FontSize="14"
                             FontWeight="Bold" />
                         <TextBox
-                            Margin="{StaticResource ControlMargin}"
+                            Margin="{StaticResource EndControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableHeadlessClientWatermark}"

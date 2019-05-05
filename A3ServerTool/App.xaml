@@ -52,6 +52,7 @@
             <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
             <Thickness x:Key="LabelMargin">4 2 8 2</Thickness>
             <Thickness x:Key="GroupBoxMargin">12 4 12 4</Thickness>
+            <Thickness x:Key="EndControlMargin">8 2 8 8</Thickness>
 
             <ResourceDictionary.MergedDictionaries>
                 <!--  Localization  -->

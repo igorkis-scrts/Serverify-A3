@@ -60,6 +60,48 @@ namespace A3ServerTool.ViewModels
         }
         private HamburgerMenuItemCollection _menuOptionItems;
 
+        public WindowState WindowState
+        {
+            get => _windowState;
+            set
+            {
+                if (Equals(value, _windowState)) return;
+                _windowState = value;
+                RaisePropertyChanged();
+            }
+        }
+        private WindowState _windowState;
+
+        /// <summary>
+        /// Gets or sets the width of the window.
+        /// </summary>
+        public int WindowWidth
+        {
+            get => _windowWidth;
+            set
+            {
+                if (Equals(value, _windowWidth)) return;
+                _windowWidth = value;
+                RaisePropertyChanged();
+            }
+        }
+        private int _windowWidth;
+
+        /// <summary>
+        /// Gets or sets the height of the window.
+        /// </summary>
+        public int WindowHeight
+        {
+            get => _windowHeight;
+            set
+            {
+                if (Equals(value, _windowHeight)) return;
+                _windowHeight = value;
+                RaisePropertyChanged();
+            }
+        }
+        private int _windowHeight;
+
         public ICommand ExitApplicationCommand
         {
             get
@@ -80,6 +122,11 @@ namespace A3ServerTool.ViewModels
                                MessageDialogStyle.AffirmativeAndNegative, dialogSettings);
 
                            if (dialogResult != MessageDialogResult.Affirmative) return;
+
+                           //TODO: temporarily disabled, not restoring window size correctly
+                           //SettingsCoordinator.Save(ApplicationSettingType.WindowState, WindowState);
+                           //SettingsCoordinator.Save(ApplicationSettingType.WindowHeight, WindowHeight);
+                           //SettingsCoordinator.Save(ApplicationSettingType.WindowWidth, WindowWidth);
                            Application.Current.Shutdown();
                        }));
             }
@@ -93,11 +140,13 @@ namespace A3ServerTool.ViewModels
                 return _windowLoadedCommand ??
                        (_windowLoadedCommand = new RelayCommand(_ =>
                        {
+                           SetWindowState();
                            CreateMenuItems();
+
                            Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessageResult);
 
-                           var lastProfileId = (Guid) SettingsCoordinator.Retrieve(ApplicationSettingType.LastUsedProfile);
-                           if(lastProfileId != Guid.Empty)
+                           var lastProfileId = (Guid)SettingsCoordinator.Retrieve(ApplicationSettingType.LastUsedProfile);
+                           if (lastProfileId != Guid.Empty)
                            {
                                var profilesViewModel = ServiceLocator.Current.GetInstance<ProfilesViewModel>();
                                if (profilesViewModel != null)
@@ -115,6 +164,15 @@ namespace A3ServerTool.ViewModels
                        }));
             }
         }
+
+        private void SetWindowState()
+        {
+            //TODO: temporarily disabled, not restoring window size correctly
+            //WindowState = (WindowState)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowState);
+            //WindowWidth = (int)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowWidth);
+            //WindowHeight = (int)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowHeight);
+        }
+
         private ICommand _windowLoadedCommand;
 
         public ICommand SaveProfileCommand

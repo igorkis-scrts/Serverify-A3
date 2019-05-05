@@ -227,20 +227,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-        /// <summary>
-        /// Gets or sets the kick duplicate uids.
-        /// </summary>
-        public bool IsLan
-        {
-            get => CurrentProfile.ServerConfig.IsLan;
-            set
-            {
-                if (Equals(value, CurrentProfile.ServerConfig.IsLan)) return;
-                CurrentProfile.ServerConfig.IsLan = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public ICommand BrowseCommand
         {
             get

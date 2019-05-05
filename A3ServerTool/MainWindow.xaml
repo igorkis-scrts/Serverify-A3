@@ -12,7 +12,7 @@
     xmlns:views="clr-namespace:A3ServerTool.Views"
     Title="Socrates's Arma 3 Server Tool"
     Width="960"
-    Height="640"
+    Height="800"
     Padding="10,10,10,10"
     mah:DialogParticipation.Register="{Binding}"
     BorderBrush="{StaticResource ControlSecondaryColorBrush}"
@@ -23,12 +23,16 @@
     TitleForeground="Black"
     WindowCloseButtonStyle="{DynamicResource CleanCloseWindowButtonStyle}"
     WindowStartupLocation="CenterScreen"
+    WindowState="{Binding WindowState, Mode=TwoWay}"
     WindowTitleBrush="{StaticResource ControlSecondaryColorBrush}"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding ExitApplicationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
         </i:EventTrigger>
+        <!--<i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SaveWindowStateCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+        </i:EventTrigger>-->
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
         </i:EventTrigger>

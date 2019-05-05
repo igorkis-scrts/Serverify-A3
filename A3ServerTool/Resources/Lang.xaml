@@ -73,8 +73,12 @@
     <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam IDs through comma</v:String>
 
     <!--  Network View  -->
+    <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Threshold Values</v:String>
 
     <v:String x:Key="LocalizableUpnpTitle">UPNP Mode</v:String>
     <v:String x:Key="LocalizableUpnpTooltip">Automatically creates port mapping on UPNP/IGD enabled router. This option allows you to create a server behind NAT (your router must have public IP and support UPNP/IGD protocol).</v:String>
+
+    <v:String x:Key="LocalizableDisconnectTimeoutTitle">Disconnect Timeout</v:String>
+    <v:String x:Key="LocalizableDisconnectTimeoutTooltip">Server wait time before disconnecting client.</v:String>
 
 </ResourceDictionary>

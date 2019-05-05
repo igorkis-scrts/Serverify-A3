@@ -13,6 +13,9 @@ namespace A3ServerTool.Helpers
     {
         None = 0,
         LastUsedProfile = 1,
-        DefaultLanguage = 2
+        DefaultLanguage = 2,
+        WindowState = 3,
+        WindowHeight = 4,
+        WindowWidth = 5
     }
 }

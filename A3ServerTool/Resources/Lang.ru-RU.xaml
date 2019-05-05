@@ -73,7 +73,12 @@
     <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam ID через запятую</v:String>
 
     <!--  Network View  -->
+    <v:String x:Key="LocalizableTimeoutHeader">Таймауты, пороговые значения</v:String>
+
     <v:String x:Key="LocalizableUpnpTitle">UPNP</v:String>
     <v:String x:Key="LocalizableUpnpTooltip">Автоматически назначает порты на UPNP/IGD-роутерах. Эта опция позволяет создавать сервер за NAT.</v:String>
+
+    <v:String x:Key="LocalizableDisconnectTimeoutTitle">Тайм-аут отключения</v:String>
+    <v:String x:Key="LocalizableDisconnectTimeoutTooltip">Время ожидания сервера перед отсоединением клиента в секундах.</v:String>
 
 </ResourceDictionary>

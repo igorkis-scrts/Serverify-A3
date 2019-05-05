@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="640"
+    d:DesignWidth="960"
     DataContext="{Binding Network, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -18,137 +18,208 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Maximum Messages Send"
-                    FontSize="14"
-                    FontWeight="Bold" />
+                <StackPanel>
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LocalizableLanModeTitle}"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:ToggleSwitch
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        IsChecked="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        OffLabel="{DynamicResource LocalizableOff}"
+                        OnLabel="{DynamicResource LocalizableOn}"
+                        Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                        ToolTip="{DynamicResource LocalizableLanModeTooltip}" />
 
-                <mah:NumericUpDown
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding MaxMessagesSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LocalizableUpnpTitle}"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:ToggleSwitch
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        IsChecked="{Binding IsUpnp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        OffLabel="{DynamicResource LocalizableOff}"
+                        OnLabel="{DynamicResource LocalizableOn}"
+                        Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                        ToolTip="{DynamicResource LocalizableUpnpTooltip}" />
 
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Maximum Size Guaranteed"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding MaxSizeGuaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Maximum Messages Send"
+                        FontSize="14"
+                        FontWeight="Bold" />
 
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Maximum Size Nonguaranteed"
-                    FontSize="14"
-                    FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        Value="{Binding MaxMessagesSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-                <mah:NumericUpDown
-                    x:Name="MaxSizeNonGuaranteedNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding MaxSizeNonguaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Maximum Size Guaranteed"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        Value="{Binding MaxSizeGuaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Minimum Bandwidth"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    x:Name="MinBandwidthNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding MinBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Maximum Size Nonguaranteed"
+                        FontSize="14"
+                        FontWeight="Bold" />
 
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Maximum Bandwidth"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    x:Name="MaxBandwidthNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding MaxBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <mah:NumericUpDown
+                        x:Name="MaxSizeNonGuaranteedNumericBox"
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        Value="{Binding MaxSizeNonguaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Minimum Error To Send"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Interval=".001"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    StringFormat="{}{0:F3}"
-                    TextAlignment="Left"
-                    Value="{Binding MinErrorToSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Minimum Bandwidth"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        x:Name="MinBandwidthNumericBox"
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        Value="{Binding MinBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Minimum Error To Send Near"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    x:Name="MinErrorToSendNearNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Interval=".001"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    StringFormat="{}{0:F3}"
-                    TextAlignment="Left"
-                    Value="{Binding MinErrorToSendNear, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Maximum Bandwidth"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        x:Name="MaxBandwidthNumericBox"
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        Value="{Binding MaxBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Minimum Error To Send"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Interval=".001"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        StringFormat="{}{0:F3}"
+                        TextAlignment="Left"
+                        Value="{Binding MinErrorToSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Minimum Error To Send Near"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        x:Name="MinErrorToSendNearNumericBox"
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Interval=".001"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        StringFormat="{}{0:F3}"
+                        TextAlignment="Left"
+                        Value="{Binding MinErrorToSendNear, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="Maximum Packet Size"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="96"
+                        MaxWidth="128"
+                        Margin="{StaticResource EndControlMargin}"
+                        HorizontalAlignment="Left"
+                        Maximum="4096"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
+
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableTimeoutHeader}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDisconnectTimeoutTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Minimum="1"
+                            Speedup="True"
+                            ToolTip="{DynamicResource LocalizableDisconnectTimeoutTooltip}"
+                            Value="{Binding DisconnectTimeout, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    </StackPanel>
+                </Expander>
+
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -187,6 +258,7 @@
                     TextAlignment="Left"
                     Value="{Binding TerrainGridViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
+
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -204,39 +276,6 @@
                     Speedup="True"
                     TextAlignment="Left"
                     Value="{Binding ObjectViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Maximum Packet Size"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    x:Name="MaxPacketSizeNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableUpnpTitle}"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:ToggleSwitch
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    IsChecked="{Binding IsUpnp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                    ToolTip="{DynamicResource LocalizableUpnpTooltip}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>
