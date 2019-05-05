@@ -53,7 +53,7 @@
 
     <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
     <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable pnly through local network.</v:String>
-    
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>
@@ -65,7 +65,14 @@
     <v:String x:Key="LocalizableKickDuplicateUidsTitle">Kick Duplicate UIDs</v:String>
     <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Do not allow duplicate game IDs. Second player with an existing ID will be kicked automatically.</v:String>
 
-    <!--Network View-->
+    <v:String x:Key="LocalizableFilePatchingTitle">Allow File Patching</v:String>
+    <v:String x:Key="LocalizableFilePatchingTooltip">Prevent or allow file patching for the clients.</v:String>
+
+    <v:String x:Key="LocalizableFilePatchingIdsTitle">File Patching Exceptions</v:String>
+    <v:String x:Key="LocalizableFilePatchingIdsTooltip">Whitelisted Steam IDs allowed filePatching.</v:String>
+    <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam IDs through comma</v:String>
+
+    <!--  Network View  -->
 
     <v:String x:Key="LocalizableUpnpTitle">UPNP Mode</v:String>
     <v:String x:Key="LocalizableUpnpTooltip">Automatically creates port mapping on UPNP/IGD enabled router. This option allows you to create a server behind NAT (your router must have public IP and support UPNP/IGD protocol).</v:String>

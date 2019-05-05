@@ -117,10 +117,10 @@ namespace A3ServerTool.Models.Config
         public bool IsUpnp { get; set; }
 
         /// <summary>
-        /// Gets or sets a value to allow filePatching. 
+        /// Gets or sets a value to allow file patching for clients. 
         /// </summary>
         [ConfigProperty(PropertyName = "allowedFilePatching")]
-        public int? FilePatching { get; set; }
+        public int FilePatchingMode { get; set; }
 
         /// <summary>
         /// Gets or sets whitelisted Steam IDs allowed file patching.

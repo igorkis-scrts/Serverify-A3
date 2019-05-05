@@ -53,18 +53,52 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableFilePatchingTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=FilePatching, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=FilePatching}"
+                    SelectedValuePath="Value"
+                    ToolTip="{DynamicResource LocalizableFilePatchingTooltip}" />
+
+                <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableFilePatchingIdsTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFilePatchingIdsWatermark}"
+                            AcceptsReturn="True"
+                            Text="{Binding FilePatchingExceptions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableFilePatchingIdsTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
                     Content="{DynamicResource LocalizableKickDuplicateUidsTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    OffLabel="{DynamicResource LocalizableOff}"
                     IsChecked="{Binding KickDuplicateUids, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
                     Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableKickDuplicateUidsTooltip}" />
             </StackPanel>
+
             <StackPanel Grid.Column="1">
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="Server-side scripting">
                     <PasswordBox
@@ -72,7 +106,7 @@
                         Margin="{StaticResource ControlMargin}"
                         mah:TextBoxHelper.ClearTextButton="True"
                         mah:TextBoxHelper.UseFloatingWatermark="True"
-                        mah:TextBoxHelper.Watermark="Password for serverCommand server-side scripting"
+                        mah:TextBoxHelper.Watermark="Password for server-side scripting"
                         Style="{StaticResource MetroButtonRevealedPasswordBox}">
                         <i:Interaction.Behaviors>
                             <b:PasswordBehaviour Password="{Binding ServerCommandPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />

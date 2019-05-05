@@ -50,17 +50,6 @@
                     FontSize="14"
                     FontWeight="Bold" />
 
-                <!--<ComboBox
-                    MinWidth="128"
-                    MaxWidth="256"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    HorizontalContentAlignment="Left"
-                    DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=Language, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=Language}"
-                    SelectedValuePath="Value" />-->
-
                 <ComboBox
                     MinWidth="256"
                     MaxWidth="256"

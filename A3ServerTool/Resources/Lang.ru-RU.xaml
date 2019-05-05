@@ -65,8 +65,14 @@
     <v:String x:Key="LocalizableKickDuplicateUidsTitle">Выгонять игроков с одинаковыми UIDs</v:String>
     <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Не разрешать игроков с одинаковыми UID. Второй игрок с дублирующим UID будет выброшен из игровой сессии.</v:String>
 
-    <!--  Network View  -->
+    <v:String x:Key="LocalizableFilePatchingTitle">Разрешить File Patching</v:String>
+    <v:String x:Key="LocalizableFilePatchingTooltip">Разрешает или запрещает File Patching для клиентов.</v:String>
 
+    <v:String x:Key="LocalizableFilePatchingIdsTitle">Исключения File Patching</v:String>
+    <v:String x:Key="LocalizableFilePatchingIdsTooltip">Steam ID, которым разрешен  File Patching. Вводить через запятую.</v:String>
+    <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam ID через запятую</v:String>
+
+    <!--  Network View  -->
     <v:String x:Key="LocalizableUpnpTitle">UPNP</v:String>
     <v:String x:Key="LocalizableUpnpTooltip">Автоматически назначает порты на UPNP/IGD-роутерах. Эта опция позволяет создавать сервер за NAT.</v:String>
 

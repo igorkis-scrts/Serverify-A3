@@ -1,8 +1,10 @@
-﻿using A3ServerTool.Models;
-using GalaSoft.MvvmLight;
+﻿using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using A3ServerTool.Enums;
+using A3ServerTool.Models;
+using GalaSoft.MvvmLight;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -88,6 +90,54 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 RaisePropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. . 
+        /// </summary>
+        public FilePatching FilePatching
+        {
+            get
+            {
+                return (FilePatching) CurrentProfile.ServerConfig.FilePatchingMode;
+            }
+            set
+            {
+                if (Equals((int)value, CurrentProfile.ServerConfig.FilePatchingMode)) return;
+                CurrentProfile.ServerConfig.FilePatchingMode = (int) value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the welcome messages.
+        /// </summary>
+        public string FilePatchingExceptions
+        {
+            get
+            {
+                var messages = CurrentProfile?.ServerConfig.FilePatchingExceptions;
+                if (messages != null)
+                {
+                    return string.Join(",", messages);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.FilePatchingExceptions = null;
+                }
+                else
+                {
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.FilePatchingExceptions)) return;
+                    CurrentProfile.ServerConfig.FilePatchingExceptions = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
 
         public SecurityViewModel(ServerViewModel viewModel)
         {

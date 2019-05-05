@@ -101,6 +101,7 @@
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Enums\FilePatching.cs" />
     <Compile Include="Helpers\SettingsCoordinator.cs" />
     <Compile Include="Helpers\ApplicationSettingType.cs" />
     <Compile Include="Models\Config\IConfig.cs" />
