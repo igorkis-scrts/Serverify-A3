@@ -135,7 +135,7 @@ namespace A3ServerTool.Models.Config
         public int? DisconnectTimeout { get; set; }
 
         /// <summary>
-        /// Gets or sets a max desync value until server kick the user. 
+        /// Gets or sets a max desync value until server kicks the user. 
         /// </summary>
         [ConfigProperty(PropertyName = "maxdesync")]
         public int? MaximumDesync { get; set; }

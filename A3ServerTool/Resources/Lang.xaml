@@ -81,4 +81,13 @@
     <v:String x:Key="LocalizableDisconnectTimeoutTitle">Disconnect Timeout</v:String>
     <v:String x:Key="LocalizableDisconnectTimeoutTooltip">Server wait time before disconnecting client.</v:String>
 
+    <v:String x:Key="LocalizableMaxDesyncTitle">Maximum Desync</v:String>
+    <v:String x:Key="LocalizableMaxDesyncTooltip">Max desync value until server kicks the user.</v:String>
+
+    <v:String x:Key="LocalizableMaxPingTitle">Maximum Ping</v:String>
+    <v:String x:Key="LocalizableMaxPingTooltip">Max ping value until server kicks the user.</v:String>
+
+    <v:String x:Key="LocalizableMaxPacketLossTitle">Maximum Packet Loss</v:String>
+    <v:String x:Key="LocalizableMaxPacketLossTooltip">Max packet loss value until server kicks the user.</v:String>
+
 </ResourceDictionary>

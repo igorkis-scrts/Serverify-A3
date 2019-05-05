@@ -166,6 +166,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the disconnect timeout.
+        /// </summary>
         public int? DisconnectTimeout
         {
             get => CurrentProfile.ServerConfig.DisconnectTimeout;
@@ -173,6 +176,48 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ServerConfig.DisconnectTimeout)) return;
                 CurrentProfile.ServerConfig.DisconnectTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum desync.
+        /// </summary>
+        public int? MaxDesync
+        {
+            get => CurrentProfile.ServerConfig.MaximumDesync;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.MaximumDesync)) return;
+                CurrentProfile.ServerConfig.MaximumDesync = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum ping.
+        /// </summary>
+        public int? MaxPing
+        {
+            get => CurrentProfile.ServerConfig.MaximumPing;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.MaximumPing)) return;
+                CurrentProfile.ServerConfig.MaximumPing = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum ping.
+        /// </summary>
+        public int? MaxPacketLoss
+        {
+            get => CurrentProfile.ServerConfig.MaximumPacketLoss;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.MaximumPacketLoss)) return;
+                CurrentProfile.ServerConfig.MaximumPacketLoss = value;
                 RaisePropertyChanged();
             }
         }

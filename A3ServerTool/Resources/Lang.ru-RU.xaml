@@ -81,4 +81,14 @@
     <v:String x:Key="LocalizableDisconnectTimeoutTitle">Тайм-аут отключения</v:String>
     <v:String x:Key="LocalizableDisconnectTimeoutTooltip">Время ожидания сервера перед отсоединением клиента в секундах.</v:String>
 
+    <v:String x:Key="LocalizableMaxDesyncTitle">Максимальная рассинхронизация</v:String>
+    <v:String x:Key="LocalizableMaxDesyncTooltip">Максимальное значение рассинхронизации между клиентом и сервером прежде чем сервер выгонит игрока.</v:String>
+
+
+    <v:String x:Key="LocalizableMaxPingTitle">Максимальный пинг</v:String>
+    <v:String x:Key="LocalizableMaxPingTooltip">Максимальный пинг между клиентом и сервером, прежде чем сервер выгонит игрока.</v:String>
+
+    <v:String x:Key="LocalizableMaxPacketLossTitle">Maximum Packet Loss</v:String>
+    <v:String x:Key="LocalizableMaxPacketLossTooltip">Максимальное количество потерянных пакетов между клиентом и сервером, прежде чем сервер выгонит игрока.</v:String>
+
 </ResourceDictionary>
