@@ -14,125 +14,140 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public BasicConfig CurrentBasicConfig => _parentViewModel.CurrentProfile.BasicConfig;
+        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         public int? MaxMessagesSend
         {
-            get => CurrentBasicConfig.MaxMessagesSend;
+            get => CurrentProfile.BasicConfig.MaxMessagesSend;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MaxMessagesSend)) return;
-                CurrentBasicConfig.MaxMessagesSend = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MaxMessagesSend)) return;
+                CurrentProfile.BasicConfig.MaxMessagesSend = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? MaxSizeGuaranteed
         {
-            get => CurrentBasicConfig.MaxSizeGuaranteed;
+            get => CurrentProfile.BasicConfig.MaxSizeGuaranteed;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MaxSizeGuaranteed)) return;
-                CurrentBasicConfig.MaxSizeGuaranteed = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MaxSizeGuaranteed)) return;
+                CurrentProfile.BasicConfig.MaxSizeGuaranteed = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? MaxSizeNonguaranteed
         {
-            get => CurrentBasicConfig.MaxSizeNonguaranteed;
+            get => CurrentProfile.BasicConfig.MaxSizeNonguaranteed;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MaxSizeNonguaranteed)) return;
-                CurrentBasicConfig.MaxSizeNonguaranteed = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MaxSizeNonguaranteed)) return;
+                CurrentProfile.BasicConfig.MaxSizeNonguaranteed = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? MinBandwidth
         {
-            get => CurrentBasicConfig.MinBandwidth;
+            get => CurrentProfile.BasicConfig.MinBandwidth;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MinBandwidth)) return;
-                CurrentBasicConfig.MinBandwidth = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MinBandwidth)) return;
+                CurrentProfile.BasicConfig.MinBandwidth = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? MaxBandwidth
         {
-            get => CurrentBasicConfig.MaxBandwidth;
+            get => CurrentProfile.BasicConfig.MaxBandwidth;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MaxBandwidth)) return;
-                CurrentBasicConfig.MaxBandwidth = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MaxBandwidth)) return;
+                CurrentProfile.BasicConfig.MaxBandwidth = value;
                 RaisePropertyChanged();
             }
         }
 
         public float? MinErrorToSend
         {
-            get => CurrentBasicConfig.MinErrorToSend;
+            get => CurrentProfile.BasicConfig.MinErrorToSend;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MinErrorToSend)) return;
-                CurrentBasicConfig.MinErrorToSend = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MinErrorToSend)) return;
+                CurrentProfile.BasicConfig.MinErrorToSend = value;
                 RaisePropertyChanged();
             }
         }
 
         public float? MinErrorToSendNear
         {
-            get => CurrentBasicConfig.MinErrorToSendNear;
+            get => CurrentProfile.BasicConfig.MinErrorToSendNear;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MinErrorToSendNear)) return;
-                CurrentBasicConfig.MinErrorToSendNear = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MinErrorToSendNear)) return;
+                CurrentProfile.BasicConfig.MinErrorToSendNear = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? MaxCustomFileSize
         {
-            get => CurrentBasicConfig.MaxCustomFileSize;
+            get => CurrentProfile.BasicConfig.MaxCustomFileSize;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MaxCustomFileSize)) return;
-                CurrentBasicConfig.MaxCustomFileSize = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MaxCustomFileSize)) return;
+                CurrentProfile.BasicConfig.MaxCustomFileSize = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? MaxPacketSize
         {
-            get => CurrentBasicConfig.MaxPacketSize;
+            get => CurrentProfile.BasicConfig.MaxPacketSize;
             set
             {
-                if (Equals(value, CurrentBasicConfig.MaxPacketSize)) return;
-                CurrentBasicConfig.MaxPacketSize = value;
+                if (Equals(value, CurrentProfile.BasicConfig.MaxPacketSize)) return;
+                CurrentProfile.BasicConfig.MaxPacketSize = value;
                 RaisePropertyChanged();
             }
         }
 
         public float? TerrainGridViewDistance
         {
-            get => CurrentBasicConfig.TerrainGridViewDistance;
+            get => CurrentProfile.BasicConfig.TerrainGridViewDistance;
             set
             {
-                if (Equals(value, CurrentBasicConfig.TerrainGridViewDistance)) return;
-                CurrentBasicConfig.TerrainGridViewDistance = value;
+                if (Equals(value, CurrentProfile.BasicConfig.TerrainGridViewDistance)) return;
+                CurrentProfile.BasicConfig.TerrainGridViewDistance = value;
                 RaisePropertyChanged();
             }
         }
 
         public int? ObjectViewDistance
         {
-            get => CurrentBasicConfig.ObjectViewDistance;
+            get => CurrentProfile.BasicConfig.ObjectViewDistance;
             set
             {
-                if (Equals(value, CurrentBasicConfig.ObjectViewDistance)) return;
-                CurrentBasicConfig.ObjectViewDistance = value;
+                if (Equals(value, CurrentProfile.BasicConfig.ObjectViewDistance)) return;
+                CurrentProfile.BasicConfig.ObjectViewDistance = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether server instance is in UPNP mode.
+        /// </summary>
+        public bool IsUpnp
+        {
+            get => CurrentProfile.ServerConfig.IsUpnp;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IsUpnp)) return;
+                CurrentProfile.ServerConfig.IsUpnp = value;
                 RaisePropertyChanged();
             }
         }

@@ -213,6 +213,34 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the number of players needed to start mission voting.
+        /// </summary>
+        public int? VotingStartMission
+        {
+            get => CurrentProfile?.ServerConfig.VoteMissionPlayers;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.VoteMissionPlayers)) return;
+                CurrentProfile.ServerConfig.VoteMissionPlayers = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the kick duplicate uids.
+        /// </summary>
+        public bool IsLan
+        {
+            get => CurrentProfile.ServerConfig.IsLan;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IsLan)) return;
+                CurrentProfile.ServerConfig.IsLan = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand BrowseCommand
         {
             get

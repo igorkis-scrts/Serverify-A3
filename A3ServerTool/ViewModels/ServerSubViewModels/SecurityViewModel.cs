@@ -62,6 +62,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets the kick duplicate uids.
+        /// </summary>
+        public int? KickDuplicateUids
+        {
+            get => CurrentProfile?.ServerConfig.KickDuplicateIds;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.KickDuplicateIds)) return;
+                CurrentProfile.ServerConfig.KickDuplicateIds = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. . 
         /// </summary>
         public string ServerCommandPassword

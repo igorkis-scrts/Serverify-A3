@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
+    <v:String x:Key="LocalizableOn">On</v:String>
+    <v:String x:Key="LocalizableOff">Off</v:String>
+
     <v:String x:Key="LocalizableGeneralTabTitle">General</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Security</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Network</v:String>
@@ -43,7 +46,13 @@
     <v:String x:Key="LocalizableHeadlessClientWatermark">IPs one by one through comma</v:String>
 
     <v:String x:Key="LocalizableVotingTresholdTitle">Voting Treshold</v:String>
-    <v:String x:Key="LocalizableVotingTresholdTooltip">Percentage of votes needed to confirm a vote</v:String>
+    <v:String x:Key="LocalizableVotingTresholdTooltip">Percentage of votes needed to confirm a vote.</v:String>
+
+    <v:String x:Key="LocalizableVotingMissionTitle">Mission Voting Start</v:String>
+    <v:String x:Key="LocalizableVotingMissionTooltip">Start mission voting when X number of players connect.</v:String>
+
+    <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
+    <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable pnly through local network.</v:String>
     
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
@@ -52,5 +61,13 @@
     <v:String x:Key="LocalizableAdminIdsTitle">Admin IDs</v:String>
     <v:String x:Key="LocalizableAdminIdsWatermark">UIDs one by one through comma</v:String>
     <v:String x:Key="LocalizableAdminIdsTooltip">Whitelisted player IDs that allow to gain admin rights on server.</v:String>
+
+    <v:String x:Key="LocalizableKickDuplicateUidsTitle">Kick Duplicate UIDs</v:String>
+    <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Do not allow duplicate game IDs. Second player with an existing ID will be kicked automatically.</v:String>
+
+    <!--Network View-->
+
+    <v:String x:Key="LocalizableUpnpTitle">UPNP Mode</v:String>
+    <v:String x:Key="LocalizableUpnpTooltip">Automatically creates port mapping on UPNP/IGD enabled router. This option allows you to create a server behind NAT (your router must have public IP and support UPNP/IGD protocol).</v:String>
 
 </ResourceDictionary>

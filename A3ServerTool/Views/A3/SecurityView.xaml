@@ -50,6 +50,20 @@
                     Text="{Binding AdminIds, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableAdminIdsTooltip}" />
 
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableKickDuplicateUidsTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    IsChecked="{Binding KickDuplicateUids, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableKickDuplicateUidsTooltip}" />
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="Server-side scripting">

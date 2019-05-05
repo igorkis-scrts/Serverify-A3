@@ -102,7 +102,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a allowance of duplcate game Ids. 
         /// </summary>
         [ConfigProperty(PropertyName = "kickduplicate")]
-        public bool KickDuplicateIds { get; set; }
+        public int? KickDuplicateIds { get; set; }
 
         /// <summary>
         /// Gets or sets a value to force server into LAN mode. 

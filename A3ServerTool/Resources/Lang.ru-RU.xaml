@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
+    <v:String x:Key="LocalizableOn">Вкл</v:String>
+    <v:String x:Key="LocalizableOff">Выкл</v:String>
+
     <v:String x:Key="LocalizableGeneralTabTitle">Основное</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Безопасность</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Сеть</v:String>
@@ -45,6 +48,12 @@
     <v:String x:Key="LocalizableVotingTresholdTitle">Порог голосования</v:String>
     <v:String x:Key="LocalizableVotingTresholdTooltip">Процент голосов, необходимый для подтверждения голосования.</v:String>
 
+    <v:String x:Key="LocalizableVotingMissionTitle">Голосование за миссию</v:String>
+    <v:String x:Key="LocalizableVotingMissionTooltip">Количество игроков на сервере, необходимых для начала голосования за миссию.</v:String>
+
+    <v:String x:Key="LocalizableLanModeTitle">Локальный сервер</v:String>
+    <v:String x:Key="LocalizableLanModeTooltip">Сервер будет доступен только из локальной сети.</v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Пароль для получения прав администратора</v:String>
@@ -52,5 +61,13 @@
     <v:String x:Key="LocalizableAdminIdsTitle">ID администраторов</v:String>
     <v:String x:Key="LocalizableAdminIdsWatermark">UIDы через запятую</v:String>
     <v:String x:Key="LocalizableAdminIdsTooltip">Белый список UIDов, которые могут получить доступ к правам администратора на сервере.</v:String>
+
+    <v:String x:Key="LocalizableKickDuplicateUidsTitle">Выгонять игроков с одинаковыми UIDs</v:String>
+    <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Не разрешать игроков с одинаковыми UID. Второй игрок с дублирующим UID будет выброшен из игровой сессии.</v:String>
+
+    <!--  Network View  -->
+
+    <v:String x:Key="LocalizableUpnpTitle">UPNP</v:String>
+    <v:String x:Key="LocalizableUpnpTooltip">Автоматически назначает порты на UPNP/IGD-роутерах. Эта опция позволяет создавать сервер за NAT.</v:String>
 
 </ResourceDictionary>

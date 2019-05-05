@@ -67,6 +67,22 @@
                             TextAlignment="Left"
                             ToolTip="{DynamicResource LocalizableMaxPlayersTooltip}"
                             Value="{Binding MaximumAmountOfPlayers, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableLanModeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            IsChecked="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableLanModeTooltip}" />
+
                     </StackPanel>
                 </GroupBox>
 
@@ -108,6 +124,26 @@
                             TextAlignment="Left"
                             ToolTip="{DynamicResource LocalizableVotingTresholdTooltip}"
                             Value="{Binding VotingTreshold, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVotingMissionTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableVotingMissionTooltip}"
+                            Value="{Binding VotingStartMission, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"

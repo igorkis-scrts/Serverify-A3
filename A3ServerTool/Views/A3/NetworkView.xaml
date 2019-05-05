@@ -222,6 +222,21 @@
                     Speedup="True"
                     TextAlignment="Left"
                     Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableUpnpTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    IsChecked="{Binding IsUpnp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableUpnpTooltip}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>
