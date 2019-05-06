@@ -3,12 +3,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
+    <v:String x:Key="LocalizableCurrentProfileTitle">Current Profile:</v:String>
+
+    <v:String x:Key="LocalizableSaveButton">Save</v:String>
+
     <v:String x:Key="LocalizableOn">On</v:String>
     <v:String x:Key="LocalizableOff">Off</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">General</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Security</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Network</v:String>
+    <v:String x:Key="LocalizableLoggingTabTittle">Logging</v:String>
 
     <v:String x:Key="LocalizableSettingsHeader">Settings</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Language</v:String>
@@ -21,6 +26,7 @@
     <v:String x:Key="LocalizableCommonSettingsGroupTitle">Common Settings</v:String>
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Interactions With Players</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless Client</v:String>
+    <v:String x:Key="LocalizableVonGroupTitle">Voice-Over-Net</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Server Name</v:String>
     <v:String x:Key="LocalizableServerNameWatermark">Name in server browser</v:String>
@@ -51,9 +57,31 @@
     <v:String x:Key="LocalizableVotingMissionTitle">Mission Voting Start</v:String>
     <v:String x:Key="LocalizableVotingMissionTooltip">Start mission voting when X number of players connect.</v:String>
 
-    <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
-    <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable pnly through local network.</v:String>
+    <v:String x:Key="LocalizableVotingTimeoutTitle">Voting Timeout</v:String>
+    <v:String x:Key="LocalizableVotingTimeoutTooltip">Time in seconds betweeen votings.</v:String>
 
+    <v:String x:Key="LocalizableRoleSelectionTitle">Role Selection Timeout</v:String>
+    <v:String x:Key="LocalizableRoleSelectionTooltip">Time in seconds to select a role on lobby screen.</v:String>
+
+    <v:String x:Key="LocalizableBriefingTimeoutTitle">Briefing Timeout</v:String>
+    <v:String x:Key="LocalizableBriefingTimeoutTooltip">Time in seconds for briefing.</v:String>
+
+    <v:String x:Key="LocalizableDebriefingTimeoutTitle">Debriefing Timeout</v:String>
+    <v:String x:Key="LocalizableDebriefingTimeoutTooltip">Time in seconds for debriefing.</v:String>
+
+    <v:String x:Key="LocalizableLobbyIdleTimeoutTitle">Lobby Idle Timeout</v:String>
+    <v:String x:Key="LocalizableLobbyIdleTimeoutTooltip">Time in seconds for sitting in lobby and doing nothing.</v:String>
+
+    <v:String x:Key="LocalizableDrawingOnMapTitle">Drawing On Map</v:String>
+    <v:String x:Key="LocalizableDrawingOnMapTooltip">Is drawing on map screen allowed.</v:String>
+
+    <v:String x:Key="LocalizableIsVonEnabledTitle">Disable Voice Messaging</v:String>
+    <v:String x:Key="LocalizableIsVonEnabledTooltip">Is VON Messaging disabled.</v:String>
+
+    <v:String x:Key="LocalizableVonCodecQualityTitle">VON Codec Quality</v:String>
+    <v:String x:Key="LocalizableVonCodecQualityTooltip">Voice-Over-Net audio quality. 8kHz is 0-10, 16kHz is 11-20, for 21-30 it's 32kHz for SPEEX codec and 48kHz for OPUS codec.</v:String>
+
+    <v:String x:Key="LocalizableVonCodecTypeTitle">VON Codec</v:String>
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>
@@ -72,6 +100,8 @@
     <v:String x:Key="LocalizableFilePatchingIdsTooltip">Whitelisted Steam IDs allowed filePatching.</v:String>
     <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam IDs through comma</v:String>
 
+    <v:String x:Key="LocalizableSignatureVerificationTypeTitle">Signature Verification Type</v:String>
+    <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version of addon signature verification that will be used on server.</v:String>
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Threshold Values</v:String>
 
@@ -89,5 +119,16 @@
 
     <v:String x:Key="LocalizableMaxPacketLossTitle">Maximum Packet Loss</v:String>
     <v:String x:Key="LocalizableMaxPacketLossTooltip">Max packet loss value until server kicks the user.</v:String>
+
+    <v:String x:Key="LocalizableSlowNetworkRulesTitle">Slow Network Kick Rules</v:String>
+    <v:String x:Key="LocalizableSlowNetworkRulesWatermark">0 - log, 1 - log and kick, 4 values through comma</v:String>
+    <v:String x:Key="LocalizableSlowNetworkRulesTooltip">Defines if {MaxPing, MaxPacketLoss, MaxDesync, DisconnectTimeout} will be logged (0) or kicked (1).</v:String>
+
+    <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
+    <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable pnly through local network.</v:String>
+
+    <!--  Logging view  -->
+    <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
+    <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">If server initiated callExtension takes longer than specified limit in milliseconds, the warning will be logged into server .rpt file as well as reflected in the extension return result.</v:String>
 
 </ResourceDictionary>

@@ -3,12 +3,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
+    <v:String x:Key="LocalizableCurrentProfileTitle">Текущий профиль:</v:String>
+
+    <v:String x:Key="LocalizableSaveButton">Сохранить</v:String>
+
     <v:String x:Key="LocalizableOn">Вкл</v:String>
     <v:String x:Key="LocalizableOff">Выкл</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">Основное</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Безопасность</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Сеть</v:String>
+    <v:String x:Key="LocalizableLoggingTabTittle">Логгирование</v:String>
 
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>
@@ -21,6 +26,7 @@
     <v:String x:Key="LocalizableCommonSettingsGroupTitle">Общие настройки</v:String>
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Взаимодействие с игроками</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless-клиент</v:String>
+    <v:String x:Key="LocalizableVonGroupTitle">Голосовая связь</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Имя сервера</v:String>
     <v:String x:Key="LocalizableServerNameWatermark">Имя в браузере серверов</v:String>
@@ -51,9 +57,31 @@
     <v:String x:Key="LocalizableVotingMissionTitle">Голосование за миссию</v:String>
     <v:String x:Key="LocalizableVotingMissionTooltip">Количество игроков на сервере, необходимых для начала голосования за миссию.</v:String>
 
-    <v:String x:Key="LocalizableLanModeTitle">Локальный сервер</v:String>
-    <v:String x:Key="LocalizableLanModeTooltip">Сервер будет доступен только из локальной сети.</v:String>
+    <v:String x:Key="LocalizableVotingTimeoutTitle">Перерыв между голосованиями</v:String>
+    <v:String x:Key="LocalizableVotingTimeoutTooltip">Перерыв в секундах между голосованиями.</v:String>
 
+    <v:String x:Key="LocalizableRoleSelectionTitle">Время на выбор роли</v:String>
+    <v:String x:Key="LocalizableRoleSelectionTooltip">Время в секундах, отведённое на выбор роли в отряде на экране лобби.</v:String>
+
+    <v:String x:Key="LocalizableBriefingTimeoutTitle">Время на брифинг</v:String>
+    <v:String x:Key="LocalizableBriefingTimeoutTooltip">Время в секундах, отведённое на брифинг.</v:String>
+
+    <v:String x:Key="LocalizableDebriefingTimeoutTitle">Время на дебрифинг</v:String>
+    <v:String x:Key="LocalizableDebriefingTimeoutTooltip">Время в секундах, отведённое на дебрифинг.</v:String>
+
+    <v:String x:Key="LocalizableLobbyIdleTimeoutTitle">Время на неактивнность в лобби</v:String>
+    <v:String x:Key="LocalizableLobbyIdleTimeoutTooltip">Время в секундах, отведённое на безделье в лобби.</v:String>
+
+    <v:String x:Key="LocalizableDrawingOnMapTitle">Рисование на карте</v:String>
+    <v:String x:Key="LocalizableDrawingOnMapTooltip">Разрешено ли рисование на карте.</v:String>
+
+    <v:String x:Key="LocalizableIsVonEnabledTitle">Выключить голосовую связь</v:String>
+    <v:String x:Key="LocalizableIsVonEnabledTooltip">Выключено ли голосовое общение на сервере.</v:String>
+
+    <v:String x:Key="LocalizableVonCodecQualityTitle">Качество голосового кодека</v:String>
+    <v:String x:Key="LocalizableVonCodecQualityTooltip">Качество звука голосовых сообщений. 8kHz - значения 0-10, 16kHz - 11-20, 21-30 - 32kHz - SPEEX кодек или 48kHz OPUS кодек.</v:String>
+
+    <v:String x:Key="LocalizableVonCodecTypeTitle">Тип голосового кодека</v:String>
     <!--  Security view  -->
     <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Пароль для получения прав администратора</v:String>
@@ -62,7 +90,7 @@
     <v:String x:Key="LocalizableAdminIdsWatermark">UIDы через запятую</v:String>
     <v:String x:Key="LocalizableAdminIdsTooltip">Белый список UIDов, которые могут получить доступ к правам администратора на сервере.</v:String>
 
-    <v:String x:Key="LocalizableKickDuplicateUidsTitle">Выгонять игроков с одинаковыми UIDs</v:String>
+    <v:String x:Key="LocalizableKickDuplicateUidsTitle">Выгонять игроков с одинаковыми UID</v:String>
     <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Не разрешать игроков с одинаковыми UID. Второй игрок с дублирующим UID будет выброшен из игровой сессии.</v:String>
 
     <v:String x:Key="LocalizableFilePatchingTitle">Разрешить File Patching</v:String>
@@ -71,6 +99,9 @@
     <v:String x:Key="LocalizableFilePatchingIdsTitle">Исключения File Patching</v:String>
     <v:String x:Key="LocalizableFilePatchingIdsTooltip">Steam ID, которым разрешен  File Patching. Вводить через запятую.</v:String>
     <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam ID через запятую</v:String>
+
+    <v:String x:Key="LocalizableSignatureVerificationTypeTitle">Тип верификации сигнатур</v:String>
+    <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Тип верификации сигнатур аддонов.</v:String>
 
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Таймауты, пороговые значения</v:String>
@@ -90,5 +121,16 @@
 
     <v:String x:Key="LocalizableMaxPacketLossTitle">Maximum Packet Loss</v:String>
     <v:String x:Key="LocalizableMaxPacketLossTooltip">Максимальное количество потерянных пакетов между клиентом и сервером, прежде чем сервер выгонит игрока.</v:String>
+
+    <v:String x:Key="LocalizableSlowNetworkRulesTitle">Правила для клиентов с медленным интернетом</v:String>
+    <v:String x:Key="LocalizableSlowNetworkRulesWatermark">0 - логгировать, 1 - логгировать и выгонять, 4 значения через запятую</v:String>
+    <v:String x:Key="LocalizableSlowNetworkRulesTooltip">Определяет поведения по шаблону {MaxPing, MaxPacketLoss, MaxDesync, DisconnectTimeout}, где 0 - логгирование, 1 - логгирование и удаление клиента из игровой сессии.</v:String>
+
+    <v:String x:Key="LocalizableLanModeTitle">Локальный сервер</v:String>
+    <v:String x:Key="LocalizableLanModeTooltip">Сервер будет доступен только из локальной сети.</v:String>
+
+    <!--  Logging view  -->
+    <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>
+    <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Если инициированная сервером команда callExtension занимает больше времени, чем указанное ограничение в миллисекундах, предупреждение будет записано в файл .rpt сервера, а также отражено в результате возврата расширения.</v:String>
 
 </ResourceDictionary>
