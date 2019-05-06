@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\NullableIntToBoolConverter.cs" />
     <Compile Include="Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Attributes\WrappingClass.cs" />
     <Compile Include="Attributes\ConfigProperty.cs" />
@@ -102,6 +103,8 @@
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Enums\FilePatching.cs" />
+    <Compile Include="Enums\SignatureVerificationType.cs" />
+    <Compile Include="Enums\VoiceCodecType.cs" />
     <Compile Include="Helpers\SettingsCoordinator.cs" />
     <Compile Include="Helpers\ApplicationSettingType.cs" />
     <Compile Include="Models\Config\IConfig.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Helpers\TextParseHandler.cs" />
     <Compile Include="Storage\ServerConfigDao.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\LoggingViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\GeneralViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\SecurityViewModel.cs" />
@@ -137,6 +141,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\A3\GeneralView.xaml.cs">
       <DependentUpon>GeneralView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A3\LoggingView.xaml.cs">
+      <DependentUpon>LoggingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\A3\NetworkView.xaml.cs">
       <DependentUpon>NetworkView.xaml</DependentUpon>
@@ -180,6 +187,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\A3\GeneralView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\A3\LoggingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

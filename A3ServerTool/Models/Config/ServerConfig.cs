@@ -161,17 +161,17 @@ namespace A3ServerTool.Models.Config
         public string[] SlowNetworkKickRules { get; set; } = new string[4];
 
         /// <summary>
-        /// Gets or sets percentage of votes needed to confirm a vote. 
+        /// Gets or sets threshold for logging faulted callExtension.
         /// </summary>
         [ConfigProperty(PropertyName = "callExtReportLimit")]
-        public float? CallExtensionServerLimit { get; set; }
+        public float? CallExtensionReportLimit { get; set; }
 
         /// <summary>
         /// Gets or sets rules for different type of issue - manual kick, connectivity kick, BattleEye kick et cetera.
         /// </summary>
         /// <remarks>First value is ID of issue (from 0 to 3), second one is a timeout in seconds.</remarks>
-        [ConfigProperty(PropertyName = "kickTimeout[]")]
-        public Dictionary<int,int> KickTimeoutRules { get; set; } = new Dictionary<int, int>();
+        //[ConfigProperty(PropertyName = "kickTimeout[]")]
+        //public Dictionary<int,int> KickTimeoutRules { get; set; } = new Dictionary<int, int>();
 
         /// <summary>
         /// Gets or sets a seconds between votings. 
@@ -180,7 +180,7 @@ namespace A3ServerTool.Models.Config
         public int? VotingTimeout { get; set; }
 
         /// <summary>
-        /// Gets or sets a seconds for role selections. 
+        /// Gets or sets a seconds for role selection. 
         /// </summary>
         [ConfigProperty(PropertyName = "roleTimeOut")]
         public int? RoleSelectionTimeout { get; set; }
@@ -192,6 +192,12 @@ namespace A3ServerTool.Models.Config
         public int? BriefingTimeout { get; set; }
 
         /// <summary>
+        /// Gets or sets a seconds for debriefing. 
+        /// </summary>
+        [ConfigProperty(PropertyName = "debriefingTimeOut")]
+        public int? DebriefingTimeout { get; set; }
+
+        /// <summary>
         /// Gets or sets a seconds for lobby idling. 
         /// </summary>
         [ConfigProperty(PropertyName = "lobbyIdleTimeout")]
@@ -201,7 +207,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for enabling or disabling signature verification. 
         /// </summary>
         [ConfigProperty(PropertyName = "verifySignatures")]
-        public int? SignatureVerification { get; set; }
+        public int SignatureVerificationMode { get; set; }
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling the ability to place markers and draw lines in map. 
@@ -213,7 +219,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for enabling or disabling the Voice over Net. 
         /// </summary>
         [ConfigProperty(PropertyName = "disableVoN")]
-        public bool DisableVoice { get; set; }
+        public int? DisableVoice { get; set; }
 
         /// <summary>
         /// Gets or sets a value for defining VoN codec quality. 
@@ -225,7 +231,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for defining VoN codec. 
         /// </summary>
         [ConfigProperty(PropertyName = "vonCodec")]
-        public bool VoiceCodec { get; set; }
+        public int VoiceCodecType { get; set; }
 
         /// <summary>
         /// Gets or sets a value for skipping lobby stage for joining players. 
