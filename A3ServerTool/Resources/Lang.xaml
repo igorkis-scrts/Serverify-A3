@@ -83,6 +83,9 @@
 
     <v:String x:Key="LocalizableVonCodecTypeTitle">VON Codec</v:String>
     <!--  Security view  -->
+    <v:String x:Key="LocalizableServerSideScriptingTitle">Server-side Scripting</v:String>
+    <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
+    
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>
 

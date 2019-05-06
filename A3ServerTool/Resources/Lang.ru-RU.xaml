@@ -83,6 +83,9 @@
 
     <v:String x:Key="LocalizableVonCodecTypeTitle">Тип голосового кодека</v:String>
     <!--  Security view  -->
+    <v:String x:Key="LocalizableServerSideScriptingTitle">Серверные скрипты</v:String>
+    <v:String x:Key="LocalizableAdministrationTitle">Администрация</v:String>
+
     <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Пароль для получения прав администратора</v:String>
 
