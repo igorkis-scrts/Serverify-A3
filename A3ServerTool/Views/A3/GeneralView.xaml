@@ -91,6 +91,21 @@
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDrawingOnMapTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsDrawingOnMapAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableDrawingOnMapTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
                             Content="{DynamicResource LocalizableVotingTresholdTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
@@ -108,6 +123,105 @@
                             TextAlignment="Left"
                             ToolTip="{DynamicResource LocalizableVotingTresholdTooltip}"
                             Value="{Binding VotingTreshold, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVotingTimeoutTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Minimum="1"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableVotingTimeoutTooltip}"
+                            Value="{Binding VotingTimeout, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableRoleSelectionTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableRoleSelectionTooltip}"
+                            Value="{Binding RoleSelectionTimeout, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableBriefingTimeoutTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableBriefingTimeoutTooltip}"
+                            Value="{Binding BriefingTimeout, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDebriefingTimeoutTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableDebriefingTimeoutTooltip}"
+                            Value="{Binding DebriefingTimeout, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableLobbyIdleTimeoutTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableLobbyIdleTimeoutTooltip}"
+                            Value="{Binding LobbyIdleTimeout, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
@@ -189,6 +303,63 @@
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableHeadlessClientWatermark}"
                             Text="{Binding LocalClientIps, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    </StackPanel>
+                </Expander>
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableVonGroupTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableIsVonEnabledTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsVonDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            SwitchForeground="Red"
+                            ToolTip="{DynamicResource LocalizableIsVonEnabledTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVonCodecTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            IsEnabled="{Binding IsVonDisabled, Converter={StaticResource NullableIntToBoolConverter}}"
+                            ItemsSource="{Binding Path=VoiceCodecType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=VoiceCodecType}"
+                            SelectedValuePath="Value" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVonCodecQualityTitle}"
+                            FontSize="14"
+                            FontWeight="Bold"
+                            IsEnabled="{Binding IsVonDisabled, Converter={StaticResource NullableIntToBoolConverter}}" />
+                        <mah:NumericUpDown
+                            MinWidth="96"
+                            MaxWidth="128"
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsEnabled="{Binding IsVonDisabled, Converter={StaticResource NullableIntToBoolConverter}}"
+                            Maximum="30"
+                            Minimum="1"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableVonCodecQualityTooltip}"
+                            Value="{Binding VonCodecQuality, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

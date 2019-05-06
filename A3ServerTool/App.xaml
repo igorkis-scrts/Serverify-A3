@@ -32,6 +32,7 @@
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
+            <converters:NullableIntToBoolConverter x:Key="NullableIntToBoolConverter" />
 
             <Color x:Key="EtherealGrey">#EEEEEE</Color>
             <SolidColorBrush x:Key="ControlSecondaryColorBrush" Color="{StaticResource EtherealGrey}" />

@@ -22,6 +22,24 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableSignatureVerificationTypeTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=SignatureVerificationType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=SignatureVerificationType}"
+                    SelectedValuePath="Value"
+                    ToolTip="{DynamicResource LocalizableSignatureVerificationTypeTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
                     Content="{DynamicResource LocalizableAdminPasswordTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
@@ -79,7 +97,6 @@
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFilePatchingIdsWatermark}"
-                            AcceptsReturn="True"
                             Text="{Binding FilePatchingExceptions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             ToolTip="{DynamicResource LocalizableFilePatchingIdsTooltip}" />
 

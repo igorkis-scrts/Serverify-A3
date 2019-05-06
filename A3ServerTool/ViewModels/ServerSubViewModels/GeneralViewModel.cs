@@ -1,4 +1,5 @@
-﻿using A3ServerTool.Models;
+﻿using A3ServerTool.Enums;
+using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -223,6 +224,141 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ServerConfig.VoteMissionPlayers)) return;
                 CurrentProfile.ServerConfig.VoteMissionPlayers = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the voting timeout.
+        /// </summary>
+        public int? VotingTimeout
+        {
+            get => CurrentProfile?.ServerConfig.VotingTimeout;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.VotingTimeout)) return;
+                CurrentProfile.ServerConfig.VotingTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the role selection timeout.
+        /// </summary>
+        public int? RoleSelectionTimeout
+        {
+            get => CurrentProfile?.ServerConfig.RoleSelectionTimeout;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.RoleSelectionTimeout)) return;
+                CurrentProfile.ServerConfig.RoleSelectionTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the briefing timeout.
+        /// </summary>
+        public int? BriefingTimeout
+        {
+            get => CurrentProfile?.ServerConfig.BriefingTimeout;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.BriefingTimeout)) return;
+                CurrentProfile.ServerConfig.BriefingTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the debriefing timeout.
+        /// </summary>
+        public int? DebriefingTimeout
+        {
+            get => CurrentProfile?.ServerConfig.DebriefingTimeout;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.DebriefingTimeout)) return;
+                CurrentProfile.ServerConfig.DebriefingTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the debriefing timeout.
+        /// </summary>
+        public int? LobbyIdleTimeout
+        {
+            get => CurrentProfile?.ServerConfig.LobbyIdleTimeout;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.LobbyIdleTimeout)) return;
+                CurrentProfile.ServerConfig.LobbyIdleTimeout = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is drawing on map allowed.
+        /// </summary>
+        public bool IsDrawingOnMapAllowed
+        {
+            get => CurrentProfile.ServerConfig.IsDrawingOnMapAllowed;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IsDrawingOnMapAllowed)) return;
+                CurrentProfile.ServerConfig.IsDrawingOnMapAllowed = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the is VON messaging enabled.
+        /// </summary>
+        /// <value>
+        /// The is von enabled.
+        /// </value>
+        public int? IsVonDisabled
+        {
+            get => CurrentProfile?.ServerConfig.DisableVoice;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.DisableVoice)) return;
+                CurrentProfile.ServerConfig.DisableVoice = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the is VON messaging enabled.
+        /// </summary>
+        /// <value>
+        /// The is von enabled.
+        /// </value>
+        public int? VonCodecQuality
+        {
+            get => CurrentProfile?.ServerConfig.VoiceCodecQuality;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.VoiceCodecQuality)) return;
+                CurrentProfile.ServerConfig.VoiceCodecQuality = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type of the voice codec.
+        /// </summary>
+        public VoiceCodecType VoiceCodecType
+        {
+            get
+            {
+                return (VoiceCodecType) CurrentProfile.ServerConfig.VoiceCodecType;
+            }
+            set
+            {
+                if (Equals((int)value, CurrentProfile.ServerConfig.VoiceCodecType)) return;
+                CurrentProfile.ServerConfig.VoiceCodecType = (int)value;
                 RaisePropertyChanged();
             }
         }

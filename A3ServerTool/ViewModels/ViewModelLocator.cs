@@ -38,6 +38,8 @@ namespace A3ServerTool.ViewModels
         public NetworkViewModel Network => ServiceLocator.Current.GetInstance<NetworkViewModel>();
         public SecurityViewModel Security => ServiceLocator.Current.GetInstance<SecurityViewModel>();
 
+        public LoggingViewModel Logging => ServiceLocator.Current.GetInstance<LoggingViewModel>();
+
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -55,6 +57,7 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<ProfileDialogViewModel>();
             SimpleIoc.Default.Register<NetworkViewModel>();
             SimpleIoc.Default.Register<SecurityViewModel>();
+            SimpleIoc.Default.Register<LoggingViewModel>();
         }
 
         public static void Cleanup()

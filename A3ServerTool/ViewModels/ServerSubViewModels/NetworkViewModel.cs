@@ -137,7 +137,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-
         /// <summary>
         /// Gets or sets a value indicating whether server instance is in UPNP mode.
         /// </summary>
@@ -222,6 +221,36 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the welcome messages.
+        /// </summary>
+        public string SlowNetworkKickRules
+        {
+            get
+            {
+                var rules = CurrentProfile?.ServerConfig.SlowNetworkKickRules;
+                if (rules != null)
+                {
+                    return string.Join(",", rules);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.SlowNetworkKickRules = null;
+                }
+                else
+                {
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.SlowNetworkKickRules)) return;
+                    CurrentProfile.ServerConfig.SlowNetworkKickRules = valueAsArray;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public NetworkViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
@@ -257,6 +286,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         return "TerrainGridViewDistance must be more than zero.";
                     case nameof(ObjectViewDistance) when ObjectViewDistance < 0:
                         return "ObjectViewDistance must be more than zero.";
+                    case nameof(SlowNetworkKickRules) when SlowNetworkKickRules?.Replace(",", string.Empty).Length > 4:
+                        return "There can be only four network rules.";
                     default:
                         return null;
                 }

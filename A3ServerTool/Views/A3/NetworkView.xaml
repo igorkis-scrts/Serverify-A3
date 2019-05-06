@@ -194,6 +194,7 @@
                         Speedup="True"
                         TextAlignment="Left"
                         Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                   
                 </StackPanel>
             </StackPanel>
 
@@ -269,6 +270,19 @@
                             ToolTip="{DynamicResource LocalizableMaxPacketLossTooltip}"
                             Value="{Binding MaxPacketLoss, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableSlowNetworkRulesTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableSlowNetworkRulesWatermark}"
+                            Text="{Binding SlowNetworkKickRules, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableSlowNetworkRulesTooltip}" />
                     </StackPanel>
 
 

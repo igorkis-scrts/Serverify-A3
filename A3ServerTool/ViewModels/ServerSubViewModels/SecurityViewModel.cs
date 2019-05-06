@@ -92,7 +92,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. . 
+        /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. 
         /// </summary>
         public FilePatching FilePatching
         {
@@ -138,6 +138,22 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets password required by alternate syntax of serverCommand server-side scripting.
+        /// </summary>
+        public SignatureVerificationType SignatureVerificationType
+        {
+            get
+            {
+                return (SignatureVerificationType) CurrentProfile.ServerConfig.SignatureVerificationMode;
+            }
+            set
+            {
+                if (Equals((int)value, CurrentProfile.ServerConfig.SignatureVerificationMode)) return;
+                CurrentProfile.ServerConfig.SignatureVerificationMode = (int)value;
+                RaisePropertyChanged();
+            }
+        }
 
         public SecurityViewModel(ServerViewModel viewModel)
         {

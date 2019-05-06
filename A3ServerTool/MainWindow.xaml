@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
     xmlns:views="clr-namespace:A3ServerTool.Views"
-    Title="Socrates's Arma 3 Server Tool"
+    Title="Socrates's A3 Server Tool"
     Width="960"
     Height="800"
     Padding="10,10,10,10"
@@ -30,9 +30,6 @@
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding ExitApplicationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
         </i:EventTrigger>
-        <!--<i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding SaveWindowStateCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-        </i:EventTrigger>-->
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
         </i:EventTrigger>
@@ -132,7 +129,7 @@
 
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands ShowLastSeparator="True">
-            <Label VerticalAlignment="Center" Content="Current profile:" />
+            <Label VerticalAlignment="Center" Content="{DynamicResource LocalizableCurrentProfileTitle}" />
             <Label
                 VerticalAlignment="Center"
                 Content="{Binding CurrentProfile.Name, FallbackValue='N/A', TargetNullValue='N/A'}"
@@ -146,7 +143,7 @@
             </Label>
             <Button
                 Command="{Binding SaveProfileCommand}"
-                Content="Save"
+                Content="{DynamicResource LocalizableSaveButton}"
                 Foreground="Black" />
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
