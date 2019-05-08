@@ -21,19 +21,33 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableLogFileTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <TextBox
+                    Margin="{StaticResource ControlMargin}"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableLogFileWatermark}"
+                    Text="{Binding LogFilePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    ToolTip="{DynamicResource LocalizableLogFileTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
                     Content="{DynamicResource LocalizableCallExtensionReportLimitTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:NumericUpDown
-                            MinWidth="128"
-                            MaxWidth="128"
-                            Margin="{StaticResource EndControlMargin}"
-                            HorizontalAlignment="Left"
-                            mah:TextBoxHelper.ClearTextButton="True"
-                            Minimum="1"
-                            Speedup="True"
-                            ToolTip="{DynamicResource LocalizableCallExtensionReportLimitTooltip}"
-                            Value="{Binding CallExtensionReportLimit, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    MinWidth="128"
+                    MaxWidth="128"
+                    Margin="{StaticResource EndControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    Minimum="1"
+                    Speedup="True"
+                    ToolTip="{DynamicResource LocalizableCallExtensionReportLimitTooltip}"
+                    Value="{Binding CallExtensionReportLimit, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
             </StackPanel>
             <StackPanel Grid.Column="1">

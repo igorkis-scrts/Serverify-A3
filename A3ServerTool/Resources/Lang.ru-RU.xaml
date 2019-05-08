@@ -9,6 +9,7 @@
 
     <v:String x:Key="LocalizableOn">Вкл</v:String>
     <v:String x:Key="LocalizableOff">Выкл</v:String>
+    <v:String x:Key="LocalizableEnterSqfTitle">Вводить SQF-код</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">Основное</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Безопасность</v:String>
@@ -106,6 +107,10 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTitle">Тип верификации сигнатур</v:String>
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Тип верификации сигнатур аддонов.</v:String>
 
+    <v:String x:Key="LocalizableServerSidePasswordTitle">Пароль доступа к серверным скриптам</v:String>
+    <v:String x:Key="LocalizablDoubleIdCommandTitle">DoubleIdCommand</v:String>
+    <v:String x:Key="LocalizableDoubleIdCommandTooltip">Срабатывает при обнаружении второго клиента с одинаковым ID.</v:String>
+
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Таймауты, пороговые значения</v:String>
 
@@ -135,5 +140,9 @@
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Если инициированная сервером команда callExtension занимает больше времени, чем указанное ограничение в миллисекундах, предупреждение будет записано в файл .rpt сервера, а также отражено в результате возврата расширения.</v:String>
+
+    <v:String x:Key="LocalizableLogFileTitle">Вывод серверной консоли</v:String>
+    <v:String x:Key="LocalizableLogFileWatermark">Название файла вывода консоли сервера</v:String>
+    <v:String x:Key="LocalizableLogFileTooltip">Сохраняет вывод консоли сервера в указанный файл. Файл находится в той же папке, где и краш-дампы и логи. Оставить пустым для выключения сохранения логов консоли.</v:String>
 
 </ResourceDictionary>

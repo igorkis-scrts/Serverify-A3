@@ -1,11 +1,6 @@
 ﻿using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -30,6 +25,22 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ServerConfig.CallExtensionReportLimit)) return;
                 CurrentProfile.ServerConfig.CallExtensionReportLimit = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the log file path.
+        /// </summary>
+        public string LogFilePath
+        {
+            get => CurrentProfile?.ServerConfig?.LogFileName;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig?.LogFileName)) return;
+                CurrentProfile.ServerConfig.LogFileName = !value.Contains(".log")
+                    ? value + ".log"
+                    : value;
                 RaisePropertyChanged();
             }
         }

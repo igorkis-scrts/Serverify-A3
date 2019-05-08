@@ -139,6 +139,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets action when second user with same ID is detected.
+        /// </summary>
+        public string DoubleIdScript
+        {
+            get => CurrentProfile?.ServerConfig.OnDoubleIdCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnDoubleIdCommand)) return;
+                CurrentProfile.ServerConfig.OnDoubleIdCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets password required by alternate syntax of serverCommand server-side scripting.
         /// </summary>
         public SignatureVerificationType SignatureVerificationType

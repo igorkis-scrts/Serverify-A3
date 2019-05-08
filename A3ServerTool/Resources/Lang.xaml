@@ -9,6 +9,7 @@
 
     <v:String x:Key="LocalizableOn">On</v:String>
     <v:String x:Key="LocalizableOff">Off</v:String>
+    <v:String x:Key="LocalizableEnterSqfTitle">Enter SQF code</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">General</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Security</v:String>
@@ -85,7 +86,7 @@
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Server-side Scripting</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
-    
+
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>
 
@@ -105,6 +106,11 @@
 
     <v:String x:Key="LocalizableSignatureVerificationTypeTitle">Signature Verification Type</v:String>
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version of addon signature verification that will be used on server.</v:String>
+
+    <v:String x:Key="LocalizableServerSidePasswordTitle">Server-side Scripting Password</v:String>
+    <v:String x:Key="LocalizablDoubleIdCommandTitle">Double ID Command</v:String>
+    <v:String x:Key="LocalizableDoubleIdCommandTooltip">2nd user with the same ID detected.</v:String>
+
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Threshold Values</v:String>
 
@@ -133,5 +139,9 @@
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">If server initiated callExtension takes longer than specified limit in milliseconds, the warning will be logged into server .rpt file as well as reflected in the extension return result.</v:String>
+
+    <v:String x:Key="LocalizableLogFileTitle">Server Console Output</v:String>
+    <v:String x:Key="LocalizableLogFileWatermark">Console output file name</v:String>
+    <v:String x:Key="LocalizableLogFileTooltip">Enables output of dedicated server console into textfile. Default location of log is same as crash dumps and other logs. Leave empty to disable console logging.</v:String>
 
 </ResourceDictionary>

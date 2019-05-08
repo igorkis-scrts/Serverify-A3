@@ -243,7 +243,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for enabling output of dedicated server console into textfile.
         /// </summary>
         [ConfigProperty(PropertyName = "logFile")]
-        public string LogFilePath { get; set; }
+        public string LogFileName { get; set; }
 
         /// <summary>
         /// Gets or sets a command when 2nd user with the same ID detected.
@@ -350,6 +350,10 @@ namespace A3ServerTool.Models.Config
 
         //TODO: allowedVotedAdminCmds[]
         //TODO: allowedVoteCmds[]
+        //TODO: missionsToServerRestart
+        //TODO: missionsToShutdown
+        //TODO: autoSelectMission
+        //TODO: randomMissionOrder
         //TODO: Missions
         //https://community.bistudio.com/wiki/Arma_3:_Mission_voting
     }
