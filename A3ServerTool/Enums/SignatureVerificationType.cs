@@ -16,9 +16,6 @@ namespace A3ServerTool.Enums
         NoVerification = 0,
 
         [Description("v2")]
-        SecondVersion = 2,
-
-        [Description("v3")]
-        ThirdVersion = 3
+        SecondVersion = 2
     }
 }
