@@ -22,35 +22,7 @@ namespace A3ServerTool
             var textProperties = configProperties.ToArray();
             if (!textProperties.Any()) return default;
 
-            var nameToValueDictionary = new Dictionary<string, string>();
-
-            for (int i = 0; i < textProperties.Length; i++)
-            {
-                var splittedProperty = textProperties[i].Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
-                if (splittedProperty.Length != 2) continue;
-
-                if (splittedProperty[0].Contains("[]"))
-                {
-                    string value = string.Empty;
-
-                    for(int j = i + 1; j < textProperties.Length; j++)
-                    {
-                        if(textProperties[j] == "};")
-                        {
-                            value = Regex.Replace(value, @"[^\S ]+", "");
-                            nameToValueDictionary.Add(splittedProperty[0], value?.Replace("\"", string.Empty));
-                            break;
-                        }
-
-                        value += textProperties[j];
-                    }
-                }
-                else
-                {
-                    splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
-                    nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
-                }
-            }
+            Dictionary<string, string> nameToValueDictionary = ConvertFromTextToDictionary(textProperties);
 
             var result = (T)Activator.CreateInstance(typeof(T));
 
@@ -66,7 +38,7 @@ namespace A3ServerTool
                 {
                     property.SetValue(result, Convert.ToInt32(value));
                 }
-                else if(property.PropertyType == typeof(int?))
+                else if (property.PropertyType == typeof(int?))
                 {
                     if (int.TryParse(value, out int nullInt))
                     {
@@ -88,9 +60,9 @@ namespace A3ServerTool
                 {
                     property.SetValue(result, value?.Split(','));
                 }
-                else if(property.PropertyType == typeof(List<string>))
+                else if (property.PropertyType == typeof(List<string>))
                 {
-                    if(value != null)
+                    if (value != null)
                     {
                         value = Regex.Replace(value, @"\s+", "");
                     }
@@ -238,6 +210,55 @@ namespace A3ServerTool
             }
 
             return "{\n" + string.Join("\n\t,", valueAsArray) + "\n}";
+        }
+
+        /// <summary>
+        /// Converts from plain text to properties dictionary.
+        /// </summary>
+        /// <param name="textProperties">Text properties.</param>
+        /// <returns>"Property-value dictionary."</returns>
+        private static Dictionary<string, string> ConvertFromTextToDictionary(string[] textProperties)
+        {
+            var nameToValueDictionary = new Dictionary<string, string>();
+
+            for (int i = 0; i < textProperties.Length; i++)
+            {
+                var splittedProperty = textProperties[i].Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
+                if (splittedProperty.Length != 2) continue;
+
+                if (splittedProperty[0].Contains("[]"))
+                {
+                    string value = string.Empty;
+
+                    for (int j = i + 1; j < textProperties.Length; j++)
+                    {
+                        if (textProperties[j] == "};")
+                        {
+                            value = Regex.Replace(value, @"[^\S ]+", "");
+                            nameToValueDictionary.Add(splittedProperty[0], value?.Replace("\"", string.Empty));
+                            break;
+                        }
+
+                        value += textProperties[j];
+                    }
+                }
+                else
+                {
+                    var separatorIndex = splittedProperty[1].LastIndexOf(";");
+                    if (separatorIndex != -1)
+                    {
+                        splittedProperty[1] = splittedProperty[1].Remove(separatorIndex, 1);
+                    }
+                    else
+                    {
+                        splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
+                    }
+
+                    nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
+                }
+            }
+
+            return nameToValueDictionary;
         }
     }
 }

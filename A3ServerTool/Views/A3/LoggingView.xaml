@@ -26,8 +26,8 @@
                     FontWeight="Bold" />
                 <TextBox
                     Margin="{StaticResource ControlMargin}"
-                    mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.ClearTextButton="True"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableLogFileWatermark}"
                     Text="{Binding LogFilePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableLogFileTooltip}" />
