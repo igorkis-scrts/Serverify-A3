@@ -132,7 +132,10 @@
     <Compile Include="Helpers\TextParseHandler.cs" />
     <Compile Include="Storage\ServerConfigDao.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\ModificationsViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\DifficultyViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\LoggingViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\MissionsViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\GeneralViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\PerfromanceViewModel.cs" />
@@ -143,11 +146,20 @@
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\A3\DifficultyView.xaml.cs">
+      <DependentUpon>DifficultyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\A3\GeneralView.xaml.cs">
       <DependentUpon>GeneralView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\A3\LoggingView.xaml.cs">
       <DependentUpon>LoggingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A3\MissionsView.xaml.cs">
+      <DependentUpon>MissionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A3\ModificationsView.xaml.cs">
+      <DependentUpon>ModificationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\A3\NetworkView.xaml.cs">
       <DependentUpon>NetworkView.xaml</DependentUpon>
@@ -193,11 +205,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\A3\DifficultyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\A3\GeneralView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\A3\LoggingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\A3\MissionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\A3\ModificationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

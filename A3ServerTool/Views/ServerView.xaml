@@ -21,7 +21,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-
         <Label
             Grid.Row="0"
             Grid.Column="0"
@@ -38,23 +37,34 @@
             <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}">
                 <controls:GeneralView />
             </TabItem>
+
             <TabItem Header="{DynamicResource LocalizableSecurityTabTitle}">
                 <controls:SecurityView />
             </TabItem>
+
+            <TabItem Header="{DynamicResource LocalizableMissionsTabTittle}">
+                <controls:MissionsView />
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LocalizableModificationsTabTittle}">
+                <controls:ModificationsView />
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LocalizableDifficultyTabTittle}">
+                <controls:DifficultyView />
+            </TabItem>
+
             <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}">
                 <controls:NetworkView />
             </TabItem>
+
             <TabItem Header="{DynamicResource LocalizableLoggingTabTittle}">
                 <controls:LoggingView />
             </TabItem>
+
             <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}">
                 <controls:PerformanceView />
             </TabItem>
-            <!--<TabItem Header="Missions"></TabItem>
-            <TabItem Header="Modifications"></TabItem>
-            <TabItem Header="Performance"></TabItem>
-            <TabItem Header="Difficulty"></TabItem>
-            <TabItem Header="Other"></TabItem>-->
         </mah:MetroAnimatedSingleRowTabControl>
 
         <DockPanel Grid.Row="2" Grid.ColumnSpan="1" />

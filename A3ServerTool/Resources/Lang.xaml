@@ -16,6 +16,10 @@
     <v:String x:Key="LocalizableNetworkTabTitle">Network</v:String>
     <v:String x:Key="LocalizableLoggingTabTittle">Logging</v:String>
     <v:String x:Key="LocalizablePerformanceTabTittle">Performance</v:String>
+    <v:String x:Key="LocalizableDifficultyTabTittle">Difficulty</v:String>
+    <v:String x:Key="LocalizableModificationsTabTittle">Mods</v:String>
+    <v:String x:Key="LocalizableMissionsTabTittle">Missions</v:String>
+
 
     <v:String x:Key="LocalizableSettingsHeader">Settings</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Language</v:String>

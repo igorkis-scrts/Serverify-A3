@@ -16,6 +16,9 @@
     <v:String x:Key="LocalizableNetworkTabTitle">Сеть</v:String>
     <v:String x:Key="LocalizableLoggingTabTittle">Логгирование</v:String>
     <v:String x:Key="LocalizablePerformanceTabTittle">Производительность</v:String>
+    <v:String x:Key="LocalizableDifficultyTabTittle">Сложность</v:String>
+    <v:String x:Key="LocalizableModificationsTabTittle">Моды</v:String>
+    <v:String x:Key="LocalizableMissionsTabTittle">Миссии</v:String>
 
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>

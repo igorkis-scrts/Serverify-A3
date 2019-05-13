@@ -36,6 +36,9 @@ namespace A3ServerTool.ViewModels
         public SecurityViewModel Security => ServiceLocator.Current.GetInstance<SecurityViewModel>();
         public LoggingViewModel Logging => ServiceLocator.Current.GetInstance<LoggingViewModel>();
         public PerfromanceViewModel Performance => ServiceLocator.Current.GetInstance<PerfromanceViewModel>();
+        public ModificationsViewModel Modifications => ServiceLocator.Current.GetInstance<ModificationsViewModel>();
+        public MissionsViewModel Missions => ServiceLocator.Current.GetInstance<MissionsViewModel>();
+        public DifficultyViewModel Difficulty => ServiceLocator.Current.GetInstance<DifficultyViewModel>();
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -56,6 +59,9 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<SecurityViewModel>();
             SimpleIoc.Default.Register<LoggingViewModel>();
             SimpleIoc.Default.Register<PerfromanceViewModel>();
+            SimpleIoc.Default.Register<ModificationsViewModel>();
+            SimpleIoc.Default.Register<MissionsViewModel>();
+            SimpleIoc.Default.Register<DifficultyViewModel>();
         }
 
         public static void Cleanup()
