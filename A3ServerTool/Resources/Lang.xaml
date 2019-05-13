@@ -15,6 +15,7 @@
     <v:String x:Key="LocalizableSecurityTabTitle">Security</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Network</v:String>
     <v:String x:Key="LocalizableLoggingTabTittle">Logging</v:String>
+    <v:String x:Key="LocalizablePerformanceTabTittle">Performance</v:String>
 
     <v:String x:Key="LocalizableSettingsHeader">Settings</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Language</v:String>
@@ -83,6 +84,10 @@
     <v:String x:Key="LocalizableVonCodecQualityTooltip">Voice-Over-Net audio quality. 8kHz is 0-10, 16kHz is 11-20, for 21-30 it's 32kHz for SPEEX codec and 48kHz for OPUS codec.</v:String>
 
     <v:String x:Key="LocalizableVonCodecTypeTitle">VON Codec</v:String>
+
+    <v:String x:Key="LocalizablePersistenceTitle">Persistence</v:String>
+    <v:String x:Key="LocalizablePersistenceTooltip">Mission on server will continue to run even if there is no players present on the server.</v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Server-side Scripting</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
@@ -108,8 +113,24 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version of addon signature verification that will be used on server.</v:String>
 
     <v:String x:Key="LocalizableServerSidePasswordTitle">Server-side Scripting Password</v:String>
-    <v:String x:Key="LocalizablDoubleIdCommandTitle">Double ID Command</v:String>
-    <v:String x:Key="LocalizableDoubleIdCommandTooltip">2nd user with the same ID detected.</v:String>
+    <v:String x:Key="LocalizableDoubleIdCommandTitle">On Double ID Command</v:String>
+    <v:String x:Key="LocalizableDoubleIdCommandTooltip">Executes when 2nd user with the same ID detected.</v:String>
+    <v:String x:Key="LocalizableUserConnectedCommandTitle">On User Connected Command</v:String>
+    <v:String x:Key="LocalizableUserConnectedCommandTooltip">Executes when user connected to server.</v:String>
+    <v:String x:Key="LocalizableUserDisconnectedCommandTitle">On User Disconnected Command</v:String>
+    <v:String x:Key="LocalizableUserDisconnectedCommandTooltip">Executes when user disconnected from the server.</v:String>
+    <v:String x:Key="LocalizableHackedDataCommandTitle">On Hacked Data Command</v:String>
+    <v:String x:Key="LocalizableHackedDataCommandTooltip">Executes when game data is hacked.</v:String>
+
+    <v:String x:Key="LocalizableUnsignedDataCommandTitle">On Usigned Data Command</v:String>
+    <v:String x:Key="LocalizableUnsignedDataCommandTooltip">Executes when game data is unsigned.</v:String>
+    <v:String x:Key="LocalizableDifferentDataCommandTitle">On Hacked Data Command</v:String>
+    <v:String x:Key="LocalizableDifferentDataCommandTooltip">Executes when game data differs between client and server.</v:String>
+    <v:String x:Key="LocalizableUserKickedCommandTitle">On User Kicked Command</v:String>
+    <v:String x:Key="LocalizableUserKickedCommandTooltip">Executes when user is kicked.</v:String>
+
+    <v:String x:Key="LocalizableBattleEyeTitle">Battle Eye</v:String>
+    <v:String x:Key="LocalizableBattleEyeTooltip">Turn on/turn off Battle Eye anti-cheat solution.</v:String>
 
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Threshold Values</v:String>
@@ -143,5 +164,12 @@
     <v:String x:Key="LocalizableLogFileTitle">Server Console Output</v:String>
     <v:String x:Key="LocalizableLogFileWatermark">Console output file name</v:String>
     <v:String x:Key="LocalizableLogFileTooltip">Enables output of dedicated server console into textfile. Default location of log is same as crash dumps and other logs. Leave empty to disable console logging.</v:String>
+
+    <!--  Logging view  -->
+    <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Terrain Grid View Distance</v:String>
+    <v:String x:Key="LocalizableTerrainGridViewDistanceTooltip">Terrain render distance in meters.</v:String>
+
+    <v:String x:Key="LocalizableObjectViewDistanceTitle">Object View Distance</v:String>
+    <v:String x:Key="LocalizableObjectViewDistanceTooltip">Objects render distance in meters.</v:String>
 
 </ResourceDictionary>

@@ -59,7 +59,7 @@
                         <mah:NumericUpDown
                             MinWidth="96"
                             MaxWidth="128"
-                            Margin="{StaticResource EndControlMargin}"
+                            Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
                             Maximum="255"
                             Minimum="1"
@@ -67,6 +67,21 @@
                             TextAlignment="Left"
                             ToolTip="{DynamicResource LocalizableMaxPlayersTooltip}"
                             Value="{Binding MaximumAmountOfPlayers, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizablePersistenceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsPersistent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizablePersistenceTooltip}" />
                     </StackPanel>
                 </GroupBox>
 

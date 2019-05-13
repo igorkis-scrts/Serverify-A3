@@ -132,6 +132,7 @@
     <Compile Include="ViewModels\ServerSubViewModels\LoggingViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\GeneralViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\PerfromanceViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\SecurityViewModel.cs" />
     <Compile Include="ViewModels\ServerViewModel.cs" />
     <Compile Include="ViewModels\ProfileDialogViewModel.cs" />
@@ -147,6 +148,9 @@
     </Compile>
     <Compile Include="Views\A3\NetworkView.xaml.cs">
       <DependentUpon>NetworkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\A3\PerformanceView.xaml.cs">
+      <DependentUpon>PerformanceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\A3\SecurityView.xaml.cs">
       <DependentUpon>SecurityView.xaml</DependentUpon>
@@ -195,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\A3\NetworkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\A3\PerformanceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

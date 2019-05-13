@@ -115,28 +115,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-        public float? TerrainGridViewDistance
-        {
-            get => CurrentProfile.BasicConfig.TerrainGridViewDistance;
-            set
-            {
-                if (Equals(value, CurrentProfile.BasicConfig.TerrainGridViewDistance)) return;
-                CurrentProfile.BasicConfig.TerrainGridViewDistance = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public int? ObjectViewDistance
-        {
-            get => CurrentProfile.BasicConfig.ObjectViewDistance;
-            set
-            {
-                if (Equals(value, CurrentProfile.BasicConfig.ObjectViewDistance)) return;
-                CurrentProfile.BasicConfig.ObjectViewDistance = value;
-                RaisePropertyChanged();
-            }
-        }
-
         /// <summary>
         /// Gets or sets a value indicating whether server instance is in UPNP mode.
         /// </summary>
@@ -282,10 +260,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         return "MaxCustomFileSize must be more than zero.";
                     case nameof(MaxPacketSize) when MaxPacketSize < 0:
                         return "MaxPacketSize must be more than zero.";
-                    case nameof(TerrainGridViewDistance) when TerrainGridViewDistance < 0:
-                        return "TerrainGridViewDistance must be more than zero.";
-                    case nameof(ObjectViewDistance) when ObjectViewDistance < 0:
-                        return "ObjectViewDistance must be more than zero.";
                     case nameof(SlowNetworkKickRules) when SlowNetworkKickRules?.Replace(",", string.Empty).Length > 4:
                         return "There can be only four network rules.";
                     default:
@@ -333,14 +307,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 if (MaxPacketSize < 0 || MaxPacketSize == null)
                 {
                     return "MaxPacketSize must be more than zero.";
-                }
-                if (TerrainGridViewDistance < 0 || TerrainGridViewDistance == null)
-                {
-                    return "TerrainGridViewDistance must be more than zero.";
-                }
-                if (ObjectViewDistance < 0 || ObjectViewDistance == null)
-                {
-                    return "ObjectViewDistance must be more than zero.";
                 }
                 return string.Empty;
             }

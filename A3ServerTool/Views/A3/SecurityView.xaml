@@ -19,6 +19,22 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
+                
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableBattleEyeTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding HasBattleEye, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableBattleEyeTooltip}" />
+                
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -145,7 +161,7 @@
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="{DynamicResource LocalizablDoubleIdCommandTitle}"
+                            Content="{DynamicResource LocalizableDoubleIdCommandTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
                         <TextBox
@@ -154,6 +170,84 @@
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
                             Text="{Binding DoubleIdScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             ToolTip="{DynamicResource LocalizableDoubleIdCommandTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableUserConnectedCommandTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
+                            Text="{Binding UserConnectedScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableUserConnectedCommandTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableUserDisconnectedCommandTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
+                            Text="{Binding UserDisconnectedScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableUserDisconnectedCommandTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableUserKickedCommandTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
+                            Text="{Binding UserKickedScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableUserKickedCommandTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableHackedDataCommandTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
+                            Text="{Binding HackedDataScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableHackedDataCommandTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDifferentDataCommandTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
+                            Text="{Binding DifferentDataScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableDifferentDataCommandTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableUnsignedDataCommandTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
+                            Text="{Binding UnsignedDataScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableUnsignedDataCommandTooltip}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

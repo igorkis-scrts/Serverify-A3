@@ -12,13 +12,10 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight;
+using A3ServerTool.ViewModels.ServerSubViewModels;
 using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
-using A3ServerTool.ViewModels.ServerSubViewModels;
-using A3ServerTool.Models;
-using A3ServerTool.Storage;
 
 namespace A3ServerTool.ViewModels
 {
@@ -37,8 +34,8 @@ namespace A3ServerTool.ViewModels
         public GeneralViewModel General => ServiceLocator.Current.GetInstance<GeneralViewModel>();
         public NetworkViewModel Network => ServiceLocator.Current.GetInstance<NetworkViewModel>();
         public SecurityViewModel Security => ServiceLocator.Current.GetInstance<SecurityViewModel>();
-
         public LoggingViewModel Logging => ServiceLocator.Current.GetInstance<LoggingViewModel>();
+        public PerfromanceViewModel Performance => ServiceLocator.Current.GetInstance<PerfromanceViewModel>();
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -58,6 +55,7 @@ namespace A3ServerTool.ViewModels
             SimpleIoc.Default.Register<NetworkViewModel>();
             SimpleIoc.Default.Register<SecurityViewModel>();
             SimpleIoc.Default.Register<LoggingViewModel>();
+            SimpleIoc.Default.Register<PerfromanceViewModel>();
         }
 
         public static void Cleanup()

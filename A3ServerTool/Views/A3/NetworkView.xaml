@@ -194,7 +194,7 @@
                         Speedup="True"
                         TextAlignment="Left"
                         Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-                   
+
                 </StackPanel>
             </StackPanel>
 
@@ -305,45 +305,6 @@
                     Speedup="True"
                     TextAlignment="Left"
                     Value="{Binding MaxCustomFileSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Terrain Grid View Distance"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    x:Name="TerrainGridViewDistanceNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Interval=".001"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    StringFormat="{}{0:F3}"
-                    TextAlignment="Left"
-                    Value="{Binding TerrainGridViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
-
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="Object View Distance"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    x:Name="ObjectViewDistanceNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Maximum="4096"
-                    Minimum="0"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    Value="{Binding ObjectViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

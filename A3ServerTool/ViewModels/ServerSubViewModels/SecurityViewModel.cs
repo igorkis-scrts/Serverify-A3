@@ -153,6 +153,90 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets action when user connected to the server.
+        /// </summary>
+        public string UserConnectedScript
+        {
+            get => CurrentProfile?.ServerConfig.OnUserConnectedCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnUserConnectedCommand)) return;
+                CurrentProfile.ServerConfig.OnUserConnectedCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user disconnected script.
+        /// </summary>
+        public string UserDisconnectedScript
+        {
+            get => CurrentProfile?.ServerConfig.OnUserDisconnectedCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnUserDisconnectedCommand)) return;
+                CurrentProfile.ServerConfig.OnUserDisconnectedCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the hacked data script.
+        /// </summary>
+        public string HackedDataScript
+        {
+            get => CurrentProfile?.ServerConfig.OnHackedDataCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnHackedDataCommand)) return;
+                CurrentProfile.ServerConfig.OnHackedDataCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the different data script.
+        /// </summary>
+        public string DifferentDataScript
+        {
+            get => CurrentProfile?.ServerConfig.OnDifferentDataCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnDifferentDataCommand)) return;
+                CurrentProfile.ServerConfig.OnDifferentDataCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the unsigned data script.
+        /// </summary>
+        public string UnsignedDataScript
+        {
+            get => CurrentProfile?.ServerConfig.OnUnsignedDataCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnUnsignedDataCommand)) return;
+                CurrentProfile.ServerConfig.OnUnsignedDataCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user kicked script.
+        /// </summary>
+        public string UserKickedScript
+        {
+            get => CurrentProfile?.ServerConfig.OnUserKickedCommand;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.OnUserKickedCommand)) return;
+                CurrentProfile.ServerConfig.OnUserKickedCommand = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets password required by alternate syntax of serverCommand server-side scripting.
         /// </summary>
         public SignatureVerificationType SignatureVerificationType
@@ -165,6 +249,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals((int)value, CurrentProfile.ServerConfig.SignatureVerificationMode)) return;
                 CurrentProfile.ServerConfig.SignatureVerificationMode = (int)value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has Battle Eye anticheat engine.
+        /// </summary>
+        public bool HasBattleEye
+        {
+            get => CurrentProfile.ServerConfig.HasBattleEye;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.HasBattleEye)) return;
+                CurrentProfile.ServerConfig.HasBattleEye = value;
                 RaisePropertyChanged();
             }
         }

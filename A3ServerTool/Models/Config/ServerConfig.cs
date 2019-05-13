@@ -291,7 +291,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a command for enabling or disabling the BattlEye anti-cheat engine.
         /// </summary>
         [ConfigProperty(PropertyName = "BattlEye")]
-        public bool HasBattleEye { get; set; } = true;
+        public bool HasBattleEye { get; set; }
 
         /// <summary>
         /// Gets or sets timestamp format used on each report line in server-side RPT file.
@@ -309,7 +309,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for enabling or disabling server running when all clients disconnected.
         /// </summary>
         [ConfigProperty(PropertyName = "persistent")]
-        public bool IsPersistent { get; set; }
+        public int? IsPersistent { get; set; }
 
         /// <summary>
         /// Gets or sets a value for not allowing to connect all clients with not equal build version.
@@ -355,6 +355,7 @@ namespace A3ServerTool.Models.Config
         //TODO: autoSelectMission
         //TODO: randomMissionOrder
         //TODO: Missions
+        //TODO: Kick Rules
         //https://community.bistudio.com/wiki/Arma_3:_Mission_voting
     }
 }

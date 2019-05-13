@@ -363,6 +363,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the the value that checks if server is persistent.
+        /// </summary>
+        public int? IsPersistent
+        {
+            get => CurrentProfile?.ServerConfig.IsPersistent;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IsPersistent)) return;
+                CurrentProfile.ServerConfig.IsPersistent = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand BrowseCommand
         {
             get
