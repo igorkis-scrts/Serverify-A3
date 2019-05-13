@@ -267,9 +267,29 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets required build of the game to connect to the server.
+        /// </summary>
+        public string RequiredBuild
+        {
+            get => CurrentProfile?.ServerConfig.RequiredBuild;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.RequiredBuild)) return;
+                CurrentProfile.ServerConfig.RequiredBuild = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public SecurityViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
+        }
+
+        public void IsAllowedInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            var regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         #region IDataErrorInfo

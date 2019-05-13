@@ -377,6 +377,24 @@
                             Value="{Binding VonCodecQuality, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>
                 </Expander>
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableMiscGroupTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableRotorLibTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsForcedRotorLib, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableRotorLibTooltip}" />
+                    </StackPanel>
+                </Expander>
             </StackPanel>
         </Grid>
     </ScrollViewer>

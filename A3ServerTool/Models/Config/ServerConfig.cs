@@ -312,7 +312,7 @@ namespace A3ServerTool.Models.Config
         public int? IsPersistent { get; set; }
 
         /// <summary>
-        /// Gets or sets a value for not allowing to connect all clients with not equal build version.
+        /// Gets or sets required build of the game to connect to the server.
         /// </summary>
         [ConfigProperty(PropertyName = "requiredBuild")]
         public string RequiredBuild { get; set; }

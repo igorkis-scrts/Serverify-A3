@@ -29,6 +29,7 @@
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Interactions With Players</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless Client</v:String>
     <v:String x:Key="LocalizableVonGroupTitle">Voice-Over-Net</v:String>
+    <v:String x:Key="LocalizableMiscGroupTitle">Misc</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Server Name</v:String>
     <v:String x:Key="LocalizableServerNameWatermark">Name in server browser</v:String>
@@ -88,6 +89,9 @@
     <v:String x:Key="LocalizablePersistenceTitle">Persistence</v:String>
     <v:String x:Key="LocalizablePersistenceTooltip">Mission on server will continue to run even if there is no players present on the server.</v:String>
 
+    <v:String x:Key="LocalizableRotorLibTitle">Force RotorLib simulation</v:String>
+    <v:String x:Key="LocalizableRotorLibTooltip">Forces RotorLib flight model for helicopters.</v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Server-side Scripting</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
@@ -131,6 +135,10 @@
 
     <v:String x:Key="LocalizableBattleEyeTitle">Battle Eye</v:String>
     <v:String x:Key="LocalizableBattleEyeTooltip">Turn on/turn off Battle Eye anti-cheat solution.</v:String>
+
+    <v:String x:Key="LocalizableRequiredBuildTitle">Required Build</v:String>
+    <v:String x:Key="LocalizableRequiredBuildTooltip">Specifies game build that allowed to connect to the server.</v:String>
+    <v:String x:Key="LocalizableRequiredBuildWatermark">Build version</v:String>
 
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Threshold Values</v:String>

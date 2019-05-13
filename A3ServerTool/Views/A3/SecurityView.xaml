@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     d:DesignHeight="450"
     d:DesignWidth="800"
     DataContext="{Binding Security, Source={StaticResource Locator}}"
@@ -19,7 +20,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                
+
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -34,7 +35,7 @@
                     OnLabel="{DynamicResource LocalizableOn}"
                     Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableBattleEyeTooltip}" />
-                
+
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -99,6 +100,28 @@
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFilePatchingIdsWatermark}"
                     Text="{Binding FilePatchingExceptions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableFilePatchingIdsTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableRequiredBuildTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <TextBox
+                    Margin="{StaticResource ControlMargin}"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableRequiredBuildWatermark}"
+                    MaxLength="6"
+                    Text="{Binding RequiredBuild, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    ToolTip="{DynamicResource LocalizableRequiredBuildTooltip}">
+                    
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewTextInput" >
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="IsAllowedInput"  />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1">

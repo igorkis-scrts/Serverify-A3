@@ -29,6 +29,7 @@
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Взаимодействие с игроками</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless-клиент</v:String>
     <v:String x:Key="LocalizableVonGroupTitle">Голосовая связь</v:String>
+    <v:String x:Key="LocalizableMiscGroupTitle">Прочее</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Имя сервера</v:String>
     <v:String x:Key="LocalizableServerNameWatermark">Имя в браузере серверов</v:String>
@@ -88,6 +89,13 @@
     <v:String x:Key="LocalizablePersistenceTitle">Постоянный сервер</v:String>
     <v:String x:Key="LocalizablePersistenceTooltip">Миссия на сервере будет продолжаться даже если нет ни одного подключенного к серверу игрока.</v:String>
 
+    <v:String x:Key="LocalizableRotorLibTitle">Принудительная RotorLib-симуляция</v:String>
+    <v:String x:Key="LocalizableRotorLibTooltip">Принудительно включает физическую симуляцию RotorLib для вертолётов.</v:String>
+
+    <v:String x:Key="LocalizableRequiredBuildTitle">Требуемая сборка игры</v:String>
+    <v:String x:Key="LocalizableRequiredBuildTooltip">Определяет версию сборки, при которой можно подключиться к серверу.</v:String>
+    <v:String x:Key="LocalizableRequiredBuildWatermark">Версия сборки</v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Серверные скрипты</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Администрация</v:String>
@@ -131,6 +139,8 @@
 
     <v:String x:Key="LocalizableBattleEyeTitle">Battle Eye</v:String>
     <v:String x:Key="LocalizableBattleEyeTooltip">Выключает/выключает Battle-Eye античит.</v:String>
+
+
 
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Таймауты, пороговые значения</v:String>

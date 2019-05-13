@@ -364,7 +364,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets the the value that checks if server is persistent.
+        /// Gets or sets the value that checks if server is persistent.
         /// </summary>
         public int? IsPersistent
         {
@@ -373,6 +373,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ServerConfig.IsPersistent)) return;
                 CurrentProfile.ServerConfig.IsPersistent = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value that checks if RotorLib flight model forced on the server.
+        /// </summary>
+        public int? IsForcedRotorLib
+        {
+            get => CurrentProfile?.ServerConfig.IsRotorLibSimulationForced;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.IsRotorLibSimulationForced)) return;
+                CurrentProfile.ServerConfig.IsRotorLibSimulationForced = value;
                 RaisePropertyChanged();
             }
         }
