@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:A3ServerTool.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:h="clr-namespace:A3ServerTool.Helpers"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
@@ -393,6 +394,40 @@
                             OnLabel="{DynamicResource LocalizableOn}"
                             Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableRotorLibTooltip}" />
+
+
+                        <DockPanel>
+                            <Label
+                                Margin="{StaticResource LabelMargin}"
+                                HorizontalAlignment="Left"
+                                Content="{DynamicResource LocalizableAnalyticsTitle}"
+                                FontSize="14"
+                                FontWeight="Bold" />
+
+                            <TextBlock
+                                Margin="{StaticResource ControlMargin}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="14">
+                                <Hyperlink NavigateUri="https://community.bistudio.com/wiki/Arma_3_Analytics">
+                                    BI Wiki
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="RequestNavigate">
+                                            <ei:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Hyperlink>
+                            </TextBlock>
+                        </DockPanel>
+
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding HasAnalytics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableAnalyticsTooltip}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

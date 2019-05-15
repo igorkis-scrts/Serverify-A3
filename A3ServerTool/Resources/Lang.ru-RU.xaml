@@ -32,6 +32,7 @@
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Взаимодействие с игроками</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless-клиент</v:String>
     <v:String x:Key="LocalizableVonGroupTitle">Голосовая связь</v:String>
+    <v:String x:Key="LocalizableMissionRotationGroupTitle">Правила ротации миссий</v:String>
     <v:String x:Key="LocalizableMiscGroupTitle">Прочее</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Имя сервера</v:String>
@@ -99,9 +100,13 @@
     <v:String x:Key="LocalizableRequiredBuildTooltip">Определяет версию сборки, при которой можно подключиться к серверу.</v:String>
     <v:String x:Key="LocalizableRequiredBuildWatermark">Версия сборки</v:String>
 
+    <v:String x:Key="LocalizableAnalyticsTitle">Сбор статистики для Bohemia Interactive</v:String>
+    <v:String x:Key="LocalizableAnalyticsTooltip">Собирает базовую информацию о игре на сервере - игровые настройки, включенные модификации, любимые игроками оружие и режимы игры, производительность, соотношение смертей и убийств игроков, и отправляет собранные данные на сервер разработчиков игры.</v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Серверные скрипты</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Администрация</v:String>
+    <v:String x:Key="LocalizableAllowedFileExtensionsTitle">Разрешенные расширения файлов</v:String>
 
     <v:String x:Key="LocalizableAdminPasswordTitle">Пароль администратора</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Пароль для получения прав администратора</v:String>
@@ -143,7 +148,16 @@
     <v:String x:Key="LocalizableBattleEyeTitle">Battle Eye</v:String>
     <v:String x:Key="LocalizableBattleEyeTooltip">Выключает/выключает Battle-Eye античит.</v:String>
 
+    <v:String x:Key="LocalizableLoadFileExtensionsTitle">LoadFile-расширения</v:String>
+    <v:String x:Key="LocalizableLoadFileExtensionsTooltip">Разрешать указанные расширения файлов для их использования командой loadFile.</v:String>
 
+    <v:String x:Key="LocalizableHtmlFileExtensionsTitle">HTMLLoad-расширения</v:String>
+    <v:String x:Key="LocalizableHtmlFileExtensionsTooltip">Разрешать указанные расширения файлов для их использования командой HTMLLoad.</v:String>
+
+    <v:String x:Key="LocalizablePreprocessFileExtensionsTitle">PreprocessFile-расширения</v:String>
+    <v:String x:Key="LocalizablePreprocessFileExtensionsTooltip">Разрешать указанные расширения файлов для их использования командами preprocessFile/preprocessFileLineNumber.</v:String>
+
+    <v:String x:Key="LocalizableFileExtensionsWatermark">Расширения файлов через запятую, без точки</v:String>
 
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Таймауты, пороговые значения</v:String>
@@ -185,5 +199,23 @@
 
     <v:String x:Key="LocalizableObjectViewDistanceTitle">Дальность прорисовки объектов</v:String>
     <v:String x:Key="LocalizableObjectViewDistanceTooltip">До какой дистанции объекты будут отрисовываться в метрах.</v:String>
+
+    <!--  Missions view  -->
+    <v:String x:Key="LocalizableForcedDifficultyTitle">Принудительная сложность</v:String>
+    <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran будут взяты из конфигурационных файлов (CfgDifficultyPresets), Пользовательский уровень - из профиля сервера.</v:String>
+
+    <v:String x:Key="LocalizableIsMissionSelected">Играть на сервере</v:String>
+    <v:String x:Key="LocalizableMissionName">Название</v:String>
+    <v:String x:Key="LocalizableMissionDifficulty">Сложность</v:String>
+    <v:String x:Key="LocalizableIsMissonWhitelisted">В белом списке</v:String>
+
+    <v:String x:Key="LocalizableAutoSelectMissionsTitle">Автовыбор миссий</v:String>
+    <v:String x:Key="LocalizableAutoSelectMissionsTooltip">Когда включено, сервер автоматически запускает следующую миссию и ждёт игроков в лобби на экране выбора ролей.</v:String>
+    <v:String x:Key="LocalizableRandomMissionOrderTitle">Случайный порядок миссий</v:String>
+    <v:String x:Key="LocalizableRandomMissionOrderTooltip">Когда включено, сервер выбирает в случайном порядке следующую миссию из указанных в списке ротаций миссий сервера.</v:String>
+    <v:String x:Key="LocalizableMissionsToServerRestartTitle">Миссий до перезагрузки сервера</v:String>
+    <v:String x:Key="LocalizableMissionsToServerRestartTooltip">Сколько раз наступает событие missionEnd прежде чем сервер инициирует процесс перезагрузки.</v:String>
+    <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Миссий до выключения сервера</v:String>
+    <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Сколько раз наступает событие missionEnd прежде чем сервер инициирует процесс выключения.</v:String>
 
 </ResourceDictionary>

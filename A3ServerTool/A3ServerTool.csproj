@@ -105,6 +105,7 @@
     <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Enums\DifficultyType.cs" />
     <Compile Include="Enums\FilePatching.cs" />
     <Compile Include="Enums\SignatureVerificationType.cs" />
     <Compile Include="Enums\VoiceCodecType.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Helpers\ApplicationSettingType.cs" />
     <Compile Include="Models\Config\IConfig.cs" />
     <Compile Include="Models\Config\ServerConfig.cs" />
+    <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Profile\IProfileBuilder.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
     <Compile Include="Models\Profile\IProfile.cs" />

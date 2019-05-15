@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:A3ServerTool.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     d:DesignHeight="450"
     d:DesignWidth="800"
     DataContext="{Binding Security, Source={StaticResource Locator}}"
@@ -99,7 +99,14 @@
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFilePatchingIdsWatermark}"
                     Text="{Binding FilePatchingExceptions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    ToolTip="{DynamicResource LocalizableFilePatchingIdsTooltip}" />
+                    ToolTip="{DynamicResource LocalizableFilePatchingIdsTooltip}">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewTextInput">
+                            <ei:CallMethodAction MethodName="IsNumericWithCommasInput" TargetObject="{Binding}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
@@ -113,12 +120,12 @@
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableRequiredBuildWatermark}"
                     MaxLength="6"
-                    Text="{Binding RequiredBuild, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    Text="{Binding RequiredBuild, FallbackValue='', TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableRequiredBuildTooltip}">
-                    
+
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewTextInput" >
-                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="IsAllowedInput"  />
+                        <i:EventTrigger EventName="PreviewTextInput">
+                            <ei:CallMethodAction MethodName="IsNumericInput" TargetObject="{Binding}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBox>
@@ -159,7 +166,6 @@
                             ToolTip="{DynamicResource LocalizableAdminIdsTooltip}" />
                     </StackPanel>
                 </Expander>
-
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableServerSideScriptingTitle}">
                     <StackPanel>
                         <Label
@@ -240,7 +246,7 @@
                             FontSize="14"
                             FontWeight="Bold" />
                         <TextBox
-                            Margin="{StaticResource ControlMargin}"
+                            Margin="{StaticResource EndControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
                             Text="{Binding HackedDataScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
@@ -271,6 +277,75 @@
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableEnterSqfTitle}"
                             Text="{Binding UnsignedDataScript, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             ToolTip="{DynamicResource LocalizableUnsignedDataCommandTooltip}" />
+                    </StackPanel>
+                </Expander>
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableAllowedFileExtensionsTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableLoadFileExtensionsTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFileExtensionsWatermark}"
+                            Text="{Binding LoadFileExtensions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableLoadFileExtensionsTooltip}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction MethodName="IsLettersWithCommasInput" TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </TextBox>
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizablePreprocessFileExtensionsTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFileExtensionsWatermark}"
+                            Text="{Binding PreprocessFileExtensions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizablePreprocessFileExtensionsTooltip}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction MethodName="IsLettersWithCommasInput" TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </TextBox>
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableHtmlFileExtensionsTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableFileExtensionsWatermark}"
+                            Text="{Binding HtmlFileExtensions, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            ToolTip="{DynamicResource LocalizableHtmlFileExtensionsTooltip}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction MethodName="IsLettersWithCommasInput" TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </TextBox>
                     </StackPanel>
                 </Expander>
             </StackPanel>

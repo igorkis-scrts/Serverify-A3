@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using Interchangeable;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -270,7 +271,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// <summary>
         /// Gets or sets required build of the game to connect to the server.
         /// </summary>
-        public string RequiredBuild
+        public int? RequiredBuild
         {
             get => CurrentProfile?.ServerConfig.RequiredBuild;
             set
@@ -281,15 +282,126 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the load file extensions.
+        /// </summary>
+        public string LoadFileExtensions
+        {
+            get
+            {
+                var extensions = CurrentProfile?.ServerConfig.LoadFileExtensionsWhitelist;
+                if (extensions != null)
+                {
+                    return string.Join(",", extensions);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.LoadFileExtensionsWhitelist = null;
+                }
+                else
+                {
+                    if (value != null)
+                    {
+                        value = Regex.Replace(value, @"\s+", string.Empty);
+                    }
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.LoadFileExtensionsWhitelist)) return;
+                    CurrentProfile.ServerConfig.LoadFileExtensionsWhitelist = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the HTML file extensions.
+        /// </summary>
+        public string HtmlFileExtensions
+        {
+            get
+            {
+                var extensions = CurrentProfile?.ServerConfig.HtmlFileExtensionsWhitelist;
+                if (extensions != null)
+                {
+                    return string.Join(",", extensions);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.HtmlFileExtensionsWhitelist = null;
+                }
+                else
+                {
+                    if (value != null)
+                    {
+                        value = Regex.Replace(value, @"\s+", string.Empty);
+                    }
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.HtmlFileExtensionsWhitelist)) return;
+                    CurrentProfile.ServerConfig.HtmlFileExtensionsWhitelist = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the preprocess file extensions.
+        /// </summary>
+        public string PreprocessFileExtensions
+        {
+            get
+            {
+                var extensions = CurrentProfile?.ServerConfig.PreprocessFileExtensionsWhitelist;
+                if (extensions != null)
+                {
+                    return string.Join(",", extensions);
+                }
+                return null;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    CurrentProfile.ServerConfig.PreprocessFileExtensionsWhitelist = null;
+                }
+                else
+                {
+                    if (value != null)
+                    {
+                        value = Regex.Replace(value, @"\s+", string.Empty);
+                    }
+                    var valueAsArray = value?.Split(',');
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.PreprocessFileExtensionsWhitelist)) return;
+                    CurrentProfile.ServerConfig.PreprocessFileExtensionsWhitelist = valueAsArray.ToList();
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public SecurityViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
         }
 
-        public void IsAllowedInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        public void IsNumericInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            var regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            e.Handled = RegexPresetValues.OnlyNumeric.IsMatch(e.Text);
+        }
+
+        public void IsNumericWithCommasInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !RegexPresetValues.OnlyNumericWithCommas.IsMatch(e.Text);
+        }
+
+        public void IsLettersWithCommasInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !RegexPresetValues.OnlyLettersWithCommas.IsMatch(e.Text);
         }
 
         #region IDataErrorInfo

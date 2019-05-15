@@ -1,6 +1,7 @@
 ﻿using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using Interchangeable;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -188,7 +190,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 }
                 else
                 {
-                    if(value != null)
+                    if (value != null)
                     {
                         value = Regex.Replace(value, @"\s+", "");
                     }
@@ -391,6 +393,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets value that represents if server collects analytics.
+        /// </summary>
+        public int? HasAnalytics
+        {
+            get => CurrentProfile?.ServerConfig.HasBisAnalytics;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.HasBisAnalytics)) return;
+                CurrentProfile.ServerConfig.HasBisAnalytics = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand BrowseCommand
         {
             get
@@ -415,6 +431,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         public GeneralViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
+        }
+
+        /// <summary>
+        /// Opens the hyperlink in browser.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RequestNavigateEventArgs"/> instance containing the event data.</param>
+        public void OpenHyperlinkInBrowser(object sender, RequestNavigateEventArgs e)
+        {
+            UriDirector.OpenUri(e.Uri.AbsoluteUri);
+            e.Handled = true;
         }
 
         #region IDataErrorInfo

@@ -17,6 +17,138 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <DataGrid
+                    Margin="{StaticResource ControlMargin}"
+                    VerticalAlignment="Top"
+                    AutoGenerateColumns="False"
+                    GridLinesVisibility="Horizontal"
+                    HeadersVisibility="All"
+                    ItemsSource="{Binding Path=Missions}"
+                    RowHeaderWidth="20"
+                    SelectedItem="{Binding SelectedMission, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn
+                            Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            Header="{DynamicResource LocalizableIsMissionSelected}" />
+                        <DataGridTextColumn Binding="{Binding Name}" Header="{DynamicResource LocalizableMissionName}" />
+                        <DataGridTextColumn Binding="{Binding Difficulty}" Header="{DynamicResource LocalizableMissionDifficulty}" />
+                        <DataGridCheckBoxColumn
+                            Binding="{Binding IsWhiteListed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            Header="{DynamicResource LocalizableIsMissonWhitelisted}" />
+                    </DataGrid.Columns>
+                    <DataGrid.Style>
+                        <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
+                            <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
+                        </Style>
+                    </DataGrid.Style>
+                    <DataGrid.RowStyle>
+                        <Style BasedOn="{StaticResource MetroDataGridRow}" TargetType="{x:Type DataGridRow}" />
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+
+                <Expander Margin="{StaticResource ControlMargin}" Header="{DynamicResource LocalizableMissionRotationGroupTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableAutoSelectMissionsTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsAutoSelectMissions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableAutoSelectMissionsTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableRandomMissionOrderTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsRandomMissionOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableRandomMissionOrderTooltip}" />
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableMissionsToServerRestartTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableMissionsToServerRestartTooltip}"
+                            Value="{Binding MissionsToServerRestartQuantity, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableMissionsToServerShutdownTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="128"
+                            MaxWidth="128"
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            Interval="1"
+                            Maximum="100"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableMissionsToServerShutdownTooltip}"
+                            Value="{Binding MissionsToShutdownQuantity, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    </StackPanel>
+                </Expander>
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableForcedDifficultyTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=ForcedDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=ForcedDifficulty}"
+                    SelectedValuePath="Value"
+                    ToolTip="{DynamicResource LocalizableForcedDifficultyTitleTooltip}" />
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </UserControl>

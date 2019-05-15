@@ -315,7 +315,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets required build of the game to connect to the server.
         /// </summary>
         [ConfigProperty(PropertyName = "requiredBuild")]
-        public string RequiredBuild { get; set; }
+        public int? RequiredBuild { get; set; }
 
         /// <summary>
         /// Gets or sets a value for forcing difficulty for every mission on server.
@@ -333,7 +333,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for only allowing files with certain extensions to be loaded via loadFile command.
         /// </summary>
         [ConfigProperty(PropertyName = "allowedLoadFileExtensions[]")]
-        public List<string> FileExtensionsWhitelist { get; set; } = new List<string>();
+        public List<string> LoadFileExtensionsWhitelist { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value for only allowing files with certain extensions 
@@ -348,14 +348,44 @@ namespace A3ServerTool.Models.Config
         [ConfigProperty(PropertyName = "allowedHTMLLoadExtensions[]")]
         public List<string> HtmlFileExtensionsWhitelist { get; set; } = new List<string>();
 
+        /// <summary>
+        /// Gets or sets a value for enabling or disabling collecting and sending server statistics for developers of the game.
+        /// <see cref="https://community.bistudio.com/wiki/Arma_3_Analytics"/>
+        /// </summary>
+        [ConfigProperty(PropertyName = "statisticsEnabled")]
+        public int? HasBisAnalytics { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value if missions will be autoselected.
+        /// </summary>
+        [ConfigProperty(PropertyName = "autoSelectMission")]
+        public bool IsAutoSelectMissions { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value if missions will be in random order.
+        /// </summary>
+        [ConfigProperty(PropertyName = "randomMissionOrder")]
+        public bool IsRandomMissionOrder { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value for number of times missionEnd happens before server initiate process restart. 
+        /// </summary>
+        [ConfigProperty(PropertyName = "missionsToServerRestart")]
+        public int? MissionsToServerRestartQuantity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value for number of times missionEnd happens before server initiate process shutdown. 
+        /// </summary>
+        [ConfigProperty(PropertyName = "missionsToShutdown")]
+        public int? MissionsToShutdownQuantity { get; set; }
+
         //TODO: allowedVotedAdminCmds[]
         //TODO: allowedVoteCmds[]
-        //TODO: missionsToServerRestart
-        //TODO: missionsToShutdown
-        //TODO: autoSelectMission
-        //TODO: randomMissionOrder
         //TODO: Missions
         //TODO: Kick Rules
+        //TODO: allowedHTMLLoadURIs
+        //TODO: regularCheck
+        //TODO: missionsToHardRestart
         //https://community.bistudio.com/wiki/Arma_3:_Mission_voting
     }
 }

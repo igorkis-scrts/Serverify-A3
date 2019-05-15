@@ -33,6 +33,7 @@
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Interactions With Players</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless Client</v:String>
     <v:String x:Key="LocalizableVonGroupTitle">Voice-Over-Net</v:String>
+    <v:String x:Key="LocalizableMissionRotationGroupTitle">Mission Rotation Settings</v:String>
     <v:String x:Key="LocalizableMiscGroupTitle">Misc</v:String>
 
     <v:String x:Key="LocalizableServerNameTitle">Server Name</v:String>
@@ -96,9 +97,13 @@
     <v:String x:Key="LocalizableRotorLibTitle">Force RotorLib simulation</v:String>
     <v:String x:Key="LocalizableRotorLibTooltip">Forces RotorLib flight model for helicopters.</v:String>
 
+    <v:String x:Key="LocalizableAnalyticsTitle">Analytics For Bohemia Interactive</v:String>
+    <v:String x:Key="LocalizableAnalyticsTooltip">Collects basic information about the server's game, such as game settings, enabled mods, favorite scenarios and weapons, player deaths or actual performance, and report them to game developer's analytics server.</v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Server-side Scripting</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
+    <v:String x:Key="LocalizableAllowedFileExtensionsTitle">Allowed File Extensions</v:String>
 
     <v:String x:Key="LocalizableAdminPasswordTitle">Admin Password</v:String>
     <v:String x:Key="LocalizableAdminPasswordWatermark">Password for admin rights on server</v:String>
@@ -144,6 +149,17 @@
     <v:String x:Key="LocalizableRequiredBuildTooltip">Specifies game build that allowed to connect to the server.</v:String>
     <v:String x:Key="LocalizableRequiredBuildWatermark">Build version</v:String>
 
+    <v:String x:Key="LocalizableLoadFileExtensionsTitle">Load File Extensions</v:String>
+    <v:String x:Key="LocalizableLoadFileExtensionsTooltip">Only allow files with specified extensions to be loaded via loadFile command.</v:String>
+
+    <v:String x:Key="LocalizableHtmlFileExtensionsTitle">HTML File Extensions</v:String>
+    <v:String x:Key="LocalizableHtmlFileExtensionsTooltip">Only allow files with specified extensions to be loaded via HTMLLoad command.</v:String>
+
+    <v:String x:Key="LocalizablePreprocessFileExtensionsTitle">Preprocess File Extensions</v:String>
+    <v:String x:Key="LocalizablePreprocessFileExtensionsTooltip">Only allow files with specified extensions to be loaded via preprocessFile/preprocessFileLineNumber commands.</v:String>
+
+    <v:String x:Key="LocalizableFileExtensionsWatermark">File extensions through comma, without dot</v:String>
+
     <!--  Network View  -->
     <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Threshold Values</v:String>
 
@@ -183,5 +199,24 @@
 
     <v:String x:Key="LocalizableObjectViewDistanceTitle">Object View Distance</v:String>
     <v:String x:Key="LocalizableObjectViewDistanceTooltip">Objects render distance in meters.</v:String>
+
+    <!--  Missions view  -->
+    <v:String x:Key="LocalizableForcedDifficultyTitle">Forced Difficulty</v:String>
+    <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran will be taken from from data config (CfgDifficultyPresets), Custom - from the server profile.</v:String>
+
+    <v:String x:Key="LocalizableIsMissionSelected">Played</v:String>
+    <v:String x:Key="LocalizableMissionName">Name</v:String>
+    <v:String x:Key="LocalizableMissionDifficulty">Difficulty</v:String>
+    <v:String x:Key="LocalizableIsMissonWhitelisted">Whitelisted</v:String>
+
+    <v:String x:Key="LocalizableAutoSelectMissionsTitle">Autoselect Missions</v:String>
+    <v:String x:Key="LocalizableAutoSelectMissionsTooltip">When enabled, the server auto-starts next mission in mission cycle and waits for players in the role selection.</v:String>
+    <v:String x:Key="LocalizableRandomMissionOrderTitle">Random Mission Order</v:String>
+    <v:String x:Key="LocalizableRandomMissionOrderTooltip">When enabled, the server random start / next selection with one of missions from mission rotation list.</v:String>
+    <v:String x:Key="LocalizableMissionsToServerRestartTitle">Missions To Server Restart</v:String>
+    <v:String x:Key="LocalizableMissionsToServerRestartTooltip">Number of times missionEnd happens before server initiate process restart.</v:String>
+    <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Missions To Server Shutdown</v:String>
+    <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Number of times missionEnd happens before server initiate process shutdown.</v:String>
+
 
 </ResourceDictionary>
