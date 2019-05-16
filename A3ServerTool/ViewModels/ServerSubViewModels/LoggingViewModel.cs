@@ -1,5 +1,7 @@
-﻿using A3ServerTool.Models;
+﻿using A3ServerTool.Enums;
+using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using System;
 using System.ComponentModel;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -41,6 +43,24 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 CurrentProfile.ServerConfig.LogFileName = !value.Contains(".log")
                     ? value + ".log"
                     : value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the time stamp format.
+        /// </summary>
+        public TimeStampType TimeStampFormat
+        {
+            get
+            {
+                Enum.TryParse(CurrentProfile.ServerConfig.TimeStampFormat, out TimeStampType timeStampFormat);
+                return timeStampFormat;
+            }
+            set
+            {
+                if (Equals(value.ToString(), CurrentProfile.ServerConfig.TimeStampFormat)) return;
+                CurrentProfile.ServerConfig.TimeStampFormat = value.ToString();
                 RaisePropertyChanged();
             }
         }

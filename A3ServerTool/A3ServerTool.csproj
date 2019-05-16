@@ -107,7 +107,9 @@
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Enums\DifficultyType.cs" />
     <Compile Include="Enums\FilePatching.cs" />
+    <Compile Include="Enums\RotorLibType.cs" />
     <Compile Include="Enums\SignatureVerificationType.cs" />
+    <Compile Include="Enums\TimeStampType.cs" />
     <Compile Include="Enums\VoiceCodecType.cs" />
     <Compile Include="Helpers\SettingsCoordinator.cs" />
     <Compile Include="Helpers\ApplicationSettingType.cs" />

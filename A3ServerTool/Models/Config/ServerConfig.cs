@@ -303,7 +303,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for manipulating RotorLib simulation on server.
         /// </summary>
         [ConfigProperty(PropertyName = "forceRotorLibSimulation")]
-        public int? IsRotorLibSimulationForced { get; set; }
+        public int? RotorLibSimulationType { get; set; }
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling server running when all clients disconnected.

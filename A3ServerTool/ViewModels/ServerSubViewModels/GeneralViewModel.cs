@@ -380,20 +380,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets the value that checks if RotorLib flight model forced on the server.
-        /// </summary>
-        public int? IsForcedRotorLib
-        {
-            get => CurrentProfile?.ServerConfig.IsRotorLibSimulationForced;
-            set
-            {
-                if (Equals(value, CurrentProfile.ServerConfig.IsRotorLibSimulationForced)) return;
-                CurrentProfile.ServerConfig.IsRotorLibSimulationForced = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// Gets or sets value that represents if server collects analytics.
         /// </summary>
         public int? HasAnalytics
@@ -403,6 +389,23 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ServerConfig.HasBisAnalytics)) return;
                 CurrentProfile.ServerConfig.HasBisAnalytics = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type of the rotor library flight model.
+        /// </summary>
+        public RotorLibType RotorLibType
+        {
+            get
+            {
+                return (RotorLibType)CurrentProfile.ServerConfig.RotorLibSimulationType;
+            }
+            set
+            {
+                if (Equals((int)value, CurrentProfile.ServerConfig.RotorLibSimulationType)) return;
+                CurrentProfile.ServerConfig.RotorLibSimulationType = (int)value;
                 RaisePropertyChanged();
             }
         }
