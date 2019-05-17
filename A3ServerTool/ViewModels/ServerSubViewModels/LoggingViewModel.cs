@@ -32,9 +32,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets the log file path.
+        /// Gets or sets the console log file name.
         /// </summary>
-        public string LogFilePath
+        public string LogFileName
         {
             get => CurrentProfile?.ServerConfig?.LogFileName;
             set
@@ -60,7 +60,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value.ToString(), CurrentProfile.ServerConfig.TimeStampFormat)) return;
-                CurrentProfile.ServerConfig.TimeStampFormat = value.ToString();
+                CurrentProfile.ServerConfig.TimeStampFormat = value.ToString().ToLower();
                 RaisePropertyChanged();
             }
         }

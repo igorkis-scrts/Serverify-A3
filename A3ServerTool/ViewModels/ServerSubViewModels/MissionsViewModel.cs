@@ -29,7 +29,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value.ToString(), CurrentProfile.ServerConfig.ForcedDifficulty)) return;
-                CurrentProfile.ServerConfig.ForcedDifficulty = value.ToString();
+                CurrentProfile.ServerConfig.ForcedDifficulty = value.ToString().ToLower();
                 RaisePropertyChanged();
             }
         }

@@ -200,6 +200,9 @@
     <v:String x:Key="LocalizableObjectViewDistanceTitle">Object View Distance</v:String>
     <v:String x:Key="LocalizableObjectViewDistanceTooltip">Objects render distance in meters.</v:String>
 
+    <v:String x:Key="LocalizableTimeStampFormatTitle">Timestamp Format</v:String>
+    <v:String x:Key="LocalizableTimeStampFormatTooltip">Set the timestamp format used on each report line in server-side RPT file.</v:String>
+
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Forced Difficulty</v:String>
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran will be taken from from data config (CfgDifficultyPresets), Custom - from the server profile.</v:String>

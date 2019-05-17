@@ -200,6 +200,9 @@
     <v:String x:Key="LocalizableObjectViewDistanceTitle">Дальность прорисовки объектов</v:String>
     <v:String x:Key="LocalizableObjectViewDistanceTooltip">До какой дистанции объекты будут отрисовываться в метрах.</v:String>
 
+    <v:String x:Key="LocalizableTimeStampFormatTitle">Формат метки времени</v:String>
+    <v:String x:Key="LocalizableTimeStampFormatTooltip">Определяет формат метки времени, используемый в rpt-логах сервера.</v:String>
+
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Принудительная сложность</v:String>
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran будут взяты из конфигурационных файлов (CfgDifficultyPresets), Пользовательский уровень - из профиля сервера.</v:String>

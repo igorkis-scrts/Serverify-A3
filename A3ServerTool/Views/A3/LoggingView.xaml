@@ -29,8 +29,27 @@
                     mah:TextBoxHelper.ClearTextButton="True"
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableLogFileWatermark}"
-                    Text="{Binding LogFilePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    Text="{Binding LogFileName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableLogFileTooltip}" />
+
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableTimeStampFormatTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=TimeStampFormat, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=TimeStampFormat}"
+                    SelectedValuePath="Value"
+                    ToolTip="{DynamicResource LocalizableTimeStampFormatTooltip}" />
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
