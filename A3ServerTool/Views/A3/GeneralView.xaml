@@ -97,9 +97,8 @@
                     mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
-                    IsReadOnly="True"
                     Style="{StaticResource BrowseMetroTextBox}"
-                    Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                    Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizablePlayerInteractionsGroupTitle}">
