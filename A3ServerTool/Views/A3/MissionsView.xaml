@@ -14,7 +14,7 @@
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -23,35 +23,57 @@
                     Margin="{StaticResource ControlMargin}"
                     VerticalAlignment="Top"
                     AutoGenerateColumns="False"
+                    CanUserAddRows="False"
                     GridLinesVisibility="Horizontal"
                     HeadersVisibility="All"
                     ItemsSource="{Binding Path=Missions}"
                     RowHeaderWidth="20"
                     SelectedItem="{Binding SelectedMission, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow">
+                    SelectionUnit="FullRow"
+                    >
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn
-                            Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            Header="{DynamicResource LocalizableIsMissionSelected}" />
-                        <DataGridTextColumn Binding="{Binding Name}" Header="{DynamicResource LocalizableMissionName}" />
-                        <DataGridTextColumn Binding="{Binding Difficulty}" Header="{DynamicResource LocalizableMissionDifficulty}" />
+                        <DataGridTextColumn
+                            Width="4*"
+                            Binding="{Binding Name}"
+                            Header="{DynamicResource LocalizableMissionName}"
+                            IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="{DynamicResource LocalizableMissionDifficulty}">
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox
+                                        DisplayMemberPath="Description"
+                                        IsEditable="False"
+                                        ItemsSource="{Binding Path=Difficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                                        SelectedValue="{Binding Path=Difficulty}"
+                                        SelectedValuePath="Value" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Difficulty, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridCheckBoxColumn
                             Binding="{Binding IsWhiteListed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             Header="{DynamicResource LocalizableIsMissonWhitelisted}" />
+                        <DataGridCheckBoxColumn
+                            Width="1*"
+                            Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            Header="{DynamicResource LocalizableIsMissionSelected}" />
                     </DataGrid.Columns>
                     <DataGrid.Style>
                         <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
                             <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
                         </Style>
                     </DataGrid.Style>
-                    <DataGrid.RowStyle>
+                    <!--<DataGrid.RowStyle>
                         <Style BasedOn="{StaticResource MetroDataGridRow}" TargetType="{x:Type DataGridRow}" />
-                    </DataGrid.RowStyle>
+                    </DataGrid.RowStyle>-->
                 </DataGrid>
             </StackPanel>
 

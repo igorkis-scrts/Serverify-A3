@@ -7,16 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Interchangeable.IO;
 using A3ServerTool.Models.Config;
+using A3ServerTool.Helpers;
 
 namespace A3ServerTool.Storage
 {
     /// <inheritdoc/>
     public class ServerConfigDao : IConfigDao<ServerConfig>
     {
+        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
+
+        private IMissionDirector _missionDirector;
+
+        public ServerConfigDao(IMissionDirector missionDirector)
+        {
+            _missionDirector = missionDirector;
+        }
+
         /// <inheritdoc/>
         public ServerConfig Get(IProfile profile)
         {
-            var file = FileHelper.GetFile(Path.Combine(Profile.StorageFolder, profile.Id.ToString(),
+            var file = FileHelper.GetFile(Path.Combine(RootFolder, Profile.StorageFolder, profile.Id.ToString(),
                    profile.ServerConfig.FileName) + profile.ServerConfig.FileExtension);
             if (file == null) return null;
 
@@ -25,6 +35,8 @@ namespace A3ServerTool.Storage
 
             var result = TextParseHandler.Parse<ServerConfig>(properties);
             result.FileLocation = file.FullName;
+            result.Missions = _missionDirector.GetMissions(properties, GetGameInstallationPath(profile.ArgumentSettings.ExecutablePath)).ToList();
+
             return result;
         }
 
@@ -38,13 +50,31 @@ namespace A3ServerTool.Storage
                 FileName = profile.ServerConfig.FileName,
                 Folders = new List<string>
                     {
+                        RootFolder,
                         Profile.StorageFolder,
                         profile.Id.ToString()
                     }
             };
 
-            profile.ServerConfig.FileLocation = configDto.GetFullPath();
+            //TODO: MissionDirector.Save()
+
+            profile.ServerConfig.FileLocation = Path.Combine(RootFolder, configDto.GetFullPath());
             FileHelper.Save(configDto);
+        }
+
+        /// <summary>
+        /// Gets the game installation path.
+        /// </summary>
+        /// <param name="executablePath">The executable path.</param>
+        /// <returns>Installation path</returns>
+        private string GetGameInstallationPath(string executablePath)
+        {
+            if (string.IsNullOrWhiteSpace(executablePath)) return string.Empty;
+
+            var arrayPath = executablePath.Split('\\').ToList();
+            arrayPath.RemoveAll(x => x.Contains(".exe"));
+
+            return string.Join("\\", arrayPath);
         }
     }
 }

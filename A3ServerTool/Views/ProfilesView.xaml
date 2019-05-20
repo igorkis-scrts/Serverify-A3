@@ -55,12 +55,11 @@
                     Style="{StaticResource DescriptionHeaderStyle}" />
             </DockPanel>
 
-
             <DataGrid
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Margin="5"
+                Margin="4"
                 VerticalAlignment="Top"
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"

@@ -1,9 +1,5 @@
 ﻿using A3ServerTool.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using A3ServerTool.Enums;
 
 namespace A3ServerTool.Models
 {
@@ -18,16 +14,19 @@ namespace A3ServerTool.Models
         [ConfigProperty(PropertyName = "template")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// Gets or sets game difficulty on this mission.
-        /// </summary>
+        ///// <summary>
+        ///// Gets or sets game difficulty on this mission.
+        ///// </summary>
+        //[ConfigProperty(PropertyName = "difficulty")]
+        //public string Difficulty { get; set; }
+
         [ConfigProperty(PropertyName = "difficulty")]
-        public string Difficulty { get; set; }
+        public DifficultyType Difficulty { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is selected.
         /// </summary>
-        [ConfigProperty(IgnoreParsing =true)]
+        [ConfigProperty(IgnoreParsing = true)]
         public bool IsSelected { get; set; }
 
         /// <summary>

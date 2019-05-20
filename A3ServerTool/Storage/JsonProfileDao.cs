@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using A3ServerTool.Models;
@@ -12,6 +13,7 @@ namespace A3ServerTool.Storage
     public class JsonProfileDao : IDao<Profile>
     {
         private const string FileExtension = ".json";
+        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
 
         private readonly JsonSerializerSettings _serializerSettings;
 
@@ -23,16 +25,16 @@ namespace A3ServerTool.Storage
                 ObjectCreationHandling = ObjectCreationHandling.Replace
             };
 
-            if (!FileHelper.CheckFolderExistence(Profile.StorageFolder))
+            if (!FileHelper.CheckFolderExistence(Path.Combine(RootFolder,Profile.StorageFolder)))
             {
-                FileHelper.CreateFolder(Profile.StorageFolder);
+                FileHelper.CreateFolder(Path.Combine(RootFolder, Profile.StorageFolder));
             }
         }
 
         IList<Profile> IDao<Profile>.GetAll()
         {
             var profiles = new List<Profile>();
-            var profileFolders = FileHelper.GetFolder(Profile.StorageFolder);
+            var profileFolders = FileHelper.GetFolder(Path.Combine(RootFolder, Profile.StorageFolder));
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -49,10 +51,19 @@ namespace A3ServerTool.Storage
             return profiles;
         }
 
+        public IList<Profile> GetAll(string location)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets all stored profiles.
+        /// </summary>
+        /// <returns>Observable collection with all stored profiles.</returns>
         public ObservableCollection<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
-            var profileFolders = FileHelper.GetFolder(Profile.StorageFolder);
+            var profileFolders = FileHelper.GetFolder(Path.Combine(RootFolder, Profile.StorageFolder));
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -76,6 +87,10 @@ namespace A3ServerTool.Storage
         }
 
 
+        /// <summary>
+        /// Saves the specified profile.
+        /// </summary>
+        /// <param name="item">Profile.</param>
         public void Save(Profile item)
         {
             var metadataDto = new SaveDataDto
@@ -85,6 +100,7 @@ namespace A3ServerTool.Storage
                 FileName = "Main",
                 Folders = new List<string>
                 {
+                    RootFolder,
                     Profile.StorageFolder,
                     item.Id.ToString()
                 }
@@ -92,13 +108,18 @@ namespace A3ServerTool.Storage
             FileHelper.Save(metadataDto);
         }
 
+        /// <summary>
+        /// Deletes the specified profile.
+        /// </summary>
+        /// <param name="item">Profile.</param>
         public void Delete(Profile item)
         {
             var dto = new SaveDataDto
             {
                 Folders = new List<string>
                 {
-                    Profile.StorageFolder,
+                    //TODO: Fix it without path.combine
+                    Path.Combine(RootFolder, Profile.StorageFolder),
                     item.Id.ToString()
                 }
             };

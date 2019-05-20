@@ -379,6 +379,12 @@ namespace A3ServerTool.Models.Config
         [ConfigProperty(PropertyName = "missionsToShutdown")]
         public int? MissionsToShutdownQuantity { get; set; }
 
+        /// <summary>
+        /// Gets or sets the missions that will be played on server.
+        /// </summary>
+        [ConfigProperty(IgnoreParsing = true)]
+        public List<Mission> Missions { get; set; }
+
         //TODO: allowedVotedAdminCmds[]
         //TODO: allowedVoteCmds[]
         //TODO: Missions

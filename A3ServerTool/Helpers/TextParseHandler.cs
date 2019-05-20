@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace A3ServerTool
@@ -28,11 +27,11 @@ namespace A3ServerTool
 
             foreach (var property in typeof(T).GetProperties())
             {
-                var stringName = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
+                var configProperty = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
 
-                if (stringName?.IgnoreParsing != false) continue;
+                if (configProperty?.IgnoreParsing != false) continue;
 
-                nameToValueDictionary.TryGetValue(stringName.PropertyName, out var value);
+                nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
 
                 if (property.PropertyType == typeof(int))
                 {
@@ -74,22 +73,27 @@ namespace A3ServerTool
                     value = value?.Replace("\"", string.Empty);
                     property.SetValue(result, Convert.ToString(value));
                 }
-
             }
 
             return result;
         }
 
+        /// <summary>
+        /// Converts object properties to text representation.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        /// <returns>List of string properties.</returns>
         public static List<string> ConvertToText<T>(T instance)
         {
             var result = new List<string>();
 
             foreach (var property in instance.GetType().GetProperties())
             {
-                var stringName = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
+                var configProperty = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
+                if (configProperty?.IgnoreParsing != false) continue;
                 var wrappingClasses = property.GetCustomAttributes(typeof(WrappingClass), false).Cast<WrappingClass>().ToArray();
 
-                if (stringName == null) continue;
+                if (configProperty == null) continue;
 
                 var value = property.GetValue(instance, null);
 
@@ -134,7 +138,7 @@ namespace A3ServerTool
                     }
                 }
 
-                var line = stringName.PropertyName + " = " + value + ";";
+                var line = configProperty.PropertyName + " = " + value + ";";
 
                 if (wrappingClasses.Any())
                 {
@@ -157,7 +161,6 @@ namespace A3ServerTool
         /// <returns>List with nested properties.</returns>
         private static List<string> WrapParameter(IList<WrappingClass> classes, string parameterLine)
         {
-            //I wish someday we will get nested properties
             if (classes?.Any() != true) return new List<string>();
 
             var result = new List<string>();
@@ -187,6 +190,11 @@ namespace A3ServerTool
             return result;
         }
 
+        /// <summary>
+        /// Parses the array config properties.
+        /// </summary>
+        /// <param name="valueAsArray">The value as array.</param>
+        /// <returns></returns>
         private static string ParseArrayProperty(string[] valueAsArray)
         {
             if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;
@@ -194,12 +202,12 @@ namespace A3ServerTool
             //TODO: new attribute to check if property has empty lines 
             for (int i = 0; i < valueAsArray.Length; i++)
             {
-                valueAsArray[i] = Regex.Replace(valueAsArray[i], @"[^\S ]+", "");
+                valueAsArray[i] = Regex.Replace(valueAsArray[i], @"[^\S ]+", string.Empty);
                 valueAsArray[i] = valueAsArray[i].Replace("\"", string.Empty);
 
                 if (string.IsNullOrWhiteSpace(valueAsArray[i]))
                 {
-                    valueAsArray[i] = Regex.Replace(valueAsArray[i], @"\s+", "");
+                    valueAsArray[i] = Regex.Replace(valueAsArray[i], @"\s+", string.Empty);
                 }
                 valueAsArray[i] = "\"" + valueAsArray[i] + "\"";
             }
@@ -223,7 +231,10 @@ namespace A3ServerTool
 
             for (int i = 0; i < textProperties.Length; i++)
             {
-                var splittedProperty = textProperties[i].Split('=').Where(x => x != "=").Select(x => x.Trim()).ToArray();
+                var splittedProperty = textProperties[i].Split('=')
+                    .Where(x => x != "=")
+                    .Select(x => x.Trim())
+                    .ToArray();
                 if (splittedProperty.Length != 2) continue;
 
                 if (splittedProperty[0].Contains("[]"))
@@ -241,6 +252,11 @@ namespace A3ServerTool
 
                         value += textProperties[j];
                     }
+                }
+                else if(splittedProperty[0] == "template" || splittedProperty[0] == "difficulty")
+                {
+                    //there are separate parser for missions, lets ignore these properties
+                    continue;
                 }
                 else
                 {

@@ -1,6 +1,7 @@
 ﻿using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using Interchangeable;
 using System;
 using System.ComponentModel;
 
@@ -54,7 +55,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                Enum.TryParse(CurrentProfile.ServerConfig.TimeStampFormat, out TimeStampType timeStampFormat);
+                Enum.TryParse(CurrentProfile.ServerConfig.TimeStampFormat.FirstLetterToUpperCase(), out TimeStampType timeStampFormat);
                 return timeStampFormat;
             }
             set

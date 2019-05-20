@@ -1,6 +1,7 @@
 ﻿using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using Interchangeable;
 using System;
 using System.Collections.ObjectModel;
 
@@ -23,7 +24,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                Enum.TryParse(CurrentProfile.ServerConfig.ForcedDifficulty, out DifficultyType difficulty);
+                Enum.TryParse(CurrentProfile.ServerConfig.ForcedDifficulty.FirstLetterToUpperCase(), out DifficultyType difficulty);
                 return difficulty;
             }
             set
@@ -132,12 +133,12 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         public MissionsViewModel(ServerViewModel parentViewModel)
         {
             _parentViewModel = parentViewModel;
-            //Missions = new ObservableCollection<Mission>();
-            //Missions.Add(new Mission
-            //{
-            //    Name = "Vasyan.pbo",
-            //    Difficulty = "Regular",
-            //});
+            _missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
+        }
+
+        private void RefreshMissions()
+        {
+            //Missions = new ObservableCollection<Mission>(_profileDirector.GetAll());
         }
     }
 }
