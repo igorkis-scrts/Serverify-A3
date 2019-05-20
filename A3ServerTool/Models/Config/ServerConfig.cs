@@ -383,7 +383,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets the missions that will be played on server.
         /// </summary>
         [ConfigProperty(IgnoreParsing = true)]
-        public List<Mission> Missions { get; set; }
+        public List<Mission> Missions { get; set; } = new List<Mission>();
 
         //TODO: allowedVotedAdminCmds[]
         //TODO: allowedVoteCmds[]

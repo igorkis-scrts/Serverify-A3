@@ -10,6 +10,7 @@
     <v:String x:Key="LocalizableOn">On</v:String>
     <v:String x:Key="LocalizableOff">Off</v:String>
     <v:String x:Key="LocalizableEnterSqfTitle">Enter SQF code</v:String>
+    <v:String x:Key="LocalizableRefresh">Refresh</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">General</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Security</v:String>

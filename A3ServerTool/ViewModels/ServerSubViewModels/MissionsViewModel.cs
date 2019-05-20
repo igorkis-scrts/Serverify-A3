@@ -1,9 +1,16 @@
 ﻿using A3ServerTool.Enums;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
+using A3ServerTool.Storage;
 using GalaSoft.MvvmLight;
 using Interchangeable;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -14,6 +21,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     public class MissionsViewModel : ViewModelBase
     {
         private readonly ServerViewModel _parentViewModel;
+        private readonly IDao<Mission> _missionDao;
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
@@ -91,8 +99,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-
-
         /// <summary>
         /// Gets or sets the played missions.
         /// </summary>
@@ -110,6 +116,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
         private ObservableCollection<Mission> _missions;
+
 
         /// <summary>
         /// Gets or sets the selected mission.
@@ -130,15 +137,61 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
         private Mission _selectedMission;
 
-        public MissionsViewModel(ServerViewModel parentViewModel)
+        /// <summary>
+        /// Gets the refresh command.
+        /// </summary>
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return _refreshCommand ??
+                       (_refreshCommand = new RelayCommand(_ =>
+                       {
+                           RefreshMissions();
+                       }));
+            }
+        }
+        private ICommand _refreshCommand;
+
+        public MissionsViewModel(ServerViewModel parentViewModel, IDao<Mission> missionDao)
         {
             _parentViewModel = parentViewModel;
+            
             _missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
+            _missionDao = missionDao;
+            //RefreshMissions();
         }
 
         private void RefreshMissions()
         {
-            //Missions = new ObservableCollection<Mission>(_profileDirector.GetAll());
+            var gamePath = ServerConfigDao.GetGameInstallationPath(CurrentProfile?.ArgumentSettings?.ExecutablePath);
+            if (string.IsNullOrWhiteSpace(gamePath)) return;
+
+            Task.Run(() =>
+            {
+                if(Missions != null)
+                {
+                    var oldMissions = new List<Mission>(Missions);
+                    var updatedMissions = new ObservableCollection<Mission>(_missionDao.GetAll(gamePath));
+
+                    foreach (var mission in updatedMissions)
+                    {
+                        var oldMission = oldMissions.FirstOrDefault(m => m.Name == mission.Name);
+                        if (oldMission != null)
+                        {
+                            mission.IsSelected = oldMission.IsSelected;
+                            mission.IsWhitelisted = oldMission.IsWhitelisted;
+                            mission.Difficulty = oldMission.Difficulty;
+                        }
+                    }
+
+                    Missions = updatedMissions;
+                }
+                else
+                {
+                    Missions =new ObservableCollection<Mission>(_missionDao.GetAll(gamePath));
+                }
+            });
         }
     }
 }

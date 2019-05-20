@@ -30,6 +30,8 @@ namespace A3ServerTool.Models
                 }
             };
             server.Start();
+
+            //TODO: check if server not starts - show message about server executable
         }
 
         private string AppendProfileSettings(Profile profile)

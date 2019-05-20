@@ -1,9 +1,5 @@
 ﻿using A3ServerTool.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace A3ServerTool.Helpers
 {
@@ -24,6 +20,8 @@ namespace A3ServerTool.Helpers
         /// Saves the missions into server.cfg.
         /// </summary>
         /// <param name="missions">Missions specified somewhere in the app.</param>
-        void SaveMissions(IEnumerable<Mission> missions);
+        /// <param name="fileContent">Server config file represented in string.</param>
+        /// <returns>fileContent with missions stored as text in the end of the file.</returns>
+        string SaveMissions(IEnumerable<Mission> missions, string fileContent);
     }
 }

@@ -29,8 +29,7 @@
                     ItemsSource="{Binding Path=Missions}"
                     RowHeaderWidth="20"
                     SelectedItem="{Binding SelectedMission, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SelectionUnit="FullRow"
-                    >
+                    SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="4*"
@@ -55,7 +54,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridCheckBoxColumn
-                            Binding="{Binding IsWhiteListed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Binding="{Binding IsWhitelisted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             Header="{DynamicResource LocalizableIsMissonWhitelisted}" />
@@ -78,6 +77,33 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1">
+
+                <Button
+                    Height="28"
+                    MinWidth="64"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Command="{Binding RefreshCommand}"
+                    Content="{DynamicResource LocalizableRefresh}"
+                    Style="{DynamicResource MetroFlatButton}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableForcedDifficultyTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource EndControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=ForcedDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=ForcedDifficulty}"
+                    SelectedValuePath="Value"
+                    ToolTip="{DynamicResource LocalizableForcedDifficultyTitleTooltip}" />
 
                 <Expander Margin="{StaticResource ControlMargin}" Header="{DynamicResource LocalizableMissionRotationGroupTitle}">
                     <StackPanel>
@@ -152,24 +178,6 @@
 
                     </StackPanel>
                 </Expander>
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableForcedDifficultyTitle}"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <ComboBox
-                    MinWidth="192"
-                    MaxWidth="192"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    HorizontalContentAlignment="Left"
-                    DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=ForcedDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=ForcedDifficulty}"
-                    SelectedValuePath="Value"
-                    ToolTip="{DynamicResource LocalizableForcedDifficultyTitleTooltip}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

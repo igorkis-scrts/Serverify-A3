@@ -1,9 +1,12 @@
-﻿using System;
-using System.Windows.Input;
-using A3ServerTool.Models;
+﻿using A3ServerTool.Models;
 using A3ServerTool.ViewModels.ServerSubViewModels;
 using GalaSoft.MvvmLight;
+using Interchangeable.IO;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
+using System.Windows;
+using System.Windows.Input;
 
 namespace A3ServerTool.ViewModels
 {
@@ -35,6 +38,19 @@ namespace A3ServerTool.ViewModels
 
         private bool CheckValidation()
         {
+            if (!FileHelper.CheckFileExistence(CurrentProfile.ArgumentSettings.ExecutablePath))
+            {
+                var dialogSettings = new MetroDialogSettings
+                {
+                    AffirmativeButtonText = "OK",
+                    ColorScheme = MetroDialogColorScheme.Accented
+                };
+
+                ((MetroWindow)Application.Current.MainWindow)
+                   .ShowMessageAsync("Success", "Profile was saved.", MessageDialogStyle.Affirmative, dialogSettings);
+                return false;
+            }
+
             var detailsViewModel = ServiceLocator.Current.GetInstance<GeneralViewModel>();
             var basicViewModel = ServiceLocator.Current.GetInstance<NetworkViewModel>();
             return string.IsNullOrEmpty(detailsViewModel.Error) && string.IsNullOrEmpty(basicViewModel.Error);

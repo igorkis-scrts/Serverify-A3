@@ -1,4 +1,5 @@
-﻿using A3ServerTool.Storage;
+﻿using A3ServerTool.Models.Config;
+using A3ServerTool.Storage;
 using System;
 using System.Collections.Generic;
 
@@ -28,9 +29,23 @@ namespace A3ServerTool.Models
         public Profile GetById(Guid id)
         {
            var profile = _profileDao.Get(new Profile(id));
+           if (profile == null) return null;
+
            profile.BasicConfig = _basicDao.Get(profile);
+           if(profile.BasicConfig == null)
+           {
+                profile.BasicConfig = new BasicConfig();
+                _basicDao.Save(profile);
+           }
+
            profile.ServerConfig = _serverDao.Get(profile);
-           return profile;
+           if (profile.ServerConfig == null)
+           {
+               profile.ServerConfig = new ServerConfig();
+                _serverDao.Save(profile);
+           }
+
+            return profile;
         }
 
         /// <inheritdoc/>
@@ -59,6 +74,12 @@ namespace A3ServerTool.Models
             _profileDao.Save(profile);
             _basicDao.Save(profile);
             _serverDao.Save(profile);
+        }
+
+        public void SetDefaultValues(Profile profile)
+        {
+            //TODO: Default values for most BasicConfig, ServerConfig, CommandLineArguments
+            throw new NotImplementedException();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace A3ServerTool.Storage
     {
         private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
 
-        private IMissionDirector _missionDirector;
+        private readonly IMissionDirector _missionDirector;
 
         public ServerConfigDao(IMissionDirector missionDirector)
         {
@@ -36,6 +36,14 @@ namespace A3ServerTool.Storage
             var result = TextParseHandler.Parse<ServerConfig>(properties);
             result.FileLocation = file.FullName;
             result.Missions = _missionDirector.GetMissions(properties, GetGameInstallationPath(profile.ArgumentSettings.ExecutablePath)).ToList();
+            
+            foreach(var mission in result.Missions)
+            {
+                if(result.MissionWhitelist.Any(m => m == mission.Name))
+                {
+                    mission.IsWhitelisted = true;
+                }
+            }
 
             return result;
         }
@@ -56,7 +64,7 @@ namespace A3ServerTool.Storage
                     }
             };
 
-            //TODO: MissionDirector.Save()
+            configDto.Content = _missionDirector.SaveMissions(profile.ServerConfig.Missions, configDto.Content);
 
             profile.ServerConfig.FileLocation = Path.Combine(RootFolder, configDto.GetFullPath());
             FileHelper.Save(configDto);
@@ -67,7 +75,7 @@ namespace A3ServerTool.Storage
         /// </summary>
         /// <param name="executablePath">The executable path.</param>
         /// <returns>Installation path</returns>
-        private string GetGameInstallationPath(string executablePath)
+        public static string GetGameInstallationPath(string executablePath)
         {
             if (string.IsNullOrWhiteSpace(executablePath)) return string.Empty;
 

@@ -90,10 +90,8 @@ namespace A3ServerTool
             foreach (var property in instance.GetType().GetProperties())
             {
                 var configProperty = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
-                if (configProperty?.IgnoreParsing != false) continue;
+                if (configProperty?.IgnoreParsing != false || configProperty == null) continue;
                 var wrappingClasses = property.GetCustomAttributes(typeof(WrappingClass), false).Cast<WrappingClass>().ToArray();
-
-                if (configProperty == null) continue;
 
                 var value = property.GetValue(instance, null);
 
@@ -105,6 +103,8 @@ namespace A3ServerTool
                 {
                     if (value is string[] valueAsArray)
                     {
+                        if (valueAsArray.Any(x => x == null)) continue;
+
                         value = ParseArrayProperty((string[])value);
                     }
 
@@ -114,6 +114,8 @@ namespace A3ServerTool
                 {
                     if (value is List<string> valueAsList)
                     {
+                        if (valueAsList.Any(x => x == null)) continue;
+
                         value = ParseArrayProperty(valueAsList.ToArray());
                     }
 
@@ -195,7 +197,7 @@ namespace A3ServerTool
         /// </summary>
         /// <param name="valueAsArray">The value as array.</param>
         /// <returns></returns>
-        private static string ParseArrayProperty(string[] valueAsArray)
+        public static string ParseArrayProperty(string[] valueAsArray)
         {
             if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;
 

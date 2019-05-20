@@ -99,11 +99,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return (FilePatching) CurrentProfile.ServerConfig.FilePatchingMode;
+                return CurrentProfile?.ServerConfig?.FilePatchingMode != null
+                     ? (FilePatching)CurrentProfile.ServerConfig.FilePatchingMode
+                     : FilePatching.NoClients;
             }
             set
             {
-                if (Equals((int)value, CurrentProfile.ServerConfig.FilePatchingMode)) return;
+                if (Equals((int)value, CurrentProfile?.ServerConfig?.FilePatchingMode)) return;
                 CurrentProfile.ServerConfig.FilePatchingMode = (int) value;
                 RaisePropertyChanged();
             }
@@ -244,7 +246,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return (SignatureVerificationType) CurrentProfile.ServerConfig.SignatureVerificationMode;
+                return CurrentProfile?.ServerConfig?.SignatureVerificationMode != null
+                    ? (SignatureVerificationType)CurrentProfile.ServerConfig.SignatureVerificationMode
+                    : SignatureVerificationType.SecondVersion;
             }
             set
             {

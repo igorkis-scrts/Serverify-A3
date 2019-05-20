@@ -15,7 +15,13 @@ namespace A3ServerTool.Models
     {
         public const string StorageFolder = "Profiles";
 
-        public Profile(Guid id)
+        public Profile()
+        {
+            BasicConfig = new BasicConfig();
+            ServerConfig = new ServerConfig();
+        }
+
+        public Profile(Guid id) : this()
         {
             Id = id;
         }

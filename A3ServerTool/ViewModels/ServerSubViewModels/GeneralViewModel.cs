@@ -2,13 +2,9 @@
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using Interchangeable;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -42,10 +38,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public string Name
         {
-            get => CurrentProfile?.ServerConfig.HostName;
+            get => CurrentProfile?.ServerConfig?.HostName;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.HostName)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.HostName)) return;
                 CurrentProfile.ServerConfig.HostName = value;
                 RaisePropertyChanged();
             }
@@ -56,10 +52,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public string ServerPassword
         {
-            get => CurrentProfile?.ServerConfig.Password;
+            get => CurrentProfile?.ServerConfig?.Password;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.Password)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.Password)) return;
                 CurrentProfile.ServerConfig.Password = value;
                 RaisePropertyChanged();
             }
@@ -70,10 +66,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? MaximumAmountOfPlayers
         {
-            get => CurrentProfile?.ServerConfig.MaximumAmountOfPlayers;
+            get => CurrentProfile?.ServerConfig?.MaximumAmountOfPlayers;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.MaximumAmountOfPlayers)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.MaximumAmountOfPlayers)) return;
                 CurrentProfile.ServerConfig.MaximumAmountOfPlayers = value;
                 RaisePropertyChanged();
             }
@@ -84,7 +80,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get => CurrentProfile?.ArgumentSettings?.ExecutablePath;
             set
             {
-                if (Equals(value, CurrentProfile.ArgumentSettings.ExecutablePath)) return;
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.ExecutablePath)) return;
                 CurrentProfile.ArgumentSettings.ExecutablePath = value;
                 RaisePropertyChanged();
             }
@@ -125,10 +121,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? IntervalBetweenWelcomeMessages
         {
-            get => CurrentProfile?.ServerConfig.IntervalBetweenWelcomeMessages;
+            get => CurrentProfile?.ServerConfig?.IntervalBetweenWelcomeMessages;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.IntervalBetweenWelcomeMessages)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.IntervalBetweenWelcomeMessages)) return;
                 CurrentProfile.ServerConfig.IntervalBetweenWelcomeMessages = value;
                 RaisePropertyChanged();
             }
@@ -141,7 +137,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                var ips = CurrentProfile?.ServerConfig.HeadlessClientIps;
+                var ips = CurrentProfile?.ServerConfig?.HeadlessClientIps;
                 if (ips != null)
                 {
                     return string.Join(",", ips);
@@ -161,7 +157,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         value = Regex.Replace(value, @"\s+", "");
                     }
                     var valueAsArray = value?.Split(',');
-                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.HeadlessClientIps)) return;
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig?.HeadlessClientIps)) return;
                     CurrentProfile.ServerConfig.HeadlessClientIps = valueAsArray.ToList();
                     RaisePropertyChanged();
                 }
@@ -175,7 +171,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                var ips = CurrentProfile?.ServerConfig.LocalClientIps;
+                var ips = CurrentProfile?.ServerConfig?.LocalClientIps;
                 if (ips != null)
                 {
                     return string.Join(",", ips);
@@ -195,7 +191,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         value = Regex.Replace(value, @"\s+", "");
                     }
                     var valueAsArray = value?.Split(',');
-                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.LocalClientIps)) return;
+                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig?.LocalClientIps)) return;
                     CurrentProfile.ServerConfig.LocalClientIps = valueAsArray.ToList();
                     RaisePropertyChanged();
                 }
@@ -207,10 +203,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public float? VotingTreshold
         {
-            get => CurrentProfile?.ServerConfig.VoteThreshold;
+            get => CurrentProfile?.ServerConfig?.VoteThreshold;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.VoteThreshold)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.VoteThreshold)) return;
                 CurrentProfile.ServerConfig.VoteThreshold = value;
                 RaisePropertyChanged();
             }
@@ -224,7 +220,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get => CurrentProfile?.ServerConfig.VoteMissionPlayers;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.VoteMissionPlayers)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.VoteMissionPlayers)) return;
                 CurrentProfile.ServerConfig.VoteMissionPlayers = value;
                 RaisePropertyChanged();
             }
@@ -235,10 +231,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? VotingTimeout
         {
-            get => CurrentProfile?.ServerConfig.VotingTimeout;
+            get => CurrentProfile?.ServerConfig?.VotingTimeout;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.VotingTimeout)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.VotingTimeout)) return;
                 CurrentProfile.ServerConfig.VotingTimeout = value;
                 RaisePropertyChanged();
             }
@@ -252,7 +248,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get => CurrentProfile?.ServerConfig.RoleSelectionTimeout;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.RoleSelectionTimeout)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.RoleSelectionTimeout)) return;
                 CurrentProfile.ServerConfig.RoleSelectionTimeout = value;
                 RaisePropertyChanged();
             }
@@ -263,10 +259,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? BriefingTimeout
         {
-            get => CurrentProfile?.ServerConfig.BriefingTimeout;
+            get => CurrentProfile?.ServerConfig?.BriefingTimeout;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.BriefingTimeout)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.BriefingTimeout)) return;
                 CurrentProfile.ServerConfig.BriefingTimeout = value;
                 RaisePropertyChanged();
             }
@@ -277,10 +273,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? DebriefingTimeout
         {
-            get => CurrentProfile?.ServerConfig.DebriefingTimeout;
+            get => CurrentProfile?.ServerConfig?.DebriefingTimeout;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.DebriefingTimeout)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.DebriefingTimeout)) return;
                 CurrentProfile.ServerConfig.DebriefingTimeout = value;
                 RaisePropertyChanged();
             }
@@ -291,10 +287,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? LobbyIdleTimeout
         {
-            get => CurrentProfile?.ServerConfig.LobbyIdleTimeout;
+            get => CurrentProfile?.ServerConfig?.LobbyIdleTimeout;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.LobbyIdleTimeout)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.LobbyIdleTimeout)) return;
                 CurrentProfile.ServerConfig.LobbyIdleTimeout = value;
                 RaisePropertyChanged();
             }
@@ -308,7 +304,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get => CurrentProfile.ServerConfig.IsDrawingOnMapAllowed;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.IsDrawingOnMapAllowed)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.IsDrawingOnMapAllowed)) return;
                 CurrentProfile.ServerConfig.IsDrawingOnMapAllowed = value;
                 RaisePropertyChanged();
             }
@@ -355,7 +351,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return (VoiceCodecType) CurrentProfile.ServerConfig.VoiceCodecType;
+                return CurrentProfile?.ServerConfig?.VoiceCodecType != null
+                    ? (VoiceCodecType)CurrentProfile.ServerConfig.VoiceCodecType
+                    : VoiceCodecType.Opus;
             }
             set
             {
@@ -370,10 +368,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public int? IsPersistent
         {
-            get => CurrentProfile?.ServerConfig.IsPersistent;
+            get => CurrentProfile?.ServerConfig?.IsPersistent;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.IsPersistent)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.IsPersistent)) return;
                 CurrentProfile.ServerConfig.IsPersistent = value;
                 RaisePropertyChanged();
             }
@@ -387,7 +385,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get => CurrentProfile?.ServerConfig.HasBisAnalytics;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.HasBisAnalytics)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.HasBisAnalytics)) return;
                 CurrentProfile.ServerConfig.HasBisAnalytics = value;
                 RaisePropertyChanged();
             }
@@ -400,11 +398,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return (RotorLibType)CurrentProfile.ServerConfig.RotorLibSimulationType;
+                return CurrentProfile.ServerConfig?.RotorLibSimulationType != null
+                    ? (RotorLibType)CurrentProfile.ServerConfig.RotorLibSimulationType
+                    : RotorLibType.Default;
             }
             set
             {
-                if (Equals((int)value, CurrentProfile.ServerConfig.RotorLibSimulationType)) return;
+                if (Equals((int)value, CurrentProfile?.ServerConfig?.RotorLibSimulationType)) return;
                 CurrentProfile.ServerConfig.RotorLibSimulationType = (int)value;
                 RaisePropertyChanged();
             }
@@ -461,7 +461,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         return "Port can't be null or empty.";
                     case nameof(ExecutablePath) when string.IsNullOrWhiteSpace(ExecutablePath):
                         return "Server path can't be null or empty.";
-                    case nameof(HeadlessClientIps) when !string.IsNullOrWhiteSpace(HeadlessClientIps) 
+                    case nameof(HeadlessClientIps) when !string.IsNullOrWhiteSpace(HeadlessClientIps)
                             && Regex.Matches(HeadlessClientIps, "[a-zA-Z]").Count > 0:
                     case nameof(LocalClientIps) when !string.IsNullOrWhiteSpace(LocalClientIps)
                             && Regex.Matches(LocalClientIps, "[a-zA-Z]").Count > 0:
@@ -477,11 +477,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                if(string.IsNullOrWhiteSpace(Name))
+                if (string.IsNullOrWhiteSpace(Name))
                 {
                     return " Name of the server must be specified.";
                 }
-                else if(string.IsNullOrWhiteSpace(Port))
+                else if (string.IsNullOrWhiteSpace(Port))
                 {
                     return "Port must be specified.";
                 }

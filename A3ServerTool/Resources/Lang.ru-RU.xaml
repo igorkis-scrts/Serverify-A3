@@ -10,6 +10,7 @@
     <v:String x:Key="LocalizableOn">Вкл</v:String>
     <v:String x:Key="LocalizableOff">Выкл</v:String>
     <v:String x:Key="LocalizableEnterSqfTitle">Вводить SQF-код</v:String>
+    <v:String x:Key="LocalizableRefresh">Обновить</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">Основное</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Безопасность</v:String>

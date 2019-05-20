@@ -8,13 +8,14 @@ using A3ServerTool.Enums;
 using Interchangeable;
 using A3ServerTool.Storage;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace A3ServerTool.Helpers
 {
     /// <inheritdoc>
     public class MissionDirector : IMissionDirector
     {
-        private IDao<Mission> _missionDao;
+        private readonly IDao<Mission> _missionDao;
 
         public MissionDirector(IDao<Mission> missionDao)
         {
@@ -42,11 +43,20 @@ namespace A3ServerTool.Helpers
         }
 
         /// <inheritdoc>
-        public void SaveMissions(IEnumerable<Mission> missions)
+        public string SaveMissions(IEnumerable<Mission> missions, string fileContent)
         {
-            throw new NotImplementedException();
+            if(!missions.Any()) return fileContent;
+            var playableMissions = ParsePlayableMissions(missions);
+            var whitelistedMissions = ConvertWhitelistedMissionsToText(missions);
+
+            return fileContent + whitelistedMissions + playableMissions;
         }
 
+        /// <summary>
+        /// Gets the missions from configuration file.
+        /// </summary>
+        /// <param name="configProperties">The configuration properties.</param>
+        /// <returns>List of missions from server.cfg.</returns>
         private List<Mission> GetMissionsFromConfig(IEnumerable<string> configProperties)
         {
             var missionIndex = configProperties.ToList().FindIndex(x => x.Trim() == "class Missions");
@@ -105,6 +115,70 @@ namespace A3ServerTool.Helpers
             return result;
         }
 
+        /// <summary>
+        /// Parses the playable missions.
+        /// </summary>
+        /// <param name="missions">Missions marked to play on server.</param>
+        private string ParsePlayableMissions(IEnumerable<Mission> missions)
+        {
+            missions = missions.Where(x => x.IsSelected).ToArray();
+            if (!missions.Any()) return string.Empty;
+
+            int counter = 1;
+
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("\nclass Missions")
+                .AppendLine("{");
+
+            foreach (var mission in missions.Where(x => x.IsSelected))
+            {
+                stringBuilder.AppendLine(new string('\t', 1) + "class Mission_" + counter)
+                    .Append(new string('\t', 1))
+                    .AppendLine("{");
+                counter++;
+
+                foreach (var property in typeof(Mission).GetProperties())
+                {
+                    var configProperty = property.GetCustomAttributes(true).FirstOrDefault() as ConfigProperty;
+                    if (configProperty?.IgnoreParsing != false || configProperty == null) continue;
+
+                    var value = property.GetValue(mission, null)
+                        .ToString()
+                        .SurroundWithCharacters("\"");
+
+                    stringBuilder.Append(new string('\t', 2))
+                        .Append(configProperty.PropertyName)
+                        .Append(" = ")
+                        .Append(value)
+                        .AppendLine(";");
+                }
+
+                stringBuilder.Append(new string('\t', 1)).AppendLine("};");
+            }
+
+            stringBuilder.AppendLine("};");
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Converts the whitelisted missions to text.
+        /// </summary>
+        /// <param name="missions">Missions marked to play on server.</param>
+        private string ConvertWhitelistedMissionsToText(IEnumerable<Mission> missions)
+        {
+            missions = missions.Where(x => x.IsWhitelisted).ToArray();
+            if (!missions.Any()) return string.Empty;
+
+            var missionAsStrings = missions.Select(m => m.Name).ToArray();
+            return "\nmissionWhitelist[] = " + TextParseHandler.ParseArrayProperty(missionAsStrings) + ";";
+        }
+
+        /// <summary>
+        /// Gets the missions from storage.
+        /// </summary>
+        /// <param name="folderPath">Path to searchable folder.</param>
+        /// <returns>List of missions stored on hard drive.</returns>
         private List<Mission> GetMissionsFromStorage(string folderPath)
         {
             return _missionDao.GetAll(folderPath).ToList();

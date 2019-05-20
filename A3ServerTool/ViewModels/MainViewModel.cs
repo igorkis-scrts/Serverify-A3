@@ -102,6 +102,9 @@ namespace A3ServerTool.ViewModels
         }
         private int _windowHeight;
 
+        /// <summary>
+        /// Gets the exit application command.
+        /// </summary>
         public ICommand ExitApplicationCommand
         {
             get
@@ -133,6 +136,9 @@ namespace A3ServerTool.ViewModels
         }
         private ICommand _exitApplicationCommand;
 
+        /// <summary>
+        /// Sets the actions that will be executed after form will be fully ready to be drawn on screen.
+        /// </summary>
         public ICommand WindowLoadedCommand
         {
             get
@@ -155,6 +161,11 @@ namespace A3ServerTool.ViewModels
                                         .ToList()
                                         .Find(x => x.Id == lastProfileId);
                                    CurrentProfile = profile ?? _profileDirector.GetById(lastProfileId);
+
+                                   if(CurrentProfile == null)
+                                   {
+                                       CurrentProfile = new Profile(Guid.NewGuid());
+                                   }
                                }
                            }
                            else
@@ -175,6 +186,9 @@ namespace A3ServerTool.ViewModels
 
         private ICommand _windowLoadedCommand;
 
+        /// <summary>
+        /// Saves current profile.
+        /// </summary>
         public ICommand SaveProfileCommand
         {
             get
@@ -215,6 +229,9 @@ namespace A3ServerTool.ViewModels
             _profileDirector = director;
         }
 
+        /// <summary>
+        /// Populates hamburger menu.
+        /// </summary>
         private void CreateMenuItems()
         {
             MenuItems = new HamburgerMenuItemCollection
@@ -256,6 +273,10 @@ namespace A3ServerTool.ViewModels
             };
         }
 
+        /// <summary>
+        /// Processes the message result (profile creation dialog).
+        /// </summary>
+        /// <param name="messageContent">Content of the message.</param>
         private async void ProcessMessageResult(DialogResult<Profile> messageContent)
         {
             var dialogResult = messageContent;
