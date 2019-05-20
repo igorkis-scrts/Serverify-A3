@@ -13,7 +13,7 @@ namespace Interchangeable.IO
     public class FileHelper
     {
         private static FileHelper _instance;
-        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
+        //private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
 
         private FileHelper() {}
 
@@ -37,14 +37,14 @@ namespace Interchangeable.IO
         /// <summary>
         /// Get all folders that path contains
         /// </summary>
-        public static List<DirectoryInfo> GetFolder(string folderName)
+        public static List<DirectoryInfo> GetFolder(string folderPath)
         {
-            if (string.IsNullOrWhiteSpace(folderName))
+            if (string.IsNullOrWhiteSpace(folderPath))
             {
                 return null;
             }
 
-            return new DirectoryInfo(Path.Combine(RootFolder, folderName))
+            return new DirectoryInfo(folderPath)
                 .GetDirectories()
                 .ToList();
         }
@@ -59,7 +59,7 @@ namespace Interchangeable.IO
                 return null;
             }
 
-            return new FileInfo(Path.Combine(RootFolder, path));
+            return new FileInfo(path);
         }
 
 
@@ -70,7 +70,7 @@ namespace Interchangeable.IO
         {
             if (dto == null) return;
 
-            var path = RootFolder + Path.Combine(dto.Folders.Select(x => x).ToArray());
+            var path = Path.Combine(dto.Folders.Select(x => x).ToArray());
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -85,8 +85,8 @@ namespace Interchangeable.IO
         public static void Delete(string fileName, string folderName = null)
         {
             var path = folderName != null
-                ? Path.Combine(RootFolder, folderName, fileName)
-                : Path.Combine(RootFolder, fileName);
+                ? Path.Combine(folderName, fileName)
+                : fileName;
 
             if (File.Exists(path))
             {
@@ -105,7 +105,7 @@ namespace Interchangeable.IO
         {
             if (dto == null) return;
 
-            var path = Path.Combine(RootFolder, Path.Combine(dto.Folders.ToArray()));
+            var path = Path.Combine(dto.Folders.ToArray());
 
             if (Directory.Exists(path))
             {
@@ -125,17 +125,17 @@ namespace Interchangeable.IO
         /// <summary>
         /// Creates new folder
         /// </summary>
-        public static void CreateFolder(string folderName)
+        public static void CreateFolder(string folderPath)
         {
-            Directory.CreateDirectory(Path.Combine(RootFolder, folderName));
+            Directory.CreateDirectory(folderPath);
         }
 
         /// <summary>
         /// Checks if folder exists in application location
         /// </summary>
-        public static bool CheckFolderExistence(string folderName)
+        public static bool CheckFolderExistence(string folderPath)
         {
-            return Directory.Exists(Path.Combine(RootFolder, folderName));
+            return Directory.Exists(folderPath);
         }
 
         /// <summary>
