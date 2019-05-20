@@ -29,6 +29,14 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>-->
 
+            <!--<ObjectDataProvider MethodName="GetValues"
+                    ObjectType="{x:Type system:Enum}"
+                    x:Key="DifficultyEnumDataProvider">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="local:ChoiseEnum" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>-->
+
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
