@@ -155,10 +155,28 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets rules for slow network players - log or log and kick.
         /// </summary>
+        /// <remarks>It is required for control that should accept commas to enter the series of values.</remarks>
+        [ConfigProperty(IgnoreParsing = true)]
+        public string SlowNetworkKickRulesAsString { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets rules for slow network players - log or log and kick.
+        /// </summary>
         /// <remarks>Must be four entries with either 0 or 1 value.</remarks>
         /// <example>new[] {0,1,0,1}</example>
         [ConfigProperty(PropertyName = "kickClientsOnSlowNetwork[]")]
-        public string[] SlowNetworkKickRules { get; set; } = new string[4];
+        public int[] SlowNetworkKickRules
+        {
+            get
+            {
+                return SlowNetworkKickRulesAsString?.Split(',').Where(s => !string.IsNullOrWhiteSpace(s)).Select(int.Parse).ToArray();
+            }
+            set
+            {
+                var valueAsString = value.Select(i => i.ToString()).ToArray();
+                SlowNetworkKickRulesAsString = string.Join(",", valueAsString);
+            }
+        }
 
         /// <summary>
         /// Gets or sets threshold for logging faulted callExtension.
@@ -225,7 +243,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for defining VoN codec quality. 
         /// </summary>
         [ConfigProperty(PropertyName = "vonCodecQuality")]
-        public int? VoiceCodecQuality { get; set; } = 3;
+        public int? VoiceCodecQuality { get; set; }
 
         /// <summary>
         /// Gets or sets a value for defining VoN codec. 

@@ -3,6 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -57,10 +59,11 @@
                         FontWeight="Bold" />
 
                     <mah:NumericUpDown
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Maximum="4096"
                         Minimum="0"
                         Speedup="True"
@@ -74,10 +77,11 @@
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Maximum="4096"
                         Minimum="0"
                         Speedup="True"
@@ -92,11 +96,11 @@
                         FontWeight="Bold" />
 
                     <mah:NumericUpDown
-                        x:Name="MaxSizeNonGuaranteedNumericBox"
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Maximum="4096"
                         Minimum="0"
                         Speedup="True"
@@ -110,12 +114,11 @@
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
-                        x:Name="MinBandwidthNumericBox"
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        Maximum="4096"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
@@ -128,12 +131,11 @@
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
-                        x:Name="MaxBandwidthNumericBox"
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        Maximum="4096"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
@@ -146,10 +148,11 @@
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Interval=".001"
                         Maximum="4096"
                         Minimum="0"
@@ -165,11 +168,11 @@
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
-                        x:Name="MinErrorToSendNearNumericBox"
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Interval=".001"
                         Maximum="4096"
                         Minimum="0"
@@ -185,10 +188,11 @@
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
-                        MinWidth="96"
-                        MaxWidth="128"
+                        MinWidth="192"
+                        MaxWidth="512"
                         Margin="{StaticResource EndControlMargin}"
                         HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
                         Maximum="4096"
                         Minimum="0"
                         Speedup="True"
@@ -282,10 +286,16 @@
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableSlowNetworkRulesWatermark}"
                             Text="{Binding SlowNetworkKickRules, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            ToolTip="{DynamicResource LocalizableSlowNetworkRulesTooltip}" />
+                            ToolTip="{DynamicResource LocalizableSlowNetworkRulesTooltip}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction MethodName="IsRestrictedNumericWithCommasInput" TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </TextBox>
                     </StackPanel>
-
-
                 </Expander>
 
                 <Label
@@ -295,12 +305,11 @@
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:NumericUpDown
-                    x:Name="MaxCustomFileSizeNumericBox"
-                    MinWidth="96"
-                    MaxWidth="128"
+                    MinWidth="192"
+                    MaxWidth="512"
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    Maximum="4096"
+                    mah:TextBoxHelper.ClearTextButton="True"
                     Minimum="0"
                     Speedup="True"
                     TextAlignment="Left"

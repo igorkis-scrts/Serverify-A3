@@ -3,6 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,6 +12,12 @@
     d:DesignWidth="960"
     DataContext="{Binding Missions, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -78,15 +86,22 @@
 
             <StackPanel Grid.Column="1">
 
-                <Button
-                    Height="28"
-                    MinWidth="64"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    Command="{Binding RefreshCommand}"
-                    Content="{DynamicResource LocalizableRefresh}"
-                    Style="{DynamicResource MetroFlatButton}" />
+                <DockPanel Margin="{StaticResource ControlMargin}">
+                    <Button
+                        Height="28"
+                        MinWidth="64"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        Command="{Binding RefreshCommand}"
+                        Content="{DynamicResource LocalizableRefresh}"
+                        Style="{DynamicResource MetroFlatButton}" />
 
+                    <TextBlock
+                        MinWidth="128"
+                        MaxWidth="256"
+                        Text="{DynamicResource LocalizableRefreshNote}"
+                        TextWrapping="Wrap" />
+                </DockPanel>
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"

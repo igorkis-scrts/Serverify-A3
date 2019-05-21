@@ -183,6 +183,7 @@ namespace A3ServerTool.ViewModels
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
+                _profileDirector.SetDefaultValues(DialogResult.Object);
                 _profileDirector.SaveStorage(DialogResult.Object);
 
                 if (Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))

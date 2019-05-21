@@ -1,8 +1,6 @@
 ﻿using A3ServerTool.Models;
-using A3ServerTool.Models.Config;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
+using Interchangeable;
 using System.ComponentModel;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -204,34 +202,24 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public string SlowNetworkKickRules
         {
-            get
-            {
-                var rules = CurrentProfile?.ServerConfig.SlowNetworkKickRules;
-                if (rules != null)
-                {
-                    return string.Join(",", rules);
-                }
-                return null;
-            }
+            get => CurrentProfile.ServerConfig.SlowNetworkKickRulesAsString;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    CurrentProfile.ServerConfig.SlowNetworkKickRules = null;
-                }
-                else
-                {
-                    var valueAsArray = value?.Split(',');
-                    if (Equals(valueAsArray, CurrentProfile?.ServerConfig.SlowNetworkKickRules)) return;
-                    CurrentProfile.ServerConfig.SlowNetworkKickRules = valueAsArray;
-                    RaisePropertyChanged();
-                }
+                if (Equals(value, CurrentProfile.ServerConfig.SlowNetworkKickRulesAsString)) return;
+                CurrentProfile.ServerConfig.SlowNetworkKickRulesAsString = value;
+                RaisePropertyChanged();
             }
         }
 
         public NetworkViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
+        }
+
+        public void IsRestrictedNumericWithCommasInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !RegexPresetValues.OnlyOneOrTwoLimitedToSixWithCommas.IsMatch(e.Text);
+            e.Handled = !RegexPresetValues.OnlyOneOrTwoLimitedToSixWithCommas.IsMatch(SlowNetworkKickRules);
         }
 
         #region IDataErrorInfo
@@ -272,7 +260,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                if(MaxMessagesSend < 0 || MaxMessagesSend == null)
+                if (MaxMessagesSend < 0 || MaxMessagesSend == null)
                 {
                     return "MaxMessagesSend must be more than zero.";
                 }

@@ -222,4 +222,6 @@
     <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Миссий до выключения сервера</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Сколько раз наступает событие missionEnd прежде чем сервер инициирует процесс выключения.</v:String>
 
+    <v:String x:Key="LocalizableRefreshNote">Миссии ищутся в той же папке, что и исполняемый файл сервера. Если миссий нет - сначала укажите исполняемый файл сервера.</v:String>
+
 </ResourceDictionary>

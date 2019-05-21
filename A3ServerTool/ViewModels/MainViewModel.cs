@@ -165,6 +165,7 @@ namespace A3ServerTool.ViewModels
                                    if(CurrentProfile == null)
                                    {
                                        CurrentProfile = new Profile(Guid.NewGuid());
+                                       _profileDirector.SetDefaultValues(CurrentProfile);
                                    }
                                }
                            }
@@ -175,6 +176,7 @@ namespace A3ServerTool.ViewModels
                        }));
             }
         }
+        private ICommand _windowLoadedCommand;
 
         private void SetWindowState()
         {
@@ -183,8 +185,6 @@ namespace A3ServerTool.ViewModels
             //WindowWidth = (int)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowWidth);
             //WindowHeight = (int)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowHeight);
         }
-
-        private ICommand _windowLoadedCommand;
 
         /// <summary>
         /// Saves current profile.

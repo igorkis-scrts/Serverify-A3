@@ -30,7 +30,21 @@ namespace A3ServerTool.ViewModels
                 return _startServerCommand ??
                        (_startServerCommand = new RelayCommand(_ =>
                           {
-                              _launcher.Run(CurrentProfile);
+                              if (!FileHelper.CheckFileExistence(CurrentProfile.ArgumentSettings.ExecutablePath))
+                              {
+                                  var dialogSettings = new MetroDialogSettings
+                                  {
+                                      AffirmativeButtonText = "OK",
+                                      ColorScheme = MetroDialogColorScheme.Accented
+                                  };
+
+                                  ((MetroWindow)Application.Current.MainWindow)
+                                     .ShowMessageAsync("Error", "Server executable not exists on specified path.", MessageDialogStyle.Affirmative, dialogSettings);
+                              }
+                              else
+                              {
+                                  _launcher.Run(CurrentProfile);
+                              }
                           }, _ => CheckValidation()));
             }
         }
@@ -38,22 +52,9 @@ namespace A3ServerTool.ViewModels
 
         private bool CheckValidation()
         {
-            if (!FileHelper.CheckFileExistence(CurrentProfile.ArgumentSettings.ExecutablePath))
-            {
-                var dialogSettings = new MetroDialogSettings
-                {
-                    AffirmativeButtonText = "OK",
-                    ColorScheme = MetroDialogColorScheme.Accented
-                };
-
-                ((MetroWindow)Application.Current.MainWindow)
-                   .ShowMessageAsync("Success", "Profile was saved.", MessageDialogStyle.Affirmative, dialogSettings);
-                return false;
-            }
-
             var detailsViewModel = ServiceLocator.Current.GetInstance<GeneralViewModel>();
             var basicViewModel = ServiceLocator.Current.GetInstance<NetworkViewModel>();
-            return string.IsNullOrEmpty(detailsViewModel.Error) && string.IsNullOrEmpty(basicViewModel.Error);
+            return string.IsNullOrWhiteSpace(detailsViewModel.Error) && string.IsNullOrWhiteSpace(basicViewModel.Error);
         }
     }
 }

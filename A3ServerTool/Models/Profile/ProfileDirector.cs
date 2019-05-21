@@ -78,8 +78,68 @@ namespace A3ServerTool.Models
 
         public void SetDefaultValues(Profile profile)
         {
-            //TODO: Default values for most BasicConfig, ServerConfig, CommandLineArguments
-            throw new NotImplementedException();
+            SetBasicConfigDefaultValues(profile);
+            SetServerConfigDefaultValues(profile);
+            //TODO: Default values for CommandLineArguments
+        }
+
+        /// <summary>
+        /// Sets the basic configuration default values.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void SetBasicConfigDefaultValues(Profile profile)
+        {
+            if (profile == null) return;
+
+            if(profile.BasicConfig == null)
+            {
+                profile.BasicConfig = new BasicConfig();
+            }
+
+            profile.BasicConfig.MaxMessagesSend = 128;
+            profile.BasicConfig.MaxSizeGuaranteed = 512;
+            profile.BasicConfig.MaxSizeNonguaranteed = 256;
+            profile.BasicConfig.MinBandwidth = 131072;
+            profile.BasicConfig.MaxBandwidth = 1048576000;
+            profile.BasicConfig.MinErrorToSend = 0.001F;
+            profile.BasicConfig.MinErrorToSendNear = 0.01F;
+            profile.BasicConfig.MaxCustomFileSize = 160;
+            profile.BasicConfig.MaxPacketSize = 1400;
+            profile.BasicConfig.ObjectViewDistance = 2000;
+            profile.BasicConfig.TerrainGridViewDistance = 25.0F;
+        }
+
+        /// <summary>
+        /// Sets the server configuration default values.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void SetServerConfigDefaultValues(Profile profile)
+        {
+            if (profile == null) return;
+
+            if (profile.ServerConfig == null)
+            {
+                profile.ServerConfig = new ServerConfig();
+            }
+
+            profile.ServerConfig.MaximumAmountOfPlayers = 64;
+            profile.ServerConfig.FilePatchingMode = 0;
+            profile.ServerConfig.DisconnectTimeout = 90;
+            profile.ServerConfig.MaximumPing = 200;
+            profile.ServerConfig.MaximumDesync = 150;
+            profile.ServerConfig.MaximumPacketLoss = 50;
+            profile.ServerConfig.HasBattleEye = true;
+            profile.ServerConfig.TimeStampFormat = "none";
+            profile.ServerConfig.RotorLibSimulationType = 0;
+            profile.ServerConfig.LogFileName = "server_console.log";
+            profile.ServerConfig.VoiceCodecType = 0;
+            profile.ServerConfig.VoiceCodecQuality = 3;
+            profile.ServerConfig.IsDrawingOnMapAllowed = true;
+            profile.ServerConfig.SignatureVerificationMode = 2;
+            profile.ServerConfig.LobbyIdleTimeout = 99999;
+            profile.ServerConfig.DebriefingTimeout = 45;
+            profile.ServerConfig.BriefingTimeout = 60;
+            profile.ServerConfig.RoleSelectionTimeout = 99999;
         }
     }
 }

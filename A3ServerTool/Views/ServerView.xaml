@@ -82,8 +82,20 @@
                 Margin="{StaticResource ControlMargin}"
                 HorizontalAlignment="Center"
                 Command="{Binding StartServerCommand}"
-                DockPanel.Dock="Left"
-                Style="{StaticResource SecondaryColorFlatButton}">
+                DockPanel.Dock="Left">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">
+                        <!--<Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=DataContext.CheckValidation}" Value="true">
+                                <Setter Property="ToolTip" Value="false"/>
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Blue" />
+                            </DataTrigger>
+                        </Style.Triggers>-->
+                    </Style>
+
+                </Button.Style>
+
 
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Server" />

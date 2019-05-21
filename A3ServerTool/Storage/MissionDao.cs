@@ -25,8 +25,10 @@ namespace A3ServerTool.Storage
 
             Parallel.ForEach(files, file =>
             {
-                var mission = new Mission();
-                mission.Name = file.Name.Replace(MissionExtension, string.Empty);
+                var mission = new Mission
+                {
+                    Name = file.Name.Replace(MissionExtension, string.Empty)
+                };
                 missions.Add(mission);
             });
 

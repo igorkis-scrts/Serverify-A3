@@ -123,7 +123,6 @@
     <Compile Include="Models\Profile\IProfile.cs" />
     <Compile Include="Models\Profile\IProfileDirector.cs" />
     <Compile Include="Models\Profile\Profile.cs" />
-    <Compile Include="Models\Profile\ProfileBuilder.cs" />
     <Compile Include="Models\Profile\ProfileDirector.cs" />
     <Compile Include="Models\ServerLauncher\IServerLauncher.cs" />
     <Compile Include="Models\ServerLauncher\ServerLauncher.cs" />

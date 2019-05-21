@@ -32,6 +32,7 @@ namespace A3ServerTool
                 if (configProperty?.IgnoreParsing != false) continue;
 
                 nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
+                if (value == null) continue;
 
                 if (property.PropertyType == typeof(int))
                 {
@@ -59,19 +60,29 @@ namespace A3ServerTool
                 {
                     property.SetValue(result, value?.Split(','));
                 }
-                else if (property.PropertyType == typeof(List<string>))
+                else if (property.PropertyType == typeof(int[]))
                 {
-                    if (value != null)
+                    //TODO: very dirty, do better
+                    if(property.Name == "SlowNetworkKickRules")
                     {
                         value = Regex.Replace(value, @"\s+", "");
+                        var valueAsIntArray = value.Split(',').Select(int.Parse).ToArray();
+                        property.SetValue(result, valueAsIntArray);
                     }
-
+                }
+                else if (property.PropertyType == typeof(List<string>))
+                {
+                    value = Regex.Replace(value, @"\s+", "");
                     property.SetValue(result, value?.Split(',').ToList());
                 }
                 else if (property.PropertyType == typeof(string))
                 {
                     value = value?.Replace("\"", string.Empty);
                     property.SetValue(result, Convert.ToString(value));
+                }
+                else if (property.PropertyType == typeof(bool))
+                {
+                    property.SetValue(result, Convert.ToBoolean(value));
                 }
             }
 
@@ -99,35 +110,43 @@ namespace A3ServerTool
                 {
                     value = "\"" + value + "\"";
                 }
+
+                else if (property.PropertyType == typeof(int[]))
+                {
+                    if (value is int[] valueAsArray)
+                    {
+                        if (valueAsArray.Length == 0) continue;
+                        value = ParseArrayProperty(valueAsArray);
+                    }
+                }
+
                 else if (property.PropertyType == typeof(string[]))
                 {
                     if (value is string[] valueAsArray)
                     {
-                        if (valueAsArray.Any(x => x == null)) continue;
-
-                        value = ParseArrayProperty((string[])value);
+                        if (!valueAsArray.Any() || valueAsArray.Any(x => x == null)) continue;
+                        value = ParseArrayProperty(valueAsArray);
                     }
 
                     if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
                 }
-                else if(property.PropertyType == typeof(List<string>))
+                else if (property.PropertyType == typeof(List<string>))
                 {
                     if (value is List<string> valueAsList)
                     {
-                        if (valueAsList.Any(x => x == null)) continue;
-
+                        if (!valueAsList.Any()  ||valueAsList.Any(x => x == null)) continue;
                         value = ParseArrayProperty(valueAsList.ToArray());
                     }
 
                     if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
                 }
-                else if(property.PropertyType == typeof(bool))
+                else if (property.PropertyType == typeof(bool))
                 {
                     value = value.ToString().ToLowerInvariant();
                 }
-                else if(property.PropertyType == typeof(int?))
+                else if (property.PropertyType == typeof(int?))
                 {
-                    if(!int.TryParse(value?.ToString(), out int nullInt))
+                    if (!int.TryParse(value?.ToString(), out int nullInt))
                     {
                         continue;
                     }
@@ -168,9 +187,9 @@ namespace A3ServerTool
             var result = new List<string>();
             int maxTab = 0;
 
-            for(int i = 0; i < classes.Count(); i++)
+            for (int i = 0; i < classes.Count(); i++)
             {
-                if(i != 0)
+                if (i != 0)
                 {
                     var tab = new string('\t', i);
                     maxTab = i;
@@ -223,6 +242,18 @@ namespace A3ServerTool
         }
 
         /// <summary>
+        /// Parses the array config properties.
+        /// </summary>
+        /// <param name="valueAsArray">The value as array.</param>
+        /// <returns></returns>
+        public static string ParseArrayProperty(int[] valueAsArray)
+        {
+            if (valueAsArray?.Any() != true) return string.Empty;
+            var result = "\t" + string.Join("\n\t,", valueAsArray) + "\n}";
+            return "{\n" + result;
+        }
+
+        /// <summary>
         /// Converts from plain text to properties dictionary.
         /// </summary>
         /// <param name="textProperties">Text properties.</param>
@@ -255,7 +286,7 @@ namespace A3ServerTool
                         value += textProperties[j];
                     }
                 }
-                else if(splittedProperty[0] == "template" || splittedProperty[0] == "difficulty")
+                else if (splittedProperty[0] == "template" || splittedProperty[0] == "difficulty")
                 {
                     //there are separate parser for missions, lets ignore these properties
                     continue;

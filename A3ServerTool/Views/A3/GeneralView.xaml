@@ -98,6 +98,7 @@
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
                     Style="{StaticResource BrowseMetroTextBox}"
+                    IsReadOnly="True"
                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
             <StackPanel Grid.Column="1">

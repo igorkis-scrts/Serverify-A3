@@ -153,13 +153,30 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
         private ICommand _refreshCommand;
 
+        /// <summary>
+        /// Sets the actions that will be executed after form will be fully ready to be drawn on screen.
+        /// </summary>
+        public ICommand WindowLoadedCommand
+        {
+            get
+            {
+                return _windowLoadedCommand ??
+                       (_windowLoadedCommand = new RelayCommand(_ =>
+                       {
+                           if(!Missions.Any())
+                           {
+                               RefreshMissions();
+                           }
+                       }));
+            }
+        }
+        private ICommand _windowLoadedCommand;
+
         public MissionsViewModel(ServerViewModel parentViewModel, IDao<Mission> missionDao)
         {
-            _parentViewModel = parentViewModel;
-            
+            _parentViewModel = parentViewModel;           
             _missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
             _missionDao = missionDao;
-            //RefreshMissions();
         }
 
         private void RefreshMissions()

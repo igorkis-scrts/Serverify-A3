@@ -15,5 +15,6 @@ namespace Interchangeable
         public static Regex OnlyNumeric = new Regex("[^0-9]+");
         public static Regex OnlyNumericWithCommas = new Regex("^[0-9,\\s]*$");
         public static Regex OnlyLettersWithCommas = new Regex("^[a-z,\\s]*$");
+        public static Regex OnlyOneOrTwoLimitedToSixWithCommas = new Regex("^[0-1,\\s]{0,6}$");
     }
 }

@@ -39,7 +39,7 @@ namespace A3ServerTool.Storage
             
             foreach(var mission in result.Missions)
             {
-                if(result.MissionWhitelist.Any(m => m == mission.Name))
+                if(result.MissionWhitelist?.Any(m => m == mission.Name) == true)
                 {
                     mission.IsWhitelisted = true;
                 }
