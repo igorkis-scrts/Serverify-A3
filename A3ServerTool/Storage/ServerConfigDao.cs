@@ -24,7 +24,7 @@ namespace A3ServerTool.Storage
         }
 
         /// <inheritdoc/>
-        public ServerConfig Get(IProfile profile)
+        public ServerConfig Get(Profile profile)
         {
             var file = FileHelper.GetFile(Path.Combine(RootFolder, Profile.StorageFolder, profile.Id.ToString(),
                    profile.ServerConfig.FileName) + profile.ServerConfig.FileExtension);
@@ -49,7 +49,7 @@ namespace A3ServerTool.Storage
         }
 
         /// <inheritdoc/>
-        public void Save(IProfile profile)
+        public void Save(Profile profile)
         {
             var configDto = new SaveDataDto
             {

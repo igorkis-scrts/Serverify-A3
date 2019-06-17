@@ -11,7 +11,7 @@ namespace A3ServerTool.Models
     /// <summary>
     /// Server profile
     /// </summary>
-    public class Profile : IProfile, IDataErrorInfo, INotifyPropertyChanged, ICloneable
+    public class Profile : IDataErrorInfo, INotifyPropertyChanged, ICloneable
     {
         public const string StorageFolder = "Profiles";
 

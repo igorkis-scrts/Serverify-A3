@@ -14,7 +14,7 @@ namespace A3ServerTool.Storage
         private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
 
         /// <inheritdoc/>
-        public BasicConfig Get(IProfile profile)
+        public BasicConfig Get(Profile profile)
         {
             var file = FileHelper.GetFile(Path.Combine(RootFolder, Profile.StorageFolder, profile.Id.ToString(),
                     profile.BasicConfig.FileName) + profile.BasicConfig.FileExtension);
@@ -29,7 +29,7 @@ namespace A3ServerTool.Storage
         }
 
         /// <inheritdoc/>
-        public void Save(IProfile profile)
+        public void Save(Profile profile)
         {
             var configDto = new SaveDataDto
             {

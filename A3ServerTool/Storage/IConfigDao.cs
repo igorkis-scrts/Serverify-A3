@@ -18,12 +18,12 @@ namespace A3ServerTool.Storage
         /// </summary>
         /// <param name="profile">Profile from which to get an instance of the class.</param>
         /// <returns>Instance of type retrived from storage.</returns>
-        T Get(IProfile profile);
+        T Get(Profile profile);
 
         /// <summary>
         /// Saves instance of type in according profile storage.
         /// </summary>
         /// <param name="profile">Profile where to store class instance.</param>
-        void Save(IProfile profile);
+        void Save(Profile profile);
     }
 }
