@@ -222,6 +222,6 @@
     <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Missions To Server Shutdown</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Number of times missionEnd happens before server initiate process shutdown.</v:String>
 
-    <v:String x:Key="LocalizableRefreshNote">Missions is searched in the same folder as server executable file. If there is no missions - specify server executable file first.</v:String>
-    
+    <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as server executable file. If there is no missions - specify server executable file first.</v:String>
+
 </ResourceDictionary>
