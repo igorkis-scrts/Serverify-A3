@@ -49,24 +49,6 @@ namespace A3ServerTool.ViewModels
         }
         private bool _hasToSave;
 
-        /// <summary>
-        /// Flag to check if current profile is needed to be saved
-        /// </summary>
-        public bool HasToSaveCurrentProfile
-        {
-            get => _hasToSave;
-            set
-            {
-                if (Equals(value, _hasToSave))
-                {
-                    return;
-                }
-
-                _hasToSave = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public string HeaderText
         {
             get => _headerText;
@@ -151,11 +133,6 @@ namespace A3ServerTool.ViewModels
                 return _okCommand
                        ?? (_okCommand = new RelayCommand(obj =>
                        {
-                           if (!HasToSaveCurrentProfile)
-                           {
-                               _profile = new Profile(Guid.NewGuid());
-                           }
-
                            SendMessage(MessageDialogResult.Affirmative, _profile);
                            IsExpired = true;
                        }));
@@ -224,13 +201,13 @@ namespace A3ServerTool.ViewModels
                 case ViewMode.New:
                     HeaderText = "Create profile";
                     ButtonText = "Create";
-                    HasToSaveCurrentProfile = true;
-                    VisibilityState = Visibility.Visible;
+                    //temporarily disabled
+                    //VisibilityState = Visibility.Visible;
+                    VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.Save:
                     HeaderText = "Save profile";
                     ButtonText = "Save";
-                    HasToSaveCurrentProfile = true;
                     VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.None:

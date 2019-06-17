@@ -73,11 +73,12 @@ namespace A3ServerTool.ViewModels
         }
         private DialogResult<Profile> _dialogResult;
 
-
         public ProfilesViewModel(MainViewModel viewModel, IProfileDirector profileDirector)
         {
             _profileDirector = profileDirector;
             _mainViewModel = viewModel;
+
+            Messenger.Default.Register<string>(this, MainViewModel.Token, DoByRequest);
 
             RefreshData();
         }
@@ -86,7 +87,7 @@ namespace A3ServerTool.ViewModels
         //"Context is not registered. Consider using DialogParticipation.Register in XAML to bind in the DataContext" error
         //We can't register methods in constructor, so we should do it when userControl is rendered
         //https://stackoverflow.com/questions/41663538/trouble-with-showing-a-mahapps-metro-dialog-with-a-reactiveui-command
-        //TODO: better way to create listener only one time (right now it is constantly checking isRegistered field) - maybe different event exists?
+        //TODO: find better way to create listener only one time (right now it is constantly checking isRegistered field) - maybe different event exists?
         public ICommand StartupCommand
         {
             get
@@ -96,7 +97,6 @@ namespace A3ServerTool.ViewModels
                     if (_isRegistered) return;
 
                     Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessage);
-                    Messenger.Default.Register<string>(this, MainViewModel.Token, DoByRequest);
                     _isRegistered = true;
                 });
             }
@@ -123,7 +123,7 @@ namespace A3ServerTool.ViewModels
                        (_createProfileCommand = new RelayCommand(_ =>
                        {
                            ShowDialog();
-                           Messenger.Default.Send(_mainViewModel.CurrentProfile);
+                           //Messenger.Default.Send(_mainViewModel.CurrentProfile);
                            Messenger.Default.Send(ViewMode.New);
                        }));
             }

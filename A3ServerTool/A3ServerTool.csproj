@@ -120,7 +120,6 @@
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Profile\IProfileBuilder.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
-    <Compile Include="Models\Profile\IProfile.cs" />
     <Compile Include="Models\Profile\IProfileDirector.cs" />
     <Compile Include="Models\Profile\Profile.cs" />
     <Compile Include="Models\Profile\ProfileDirector.cs" />
