@@ -1,5 +1,4 @@
 ﻿using A3ServerTool.Enums;
-using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Storage;
 using GalaSoft.MvvmLight;
@@ -9,7 +8,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -174,7 +172,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
 
         public MissionsViewModel(ServerViewModel parentViewModel, IDao<Mission> missionDao)
         {
-            _parentViewModel = parentViewModel;           
+            _parentViewModel = parentViewModel;
             _missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
             _missionDao = missionDao;
         }
@@ -206,7 +204,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 }
                 else
                 {
-                    Missions =new ObservableCollection<Mission>(_missionDao.GetAll(gamePath));
+                    Missions = new ObservableCollection<Mission>(_missionDao.GetAll(gamePath));
                 }
             });
         }

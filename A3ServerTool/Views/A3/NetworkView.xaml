@@ -218,7 +218,8 @@
                             Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
                             mah:TextBoxHelper.ClearTextButton="True"
-                            Minimum="1"
+                            Maximum="90"
+                            Minimum="5"
                             Speedup="True"
                             ToolTip="{DynamicResource LocalizableDisconnectTimeoutTooltip}"
                             Value="{Binding DisconnectTimeout, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
