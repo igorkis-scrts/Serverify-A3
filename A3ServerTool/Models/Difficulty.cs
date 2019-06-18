@@ -127,5 +127,11 @@ namespace A3ServerTool.Models
         /// </summary>
         [ConfigProperty(PropertyName = "multipleSaves")]
         public int AreMultipleSavesAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value for allowing tactical ping for players.
+        /// </summary>
+        [ConfigProperty(PropertyName = "tacticalPing")]
+        public int IsTacticalPingAllowed { get; set; }
     }
 }
