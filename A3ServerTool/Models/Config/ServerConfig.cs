@@ -15,12 +15,6 @@ namespace A3ServerTool.Models.Config
     public class ServerConfig : IConfig
     {
         /// <inheritdoc/>
-        public string FileName => "server";
-
-        /// <inheritdoc/>
-        public string FileExtension => ".cfg";
-
-        /// <inheritdoc/>
         public string FileLocation { get; set; }
 
         /// <summary>

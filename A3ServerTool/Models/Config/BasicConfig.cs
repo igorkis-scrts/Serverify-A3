@@ -9,10 +9,10 @@ namespace A3ServerTool.Models.Config
     public class BasicConfig : IConfig
     {
         /// <inheritdoc/>
-        public string FileName { get; } = "basic";
+        //public string FileName { get; } = "basic";
 
         /// <inheritdoc/>
-        public string FileExtension { get; } = ".cfg";
+        //public string FileExtension { get; } = ".cfg";
 
         /// <inheritdoc/>
         public string FileLocation { get; set; }

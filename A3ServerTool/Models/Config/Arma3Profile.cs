@@ -1,13 +1,15 @@
 ﻿using A3ServerTool.Attributes;
 using A3ServerTool.Enums;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Models.Config
 {
     /// <summary>
     /// Represents server difficulty settings.
     /// </summary>
-    public class Difficulty
+    public class Arma3Profile : IConfig
     {
+        public string FileLocation { get; set ; }
+
         /// <summary>
         /// Gets or sets the value if damage will be decreased for players and AI members of his group.
         /// </summary>
@@ -133,5 +135,11 @@ namespace A3ServerTool.Models
         /// </summary>
         [ConfigProperty(PropertyName = "tacticalPing")]
         public int IsTacticalPingAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ai level.
+        /// </summary>
+        [ConfigProperty(IgnoreParsing =true)]
+        public AiLevel AiLevel { get; set; }
     }
 }
