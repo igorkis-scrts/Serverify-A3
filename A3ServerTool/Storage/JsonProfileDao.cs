@@ -12,9 +12,6 @@ namespace A3ServerTool.Storage
 {
     public class JsonProfileDao : IDao<Profile>
     {
-        private const string FileExtension = ".json";
-        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
-
         private readonly JsonSerializerSettings _serializerSettings;
 
         public JsonProfileDao()
@@ -25,16 +22,16 @@ namespace A3ServerTool.Storage
                 ObjectCreationHandling = ObjectCreationHandling.Replace
             };
 
-            if (!FileHelper.CheckFolderExistence(Path.Combine(RootFolder,Profile.StorageFolder)))
+            if (!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Profile.StorageFolder)))
             {
-                FileHelper.CreateFolder(Path.Combine(RootFolder, Profile.StorageFolder));
+                FileHelper.CreateFolder(Path.Combine(Constants.RootFolder, Profile.StorageFolder));
             }
         }
 
         IList<Profile> IDao<Profile>.GetAll()
         {
             var profiles = new List<Profile>();
-            var profileFolders = FileHelper.GetFolder(Path.Combine(RootFolder, Profile.StorageFolder));
+            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Profile.StorageFolder));
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -42,7 +39,7 @@ namespace A3ServerTool.Storage
                 var files = FileHelper.GetAllFiles(folder);
 
                 Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == FileExtension);
+                var metadata = files.FirstOrDefault(x => x.Extension == Constants.ServerProfileFileExtension);
                 profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
 
                 profiles.Add(profile);
@@ -63,7 +60,7 @@ namespace A3ServerTool.Storage
         public ObservableCollection<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
-            var profileFolders = FileHelper.GetFolder(Path.Combine(RootFolder, Profile.StorageFolder));
+            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Profile.StorageFolder));
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -71,7 +68,7 @@ namespace A3ServerTool.Storage
                 var files = FileHelper.GetAllFiles(folder);
 
                 Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == FileExtension);
+                var metadata = files.FirstOrDefault(x => x.Extension == Constants.ServerProfileFileExtension);
                 profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
 
 
@@ -96,11 +93,11 @@ namespace A3ServerTool.Storage
             var metadataDto = new SaveDataDto
             {
                 Content = JsonConvert.SerializeObject(item, Formatting.Indented, _serializerSettings),
-                FileExtension = FileExtension,
+                FileExtension = Constants.ServerProfileFileExtension,
                 FileName = "Main",
                 Folders = new List<string>
                 {
-                    RootFolder,
+                    Constants.RootFolder,
                     Profile.StorageFolder,
                     item.Id.ToString()
                 }
@@ -119,7 +116,7 @@ namespace A3ServerTool.Storage
                 Folders = new List<string>
                 {
                     //TODO: Fix it without path.combine
-                    Path.Combine(RootFolder, Profile.StorageFolder),
+                    Path.Combine(Constants.RootFolder, Profile.StorageFolder),
                     item.Id.ToString()
                 }
             };

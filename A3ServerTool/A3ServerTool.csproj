@@ -95,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants.cs" />
     <Compile Include="Converters\NullableIntToBoolConverter.cs" />
     <Compile Include="Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Attributes\WrappingClass.cs" />
@@ -120,7 +121,7 @@
     <Compile Include="Models\AiLevel.cs" />
     <Compile Include="Models\Config\IConfig.cs" />
     <Compile Include="Models\Config\ServerConfig.cs" />
-    <Compile Include="Models\Difficulty.cs" />
+    <Compile Include="Models\Config\Arma3Profile.cs" />
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Profile\IProfileBuilder.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Models\ServerLauncher\IServerLauncher.cs" />
     <Compile Include="Models\ServerLauncher\ServerLauncher.cs" />
     <Compile Include="Models\Config\BasicConfig.cs" />
+    <Compile Include="Storage\ArmaProfileDao.cs" />
     <Compile Include="Storage\BasicConfigDao.cs" />
     <Compile Include="Storage\IConfigDao.cs" />
     <Compile Include="Storage\IDao.cs" />

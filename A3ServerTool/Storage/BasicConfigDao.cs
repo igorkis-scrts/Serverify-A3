@@ -1,4 +1,5 @@
-﻿using A3ServerTool.Models;
+﻿using A3ServerTool;
+using A3ServerTool.Models;
 using A3ServerTool.Models.Config;
 using Interchangeable.IO;
 using System;
@@ -11,13 +12,11 @@ namespace A3ServerTool.Storage
     /// <inheritdoc/>
     public class BasicConfigDao : IConfigDao<BasicConfig>
     {
-        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
-
         /// <inheritdoc/>
         public BasicConfig Get(Profile profile)
         {
-            var file = FileHelper.GetFile(Path.Combine(RootFolder, Profile.StorageFolder, profile.Id.ToString(),
-                    profile.BasicConfig.FileName) + profile.BasicConfig.FileExtension);
+            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Profile.StorageFolder, profile.Id.ToString(),
+                    Constants.BasicConfigFileName) + Constants.ConfigFileExtension);
             if (file == null) return null;
 
             var properties = TextManager.ReadFileLineByLine(file);
@@ -34,11 +33,11 @@ namespace A3ServerTool.Storage
             var configDto = new SaveDataDto
             {
                 Content = string.Join("\r\n", TextParseHandler.ConvertToText(profile.BasicConfig)),
-                FileExtension = profile.BasicConfig.FileExtension,
-                FileName = profile.BasicConfig.FileName,
+                FileExtension = Constants.ConfigFileExtension,
+                FileName = Constants.BasicConfigFileName,
                 Folders = new List<string>
                     {
-                        RootFolder,
+                        Constants.RootFolder,
                         Profile.StorageFolder,
                         profile.Id.ToString()
                     }

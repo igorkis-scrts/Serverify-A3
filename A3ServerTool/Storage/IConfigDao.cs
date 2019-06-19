@@ -9,10 +9,6 @@ namespace A3ServerTool.Storage
     /// <typeparam name="T">Any type that being considered as configuration file.</typeparam>
     public interface IConfigDao<T> where T : IConfig
     {
-        //TODO: Fix DRY violation - ConfigDao implementations are same, 
-        //TODO: but relies on external information (location, filename, extension)
-        //TODO: basically needs to find generic - IConfig way to retrieve and save configs
-
         /// <summary>
         /// Gets instance of type from storage.
         /// </summary>

@@ -27,7 +27,7 @@ namespace A3ServerTool.Storage
         public ServerConfig Get(Profile profile)
         {
             var file = FileHelper.GetFile(Path.Combine(RootFolder, Profile.StorageFolder, profile.Id.ToString(),
-                   profile.ServerConfig.FileName) + profile.ServerConfig.FileExtension);
+                   Constants.ServerConfigFileName) + Constants.ConfigFileExtension);
             if (file == null) return null;
 
             var properties = TextManager.ReadFileLineByLine(file);
@@ -54,8 +54,8 @@ namespace A3ServerTool.Storage
             var configDto = new SaveDataDto
             {
                 Content = string.Join("\r\n", TextParseHandler.ConvertToText(profile.ServerConfig)),
-                FileExtension = profile.ServerConfig.FileExtension,
-                FileName = profile.ServerConfig.FileName,
+                FileExtension = Constants.ConfigFileExtension,
+                FileName = Constants.ServerConfigFileName,
                 Folders = new List<string>
                     {
                         RootFolder,
