@@ -14,8 +14,6 @@ namespace A3ServerTool.Storage
     /// <inheritdoc/>
     public class ServerConfigDao : IConfigDao<ServerConfig>
     {
-        private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
-
         private readonly IMissionDirector _missionDirector;
 
         public ServerConfigDao(IMissionDirector missionDirector)
@@ -26,7 +24,7 @@ namespace A3ServerTool.Storage
         /// <inheritdoc/>
         public ServerConfig Get(Profile profile)
         {
-            var file = FileHelper.GetFile(Path.Combine(RootFolder, Profile.StorageFolder, profile.Id.ToString(),
+            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Profile.StorageFolder, profile.Id.ToString(),
                    Constants.ServerConfigFileName) + Constants.ConfigFileExtension);
             if (file == null) return null;
 
@@ -58,7 +56,7 @@ namespace A3ServerTool.Storage
                 FileName = Constants.ServerConfigFileName,
                 Folders = new List<string>
                     {
-                        RootFolder,
+                        Constants.RootFolder,
                         Profile.StorageFolder,
                         profile.Id.ToString()
                     }
@@ -66,7 +64,7 @@ namespace A3ServerTool.Storage
 
             configDto.Content = _missionDirector.SaveMissions(profile.ServerConfig.Missions, configDto.Content);
 
-            profile.ServerConfig.FileLocation = Path.Combine(RootFolder, configDto.GetFullPath());
+            profile.ServerConfig.FileLocation = Path.Combine(Constants.RootFolder, configDto.GetFullPath());
             FileHelper.Save(configDto);
         }
 
