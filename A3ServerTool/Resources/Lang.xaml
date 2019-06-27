@@ -93,7 +93,7 @@
     <v:String x:Key="LocalizableVonCodecTypeTitle">VON Codec</v:String>
 
     <v:String x:Key="LocalizablePersistenceTitle">Persistence</v:String>
-    <v:String x:Key="LocalizablePersistenceTooltip">Mission on server will continue to run even if there is no players present on the server.</v:String>
+    <v:String x:Key="LocalizablePersistenceTooltip">Mission on server will continue to run even if there are no players present on the server.</v:String>
 
     <v:String x:Key="LocalizableRotorLibTitle">Force RotorLib simulation</v:String>
     <v:String x:Key="LocalizableRotorLibTooltip">Forces RotorLib flight model for helicopters.</v:String>
@@ -222,6 +222,6 @@
     <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Missions To Server Shutdown</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Number of times missionEnd happens before server initiate process shutdown.</v:String>
 
-    <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as server executable file. If there is no missions - specify server executable file first.</v:String>
+    <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as server executable file. If there are no missions - specify server executable file first.</v:String>
 
 </ResourceDictionary>
