@@ -154,19 +154,11 @@ namespace A3ServerTool.ViewModels
                            var lastProfileId = (Guid)SettingsCoordinator.Retrieve(ApplicationSettingType.LastUsedProfile);
                            if (lastProfileId != Guid.Empty)
                            {
-                               var profilesViewModel = ServiceLocator.Current.GetInstance<ProfilesViewModel>();
-                               if (profilesViewModel != null)
+                               CurrentProfile = _profileDirector.GetById(lastProfileId);
+                               if(CurrentProfile == null)
                                {
-                                   var profile = profilesViewModel.Profiles
-                                        .ToList()
-                                        .Find(x => x.Id == lastProfileId);
-                                   CurrentProfile = profile ?? _profileDirector.GetById(lastProfileId);
-
-                                   if(CurrentProfile == null)
-                                   {
-                                       CurrentProfile = new Profile(Guid.NewGuid());
-                                       _profileDirector.SetDefaultValues(CurrentProfile);
-                                   }
+                                  CurrentProfile = new Profile(Guid.NewGuid());
+                                  _profileDirector.SetDefaultValues(CurrentProfile);
                                }
                            }
                            else

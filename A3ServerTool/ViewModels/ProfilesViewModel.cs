@@ -109,7 +109,7 @@ namespace A3ServerTool.ViewModels
                 return _selectProfileCommand ??
                        (_selectProfileCommand = new RelayCommand(_ =>
                        {
-                           _mainViewModel.CurrentProfile = SelectedProfile;
+                           _mainViewModel.CurrentProfile = _profileDirector.GetById(SelectedProfile.Id);
                        }, _ => SelectedProfile != null));
             }
         }
@@ -123,7 +123,6 @@ namespace A3ServerTool.ViewModels
                        (_createProfileCommand = new RelayCommand(_ =>
                        {
                            ShowDialog();
-                           //Messenger.Default.Send(_mainViewModel.CurrentProfile);
                            Messenger.Default.Send(ViewMode.New);
                        }));
             }

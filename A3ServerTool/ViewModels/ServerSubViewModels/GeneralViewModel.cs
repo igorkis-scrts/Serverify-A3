@@ -301,7 +301,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsDrawingOnMapAllowed
         {
-            get => CurrentProfile.ServerConfig.IsDrawingOnMapAllowed;
+            get => CurrentProfile == null || CurrentProfile.ServerConfig == null
+                ? false
+                : CurrentProfile.ServerConfig.IsDrawingOnMapAllowed;
             set
             {
                 if (Equals(value, CurrentProfile?.ServerConfig?.IsDrawingOnMapAllowed)) return;
@@ -398,7 +400,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return CurrentProfile.ServerConfig?.RotorLibSimulationType != null
+                return CurrentProfile?.ServerConfig?.RotorLibSimulationType != null
                     ? (RotorLibType)CurrentProfile.ServerConfig.RotorLibSimulationType
                     : RotorLibType.Default;
             }

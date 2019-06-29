@@ -263,7 +263,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool HasBattleEye
         {
-            get => CurrentProfile.ServerConfig.HasBattleEye;
+            get => CurrentProfile == null || CurrentProfile.ServerConfig == null
+                ? false
+                : CurrentProfile.ServerConfig.HasBattleEye;
             set
             {
                 if (Equals(value, CurrentProfile.ServerConfig.HasBattleEye)) return;

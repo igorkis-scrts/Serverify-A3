@@ -47,7 +47,6 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
-        private bool _hasToSave;
 
         public string HeaderText
         {

@@ -11,20 +11,23 @@ namespace A3ServerTool.Storage
 {
     public class MissionDao : IDao<Mission>
     {
+        private const string MissionFolderName = "MPMissions";
+        private const string MissionFileExtension = ".pbo";
+
         public IList<Mission> GetAll(string gamePath)
         {
             var missions = new List<Mission>();
 
-            var missionFolderContent = FileHelper.GetFolder(gamePath)?.FirstOrDefault(f => f.Name == Constants.MissionFolderName);
+            var missionFolderContent = FileHelper.GetFolder(gamePath)?.FirstOrDefault(f => f.Name == MissionFolderName);
             if (missionFolderContent == null) return missions;
 
-            var files = FileHelper.GetAllFiles(missionFolderContent).Where(f => f.Extension == Constants.MissionFileExtension);
+            var files = FileHelper.GetAllFiles(missionFolderContent).Where(f => f.Extension == MissionFileExtension);
 
             Parallel.ForEach(files, file =>
             {
                 var mission = new Mission
                 {
-                    Name = file.Name.Replace(Constants.MissionFileExtension, string.Empty)
+                    Name = file.Name.Replace(MissionFileExtension, string.Empty)
                 };
                 missions.Add(mission);
             });
