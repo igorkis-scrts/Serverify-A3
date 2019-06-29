@@ -3,8 +3,6 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Interchangeable.IO;
 using A3ServerTool.Models.Config;
 using A3ServerTool.Helpers;
@@ -14,6 +12,9 @@ namespace A3ServerTool.Storage
     /// <inheritdoc/>
     public class ServerConfigDao : IConfigDao<ServerConfig>
     {
+        private const string ConfigFileExtension = ".cfg";
+        private const string ConfigFileName = "server";
+
         private readonly IMissionDirector _missionDirector;
 
         public ServerConfigDao(IMissionDirector missionDirector)
@@ -24,8 +25,8 @@ namespace A3ServerTool.Storage
         /// <inheritdoc/>
         public ServerConfig Get(Profile profile)
         {
-            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Profile.StorageFolder, profile.Id.ToString(),
-                   Constants.ServerConfigFileName) + Constants.ConfigFileExtension);
+            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString(),
+                  ConfigFileName) + ConfigFileExtension);
             if (file == null) return null;
 
             var properties = TextManager.ReadFileLineByLine(file);
@@ -52,12 +53,12 @@ namespace A3ServerTool.Storage
             var configDto = new SaveDataDto
             {
                 Content = string.Join("\r\n", TextParseHandler.ConvertToText(profile.ServerConfig)),
-                FileExtension = Constants.ConfigFileExtension,
-                FileName = Constants.ServerConfigFileName,
+                FileExtension = ConfigFileExtension,
+                FileName = ConfigFileName,
                 Folders = new List<string>
                     {
                         Constants.RootFolder,
-                        Profile.StorageFolder,
+                        Constants.ServerProfileFolder,
                         profile.Id.ToString()
                     }
             };

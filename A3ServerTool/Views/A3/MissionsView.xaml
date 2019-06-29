@@ -52,7 +52,8 @@
                                         IsEditable="False"
                                         ItemsSource="{Binding Path=Difficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
                                         SelectedValue="{Binding Path=Difficulty}"
-                                        SelectedValuePath="Value" />
+                                        SelectedValuePath="Value"
+                                        SelectedIndex="0"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                             <DataGridTemplateColumn.CellTemplate>
@@ -118,6 +119,7 @@
                     ItemsSource="{Binding Path=ForcedDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
                     SelectedValue="{Binding Path=ForcedDifficulty}"
                     SelectedValuePath="Value"
+                    SelectedIndex="0"
                     ToolTip="{DynamicResource LocalizableForcedDifficultyTitleTooltip}" />
 
                 <Expander Margin="{StaticResource ControlMargin}" Header="{DynamicResource LocalizableMissionRotationGroupTitle}">

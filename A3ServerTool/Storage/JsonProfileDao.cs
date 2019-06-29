@@ -12,6 +12,8 @@ namespace A3ServerTool.Storage
 {
     public class JsonProfileDao : IDao<Profile>
     {
+        private const string ServerProfileFileExtension = ".json";
+
         private readonly JsonSerializerSettings _serializerSettings;
 
         public JsonProfileDao()
@@ -22,16 +24,16 @@ namespace A3ServerTool.Storage
                 ObjectCreationHandling = ObjectCreationHandling.Replace
             };
 
-            if (!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Profile.StorageFolder)))
+            if (!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder)))
             {
-                FileHelper.CreateFolder(Path.Combine(Constants.RootFolder, Profile.StorageFolder));
+                FileHelper.CreateFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
             }
         }
 
         IList<Profile> IDao<Profile>.GetAll()
         {
             var profiles = new List<Profile>();
-            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Profile.StorageFolder));
+            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -39,10 +41,12 @@ namespace A3ServerTool.Storage
                 var files = FileHelper.GetAllFiles(folder);
 
                 Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == Constants.ServerProfileFileExtension);
-                profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
-
-                profiles.Add(profile);
+                var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
+                if(metadata != null)
+                {
+                    profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    profiles.Add(profile);
+                }
             });
 
             return profiles;
@@ -60,7 +64,7 @@ namespace A3ServerTool.Storage
         public ObservableCollection<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
-            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Profile.StorageFolder));
+            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
             if (!profileFolders.Any()) return profiles;
 
             Parallel.ForEach(profileFolders, folder =>
@@ -68,11 +72,12 @@ namespace A3ServerTool.Storage
                 var files = FileHelper.GetAllFiles(folder);
 
                 Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == Constants.ServerProfileFileExtension);
-                profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
-
-
-                profiles.Add(profile);
+                var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
+                if(metadata != null)
+                {
+                    profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    profiles.Add(profile);
+                }
             });
 
             return profiles;
@@ -93,12 +98,12 @@ namespace A3ServerTool.Storage
             var metadataDto = new SaveDataDto
             {
                 Content = JsonConvert.SerializeObject(item, Formatting.Indented, _serializerSettings),
-                FileExtension = Constants.ServerProfileFileExtension,
+                FileExtension = ServerProfileFileExtension,
                 FileName = "Main",
                 Folders = new List<string>
                 {
                     Constants.RootFolder,
-                    Profile.StorageFolder,
+                    Constants.ServerProfileFolder,
                     item.Id.ToString()
                 }
             };
@@ -116,7 +121,7 @@ namespace A3ServerTool.Storage
                 Folders = new List<string>
                 {
                     //TODO: Fix it without path.combine
-                    Path.Combine(Constants.RootFolder, Profile.StorageFolder),
+                    Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder),
                     item.Id.ToString()
                 }
             };

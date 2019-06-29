@@ -12,11 +12,14 @@ namespace A3ServerTool.Storage
     /// <inheritdoc/>
     public class BasicConfigDao : IConfigDao<BasicConfig>
     {
+        private const string ConfigFileExtension = ".cfg";
+        private const string ConfigFileName = "basic";
+
         /// <inheritdoc/>
         public BasicConfig Get(Profile profile)
         {
-            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Profile.StorageFolder, profile.Id.ToString(),
-                    Constants.BasicConfigFileName) + Constants.ConfigFileExtension);
+            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString(),
+                    ConfigFileName) + ConfigFileExtension);
             if (file == null) return null;
 
             var properties = TextManager.ReadFileLineByLine(file);
@@ -33,12 +36,12 @@ namespace A3ServerTool.Storage
             var configDto = new SaveDataDto
             {
                 Content = string.Join("\r\n", TextParseHandler.ConvertToText(profile.BasicConfig)),
-                FileExtension = Constants.ConfigFileExtension,
-                FileName = Constants.BasicConfigFileName,
+                FileExtension = ConfigFileExtension,
+                FileName = ConfigFileName,
                 Folders = new List<string>
                     {
                         Constants.RootFolder,
-                        Profile.StorageFolder,
+                        Constants.ServerProfileFolder,
                         profile.Id.ToString()
                     }
             };
