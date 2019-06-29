@@ -19,11 +19,9 @@ namespace A3ServerTool.Attributes
         public bool IgnoreParsing { get; set; }
 
         /// <summary>
-        /// Gets or sets a property tied with main property.
+        /// Gets or sets a value indicating whether this instance is int value required.
         /// </summary>
-        /// <remarks>Some properties should exist together, 
-        /// so we need to put them both on config file, or not put at all (if there is no value on one property, for example).
-        /// </remarks>
-        public string TiedPropertyName { get; set; }
+        /// <remarks>Required by some enums that presented as enum in code and as integer number in the config file.</remarks>
+        public bool IsIntValueRequired { get; set; }
     }
 }

@@ -12,15 +12,7 @@ namespace A3ServerTool
     internal static class Constants
     {
         internal static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
-
-        internal const string ConfigFileExtension = ".cfg";
-        internal const string GameProfileFileExtension = ".Arma3Profile";
-        internal const string ServerProfileFileExtension = ".json";
-        internal const string MissionFileExtension = ".pbo";
-
-        internal const string BasicConfigFileName = "basic";
-        internal const string ServerConfigFileName = "server";
+        internal const string ServerProfileFolder = "Profiles";
         internal const string GameProfileName = "serverProfile";
-        internal const string MissionFolderName = "MPMissions";
     }
 }
