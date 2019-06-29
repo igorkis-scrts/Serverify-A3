@@ -17,9 +17,6 @@ namespace A3ServerTool.Models
         ///// <summary>
         ///// Gets or sets game difficulty on this mission.
         ///// </summary>
-        //[ConfigProperty(PropertyName = "difficulty")]
-        //public string Difficulty { get; set; }
-
         [ConfigProperty(PropertyName = "difficulty")]
         public DifficultyType Difficulty { get; set; }
 
