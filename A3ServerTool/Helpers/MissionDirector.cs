@@ -3,7 +3,6 @@ using A3ServerTool.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using A3ServerTool.Enums;
 using Interchangeable;
 using A3ServerTool.Storage;
@@ -123,6 +122,14 @@ namespace A3ServerTool.Helpers
         {
             missions = missions.Where(x => x.IsSelected).ToArray();
             if (!missions.Any()) return string.Empty;
+
+            foreach(var mission in missions)
+            {
+                if(mission.Difficulty == DifficultyType.None)
+                {
+                    mission.Difficulty = DifficultyType.Recruit;
+                }
+            }
 
             int counter = 1;
 
