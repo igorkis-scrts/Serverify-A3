@@ -117,9 +117,10 @@ namespace A3ServerTool.Models.Config
         /// Maximum packet size
         /// </summary>
         [ConfigProperty(PropertyName = "maxPacketSize")]
-        [WrappingClass(ClassName = "sockets")]
+        [WrappingClass(new string[] { "sockets"})]
         public int? MaxPacketSize { get; set; }
 
+        //TODO: check where it is actually belong - basic.cfg or armaprofile config?
         /// <summary>
         /// Terrain render distance
         /// </summary>

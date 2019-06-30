@@ -9,34 +9,44 @@ using Newtonsoft.Json;
 namespace A3ServerTool.Models
 {
     /// <summary>
-    /// Server profile
+    /// Provides server profile - class-agregator for other configs, startup parameters etc.
     /// </summary>
     public class Profile : IDataErrorInfo, INotifyPropertyChanged, ICloneable
     {
-        public const string StorageFolder = "Profiles";
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Profile"/> class.
+        /// </summary>
+        public Profile() {}
 
-        public Profile()
-        {
-            BasicConfig = new BasicConfig();
-            ServerConfig = new ServerConfig();
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Profile"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         public Profile(Guid id) : this()
         {
             Id = id;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Profile"/> class.
+        /// </summary>
+        /// <param name="argumentSettings">The argument settings.</param>
+        /// <param name="id">The identifier.</param>
         [JsonConstructor]
         public Profile(ArgumentSettings argumentSettings, Guid id) : this(id)
         {
             ArgumentSettings = argumentSettings;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the profile identifier.
+        /// </summary>
         [JsonProperty]
         public Guid Id { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the profile name.
+        /// </summary>
         public string Name
         {
             get => _name;
@@ -49,7 +59,9 @@ namespace A3ServerTool.Models
         }
         private string _name;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the profile description.
+        /// </summary>
         public string Description
         {
             get => _description;
@@ -62,7 +74,9 @@ namespace A3ServerTool.Models
         }
         private string _description;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the command line argument settings.
+        /// </summary>
         public ArgumentSettings ArgumentSettings
         {
             get => _serverSettings;
@@ -75,7 +89,10 @@ namespace A3ServerTool.Models
         }
         private ArgumentSettings _serverSettings = new ArgumentSettings();
 
-        /// <inheritdoc />
+
+        /// <summary>
+        /// Gets or sets the basic network configuration.
+        /// </summary>
         [JsonIgnore]
         public BasicConfig BasicConfig
         {
@@ -89,10 +106,15 @@ namespace A3ServerTool.Models
         }
         private BasicConfig _basicConfig = new BasicConfig();
 
+        /// <summary>
+        /// Gets the path to basic configuration file.
+        /// </summary>
         [JsonIgnore]
         public string BasicConfigString => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the server game configuration.
+        /// </summary>
         [JsonIgnore]
         public ServerConfig ServerConfig
         {
@@ -105,6 +127,22 @@ namespace A3ServerTool.Models
             }
         }
         private ServerConfig _serverConfig = new ServerConfig();
+
+        /// <summary>
+        /// Gets or sets the arma game profile.
+        /// </summary>
+        [JsonIgnore]
+        public ArmaProfile ArmaProfile
+        {
+            get => _armaProfile;
+            set
+            {
+                if (Equals(value, _serverConfig)) return;
+                _armaProfile = value;
+                OnPropertyChanged();
+            }
+        }
+        private ArmaProfile _armaProfile = new ArmaProfile();
 
         [JsonIgnore]
         public string ServerConfigString => ServerConfig != null ? ServerConfig.FileLocation : string.Empty;

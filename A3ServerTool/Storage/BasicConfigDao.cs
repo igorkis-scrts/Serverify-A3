@@ -1,4 +1,5 @@
 ﻿using A3ServerTool;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Models.Config;
 using Interchangeable.IO;
@@ -35,7 +36,7 @@ namespace A3ServerTool.Storage
         {
             var configDto = new SaveDataDto
             {
-                Content = string.Join("\r\n", TextParseHandler.ConvertToText(profile.BasicConfig)),
+                Content = string.Join("\r\n", UniversalParser.ConvertToText(profile.BasicConfig)),
                 FileExtension = ConfigFileExtension,
                 FileName = ConfigFileName,
                 Folders = new List<string>

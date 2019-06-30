@@ -177,14 +177,14 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets the ai skill.
         /// </summary>
         [ConfigProperty(PropertyName = "skillAI")]
-        [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "CustomAiLevel" })]
+        [WrappingClass(new string[] { "DifficultyPresets", "CustomAiLevel" })]
         public float AiSkill { get; set; }
 
         /// <summary>
         /// Gets or sets the ai precision.
         /// </summary>
         [ConfigProperty(PropertyName = "precisionAI")]
-        [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "CustomAiLevel" })]
+        [WrappingClass(new string[] { "DifficultyPresets", "CustomAiLevel" })]
         public float AiPrecision { get; set; }
     }
 }

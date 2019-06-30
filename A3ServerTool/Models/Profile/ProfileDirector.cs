@@ -11,12 +11,15 @@ namespace A3ServerTool.Models
         private readonly IDao<Profile> _profileDao;
         private readonly BasicConfigDao _basicDao;
         private readonly ServerConfigDao _serverDao;
+        private readonly ArmaProfileDao _armaProfileDao;
 
-        public ProfileDirector(IDao<Profile> profileDao, BasicConfigDao basicDao, ServerConfigDao serverDao)
+        public ProfileDirector(IDao<Profile> profileDao, BasicConfigDao basicDao, 
+            ServerConfigDao serverDao, ArmaProfileDao armaProfileDao)
         {
             _profileDao = profileDao;
             _basicDao = basicDao;
             _serverDao = serverDao;
+            _armaProfileDao = armaProfileDao;
         }
 
         /// <inheritdoc/>
@@ -35,6 +38,7 @@ namespace A3ServerTool.Models
            if(profile.BasicConfig == null)
            {
                 profile.BasicConfig = new BasicConfig();
+                SetBasicConfigDefaultValues(profile);
                 _basicDao.Save(profile);
            }
 
@@ -42,8 +46,17 @@ namespace A3ServerTool.Models
            if (profile.ServerConfig == null)
            {
                profile.ServerConfig = new ServerConfig();
-                _serverDao.Save(profile);
+               SetServerConfigDefaultValues(profile);
+               _serverDao.Save(profile);
            }
+
+            profile.ArmaProfile = _armaProfileDao.Get(profile);
+            if (profile.ArmaProfile == null)
+            {
+                profile.ArmaProfile = new ArmaProfile();
+                SetArmaProfileDefaultValues(profile);
+                _armaProfileDao.Save(profile);
+            }
 
             return profile;
         }
@@ -57,15 +70,7 @@ namespace A3ServerTool.Models
         /// <inheritdoc/>
         public IList<Profile> GetAll()
         {
-            var profiles = _profileDao.GetAll();
-
-            foreach (var profile in profiles)
-            {
-                profile.BasicConfig = _basicDao.Get(profile);
-                profile.ServerConfig = _serverDao.Get(profile);
-            }
-
-            return profiles;
+            return _profileDao.GetAll();
         }
 
         /// <inheritdoc/>
@@ -74,12 +79,14 @@ namespace A3ServerTool.Models
             _profileDao.Save(profile);
             _basicDao.Save(profile);
             _serverDao.Save(profile);
+            _armaProfileDao.Save(profile);
         }
 
         public void SetDefaultValues(Profile profile)
         {
             SetBasicConfigDefaultValues(profile);
             SetServerConfigDefaultValues(profile);
+            SetArmaProfileDefaultValues(profile);
             //TODO: Default values for CommandLineArguments
         }
 
@@ -140,6 +147,22 @@ namespace A3ServerTool.Models
             profile.ServerConfig.DebriefingTimeout = 45;
             profile.ServerConfig.BriefingTimeout = 60;
             profile.ServerConfig.RoleSelectionTimeout = 99999;
+        }
+
+        /// <summary>
+        /// Sets the basic configuration default values.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void SetArmaProfileDefaultValues(Profile profile)
+        {
+            if (profile == null) return;
+
+            if (profile.ArmaProfile == null)
+            {
+                profile.ArmaProfile = new ArmaProfile();
+            }
+
+            //TODO: Difficulty default values
         }
     }
 }

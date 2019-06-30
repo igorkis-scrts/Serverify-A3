@@ -16,7 +16,7 @@ namespace A3ServerTool.Models
         void SaveStorage(Profile profile);
 
         /// <summary>
-        /// Gets all profiles
+        /// Gets all profiles.
         /// </summary>
         /// <returns>All stored profiles as IList.</returns>
         IList<Profile> GetAll();

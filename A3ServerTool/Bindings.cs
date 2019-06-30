@@ -18,11 +18,13 @@ namespace A3ServerTool
             SimpleIoc.Default.Register<IDao<Profile>, JsonProfileDao>();
             SimpleIoc.Default.Register<BasicConfigDao>();
             SimpleIoc.Default.Register<ServerConfigDao>();
+            SimpleIoc.Default.Register<ArmaProfileDao>();
 
             SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
             SimpleIoc.Default.Register<IServerLauncher, ServerLauncher>();
             SimpleIoc.Default.Register<IMissionDirector, MissionDirector>();
             SimpleIoc.Default.Register<IDao<Mission>, MissionDao>();
+            SimpleIoc.Default.Register<IArmaProfileParsingHelper, ArmaProfileParsingHelper>();
         }
     }
 }

@@ -95,10 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attributes\WrappingClassAttribute.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Converters\NullableIntToBoolConverter.cs" />
     <Compile Include="Converters\EnumToCollectionConverter.cs" />
-    <Compile Include="Attributes\WrappingClass.cs" />
     <Compile Include="Attributes\ConfigProperty.cs" />
     <Compile Include="Attributes\CommandLineArgument.cs" />
     <Compile Include="Behaviours\PasswordBehaviour.cs" />
@@ -114,14 +114,17 @@
     <Compile Include="Enums\SignatureVerificationType.cs" />
     <Compile Include="Enums\TimeStampType.cs" />
     <Compile Include="Enums\VoiceCodecType.cs" />
+    <Compile Include="Helpers\ArmaProfileParsingHelper.cs" />
+    <Compile Include="Helpers\IArmaProfileParsingHelper.cs" />
     <Compile Include="Helpers\IMissionDirector.cs" />
     <Compile Include="Helpers\MissionDirector.cs" />
     <Compile Include="Helpers\SettingsCoordinator.cs" />
     <Compile Include="Helpers\ApplicationSettingType.cs" />
-    <Compile Include="Models\AiLevel.cs" />
+    <Compile Include="Helpers\StringArrayComparer.cs" />
+    <Compile Include="Helpers\UniversalParser.cs" />
     <Compile Include="Models\Config\IConfig.cs" />
     <Compile Include="Models\Config\ServerConfig.cs" />
-    <Compile Include="Models\Config\Arma3Profile.cs" />
+    <Compile Include="Models\Config\ArmaProfile.cs" />
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Profile\IProfileBuilder.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
