@@ -20,9 +20,9 @@ namespace A3ServerTool.Helpers
         public ArmaProfile GetProfile(IEnumerable<string> properties)
         {
             //parsing file with ordinary parser
-            var result = TextParseHandler.Parse<ArmaProfile>(properties);
+            var result = UniversalParser.Parse<ArmaProfile>(properties);
 
-            var nameToValueDictionary = TextParseHandler.ConvertFromTextToDictionary(properties.ToArray(), typeof(ArmaProfile));
+            var nameToValueDictionary = UniversalParser.ConvertFromTextToDictionary(properties.ToArray(), typeof(ArmaProfile));
 
             foreach (var property in typeof(ArmaProfile).GetProperties())
             {

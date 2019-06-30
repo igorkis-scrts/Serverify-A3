@@ -32,7 +32,7 @@ namespace A3ServerTool.Storage
             var properties = TextManager.ReadFileLineByLine(file);
             if (!properties.Any()) return null;
 
-            var result = TextParseHandler.Parse<ServerConfig>(properties);
+            var result = UniversalParser.Parse<ServerConfig>(properties);
             result.FileLocation = file.FullName;
             result.Missions = _missionDirector.GetMissions(properties, GetGameInstallationPath(profile.ArgumentSettings.ExecutablePath)).ToList();
             
@@ -52,7 +52,7 @@ namespace A3ServerTool.Storage
         {
             var configDto = new SaveDataDto
             {
-                Content = string.Join("\r\n", TextParseHandler.ConvertToText(profile.ServerConfig)),
+                Content = string.Join("\r\n", UniversalParser.ConvertToText(profile.ServerConfig)),
                 FileExtension = ConfigFileExtension,
                 FileName = ConfigFileName,
                 Folders = new List<string>

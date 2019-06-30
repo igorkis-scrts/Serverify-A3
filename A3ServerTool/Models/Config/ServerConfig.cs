@@ -150,7 +150,6 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets rules for slow network players - log or log and kick.
         /// </summary>
         /// <remarks>It is required for control that should accept commas to enter the series of values.</remarks>
-        [ConfigProperty(IgnoreParsing = true)]
         public string SlowNetworkKickRulesAsString { get; set; } = string.Empty;
 
         /// <summary>
@@ -394,7 +393,6 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets the missions that will be played on server.
         /// </summary>
-        [ConfigProperty(IgnoreParsing = true)]
         public List<Mission> Missions { get; set; } = new List<Mission>();
 
         //TODO: allowedVotedAdminCmds[]

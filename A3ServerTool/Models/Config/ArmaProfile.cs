@@ -13,7 +13,7 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets the overall difficulty for the server.
         /// </summary>
-        [ConfigProperty(PropertyName = "difficulty")]
+        [ConfigProperty(PropertyName = "difficulty", IsLowerCaseRequired = true, IsQuotationMarksRequired = true)]
         public DifficultyType Difficulty { get; set; }
 
         /// <summary>

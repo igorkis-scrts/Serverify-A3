@@ -26,7 +26,7 @@ namespace A3ServerTool.Storage
             var properties = TextManager.ReadFileLineByLine(file);
             if (!properties.Any()) return null;
 
-            var result = TextParseHandler.Parse<BasicConfig>(properties);
+            var result = UniversalParser.Parse<BasicConfig>(properties);
             result.FileLocation = file.FullName;
             return result;
         }

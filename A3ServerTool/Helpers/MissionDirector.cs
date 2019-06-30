@@ -178,7 +178,8 @@ namespace A3ServerTool.Helpers
             if (!missions.Any()) return string.Empty;
 
             var missionAsStrings = missions.Select(m => m.Name).ToArray();
-            return "\nmissionWhitelist[] = " + TextParseHandler.ParseArrayProperty(missionAsStrings) + ";";
+            //TODO: ParseArrayProperty should not be public
+            return "\nmissionWhitelist[] = " + UniversalParser.ParseArrayProperty(missionAsStrings) + ";";
         }
 
         /// <summary>

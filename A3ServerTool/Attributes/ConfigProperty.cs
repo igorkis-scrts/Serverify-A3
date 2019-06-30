@@ -23,5 +23,15 @@ namespace A3ServerTool.Attributes
         /// </summary>
         /// <remarks>Required by some enums that presented as enum in code and as integer number in the config file.</remarks>
         public bool IsIntValueRequired { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is lower case required.
+        /// </summary>
+        public bool IsLowerCaseRequired { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is quotation marks required.
+        /// </summary>
+        public bool IsQuotationMarksRequired { get; set; }
     }
 }
