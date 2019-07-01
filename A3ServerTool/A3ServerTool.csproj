@@ -97,6 +97,7 @@
     </ApplicationDefinition>
     <Compile Include="Attributes\WrappingClassAttribute.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Enums\FriendlyTagsVisibilityType.cs" />
     <Compile Include="Converters\NullableIntToBoolConverter.cs" />
     <Compile Include="Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Attributes\ConfigProperty.cs" />
@@ -107,7 +108,7 @@
     <Compile Include="Converters\EnumToBoolConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Enums\AiLevelPresetType.cs" />
-    <Compile Include="Enums\ThreeStateType.cs" />
+    <Compile Include="Enums\VisibilityType.cs" />
     <Compile Include="Enums\DifficultyType.cs" />
     <Compile Include="Enums\FilePatching.cs" />
     <Compile Include="Enums\RotorLibType.cs" />

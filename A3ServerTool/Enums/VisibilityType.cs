@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace A3ServerTool.Enums
 {
     /// <summary>
-    /// Represents values for some three-state difficulty parameters.
+    /// Represents distance values for some three-state difficulty parameters.
     /// </summary>
-    public enum ThreeStateType
+    public enum VisibilityType
     {
-        [Description("0")]
+        [Description("Hide")]
         Hide = 0,
 
-        [Description("1")]
+        [Description("Limited distance")]
         Limited = 1,
 
-        [Description("2")]
+        [Description("Always show")]
         Show = 2
     }
 }

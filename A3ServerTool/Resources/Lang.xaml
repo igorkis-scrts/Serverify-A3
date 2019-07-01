@@ -221,7 +221,19 @@
     <v:String x:Key="LocalizableMissionsToServerRestartTooltip">Number of times missionEnd happens before server initiate process restart.</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Missions To Server Shutdown</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Number of times missionEnd happens before server initiate process shutdown.</v:String>
-
     <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as server executable file. If there are no missions - specify server executable file first.</v:String>
+
+    <!--  Missions view  -->
+    <v:String x:Key="LocalizableReducedDamageTitle">Reduced Damage</v:String>
+    <v:String x:Key="LocalizableReducedDamageTooltip">Decreases damage dealt to the player and members of his group.</v:String>
+
+    <v:String x:Key="LocalizableGroupIndicatorTypeTitle">Group Indicators</v:String>
+    <v:String x:Key="LocalizableGroupIndicatorTypeTooltip">Shows indication icons on units in player's group.</v:String>
+
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Friendly Name Tags</v:String>
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTooltip">Friendly unit identification. Works only when the player aims at a unit.</v:String>
+
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Enemy Name Tags</v:String>
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTooltip">Enemy unit identification. Works only when the player aims at a unit.</v:String>
 
 </ResourceDictionary>

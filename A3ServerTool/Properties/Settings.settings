@@ -9,7 +9,7 @@
       <Value Profile="(Default)">en-US</Value>
     </Setting>
     <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">960</Value>
+      <Value Profile="(Default)">1280</Value>
     </Setting>
     <Setting Name="WindowHeight" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">640</Value>

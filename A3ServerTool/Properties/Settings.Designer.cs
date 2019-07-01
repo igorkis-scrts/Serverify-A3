@@ -49,7 +49,7 @@ namespace A3ServerTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("960")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1280")]
         public int WindowWidth {
             get {
                 return ((int)(this["WindowWidth"]));

@@ -221,7 +221,19 @@
     <v:String x:Key="LocalizableMissionsToServerRestartTooltip">Сколько раз наступает событие missionEnd прежде чем сервер инициирует процесс перезагрузки.</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Миссий до выключения сервера</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Сколько раз наступает событие missionEnd прежде чем сервер инициирует процесс выключения.</v:String>
-
     <v:String x:Key="LocalizableRefreshNote">Миссии ищутся в той же папке, что и исполняемый файл сервера. Если миссий нет - сначала укажите исполняемый файл сервера.</v:String>
+
+    <!--  Missions view  -->
+    <v:String x:Key="LocalizableReducedDamageTitle">Уменьшение урона</v:String>
+    <v:String x:Key="LocalizableReducedDamageTooltip">Уменьшает урон, наносимый игроку и членам его группы.</v:String>
+
+    <v:String x:Key="LocalizableGroupIndicatorTypeTitle">Индикаторы группы</v:String>
+    <v:String x:Key="LocalizableGroupIndicatorTypeTooltip">Обозначает индикаторами боевые единицы в группе игрока.</v:String>
+
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Знаки войск союзников</v:String>
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTooltip">Идентификация войск союзников. Работает только тогда, когда игрок целиртся в боевую единицу.</v:String>
+
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Знаки войск противников</v:String>
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTooltip">Идентификация войск противников. Работает только тогда, когда игрок целиртся в боевую единицу.</v:String>
 
 </ResourceDictionary>
