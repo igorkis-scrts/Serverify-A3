@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace A3ServerTool.Enums
 {
     /// <summary>
-    /// Represents visibility state for some difficulty parameters.
+    /// Represents visibility states for some three-state difficulty parameters.
     /// </summary>
-    public enum VisibilityType
+    public enum IndicationType
     {
         [Description("Hide")]
         Hide = 0,
 
-        [Description("Limited distance")]
-        Limited = 1,
+        [Description("Fade out")]
+        Fadeout = 1,
 
-        [Description("Always show")]
+        [Description("Show")]
         Show = 2
     }
 }

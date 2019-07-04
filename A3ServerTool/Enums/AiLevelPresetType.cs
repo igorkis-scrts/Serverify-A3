@@ -8,7 +8,7 @@ namespace A3ServerTool.Enums
     public enum AiLevelPresetType
     {
         [Description("Low")]
-        None = 0,
+        Low = 0,
 
         [Description("Normal")]
         Normal = 1,
