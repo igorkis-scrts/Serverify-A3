@@ -49,7 +49,7 @@ namespace A3ServerTool.Models.Config
         /// </summary>
         [ConfigProperty(PropertyName = "detectedMines")]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
-        public int? AreDetectedMinesShown { get; set; }
+        public int? DetectedMinesVisibilityType { get; set; }
 
         /// <summary>
         /// Gets or sets the value for showing commands to player.
@@ -105,7 +105,7 @@ namespace A3ServerTool.Models.Config
         /// </summary>
         [ConfigProperty(PropertyName = "thirdPersonView")]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
-        public int? IsThirdPersonAllowed { get; set; }
+        public int? IsThirdPersonViewAllowed { get; set; }
 
         /// <summary>
         /// Gets or sets the value for allowing camera shake.
@@ -136,11 +136,25 @@ namespace A3ServerTool.Models.Config
         public int? AreVonIdsShown { get; set; }
 
         /// <summary>
-        /// Gets or sets the value for showing friendly units, enemy units and detected mines on the map.
+        /// Gets or sets the value for showing friendly units on the map.
         /// </summary>
-        [ConfigProperty(PropertyName = "mapContent")]
+        [ConfigProperty(PropertyName = "mapContentFriendly")]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
-        public int? IsExtendedMapContentAllowed { get; set; }
+        public int? IsExtendedMapFriendlyContentAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value for showing enemy units and detected mines on the map.
+        /// </summary>
+        [ConfigProperty(PropertyName = "mapContentEnemy")]
+        [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
+        public int? IsExtendedMapEnemyContentAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value for showing enemy units and detected mines on the map.
+        /// </summary>
+        [ConfigProperty(PropertyName = "mapContentMines")]
+        [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
+        public int? IsExtendedMapMinesContentAllowed { get; set; }
 
         /// <summary>
         /// Gets or sets the value for enabling/disabling automatic reporting of spotted enemies by players only.
@@ -161,7 +175,7 @@ namespace A3ServerTool.Models.Config
         /// </summary>
         [ConfigProperty(PropertyName = "tacticalPing")]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
-        public int? IsTacticalPingAllowed { get; set; }
+        public int? TacticalPingType { get; set; }
 
         /// <summary>
         /// Gets or sets the ai level preset.
