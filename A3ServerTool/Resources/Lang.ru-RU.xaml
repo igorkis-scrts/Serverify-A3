@@ -224,16 +224,89 @@
     <v:String x:Key="LocalizableRefreshNote">Миссии ищутся в той же папке, что и исполняемый файл сервера. Если миссий нет - сначала укажите исполняемый файл сервера.</v:String>
 
     <!--  Missions view  -->
+    <v:String x:Key="LocalizableSituationalAwarenessTitle">Ситуационная осведомлённость</v:String>
+    <v:String x:Key="LocalizablePersonalAwarenessTitle">Личная осведомлённость</v:String>
+    <v:String x:Key="LocalizableSightTitle">Обзор</v:String>
+    <v:String x:Key="LocalizableMultiplayerTitle">Сетевая игра</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentTitle">Дополнительная информация на карте</v:String>
+
     <v:String x:Key="LocalizableReducedDamageTitle">Уменьшение урона</v:String>
     <v:String x:Key="LocalizableReducedDamageTooltip">Уменьшает урон, наносимый игроку и членам его группы.</v:String>
 
     <v:String x:Key="LocalizableGroupIndicatorTypeTitle">Индикаторы группы</v:String>
     <v:String x:Key="LocalizableGroupIndicatorTypeTooltip">Обозначает индикаторами боевые единицы в группе игрока.</v:String>
 
-    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Знаки войск союзников</v:String>
-    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTooltip">Идентификация войск союзников. Работает только тогда, когда игрок целиртся в боевую единицу.</v:String>
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Видимость знаков войск союзников</v:String>
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTooltip">Идентификация войск союзников. Работает только тогда, когда игрок целится в боевую единицу.</v:String>
 
-    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Знаки войск противников</v:String>
-    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTooltip">Идентификация войск противников. Работает только тогда, когда игрок целиртся в боевую единицу.</v:String>
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Видимость знаков войск противников</v:String>
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTooltip">Идентификация войск противников. Работает только тогда, когда игрок целится в боевую единицу.</v:String>
+
+    <v:String x:Key="LocalizableDetectedMinesVisibilityTypeTitle">Видимость обнаруженных мин</v:String>
+    <v:String x:Key="LocalizableDetectedMinesVisibilityTypeTooltip">Показывает местоположение мин. При значении &quot;Show&quot; показывает индикаторы на минах не далее 200 метров.</v:String>
+
+    <v:String x:Key="LocalizableCommandsVisibilityTypeTitle">Видимость команд</v:String>
+    <v:String x:Key="LocalizableCommandsVisibilityTypeTooltip">Отображает значки команд, например, маркеры целей, команду присесть и другие.</v:String>
+
+    <v:String x:Key="LocalizableWaypointsVisibilityTypeTitle">Видимость маршрутных точек</v:String>
+    <v:String x:Key="LocalizableWaypointsVisibilityTypeTooltip">Управляет видимостью маркеров маршрутных точек.</v:String>
+
+    <v:String x:Key="LocalizableWeaponInfoVisibilityTypeTitle">Видимость информации об оружии</v:String>
+    <v:String x:Key="LocalizableWeaponInfoVisibilityTypeTooltip">Показывает окно с информацией об оружии (объем обоймы, режим стрельбы и.т.д.).</v:String>
+
+    <v:String x:Key="LocalizableStanceIndicatorVisibilityTypeTitle">Видимость индикатора стойки</v:String>
+    <v:String x:Key="LocalizableStanceIndicatorVisibilityTypeTooltip">Отображает информацию о положении (фактическое положение тела, подпирание и установку оружия).</v:String>
+
+    <v:String x:Key="LocalizableStaminaBarVisibilityTypeTitle">Видимость индикатора выносливости</v:String>
+    <v:String x:Key="LocalizableStaminaBarVisibilityTypeTooltip">Отвечает за отображение индикатора выносливости.</v:String>
+
+    <v:String x:Key="LocalizableWeaponCrosshairVisibilityTypeTitle">Видимость перекрестия</v:String>
+    <v:String x:Key="LocalizableWeaponCrosshairVisibilityTypeTooltip">Показывает перекрестие в виде от первого и от третьего лица.</v:String>
+
+    <v:String x:Key="LocalizableVisionAidAllowanceTitle">Помощь в визуализации</v:String>
+    <v:String x:Key="LocalizableVisionAidAllowanceTooltip">Помогает обнаружить боевые единицы в пределах видимости и отличить союзников от врагов.</v:String>
+
+    <v:String x:Key="LocalizableThirdPersonViewAllowanceTitle">Вид от третьего лица</v:String>
+    <v:String x:Key="LocalizablethirdPersonViewAllowanceTooltip">Позволяет переключиться на вид от третьего лица.</v:String>
+
+    <v:String x:Key="LocalizableCameraShakeAllowanceTitle">Вибрация камеры</v:String>
+    <v:String x:Key="LocalizableCameraShakeAllowanceTooltip">Встряхивает камеру, если игрок находится рядом со взрывом или проезжающей техникой, либо техника игрока испытывает перегрузку.</v:String>
+
+    <v:String x:Key="LocalizableScoreTableAllowanceTitle">Таблица со счётом.</v:String>
+    <v:String x:Key="LocalizableScoreTableAllowanceTooltip">Отображает таблицу со счётом убитых с каждой стороны и общим счётом в сетевой игре.</v:String>
+
+    <v:String x:Key="LocalizableDeathMessagesAllowanceTitle">Сообщения о смертях</v:String>
+    <v:String x:Key="LocalizableDeathMessagesAllowanceTooltip">Показывает в окне чата, кто убил игрока.</v:String>
+
+    <v:String x:Key="LocalizableVonIdVisibilityTitle">Идентификатор голосовой связи</v:String>
+    <v:String x:Key="LocalizableVonIdVisibilityTooltip">Показывает, кто говорит через голосовую связь в левой нижней части экрана.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentFriendlyAllowanceTitle">Дополнительная информация на карте (дружественные войска)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentFriendlyAllowanceTooltip">Отображает войска союзников на карте.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentMinesAllowanceTitle">Дополнительная информация на карте (вражеские войска)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentMinesAllowanceTooltip">Отображает войска противников на карте.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentEnemiesAllowanceTitle">Дополнительная информация на карте (мины)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentEnemiesAllowanceTooltip">Отображает обнаруженные мины на карте.</v:String>
+
+
+    <v:String x:Key="LocalizableAutoReportAllowanceTitle">Автоматическая отчётность</v:String>
+    <v:String x:Key="LocalizableAutoReportAllowanceTooltip">Включает автоматической отчёта игрока об обнаруженных врагах и различных ситуациях.</v:String>
+
+    <v:String x:Key="LocalizableMultipleSavesAllowanceTitle">Несколько сохранений</v:String>
+    <v:String x:Key="LocalizableMultipleSavesAllowanceTooltip">Позволяет игроку сохранять прогресс несколько раз за задание.</v:String>
+
+    <v:String x:Key="LocalizableTacticalPingAllowanceTitle">Тактический указатель</v:String>
+    <v:String x:Key="LocalizableTacticalPingAllowanceTooltip">Позволяет использовать тактический указатель.</v:String>
+
+    <v:String x:Key="LocalizableAiSkillTitle">Навык ИИ</v:String>
+    <v:String x:Key="LocalizableAiSkillTooltip">Определяет набор способностей боевых единиц, управляемых компьютером.</v:String>
+
+    <v:String x:Key="LocalizableAiPrecisionTitle">Точность ИИ</v:String>
+    <v:String x:Key="LocalizableAiPrecisionTooltip">Определяет точность и навык обращения с оружием боевых единиц, управляемых компьютером.</v:String>
+
+    <v:String x:Key="LocalizableAiPresetTitle">Уровень ИИ</v:String>
+    <v:String x:Key="LocalizableAiPresetTooltip">Установка шаблона уровня навыка ИИ.</v:String>
 
 </ResourceDictionary>

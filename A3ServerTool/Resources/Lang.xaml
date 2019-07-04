@@ -224,16 +224,88 @@
     <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as server executable file. If there are no missions - specify server executable file first.</v:String>
 
     <!--  Missions view  -->
+    <v:String x:Key="LocalizableSituationalAwarenessTitle">Situational Awareness</v:String>
+    <v:String x:Key="LocalizablePersonalAwarenessTitle">Personal Awareness</v:String>
+    <v:String x:Key="LocalizableSightTitle">Sight</v:String>
+    <v:String x:Key="LocalizableMultiplayerTitle">Multiplayer Options</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentTitle">Extended Map Content</v:String>
+
     <v:String x:Key="LocalizableReducedDamageTitle">Reduced Damage</v:String>
     <v:String x:Key="LocalizableReducedDamageTooltip">Decreases damage dealt to the player and members of his group.</v:String>
 
-    <v:String x:Key="LocalizableGroupIndicatorTypeTitle">Group Indicators</v:String>
+    <v:String x:Key="LocalizableGroupIndicatorTypeTitle">Group Indicators Visibility</v:String>
     <v:String x:Key="LocalizableGroupIndicatorTypeTooltip">Shows indication icons on units in player's group.</v:String>
 
-    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Friendly Name Tags</v:String>
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Friendly Name Tags Visibility</v:String>
     <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTooltip">Friendly unit identification. Works only when the player aims at a unit.</v:String>
 
-    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Enemy Name Tags</v:String>
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Enemy Name Tags Visibility</v:String>
     <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTooltip">Enemy unit identification. Works only when the player aims at a unit.</v:String>
+
+    <v:String x:Key="LocalizableDetectedMinesVisibilityTypeTitle">Detected Mines Visibility</v:String>
+    <v:String x:Key="LocalizableDetectedMinesVisibilityTypeTooltip">Shows icons indicating exact positions of mines. show = display the indicators on mines at 200m and closer.</v:String>
+
+    <v:String x:Key="LocalizableCommandsVisibilityTypeTitle">Commands Visibility</v:String>
+    <v:String x:Key="LocalizableCommandsVisibilityTypeTooltip">Displays command icons like target markers, get in command and others.</v:String>
+
+    <v:String x:Key="LocalizableWaypointsVisibilityTypeTitle">Waypoints Visibility</v:String>
+    <v:String x:Key="LocalizableWaypointsVisibilityTypeTooltip">Manages visibility of waypoint markers.</v:String>
+
+    <v:String x:Key="LocalizableWeaponInfoVisibilityTypeTitle">Weapon Info Visibility</v:String>
+    <v:String x:Key="LocalizableWeaponInfoVisibilityTypeTooltip">Manages Weapon Info box (contains round and magazine count, firing mode, etc.).</v:String>
+
+    <v:String x:Key="LocalizableStanceIndicatorVisibilityTypeTitle">Stance Indicator Visibility</v:String>
+    <v:String x:Key="LocalizableStanceIndicatorVisibilityTypeTooltip">Displays stance indication (contains actual stance, weapon resting and deployment).</v:String>
+
+    <v:String x:Key="LocalizableStaminaBarVisibilityTypeTitle">Stamina Bar Visibility</v:String>
+    <v:String x:Key="LocalizableStaminaBarVisibilityTypeTooltip">Manages visibility of stamina indicator. true = fades in when stamina changes.</v:String>
+
+    <v:String x:Key="LocalizableWeaponCrosshairVisibilityTypeTitle">Weapon Crosshair Visibility</v:String>
+    <v:String x:Key="LocalizableWeaponCrosshairVisibilityTypeTooltip">Shows weapon crosshair both in 1st and 3rd person view.</v:String>
+
+    <v:String x:Key="LocalizableVisionAidAllowanceTitle">Vision Aid</v:String>
+    <v:String x:Key="LocalizableVisionAidAllowanceTooltip">Helps to detect units in visual range and identify friend from foe.</v:String>
+
+    <v:String x:Key="LocalizableThirdPersonViewAllowanceTitle">Third Person View</v:String>
+    <v:String x:Key="LocalizablethirdPersonViewAllowanceTooltip">Enables camera switching to 3rd person view.</v:String>
+
+    <v:String x:Key="LocalizableCameraShakeAllowanceTitle">Camera Shake</v:String>
+    <v:String x:Key="LocalizableCameraShakeAllowanceTooltip">Shakes camera if player is near explosion, passing vehicle or if player's vehicle is under G-load.</v:String>
+
+    <v:String x:Key="LocalizableScoreTableAllowanceTitle">Score Table</v:String>
+    <v:String x:Key="LocalizableScoreTableAllowanceTooltip">Displays table with kills, deaths and overall score in multiplayer.</v:String>
+
+    <v:String x:Key="LocalizableDeathMessagesAllowanceTitle">Death Messages</v:String>
+    <v:String x:Key="LocalizableDeathMessagesAllowanceTooltip">Shows in chat window who killed the player.</v:String>
+
+    <v:String x:Key="LocalizableVonIdVisibilityTitle">VON ID Visibility</v:String>
+    <v:String x:Key="LocalizableVonIdVisibilityTooltip">Indicates who is speaking through VON communication.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentFriendlyAllowanceTitle">Extended Map Content (Friendly)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentFriendlyAllowanceTooltip">Shows friendly units on the map.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentMinesAllowanceTitle">Extended Map Content (Mines)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentMinesAllowanceTooltip">Shows detected mines on the map.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentEnemiesAllowanceTitle">Extended Map Content (Enemies)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentEnemiesAllowanceTooltip">Shows enemy units on the map.</v:String>
+
+    <v:String x:Key="LocalizableAutoReportAllowanceTitle">Automatic Reporting</v:String>
+    <v:String x:Key="LocalizableAutoReportAllowanceTooltip">Enables/disables automatic reporting of spotted enemies by players only. This setting does not have effect on AI.</v:String>
+
+    <v:String x:Key="LocalizableMultipleSavesAllowanceTitle">Multiple Saves</v:String>
+    <v:String x:Key="LocalizableMultipleSavesAllowanceTooltip">Allows player to create multiple saves in a mission.</v:String>
+
+    <v:String x:Key="LocalizableTacticalPingAllowanceTitle">Tactical Ping</v:String>
+    <v:String x:Key="LocalizableTacticalPingAllowanceTooltip">Allows player to use tactical pinging.</v:String>
+
+    <v:String x:Key="LocalizableAiSkillTitle">AI Skill</v:String>
+    <v:String x:Key="LocalizableAiSkillTooltip">Defines AI skill level.</v:String>
+
+    <v:String x:Key="LocalizableAiPrecisionTitle">AI Precision</v:String>
+    <v:String x:Key="LocalizableAiPrecisionTooltip">Defines AI shooting accuracy.</v:String>
+
+    <v:String x:Key="LocalizableAiPresetTitle">AI Level</v:String>
+    <v:String x:Key="LocalizableAiPresetTooltip">Defines AI Level preset.</v:String>
 
 </ResourceDictionary>
