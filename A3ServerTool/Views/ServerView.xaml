@@ -58,13 +58,14 @@
                 <controls:NetworkView />
             </TabItem>
 
+            <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}">
+                <controls:PerformanceView />
+            </TabItem>
+
             <TabItem Header="{DynamicResource LocalizableLoggingTabTittle}">
                 <controls:LoggingView />
             </TabItem>
 
-            <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}">
-                <controls:PerformanceView />
-            </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
 
         <DockPanel Grid.Row="2" Grid.ColumnSpan="1" />

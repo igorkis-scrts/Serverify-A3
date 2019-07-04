@@ -17,7 +17,337 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <StackPanel>
+            <StackPanel Grid.Column="0">
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableSituationalAwarenessTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableGroupIndicatorTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=GroupIndicationType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=GroupIndicationType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableGroupIndicatorTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableFriendlyTagsVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=FriendlyTagsVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=FriendlyTagsVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableFriendlyTagsVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableEnemyTagsVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=EnemyTagsVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=EnemyTagsVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableEnemyTagsVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDetectedMinesVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=DetectedMinesVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=DetectedMinesVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableDetectedMinesVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableCommandsVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=CommandsVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=CommandsVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableCommandsVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableWaypointsVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=WaypointsVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=WaypointsVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableWaypointsVisibilityTypeTooltip}" />
+
+                    </StackPanel>
+                </Expander>
+
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizablePersonalAwarenessTitle}">
+                    <StackPanel>
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableWeaponInfoVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=WeaponInfoVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=WeaponInfoVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableWeaponInfoVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableStanceIndicatorVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=StanceIndicatorVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=StanceIndicatorVisibilityType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizableStanceIndicatorVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableStaminaBarVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableStaminaBarVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableWeaponCrosshairVisibilityTypeTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsCrosshairShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableWeaponCrosshairVisibilityTypeTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVisionAidAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsScoreTableShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableVisionAidAllowanceTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableThirdPersonViewAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsThirdPersonViewAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizablethirdPersonViewAllowanceTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableCameraShakeAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsCameraShakeAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableCameraShakeAllowanceTooltip}" />
+
+                    </StackPanel>
+                </Expander>
+
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableMultiplayerTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableScoreTableAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableScoreTableAllowanceTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDeathMessagesAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding AreDeathMessagesShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableDeathMessagesAllowanceTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableVonIdVisibilityTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding AreVonIdsShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableVonIdVisibilityTooltip}" />
+
+
+                    </StackPanel>
+                </Expander>
+
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableExtendedMapContentTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableExtendedMapContentFriendlyAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsExtendedMapFriendlyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableExtendedMapContentFriendlyAllowanceTitle}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableExtendedMapContentEnemiesAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsExtendedMapEnemyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableExtendedMapContentEnemiesAllowanceTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableExtendedMapContentMinesAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsExtendedMapMinesContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableExtendedMapContentMinesAllowanceTooltip}" />
+                    </StackPanel>
+                </Expander>
+
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -36,43 +366,37 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableGroupIndicatorTypeTitle}"
+                    Content="{DynamicResource LocalizableAutoReportAllowanceTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
-                <ComboBox
-                    MinWidth="192"
-                    MaxWidth="192"
+                <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    HorizontalContentAlignment="Left"
-                    DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=GroupIndicationType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=GroupIndicationType}"
-                    SelectedValuePath="Value"
-                    ToolTip="{DynamicResource LocalizableGroupIndicatorTypeTooltip}" />
+                    IsChecked="{Binding IsAutoReportEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableAutoReportAllowanceTooltip}" />
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableFriendlyTagsVisibilityTypeTitle}"
+                    Content="{DynamicResource LocalizableMultipleSavesAllowanceTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
-                <ComboBox
-                    MinWidth="192"
-                    MaxWidth="192"
+                <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    HorizontalContentAlignment="Left"
-                    DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=FriendlyTagsVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=FriendlyTagsVisibilityType}"
-                    SelectedValuePath="Value"
-                    ToolTip="{DynamicResource LocalizableFriendlyTagsVisibilityTypeTooltip}" />
+                    IsChecked="{Binding AreMultipleSavesAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableMultipleSavesAllowanceTooltip}" />
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableEnemyTagsVisibilityTypeTitle}"
+                    Content="{DynamicResource LocalizableTacticalPingAllowanceTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <ComboBox
@@ -82,10 +406,71 @@
                     HorizontalAlignment="Left"
                     HorizontalContentAlignment="Left"
                     DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=EnemyTagsVisibilityType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=EnemyTagsVisibilityType}"
+                    ItemsSource="{Binding Path=TacticalPingType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=TacticalPingType}"
                     SelectedValuePath="Value"
-                    ToolTip="{DynamicResource LocalizableEnemyTagsVisibilityTypeTooltip}" />
+                    ToolTip="{DynamicResource LocalizableTacticalPingAllowanceTooltip}" />
+
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableAiPresetTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=AiLevelPreset, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=AiLevelPreset}"
+                    SelectedValuePath="Value"
+                    ToolTip="{DynamicResource LocalizableAiPresetTooltip}" />
+
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableAiSkillTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="128"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Interval=".01"
+                    Maximum="1"
+                    Minimum="0.01"
+                    Speedup="True"
+                    StringFormat="{}{0:F2}"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableAiSkillTooltip}"
+                    Value="{Binding AiSkill, TargetNullValue=0.5, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableAiPrecisionTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="128"
+                    MaxWidth="128"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    Interval=".01"
+                    Maximum="1"
+                    Minimum="0.01"
+                    Speedup="True"
+                    StringFormat="{}{0:F2}"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableAiPrecisionTooltip}"
+                    Value="{Binding AiPrecision, TargetNullValue=0.5, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

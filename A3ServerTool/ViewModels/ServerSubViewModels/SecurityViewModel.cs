@@ -426,13 +426,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-        public string Error
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
+        public string Error => string.Empty;
 
         #endregion
     }
