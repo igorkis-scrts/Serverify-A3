@@ -309,4 +309,6 @@
     <v:String x:Key="LocalizableAiPresetTitle">Уровень ИИ</v:String>
     <v:String x:Key="LocalizableAiPresetTooltip">Установка шаблона уровня навыка ИИ.</v:String>
 
+    <v:String x:Key="LocalizableDefaultDifficultyTitle">Сложность по умолчанию</v:String>
+
 </ResourceDictionary>

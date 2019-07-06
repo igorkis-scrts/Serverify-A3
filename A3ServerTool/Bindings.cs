@@ -24,7 +24,6 @@ namespace A3ServerTool
             SimpleIoc.Default.Register<IServerLauncher, ServerLauncher>();
             SimpleIoc.Default.Register<IMissionDirector, MissionDirector>();
             SimpleIoc.Default.Register<IDao<Mission>, MissionDao>();
-            SimpleIoc.Default.Register<IArmaProfileParsingHelper, ArmaProfileParsingHelper>();
         }
     }
 }

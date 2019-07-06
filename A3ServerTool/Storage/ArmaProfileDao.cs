@@ -16,13 +16,6 @@ namespace A3ServerTool.Storage
         private const string UserFolder = "Users";
         private const string GameProfileFileExtension = ".Arma3Profile";
 
-        private readonly IArmaProfileParsingHelper _parsingHelper;
-
-        public ArmaProfileDao(IArmaProfileParsingHelper parsingHelper)
-        {
-            _parsingHelper = parsingHelper;
-        }
-
         /// <inheritdoc/>
         public ArmaProfile Get(Profile profile)
         {
@@ -38,7 +31,23 @@ namespace A3ServerTool.Storage
             var properties = TextManager.ReadFileLineByLine(file);
             if (!properties.Any()) return null;
 
-            return _parsingHelper.GetProfile(properties);
+            var resultArmaProfile = UniversalParser.Parse<ArmaProfile>(properties);
+
+            //TODO: It will be needed in the future 
+            //(maybe, BIS documentation is lacking information about either specifying 
+            //specific profile folder or folder with all profiles
+            //var lastPathIndex = file.DirectoryName.LastIndexOf("\\");
+            //if(lastPathIndex != -1)
+            //{
+            //    resultArmaProfile.FileLocation = file.DirectoryName.Remove(lastPathIndex);
+            //}
+            //else
+            //{
+            //    resultArmaProfile.FileLocation = file.DirectoryName;
+            //}
+
+            resultArmaProfile.FileLocation = file.DirectoryName;
+            return resultArmaProfile;
         }
 
         public void Save(Profile profile)
@@ -58,7 +67,7 @@ namespace A3ServerTool.Storage
                     }
             };
 
-            profile.ArmaProfile.FileLocation = armaProfileDto.GetFullPath();
+            //profile.ArmaProfile.FileLocation = armaProfileDto.GetFullPath();
             FileHelper.Save(armaProfileDto);
         }
     }

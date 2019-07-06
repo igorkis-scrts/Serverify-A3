@@ -11,10 +11,10 @@ namespace A3ServerTool.Models.Config
         public string FileLocation { get; set ; }
 
         /// <summary>
-        /// Gets or sets the overall difficulty for the server.
+        /// Gets or sets the default difficulty for the server.
         /// </summary>
         [ConfigProperty(PropertyName = "difficulty", IsLowerCaseRequired = true, IsQuotationMarksRequired = true)]
-        public DifficultyType Difficulty { get; set; }
+        public string DefaultDifficulty { get; set; }
 
         /// <summary>
         /// Gets or sets the value if damage will be decreased for players and AI members of his group.
@@ -185,7 +185,7 @@ namespace A3ServerTool.Models.Config
         /// </value>
         [ConfigProperty(PropertyName = "aiLevelPreset", IsIntValueRequired = true)]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty"})]
-        public AiLevelPresetType AiLevelPreset { get; set; }
+        public int AiLevelPreset { get; set; }
 
         /// <summary>
         /// Gets or sets the ai skill.

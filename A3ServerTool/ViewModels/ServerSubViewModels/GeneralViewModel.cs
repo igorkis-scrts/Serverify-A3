@@ -483,10 +483,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return " Name of the server must be specified.";
                 }
-                else if (string.IsNullOrWhiteSpace(Port))
-                {
-                    return "Port must be specified.";
-                }
+                //else if (string.IsNullOrWhiteSpace(Port))
+                //{
+                //    return "Port must be specified.";
+                //}
                 else if (string.IsNullOrWhiteSpace(ExecutablePath))
                 {
                     return "Server path must be specified.";

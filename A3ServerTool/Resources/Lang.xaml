@@ -308,4 +308,6 @@
     <v:String x:Key="LocalizableAiPresetTitle">AI Level</v:String>
     <v:String x:Key="LocalizableAiPresetTooltip">Defines AI Level preset.</v:String>
 
+    <v:String x:Key="LocalizableDefaultDifficultyTitle">Default Difficulty</v:String>
+
 </ResourceDictionary>

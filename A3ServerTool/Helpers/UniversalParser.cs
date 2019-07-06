@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Globalization;
 
 namespace A3ServerTool.Helpers
@@ -170,11 +169,7 @@ namespace A3ServerTool.Helpers
 
                 value = ApplyConfigPropertyFlags(configProperty, value);
 
-                if (properties[p].PropertyType == typeof(string))
-                {
-                    value = "\"" + value.ToString() + "\"";
-                }
-                else if (properties[p].PropertyType == typeof(int?))
+                if (properties[p].PropertyType == typeof(int?))
                 {
                     if (!int.TryParse(value?.ToString(), out int nullInt))
                     {
@@ -280,14 +275,8 @@ namespace A3ServerTool.Helpers
         /// </summary>
         /// <param name="configProperty">The configuration property.</param>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
         private static object ApplyConfigPropertyFlags(ConfigProperty configProperty, object value)
         {
-            if (configProperty.IsIntValueRequired)
-            {
-                value = Convert.ChangeType(value, Enum.GetUnderlyingType(value.GetType()));
-            }
-
             if (configProperty.IsQuotationMarksRequired)
             {
                 value = "\"" + value.ToString() + "\"";
@@ -295,7 +284,7 @@ namespace A3ServerTool.Helpers
 
             if (configProperty.IsLowerCaseRequired)
             {
-                value = "\"" + value.ToString().ToLowerInvariant() + "\"";
+                value = value.ToString().ToLowerInvariant();
             }
 
             return value;
@@ -305,7 +294,6 @@ namespace A3ServerTool.Helpers
         /// Parses the array config properties.
         /// </summary>
         /// <param name="valueAsArray">The value as array.</param>
-        /// <returns></returns>
         public static string ParseArrayProperty(string[] valueAsArray)
         {
             if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;

@@ -413,6 +413,24 @@
 
             </StackPanel>
             <StackPanel Grid.Column="1">
+
+                <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableDefaultDifficultyTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=DefaultDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=DefaultDifficulty}"
+                            SelectedValuePath="Value" />
+
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"

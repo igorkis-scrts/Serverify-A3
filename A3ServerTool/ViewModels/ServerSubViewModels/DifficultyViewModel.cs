@@ -1,6 +1,8 @@
 ﻿using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using Interchangeable;
+using System;
 using System.ComponentModel;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -381,13 +383,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 return CurrentProfile?.ArmaProfile?.AiLevelPreset != null
-                     ? CurrentProfile.ArmaProfile.AiLevelPreset
+                     ? (AiLevelPresetType) CurrentProfile.ArmaProfile.AiLevelPreset
                      : AiLevelPresetType.Normal;
             }
             set
             {
-                if (Equals(value, CurrentProfile?.ArmaProfile?.AiLevelPreset)) return;
-                CurrentProfile.ArmaProfile.AiLevelPreset = value;
+                if (Equals((int)value, CurrentProfile?.ArmaProfile?.AiLevelPreset)) return;
+                CurrentProfile.ArmaProfile.AiLevelPreset = (int)value;
                 RaisePropertyChanged();
             }
         }
@@ -416,6 +418,30 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArmaProfile?.AiPrecision)) return;
                 CurrentProfile.ArmaProfile.AiPrecision = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the default difficulty.
+        /// </summary>
+        public DifficultyType DefaultDifficulty
+        {
+            get
+            {
+                if(CurrentProfile?.ArmaProfile?.DefaultDifficulty == null)
+                {
+                    return DifficultyType.Recruit;
+                }
+
+                Enum.TryParse(CurrentProfile.ArmaProfile.DefaultDifficulty.FirstLetterToUpperCase(),
+                    out DifficultyType difficulty);
+                return difficulty;
+            }
+            set
+            {
+                if (Equals(value.ToString(), CurrentProfile.ArmaProfile.DefaultDifficulty)) return;
+                CurrentProfile.ArmaProfile.DefaultDifficulty = value.ToString().ToLower();
                 RaisePropertyChanged();
             }
         }

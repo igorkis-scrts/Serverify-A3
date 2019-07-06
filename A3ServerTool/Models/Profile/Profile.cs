@@ -107,12 +107,6 @@ namespace A3ServerTool.Models
         private BasicConfig _basicConfig = new BasicConfig();
 
         /// <summary>
-        /// Gets the path to basic configuration file.
-        /// </summary>
-        [JsonIgnore]
-        public string BasicConfigString => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
-
-        /// <summary>
         /// Gets or sets the server game configuration.
         /// </summary>
         [JsonIgnore]
@@ -144,8 +138,23 @@ namespace A3ServerTool.Models
         }
         private ArmaProfile _armaProfile = new ArmaProfile();
 
+        /// <summary>
+        /// Gets the path to arma profile.
+        /// </summary>
+        [JsonIgnore]
+        public string ArmaProfileConfigString => ArmaProfile != null ? ArmaProfile.FileLocation : string.Empty;
+
+        /// <summary>
+        /// Gets the path to server configuration file.
+        /// </summary>
         [JsonIgnore]
         public string ServerConfigString => ServerConfig != null ? ServerConfig.FileLocation : string.Empty;
+
+        /// <summary>
+        /// Gets the path to basic configuration file.
+        /// </summary>
+        [JsonIgnore]
+        public string BasicConfigString => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
 
         #region IDataErrorInfo members
 

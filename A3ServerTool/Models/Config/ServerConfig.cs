@@ -20,28 +20,28 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets server name visible in the game browser.
         /// </summary>
-        [ConfigProperty(PropertyName = "hostname")]
+        [ConfigProperty(PropertyName = "hostname", IsQuotationMarksRequired = true)]
         public string HostName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets password to protect admin access. 
         /// </summary>
         /// <remarks>Password stored in plain text because it is stored the same way in config file.</remarks>
-        [ConfigProperty(PropertyName = "passwordAdmin")]
+        [ConfigProperty(PropertyName = "passwordAdmin", IsQuotationMarksRequired =true)]
         public string AdminPassword { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets password required to connect to server. 
         /// </summary>
         /// <remarks>Password stored in plain text because it is stored the same way in config file.</remarks>
-        [ConfigProperty(PropertyName = "password")]
+        [ConfigProperty(PropertyName = "password", IsQuotationMarksRequired = true)]
         public string Password { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. 
         /// </summary>
         /// <remarks>Password stored in plain text because it is stored the same way in config file.</remarks>
-        [ConfigProperty(PropertyName = "serverCommandPassword")]
+        [ConfigProperty(PropertyName = "serverCommandPassword", IsQuotationMarksRequired = true)]
         public string ServerCommandPassword { get; set; } = string.Empty;
 
         /// <summary>
@@ -253,49 +253,49 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets a value for enabling output of dedicated server console into textfile.
         /// </summary>
-        [ConfigProperty(PropertyName = "logFile")]
+        [ConfigProperty(PropertyName = "logFile", IsQuotationMarksRequired = true)]
         public string LogFileName { get; set; }
 
         /// <summary>
         /// Gets or sets a command when 2nd user with the same ID detected.
         /// </summary>
-        [ConfigProperty(PropertyName = "doubleIdDetected")]
+        [ConfigProperty(PropertyName = "doubleIdDetected", IsQuotationMarksRequired = true)]
         public string OnDoubleIdCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a command when 2nd user with the same ID detected.
         /// </summary>
-        [ConfigProperty(PropertyName = "onUserConnected")]
+        [ConfigProperty(PropertyName = "onUserConnected", IsQuotationMarksRequired = true)]
         public string OnUserConnectedCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a command when user has disconnected.
         /// </summary>
-        [ConfigProperty(PropertyName = "onUserDisconnected")]
+        [ConfigProperty(PropertyName = "onUserDisconnected", IsQuotationMarksRequired = true)]
         public string OnUserDisconnectedCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a command when modification of signed pbo detected.
         /// </summary>
-        [ConfigProperty(PropertyName = "onHackedData")]
+        [ConfigProperty(PropertyName = "onHackedData", IsQuotationMarksRequired = true)]
         public string OnHackedDataCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a command when signed pbo detected with a valid signature.
         /// </summary>
-        [ConfigProperty(PropertyName = "onDifferentData")]
+        [ConfigProperty(PropertyName = "onDifferentData", IsQuotationMarksRequired = true)]
         public string OnDifferentDataCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a command when unsigned data detected.
         /// </summary>
-        [ConfigProperty(PropertyName = "onUnsignedData")]
+        [ConfigProperty(PropertyName = "onUnsignedData", IsQuotationMarksRequired = true)]
         public string OnUnsignedDataCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a command when user has kicked.
         /// </summary>
-        [ConfigProperty(PropertyName = "onUserKicked")]
+        [ConfigProperty(PropertyName = "onUserKicked", IsQuotationMarksRequired = true)]
         public string OnUserKickedCommand { get; set; }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets timestamp format used on each report line in server-side RPT file.
         /// </summary>
-        [ConfigProperty(PropertyName = "timeStampFormat")]
+        [ConfigProperty(PropertyName = "timeStampFormat", IsQuotationMarksRequired = true)]
         public string TimeStampFormat { get; set; }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Gets or sets a value for forcing difficulty for every mission on server.
         /// </summary>
-        [ConfigProperty(PropertyName = "forcedDifficulty")]
+        [ConfigProperty(PropertyName = "forcedDifficulty", IsQuotationMarksRequired = true)]
         public string ForcedDifficulty { get; set; }
 
         /// <summary>
