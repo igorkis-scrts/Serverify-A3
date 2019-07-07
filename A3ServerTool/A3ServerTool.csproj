@@ -126,6 +126,7 @@
     <Compile Include="Models\Config\ServerConfig.cs" />
     <Compile Include="Models\Config\ArmaProfile.cs" />
     <Compile Include="Models\Mission.cs" />
+    <Compile Include="Models\Modification.cs" />
     <Compile Include="Models\Profile\IProfileBuilder.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
     <Compile Include="Models\Profile\IProfileDirector.cs" />
@@ -145,7 +146,7 @@
     <Compile Include="Storage\MissionDao.cs" />
     <Compile Include="Storage\ServerConfigDao.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\ModificationsViewModel.cs" />
+    <Compile Include="ViewModels\ServerSubViewModels\ModificationsViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\DifficultyViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\LoggingViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\MissionsViewModel.cs" />

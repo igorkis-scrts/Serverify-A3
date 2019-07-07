@@ -280,14 +280,16 @@
                             HorizontalAlignment="Left"
                             Content="{DynamicResource LocalizableSlowNetworkRulesTitle}"
                             FontSize="14"
-                            FontWeight="Bold" />
+                            FontWeight="Bold"
+                            Visibility="Collapsed" />
                         <TextBox
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableSlowNetworkRulesWatermark}"
                             Text="{Binding SlowNetworkKickRules, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            ToolTip="{DynamicResource LocalizableSlowNetworkRulesTooltip}">
+                            ToolTip="{DynamicResource LocalizableSlowNetworkRulesTooltip}"
+                            Visibility="Collapsed">
 
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">

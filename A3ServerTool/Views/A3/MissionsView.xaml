@@ -42,7 +42,7 @@
                         <DataGridTextColumn
                             Width="4*"
                             Binding="{Binding Name}"
-                            Header="{DynamicResource LocalizableMissionName}"
+                            Header="{DynamicResource LocalizableName}"
                             IsReadOnly="True" />
                         <DataGridTemplateColumn Header="{DynamicResource LocalizableMissionDifficulty}">
                             <DataGridTemplateColumn.CellEditingTemplate>
@@ -51,9 +51,9 @@
                                         DisplayMemberPath="Description"
                                         IsEditable="False"
                                         ItemsSource="{Binding Path=Difficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                                        SelectedIndex="0"
                                         SelectedValue="{Binding Path=Difficulty}"
-                                        SelectedValuePath="Value"
-                                        SelectedIndex="0"/>
+                                        SelectedValuePath="Value" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                             <DataGridTemplateColumn.CellTemplate>
@@ -119,7 +119,6 @@
                     ItemsSource="{Binding Path=ForcedDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
                     SelectedValue="{Binding Path=ForcedDifficulty}"
                     SelectedValuePath="Value"
-                    SelectedIndex="0"
                     ToolTip="{DynamicResource LocalizableForcedDifficultyTitleTooltip}" />
 
                 <Expander Margin="{StaticResource ControlMargin}" Header="{DynamicResource LocalizableMissionRotationGroupTitle}">
