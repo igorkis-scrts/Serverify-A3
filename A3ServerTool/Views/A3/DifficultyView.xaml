@@ -179,7 +179,7 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            IsChecked="{Binding IsStaminaBarShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffLabel="{DynamicResource LocalizableOff}"
                             OnLabel="{DynamicResource LocalizableOn}"
                             Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
@@ -209,7 +209,7 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsScoreTableShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            IsChecked="{Binding IsVisualAidAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffLabel="{DynamicResource LocalizableOff}"
                             OnLabel="{DynamicResource LocalizableOn}"
                             Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
@@ -259,7 +259,7 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            IsChecked="{Binding IsScoreTableShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffLabel="{DynamicResource LocalizableOff}"
                             OnLabel="{DynamicResource LocalizableOn}"
                             Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
@@ -415,21 +415,21 @@
             <StackPanel Grid.Column="1">
 
                 <Label
-                            Margin="{StaticResource LabelMargin}"
-                            HorizontalAlignment="Left"
-                            Content="{DynamicResource LocalizableDefaultDifficultyTitle}"
-                            FontSize="14"
-                            FontWeight="Bold" />
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableDefaultDifficultyTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
                 <ComboBox
-                            MinWidth="192"
-                            MaxWidth="192"
-                            Margin="{StaticResource ControlMargin}"
-                            HorizontalAlignment="Left"
-                            HorizontalContentAlignment="Left"
-                            DisplayMemberPath="Description"
-                            ItemsSource="{Binding Path=DefaultDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                            SelectedValue="{Binding Path=DefaultDifficulty}"
-                            SelectedValuePath="Value" />
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=DefaultDifficulty, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=DefaultDifficulty}"
+                    SelectedValuePath="Value" />
 
                 <Label
                     Margin="{StaticResource LabelMargin}"

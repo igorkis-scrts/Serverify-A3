@@ -177,7 +177,7 @@ namespace A3ServerTool.Models
             profile.ServerConfig.FilePatchingMode = 0;
             profile.ServerConfig.LoadFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
             profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
-            profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "htm", "html", "xml", "txt" });
+            profile.ServerConfig.HtmlFileExtensionsWhitelist.AddRange(new[] { "htm", "html", "xml", "txt" });
         }
 
         /// <summary>

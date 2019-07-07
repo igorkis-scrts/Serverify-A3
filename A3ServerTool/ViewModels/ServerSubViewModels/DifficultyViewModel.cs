@@ -239,7 +239,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ArmaProfile?.AreDeathMessagesShown)) return;
-                CurrentProfile.ArmaProfile.IsVisionAidAllowed = value;
+                CurrentProfile.ArmaProfile.AreDeathMessagesShown = value;
                 RaisePropertyChanged();
             }
         }
@@ -253,7 +253,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ArmaProfile?.AreVonIdsShown)) return;
-                CurrentProfile.ArmaProfile.IsVisionAidAllowed = value;
+                CurrentProfile.ArmaProfile.AreVonIdsShown = value;
                 RaisePropertyChanged();
             }
         }
@@ -338,6 +338,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArmaProfile?.IsAutoReportEnabled)) return;
                 CurrentProfile.ArmaProfile.IsAutoReportEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the is score table shown.
+        /// </summary>
+        public int? IsScoreTableShown
+        {
+            get => CurrentProfile?.ArmaProfile?.IsScoreTableShown;
+            set
+            {
+                if (Equals(value, CurrentProfile?.ArmaProfile?.IsScoreTableShown)) return;
+                CurrentProfile.ArmaProfile.IsScoreTableShown = value;
                 RaisePropertyChanged();
             }
         }
