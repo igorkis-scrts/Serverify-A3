@@ -9,12 +9,12 @@ namespace A3ServerTool.Models
     public class ProfileDirector : IProfileDirector
     {
         private readonly IDao<Profile> _profileDao;
-        private readonly BasicConfigDao _basicDao;
-        private readonly ServerConfigDao _serverDao;
-        private readonly ArmaProfileDao _armaProfileDao;
+        private readonly IConfigDao<BasicConfig> _basicDao;
+        private readonly IConfigDao<ServerConfig> _serverDao;
+        private readonly IConfigDao<ArmaProfile> _armaProfileDao;
 
-        public ProfileDirector(IDao<Profile> profileDao, BasicConfigDao basicDao, 
-            ServerConfigDao serverDao, ArmaProfileDao armaProfileDao)
+        public ProfileDirector(IDao<Profile> profileDao, IConfigDao<BasicConfig> basicDao,
+            IConfigDao<ServerConfig> serverDao, IConfigDao<ArmaProfile> armaProfileDao)
         {
             _profileDao = profileDao;
             _basicDao = basicDao;
@@ -31,25 +31,22 @@ namespace A3ServerTool.Models
         /// <inheritdoc/>
         public Profile GetById(Guid id)
         {
-           var profile = _profileDao.Get(new Profile(id));
-           if (profile == null) return null;
+            var profile = _profileDao.Get(new Profile(id));
+            if (profile == null) return null;
 
-           profile.BasicConfig = _basicDao.Get(profile);
-           if(profile.BasicConfig == null)
-           {
-                profile.BasicConfig = new BasicConfig();
-                SetBasicConfigDefaultValues(profile);
-                _basicDao.Save(profile);
-           }
+            RetrieveBasicConfig(profile);
+            RetrieveServerConfig(profile);
+            RetrieveArmaProfile(profile);
 
-           profile.ServerConfig = _serverDao.Get(profile);
-           if (profile.ServerConfig == null)
-           {
-               profile.ServerConfig = new ServerConfig();
-               SetServerConfigDefaultValues(profile);
-               _serverDao.Save(profile);
-           }
+            return profile;
+        }
 
+        /// <summary>
+        /// Retrieves the arma profile.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void RetrieveArmaProfile(Profile profile)
+        {
             profile.ArmaProfile = _armaProfileDao.Get(profile);
             if (profile.ArmaProfile == null)
             {
@@ -57,8 +54,36 @@ namespace A3ServerTool.Models
                 SetArmaProfileDefaultValues(profile);
                 _armaProfileDao.Save(profile);
             }
+        }
 
-            return profile;
+        /// <summary>
+        /// Retrieves the server configuration.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void RetrieveServerConfig(Profile profile)
+        {
+            profile.ServerConfig = _serverDao.Get(profile);
+            if (profile.ServerConfig == null)
+            {
+                profile.ServerConfig = new ServerConfig();
+                SetServerConfigDefaultValues(profile);
+                _serverDao.Save(profile);
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the basic configuration.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void RetrieveBasicConfig(Profile profile)
+        {
+            profile.BasicConfig = _basicDao.Get(profile);
+            if (profile.BasicConfig == null)
+            {
+                profile.BasicConfig = new BasicConfig();
+                SetBasicConfigDefaultValues(profile);
+                _basicDao.Save(profile);
+            }
         }
 
         /// <inheritdoc/>
@@ -98,7 +123,7 @@ namespace A3ServerTool.Models
         {
             if (profile == null) return;
 
-            if(profile.BasicConfig == null)
+            if (profile.BasicConfig == null)
             {
                 profile.BasicConfig = new BasicConfig();
             }
@@ -147,6 +172,12 @@ namespace A3ServerTool.Models
             profile.ServerConfig.DebriefingTimeout = 45;
             profile.ServerConfig.BriefingTimeout = 60;
             profile.ServerConfig.RoleSelectionTimeout = 99999;
+            profile.ServerConfig.HasBattleEye = true;
+            profile.ServerConfig.SignatureVerificationMode = 2;
+            profile.ServerConfig.FilePatchingMode = 0;
+            profile.ServerConfig.LoadFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
+            profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
+            profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "htm", "html", "xml", "txt" });
         }
 
         /// <summary>
@@ -162,7 +193,28 @@ namespace A3ServerTool.Models
                 profile.ArmaProfile = new ArmaProfile();
             }
 
-            //TODO: Difficulty default values
+            profile.ArmaProfile.GroupIndicationType = 1;
+            profile.ArmaProfile.FriendlyTagsVisibilityType = 1;
+            profile.ArmaProfile.EnemyTagsVisibilityType = 0;
+            profile.ArmaProfile.DetectedMinesVisibilityType = 1;
+            profile.ArmaProfile.CommandsVisibilityType = 1;
+            profile.ArmaProfile.WaypointsVisibilityType = 2;
+            profile.ArmaProfile.TacticalPingType = 1;
+            profile.ArmaProfile.WeaponInfoVisibilityType = 2;
+            profile.ArmaProfile.StanceIndicatorVisibilityType = 2;
+            profile.ArmaProfile.IsStaminaBarShown = 1;
+            profile.ArmaProfile.IsCrosshairShown = 1;
+            profile.ArmaProfile.IsVisionAidAllowed = 0;
+            profile.ArmaProfile.IsThirdPersonViewAllowed = 1;
+            profile.ArmaProfile.IsCameraShakeAllowed = 1;
+            profile.ArmaProfile.IsScoreTableShown = 1;
+            profile.ArmaProfile.AreDeathMessagesShown = 1;
+            profile.ArmaProfile.AreVonIdsShown = 1;
+            profile.ArmaProfile.IsExtendedMapEnemyContentAllowed = 0;
+            profile.ArmaProfile.IsExtendedMapMinesContentAllowed = 1;
+            profile.ArmaProfile.IsExtendedMapFriendlyContentAllowed = 1;
+            profile.ArmaProfile.IsAutoReportEnabled = 1;
+            profile.ArmaProfile.AreMultipleSavesAllowed = 1;
         }
     }
 }
