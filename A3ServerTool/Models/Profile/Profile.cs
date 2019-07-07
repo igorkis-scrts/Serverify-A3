@@ -142,19 +142,25 @@ namespace A3ServerTool.Models
         /// Gets the path to arma profile.
         /// </summary>
         [JsonIgnore]
-        public string ArmaProfileConfigString => ArmaProfile != null ? ArmaProfile.FileLocation : string.Empty;
+        public string ArmaProfilePath => ArmaProfile != null ? ArmaProfile.FileLocation : string.Empty;
 
         /// <summary>
         /// Gets the path to server configuration file.
         /// </summary>
         [JsonIgnore]
-        public string ServerConfigString => ServerConfig != null ? ServerConfig.FileLocation : string.Empty;
+        public string ServerConfigPath => ServerConfig != null ? ServerConfig.FileLocation : string.Empty;
 
         /// <summary>
         /// Gets the path to basic configuration file.
         /// </summary>
         [JsonIgnore]
-        public string BasicConfigString => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
+        public string BasicConfigPath => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
+
+        /// <summary>
+        /// Gets the path to profile itself.
+        /// </summary>
+        [JsonIgnore]
+        public string ProfilePath { get; set; }
 
         #region IDataErrorInfo members
 

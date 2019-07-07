@@ -9,6 +9,7 @@ using System.Globalization;
 
 namespace A3ServerTool.Helpers
 {
+    //TODO: MAJOR REFACTORING BADLY NEEDED
     /// <summary>
     /// Provides instruments to convert array of text lines into object and back.
     /// </summary>
