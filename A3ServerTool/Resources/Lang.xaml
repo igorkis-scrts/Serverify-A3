@@ -209,7 +209,7 @@
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran will be taken from from data config (CfgDifficultyPresets), Custom - from the server profile.</v:String>
 
     <v:String x:Key="LocalizableIsMissionSelected">Play</v:String>
-    <v:String x:Key="LocalizableMissionName">Name</v:String>
+    <v:String x:Key="LocalizableName">Name</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Difficulty</v:String>
     <v:String x:Key="LocalizableIsMissonWhitelisted">Whitelist</v:String>
 
@@ -309,5 +309,20 @@
     <v:String x:Key="LocalizableAiPresetTooltip">Defines AI Level preset.</v:String>
 
     <v:String x:Key="LocalizableDefaultDifficultyTitle">Default Difficulty</v:String>
+
+
+    <!--  ModificationsView view  -->
+    <v:String x:Key="LocalizableAvailableTitle">Available:</v:String>
+    <v:String x:Key="LocalizableSelectedTitle">Selected:</v:String>
+
+    <v:String x:Key="LocalizableSelectAllTitle">Select All</v:String>
+    <v:String x:Key="LocalizableDeselectAllTitle">Deselect All</v:String>
+
+    <v:String x:Key="LocalizableServerModTitle">Server Mod</v:String>
+    <v:String x:Key="LocalizableServerModTooltip">Represents modifications that will be applied only by server and will be not required from clients.</v:String>
+
+    <v:String x:Key="LocalizableClientModTitle">Select</v:String>
+
+    <v:String x:Key="LocalizableRefreshModNote">Modifications are searched in the same folder as server executable file. If there are no modifications in the grid - specify server executable file first.</v:String>
 
 </ResourceDictionary>

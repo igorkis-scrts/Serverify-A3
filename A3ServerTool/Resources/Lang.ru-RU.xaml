@@ -209,7 +209,7 @@
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran будут взяты из конфигурационных файлов (CfgDifficultyPresets), Пользовательский уровень - из профиля сервера.</v:String>
 
     <v:String x:Key="LocalizableIsMissionSelected">Играть на сервере</v:String>
-    <v:String x:Key="LocalizableMissionName">Название</v:String>
+    <v:String x:Key="LocalizableName">Название</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Сложность</v:String>
     <v:String x:Key="LocalizableIsMissonWhitelisted">В белом списке</v:String>
 
@@ -310,5 +310,19 @@
     <v:String x:Key="LocalizableAiPresetTooltip">Установка шаблона уровня навыка ИИ.</v:String>
 
     <v:String x:Key="LocalizableDefaultDifficultyTitle">Сложность по умолчанию</v:String>
+
+    <!--  ModificationsView view  -->
+    <v:String x:Key="LocalizableAvailableTitle">Доступно:</v:String>
+    <v:String x:Key="LocalizableSelectedTitle">Выбрано:</v:String>
+
+    <v:String x:Key="LocalizableSelectAllTitle">Выбрать всё</v:String>
+    <v:String x:Key="LocalizableDeselectAllTitle">Отменить всё</v:String>
+
+    <v:String x:Key="LocalizableServerModTitle">Серверный мод</v:String>
+    <v:String x:Key="LocalizableServerModTooltip">Модификации, отмеченные данным флагом, будут использоваться только на сервере и не будет требоваться от подключающихся клиентов.</v:String>
+
+    <v:String x:Key="LocalizableClientModTitle">Выбрать</v:String>
+
+    <v:String x:Key="LocalizableRefreshModNote">Модификации ищутся в той же папке, что и исполняемый файл сервера. Если моды отсутствуют в списке - сначала укажите исполняемый файл сервера.</v:String>
 
 </ResourceDictionary>
