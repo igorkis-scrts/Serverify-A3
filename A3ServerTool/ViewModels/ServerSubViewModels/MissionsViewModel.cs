@@ -31,6 +31,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 Enum.TryParse(CurrentProfile.ServerConfig.ForcedDifficulty.FirstLetterToUpperCase(), out DifficultyType difficulty);
+                if(difficulty == DifficultyType.None)
+                {
+                    return DifficultyType.Recruit;
+                }
                 return difficulty;
             }
             set
@@ -114,7 +118,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
         private ObservableCollection<Mission> _missions;
-
 
         /// <summary>
         /// Gets or sets the selected mission.
