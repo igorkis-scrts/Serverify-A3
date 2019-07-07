@@ -183,7 +183,7 @@ namespace A3ServerTool.Models.Config
         /// <value>
         /// The ai level preset.
         /// </value>
-        [ConfigProperty(PropertyName = "aiLevelPreset", IsIntValueRequired = true)]
+        [ConfigProperty(PropertyName = "aiLevelPreset")]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty"})]
         public int AiLevelPreset { get; set; }
 
