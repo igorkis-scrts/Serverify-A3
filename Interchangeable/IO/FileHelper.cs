@@ -10,7 +10,7 @@ namespace Interchangeable.IO
     /// </summary>
     /// TODO: Is singleton really necessary here?
     /// TODO: Class rename?
-    public class FileHelper
+    public sealed class FileHelper
     {
         private static FileHelper _instance;
         //private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;

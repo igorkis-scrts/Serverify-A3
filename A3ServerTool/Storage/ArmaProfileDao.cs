@@ -6,11 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace A3ServerTool.Storage
 {
+    /// <summary>
+    /// Provides access and manipulation methods for various armaProfile subclass.
+    /// </summary>
+    /// <seealso cref="A3ServerTool.Storage.IConfigDao{A3ServerTool.Models.Config.ArmaProfile}" />
     public class ArmaProfileDao : IConfigDao<ArmaProfile>
     {
         private const string UserFolder = "Users";
@@ -32,21 +34,7 @@ namespace A3ServerTool.Storage
             if (!properties.Any()) return null;
 
             var resultArmaProfile = UniversalParser.Parse<ArmaProfile>(properties);
-
-            //TODO: It will be needed in the future 
-            //(maybe, BIS documentation is lacking information about either specifying 
-            //specific profile folder or folder with all profiles
-            //var lastPathIndex = file.DirectoryName.LastIndexOf("\\");
-            //if(lastPathIndex != -1)
-            //{
-            //    resultArmaProfile.FileLocation = file.DirectoryName.Remove(lastPathIndex);
-            //}
-            //else
-            //{
-            //    resultArmaProfile.FileLocation = file.DirectoryName;
-            //}
-
-            resultArmaProfile.FileLocation = file.DirectoryName;
+            resultArmaProfile.FileLocation = file.FullName;
             return resultArmaProfile;
         }
 
@@ -62,12 +50,12 @@ namespace A3ServerTool.Storage
                         Constants.RootFolder,
                         Constants.ServerProfileFolder,
                         profile.Id.ToString(),
-                        "Users",
+                        UserFolder,
                         Constants.GameProfileName
                     }
             };
 
-            //profile.ArmaProfile.FileLocation = armaProfileDto.GetFullPath();
+            profile.ArmaProfile.FileLocation = armaProfileDto.GetFullPath();
             FileHelper.Save(armaProfileDto);
         }
     }

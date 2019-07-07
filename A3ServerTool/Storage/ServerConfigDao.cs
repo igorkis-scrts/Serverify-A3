@@ -6,6 +6,7 @@ using System.Linq;
 using Interchangeable.IO;
 using A3ServerTool.Models.Config;
 using A3ServerTool.Helpers;
+using System.Threading.Tasks;
 
 namespace A3ServerTool.Storage
 {
@@ -46,6 +47,8 @@ namespace A3ServerTool.Storage
 
             return result;
         }
+
+        /// <inheritdoc/>
 
         /// <inheritdoc/>
         public void Save(Profile profile)

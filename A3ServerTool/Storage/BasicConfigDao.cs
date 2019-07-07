@@ -32,6 +32,8 @@ namespace A3ServerTool.Storage
         }
 
         /// <inheritdoc/>
+
+        /// <inheritdoc/>
         public void Save(Profile profile)
         {
             var configDto = new SaveDataDto

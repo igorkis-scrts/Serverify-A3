@@ -76,6 +76,7 @@ namespace A3ServerTool.Storage
                 if(metadata != null)
                 {
                     profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    profile.ProfilePath = folder.FullName;
                     profiles.Add(profile);
                 }
             });
