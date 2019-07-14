@@ -20,7 +20,13 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0">
                 <GroupBox Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableCommonSettingsGroupTitle}">
                     <StackPanel>
                         <Label
@@ -101,7 +107,7 @@
                     Style="{StaticResource BrowseMetroTextBox}"
                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Row="0" Grid.Column="1">
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizablePlayerInteractionsGroupTitle}">
                     <StackPanel>
                         <Label
@@ -432,6 +438,22 @@
                             ToolTip="{DynamicResource LocalizableAnalyticsTooltip}" />
                     </StackPanel>
                 </Expander>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableFinalServerParametersTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Margin="{StaticResource EndControlMargin}">
+                    <TextBox
+                        IsReadOnly="True"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                        ToolTip="{DynamicResource LocalizableFinalServerParametersTooltip}" />
+                </ScrollViewer>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>

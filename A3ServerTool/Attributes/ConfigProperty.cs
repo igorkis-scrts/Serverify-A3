@@ -22,7 +22,7 @@ namespace A3ServerTool.Attributes
         /// Gets or sets a value indicating whether this instance is lower case required.
         /// </summary>
         public bool IsLowerCaseRequired { get; set; }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is quotation marks required.
         /// </summary>
