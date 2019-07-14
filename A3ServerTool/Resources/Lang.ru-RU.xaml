@@ -48,6 +48,9 @@
     <v:String x:Key="LocalizableServerExecLocationTitle">Местоположение файла сервера</v:String>
     <v:String x:Key="LocalizableServerExecWatermark">Путь до исполняемого файла сервера</v:String>
 
+    <v:String x:Key="LocalizableFinalServerParametersTitle">Итоговые параметры сервера</v:String>
+    <v:String x:Key="LocalizableFinalServerParametersTooltip">Предоставляет все применяемые параметры-аргументы исполняемого файла.</v:String>
+
     <v:String x:Key="LocalizableWelcomeMessagesTitle">Приветственное сообщение</v:String>
     <v:String x:Key="LocalizableWelcomeMessagesWatermark">Текст сообщения</v:String>
     <v:String x:Key="LocalizableWelcomeMessagesTooltip">Сообщения, которые увидит игрок после присоединения к серверу. Нажмите Enter для создания новой строки.</v:String>
@@ -322,7 +325,7 @@
     <v:String x:Key="LocalizableServerModTooltip">Модификации, отмеченные данным флагом, будут использоваться только на сервере и не будет требоваться от подключающихся клиентов.</v:String>
 
     <v:String x:Key="LocalizableClientModTitle">Выбрать</v:String>
-
     <v:String x:Key="LocalizableRefreshModNote">Модификации ищутся в той же папке, что и исполняемый файл сервера. Если моды отсутствуют в списке - сначала укажите исполняемый файл сервера.</v:String>
+    <v:String x:Key="LocalizableActionTitle">Действия</v:String>
 
 </ResourceDictionary>

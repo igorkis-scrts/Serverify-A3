@@ -49,6 +49,9 @@
     <v:String x:Key="LocalizableServerExecLocationTitle">Server Executable File Location</v:String>
     <v:String x:Key="LocalizableServerExecWatermark">Path to server executable file</v:String>
 
+    <v:String x:Key="LocalizableFinalServerParametersTitle">Final Server Parameters</v:String>
+    <v:String x:Key="LocalizableFinalServerParametersTooltip">Provides all command line arguments that will be applied to the server executable file.</v:String>
+
     <v:String x:Key="LocalizableWelcomeMessagesTitle">Message Of The Day</v:String>
     <v:String x:Key="LocalizableWelcomeMessagesWatermark">Welcome messages</v:String>
     <v:String x:Key="LocalizableWelcomeMessagesTooltip">Messages that players will see in chat on joining the server. Press Enter to create new line.</v:String>
@@ -322,7 +325,7 @@
     <v:String x:Key="LocalizableServerModTooltip">Represents modifications that will be applied only by server and will be not required from clients.</v:String>
 
     <v:String x:Key="LocalizableClientModTitle">Select</v:String>
-
     <v:String x:Key="LocalizableRefreshModNote">Modifications are searched in the same folder as server executable file. If there are no modifications in the grid - specify server executable file first.</v:String>
+    <v:String x:Key="LocalizableActionTitle">Actions</v:String>
 
 </ResourceDictionary>
