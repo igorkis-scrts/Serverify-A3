@@ -280,12 +280,12 @@ namespace A3ServerTool.Helpers
         {
             if (configProperty.IsQuotationMarksRequired)
             {
-                value = "\"" + value.ToString() + "\"";
+                value = "\"" + value?.ToString() + "\"";
             }
 
             if (configProperty.IsLowerCaseRequired)
             {
-                value = value.ToString().ToLowerInvariant();
+                value = value?.ToString().ToLowerInvariant();
             }
 
             return value;

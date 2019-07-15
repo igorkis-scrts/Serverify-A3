@@ -75,6 +75,21 @@ namespace A3ServerTool.Models
         private string _description;
 
         /// <summary>
+        /// Gets or sets the path to server executable file.
+        /// </summary>
+        public string ExecutablePath
+        {
+            get => _executablePath;
+            set
+            {
+                if (Equals(value, _executablePath)) return;
+                _executablePath = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _executablePath;
+
+        /// <summary>
         /// Gets or sets the command line argument settings.
         /// </summary>
         public ArgumentSettings ArgumentSettings
@@ -88,7 +103,6 @@ namespace A3ServerTool.Models
             }
         }
         private ArgumentSettings _serverSettings = new ArgumentSettings();
-
 
         /// <summary>
         /// Gets or sets the basic network configuration.

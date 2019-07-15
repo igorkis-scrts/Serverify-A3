@@ -39,19 +39,28 @@ namespace A3ServerTool.Models
         }
         private string _port;
 
-        /// <inheritdoc/>
-        public string ExecutablePath
-        {
-            get => _executablePath;
-            set
-            {
-                if (Equals(value, _executablePath)) return;
-                _executablePath = value;
-                OnPropertyChanged();
-            }
-        }
-        private string _executablePath;
+        /// <summary>
+        /// Gets or sets the required game modifications.
+        /// </summary>
+        public List<Modification> Modifications { get; set; } = new List<Modification>();
 
+        [JsonIgnore]
+        [ServerArgument(Argument = "-mod", IsQuotationMarksRequired = true)]
+        /// <summary>
+        /// Gets all client modifications as single string.
+        /// </summary>
+        public string ClientModificationsAsString => Modifications?.Any(m => m.IsClientMod) == true
+            ? string.Join(";", Modifications.Where(m => m.IsClientMod))
+            : string.Empty;
+
+        [JsonIgnore]
+        [ServerArgument(Argument = "-serverMod", IsQuotationMarksRequired = true)]
+        /// <summary>
+        /// Gets all client modifications as single string.
+        /// </summary>
+        public string ServerModificationsAsString => Modifications?.Any(m => m.IsServerMod) == true
+            ? string.Join(";", Modifications.Where(m => m.IsServerMod))
+            : string.Empty;
 
         #region INotifyPropertyChanged members
 
@@ -77,8 +86,6 @@ namespace A3ServerTool.Models
                         return "Name of server must be specified.";
                     case nameof(Port) when string.IsNullOrWhiteSpace(Port):
                         return "Server port must be specified.";
-                    case nameof(ExecutablePath) when string.IsNullOrWhiteSpace(ExecutablePath):
-                        return "Server path can't be empty.";
                     default:
                          return null;
                 }

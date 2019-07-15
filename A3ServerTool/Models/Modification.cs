@@ -1,10 +1,15 @@
-﻿namespace A3ServerTool.Models
+﻿using A3ServerTool.Annotations;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace A3ServerTool.Models
 {
     /// <summary>
     /// Represents game mod.
     /// </summary>
-    public class Modification
-    {
+    public class Modification : INotifyPropertyChanged
+    {     
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -13,11 +18,47 @@
         /// <summary>
         /// Gets or sets a value indicating whether this instance is selected.
         /// </summary>
-        public bool IsClientMod { get; set; }
+        public bool IsClientMod
+        {
+            get => _isClientMod;
+            set
+            {
+                if (Equals(_isClientMod, value))
+                {
+                    return;
+                }
+                _isClientMod = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isClientMod;
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is whitelisted.
         /// </summary>
-        public bool IsServerMod { get; set; }
+        public bool IsServerMod
+        {
+            get => _isServerMod;
+            set
+            {
+                if (Equals(_isServerMod, value))
+                {
+                    return;
+                }
+                _isServerMod = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isServerMod;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
