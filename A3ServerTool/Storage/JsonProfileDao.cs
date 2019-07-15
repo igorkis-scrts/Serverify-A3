@@ -30,38 +30,11 @@ namespace A3ServerTool.Storage
             }
         }
 
-        IList<Profile> IDao<Profile>.GetAll()
-        {
-            var profiles = new List<Profile>();
-            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
-            if (!profileFolders.Any()) return profiles;
-
-            Parallel.ForEach(profileFolders, folder =>
-            {
-                var files = FileHelper.GetAllFiles(folder);
-
-                Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
-                if(metadata != null)
-                {
-                    profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
-                    profiles.Add(profile);
-                }
-            });
-
-            return profiles;
-        }
-
-        public IList<Profile> GetAll(string location)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Gets all stored profiles.
         /// </summary>
         /// <returns>Observable collection with all stored profiles.</returns>
-        public ObservableCollection<Profile> GetAll()
+        public IList<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
             var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
@@ -73,7 +46,7 @@ namespace A3ServerTool.Storage
 
                 Profile profile;
                 var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
-                if(metadata != null)
+                if (metadata != null)
                 {
                     profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
                     profile.ProfilePath = folder.FullName;
@@ -84,6 +57,20 @@ namespace A3ServerTool.Storage
             return profiles;
         }
 
+        /// <summary>
+        /// NOT IMPLEMENTED!
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        public IList<Profile> GetAll(string location)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the certain profile content.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>Stored profile.</returns>
         public Profile Get(Profile item)
         {
             return GetAll().FirstOrDefault(p => Equals(item.Id, p.Id));
