@@ -224,7 +224,7 @@
     <v:String x:Key="LocalizableMissionsToServerRestartTooltip">Number of times missionEnd happens before server initiate process restart.</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Missions To Server Shutdown</v:String>
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Number of times missionEnd happens before server initiate process shutdown.</v:String>
-    <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as server executable file. If there are no missions - specify server executable file first.</v:String>
+    <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as the server executable file. If there are no missions - specify server executable file first.</v:String>
 
     <!--  Missions view  -->
     <v:String x:Key="LocalizableSituationalAwarenessTitle">Situational Awareness</v:String>
@@ -325,7 +325,7 @@
     <v:String x:Key="LocalizableServerModTooltip">Represents modifications that will be applied only by server and will be not required from clients.</v:String>
 
     <v:String x:Key="LocalizableClientModTitle">Select</v:String>
-    <v:String x:Key="LocalizableRefreshModNote">Modifications are searched in the same folder as server executable file. If there are no modifications in the grid - specify server executable file first.</v:String>
+    <v:String x:Key="LocalizableRefreshModNote">Modifications are searched in the same folder as the server executable file. If there are no modifications in the grid - specify server executable file first.</v:String>
     <v:String x:Key="LocalizableActionTitle">Actions</v:String>
 
 </ResourceDictionary>
