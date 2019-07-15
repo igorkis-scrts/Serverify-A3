@@ -77,11 +77,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
 
         public string ExecutablePath
         {
-            get => CurrentProfile?.ArgumentSettings?.ExecutablePath;
+            get => CurrentProfile?.ExecutablePath;
             set
             {
-                if (Equals(value, CurrentProfile?.ArgumentSettings?.ExecutablePath)) return;
-                CurrentProfile.ArgumentSettings.ExecutablePath = value;
+                if (Equals(value, CurrentProfile?.ExecutablePath)) return;
+                CurrentProfile.ExecutablePath = value;
                 RaisePropertyChanged();
             }
         }

@@ -30,7 +30,7 @@ namespace A3ServerTool.ViewModels
                 return _startServerCommand ??
                        (_startServerCommand = new RelayCommand(_ =>
                           {
-                              if (!FileHelper.CheckFileExistence(CurrentProfile.ArgumentSettings.ExecutablePath))
+                              if (!FileHelper.CheckFileExistence(CurrentProfile.ExecutablePath))
                               {
                                   var dialogSettings = new MetroDialogSettings
                                   {

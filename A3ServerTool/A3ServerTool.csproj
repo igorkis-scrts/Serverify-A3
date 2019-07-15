@@ -100,7 +100,7 @@
     <Compile Include="Converters\NullableIntToBoolConverter.cs" />
     <Compile Include="Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Attributes\ConfigProperty.cs" />
-    <Compile Include="Attributes\CommandLineArgument.cs" />
+    <Compile Include="Attributes\ServerArgument.cs" />
     <Compile Include="Behaviours\PasswordBehaviour.cs" />
     <Compile Include="Bindings.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
@@ -116,6 +116,7 @@
     <Compile Include="Enums\SignatureVerificationType.cs" />
     <Compile Include="Enums\TimeStampType.cs" />
     <Compile Include="Enums\VoiceCodecType.cs" />
+    <Compile Include="Helpers\GameLocationFinder.cs" />
     <Compile Include="Helpers\IMissionDirector.cs" />
     <Compile Include="Helpers\MissionDirector.cs" />
     <Compile Include="Helpers\SettingsCoordinator.cs" />
@@ -127,14 +128,15 @@
     <Compile Include="Models\Config\ArmaProfile.cs" />
     <Compile Include="Models\Mission.cs" />
     <Compile Include="Models\Modification.cs" />
-    <Compile Include="Models\Profile\IProfileBuilder.cs" />
     <Compile Include="Models\ArgumentSettings.cs" />
     <Compile Include="Models\Profile\IProfileDirector.cs" />
     <Compile Include="Models\Profile\Profile.cs" />
     <Compile Include="Models\Profile\ProfileDirector.cs" />
     <Compile Include="Models\ServerLauncher\IServerLauncher.cs" />
+    <Compile Include="Models\ServerLauncher\IServerStringBuilder.cs" />
     <Compile Include="Models\ServerLauncher\ServerLauncher.cs" />
     <Compile Include="Models\Config\BasicConfig.cs" />
+    <Compile Include="Models\ServerLauncher\ServerStringBuilder.cs" />
     <Compile Include="Storage\ArmaProfileDao.cs" />
     <Compile Include="Storage\BasicConfigDao.cs" />
     <Compile Include="Storage\IConfigDao.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Converters\SelectedItemToContentConverter.cs" />
     <Compile Include="Storage\MissionDao.cs" />
+    <Compile Include="Storage\ModificationDao.cs" />
     <Compile Include="Storage\ServerConfigDao.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\ServerSubViewModels\ModificationsViewModel.cs" />

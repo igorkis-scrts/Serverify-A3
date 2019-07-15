@@ -4,6 +4,10 @@ using System;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using A3ServerTool.Helpers;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using A3ServerTool.Storage;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -14,6 +18,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     public class ModificationsViewModel : ViewModelBase
     {
         private readonly ServerViewModel _parentViewModel;
+        private readonly GameLocationFinder _locationFinder;
+        private readonly IDao<Modification> _modDao;
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
@@ -29,11 +35,12 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return;
                 }
+
                 _mods = value;
                 RaisePropertyChanged();
             }
         }
-        private ObservableCollection<Modification> _mods;
+        private ObservableCollection<Modification> _mods = new ObservableCollection<Modification>();
 
         /// <summary>
         /// Gets or sets the selected mod.
@@ -43,16 +50,23 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get => _selectedMod;
             set
             {
-                if (Equals(_selectedMod, value))
+                _selectedMod = value;
+                if(_selectedMod != null)
                 {
-                    return;
+                    _selectedMod.PropertyChanged += OnModChanged;
                 }
 
-                _selectedMod = value;
                 RaisePropertyChanged();
             }
         }
         private Modification _selectedMod;
+
+        /// <summary>
+        /// Gets the modifications counter.
+        /// </summary>
+        public string ModificationsCounter => Modifications != null
+            ? Modifications.Count(m => m.IsClientMod) + "/" + Modifications.Count()
+            : string.Empty;
 
         /// <summary>
         /// Gets the refresh command.
@@ -62,13 +76,66 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 return _refreshCommand ??
-                       (_refreshCommand = new RelayCommand(_ =>
+                       (_refreshCommand = new RelayCommand(async _ =>
                        {
-                           RefreshModifications();
+                           await RefreshModifications().ConfigureAwait(false);
                        }));
             }
         }
         private ICommand _refreshCommand;
+
+        /// <summary>
+        /// Gets the select all command.
+        /// </summary>
+        public ICommand SelectAllCommand
+        {
+            get
+            {
+                return _selectAllCommand ??
+                       (_selectAllCommand = new RelayCommand(async _ =>
+                       {
+                           if(Modifications?.Any() == true)
+                           {
+                               await Task.Run(() =>
+                               {
+                                   foreach(var mod in Modifications)
+                                   {
+                                       mod.IsClientMod = true;
+                                   }
+                               }).ConfigureAwait(false);
+                               RaisePropertyChanged("ModificationsCounter");
+                           }
+                       }));
+            }
+        }
+        private ICommand _selectAllCommand;
+
+        /// <summary>
+        /// Gets the deselect all command.
+        /// </summary>
+        public ICommand DeselectAllCommand
+        {
+            get
+            {
+                return _deselectAllCommand ??
+                       (_deselectAllCommand = new RelayCommand(async _ =>
+                       {
+                           if (Modifications?.Any() == true)
+                           {
+                               await Task.Run(() =>
+                               {
+                                   foreach (var mod in Modifications)
+                                   {
+                                       mod.IsClientMod = false;
+                                   }
+                               }).ConfigureAwait(false);
+                               RaisePropertyChanged("ModificationsCounter");
+                           }
+                       }));
+            }
+        }
+        private ICommand _deselectAllCommand;
+
 
         /// <summary>
         /// Sets the actions that will be executed after form will be fully ready to be drawn on screen.
@@ -78,27 +145,72 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(_ =>
+                       (_windowLoadedCommand = new RelayCommand(async _ =>
                        {
                            if (!Modifications.Any())
                            {
-                               RefreshModifications();
+                               await RefreshModifications().ConfigureAwait(false);
                            }
                        }));
             }
         }
         private ICommand _windowLoadedCommand;
 
-        public ModificationsViewModel(ServerViewModel parentViewModel)
+        public ModificationsViewModel(ServerViewModel parentViewModel, IDao<Modification> modDao,
+            GameLocationFinder locationFinder)
         {
             _parentViewModel = parentViewModel;
-            _mods = new ObservableCollection<Modification>(CurrentProfile.Modifications);
-            //TODO: server Dao
+            _mods = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
+            _modDao = modDao;
+            _locationFinder = locationFinder;
         }
 
-        private void RefreshModifications()
+        private Task RefreshModifications()
         {
-            throw new NotImplementedException();
+            var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
+            if (string.IsNullOrWhiteSpace(gamePath)) return null;
+
+            return Task.Run(() =>
+            {
+                if (Modifications != null)
+                {
+                    var oldMods = new List<Modification>(Modifications);
+                    var updatedMods = new List<Modification>(_modDao.GetAll(gamePath));
+
+                    foreach (var mod in updatedMods)
+                    {
+                        var oldMod = oldMods.FirstOrDefault(m => m.Name == mod.Name);
+
+                        if (oldMod?.IsClientMod == true)
+                        {
+                            mod.IsClientMod = true;
+                        }
+
+                        if (oldMod?.IsServerMod == true)
+                        {
+                            mod.IsServerMod = true;
+                        }
+                    }
+
+                    //it looks like that observable collection created by this way
+                    //contains link to CurrentProfile.ArgumentSettings.Modifications
+                    //which allows us to store data in the config file without additional code
+                    //this fact looks suspicious and might lead to an additional bugs
+                    CurrentProfile.ArgumentSettings.Modifications = updatedMods;
+                    Modifications = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
+                }
+                else
+                {
+                    var mods = _modDao.GetAll(gamePath);
+                    CurrentProfile.ArgumentSettings.Modifications = mods.ToList();
+                    Modifications = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
+                }
+            });
+        }
+
+        private void OnModChanged(object sender, EventArgs e)
+        {
+            RaisePropertyChanged("ModificationsCounter");
         }
     }
 }

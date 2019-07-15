@@ -13,11 +13,18 @@
     DataContext="{Binding Modifications, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <!--<i:Interaction.Triggers>
+    <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
         </i:EventTrigger>
-    </i:Interaction.Triggers>-->
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <Style x:Key="headerLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -25,36 +32,25 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
+
 
             <StackPanel Grid.Column="0">
                 <StackPanel HorizontalAlignment="Right">
-                    <StackPanel.Resources>
-                        <Style x:Key="headerLabel" TargetType="{x:Type Label}">
-                            <Setter Property="FontSize" Value="14" />
-                            <Setter Property="FontWeight" Value="Bold" />
-                        </Style>
-                    </StackPanel.Resources>
 
                     <DockPanel Margin="{StaticResource ControlMargin}">
                         <Label
-                        Margin="{StaticResource ControlMargin}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Content="{DynamicResource LocalizableAvailableTitle}"
-                        Style="{StaticResource headerLabel}" />
-                        <Label VerticalAlignment="Center" HorizontalAlignment="Left" Content="0" />
-
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LocalizableSelectedTitle}"
+                            Style="{StaticResource headerLabel}" />
                         <Label
-                        Margin="{StaticResource ControlMargin}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Content="{DynamicResource LocalizableSelectedTitle}"
-                        Style="{StaticResource headerLabel}" />
-                        <Label VerticalAlignment="Center" Content="0" />
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="{Binding ModificationsCounter}" />
                     </DockPanel>
                 </StackPanel>
-                
+
                 <DataGrid
                     Margin="{StaticResource ControlMargin}"
                     VerticalAlignment="Top"
@@ -68,7 +64,7 @@
                     SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn
-                            Width="2*"
+                            Width="*"
                             Binding="{Binding Name}"
                             Header="{DynamicResource LocalizableName}"
                             IsReadOnly="True" />
@@ -78,7 +74,6 @@
                             ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             Header="{DynamicResource LocalizableClientModTitle}" />
                         <DataGridCheckBoxColumn
-                            Width="1*"
                             Binding="{Binding IsServerMod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             ElementStyle="{DynamicResource MetroDataGridCheckBox}"
@@ -115,6 +110,13 @@
                         TextWrapping="Wrap" />
                 </DockPanel>
 
+                <Label
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LocalizableActionTitle}"
+                    Style="{StaticResource headerLabel}" />
+
                 <DockPanel Margin="{StaticResource EndControlMargin}">
                     <Button
                         Height="28"
@@ -129,7 +131,7 @@
                         MinWidth="64"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        Command="{Binding RefreshCommand}"
+                        Command="{Binding DeselectAllCommand}"
                         Content="{DynamicResource LocalizableDeselectAllTitle}"
                         Style="{DynamicResource MetroFlatButton}" />
                 </DockPanel>

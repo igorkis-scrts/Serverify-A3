@@ -1,7 +1,10 @@
-﻿using A3ServerTool.Models.Config;
+﻿using A3ServerTool.Helpers;
+using A3ServerTool.Models.Config;
 using A3ServerTool.Storage;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace A3ServerTool.Models
 {
@@ -12,14 +15,20 @@ namespace A3ServerTool.Models
         private readonly IConfigDao<BasicConfig> _basicDao;
         private readonly IConfigDao<ServerConfig> _serverDao;
         private readonly IConfigDao<ArmaProfile> _armaProfileDao;
+        private readonly IDao<Modification> _modDao;
+
+        private readonly GameLocationFinder _locationFinder;
 
         public ProfileDirector(IDao<Profile> profileDao, IConfigDao<BasicConfig> basicDao,
-            IConfigDao<ServerConfig> serverDao, IConfigDao<ArmaProfile> armaProfileDao)
+            IConfigDao<ServerConfig> serverDao, IConfigDao<ArmaProfile> armaProfileDao, IDao<Modification> modDao, GameLocationFinder locationFinder)
         {
             _profileDao = profileDao;
             _basicDao = basicDao;
             _serverDao = serverDao;
             _armaProfileDao = armaProfileDao;
+            _modDao = modDao;
+
+            _locationFinder = locationFinder;
         }
 
         /// <inheritdoc/>
@@ -37,6 +46,7 @@ namespace A3ServerTool.Models
             RetrieveBasicConfig(profile);
             RetrieveServerConfig(profile);
             RetrieveArmaProfile(profile);
+            RetrieveModifications(profile);
 
             return profile;
         }
@@ -55,6 +65,38 @@ namespace A3ServerTool.Models
                 _armaProfileDao.Save(profile);
             }
         }
+
+        /// <summary>
+        /// Retrieves the arma profile.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void RetrieveModifications(Profile profile)
+        {
+            if (profile.ArgumentSettings == null)
+            {
+                profile.ArgumentSettings = new ArgumentSettings();
+            }
+
+            //merge stored mods in arma folder and mods located in config
+            var storedMods = _modDao.GetAll(_locationFinder.GetGameInstallationPath(profile))
+                .ToList();
+            var configMods = profile.ArgumentSettings.Modifications;
+
+            Parallel.ForEach(storedMods, mod =>
+            {
+                var configMod = configMods.FirstOrDefault(x => x.Name == mod.Name);
+                if(configMod?.IsClientMod == true)
+                {
+                    mod.IsClientMod = true;
+                }
+
+                if (configMod?.IsServerMod == true)
+                {
+                    mod.IsServerMod = true;
+                }
+            });
+        }
+
 
         /// <summary>
         /// Retrieves the server configuration.
@@ -215,6 +257,10 @@ namespace A3ServerTool.Models
             profile.ArmaProfile.IsExtendedMapFriendlyContentAllowed = 1;
             profile.ArmaProfile.IsAutoReportEnabled = 1;
             profile.ArmaProfile.AreMultipleSavesAllowed = 1;
+            profile.ArmaProfile.AiPrecision = 0.5F;
+            profile.ArmaProfile.AiLevelPreset = 2;
+            profile.ArmaProfile.AiSkill = 0.5F;
+            profile.ArmaProfile.DefaultDifficulty = "recruit";
         }
     }
 }
