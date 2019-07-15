@@ -1,4 +1,5 @@
 ﻿using A3ServerTool.Enums;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Storage;
 using GalaSoft.MvvmLight;
@@ -20,6 +21,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
         private readonly IDao<Mission> _missionDao;
+        private readonly GameLocationFinder _locationFinder;
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
@@ -173,16 +175,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
         private ICommand _windowLoadedCommand;
 
-        public MissionsViewModel(ServerViewModel parentViewModel, IDao<Mission> missionDao)
+        public MissionsViewModel(ServerViewModel parentViewModel, IDao<Mission> missionDao, GameLocationFinder locationFinder)
         {
             _parentViewModel = parentViewModel;
             _missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
             _missionDao = missionDao;
+            _locationFinder = locationFinder;
         }
 
         private void RefreshMissions()
         {
-            var gamePath = ServerConfigDao.GetGameInstallationPath(CurrentProfile?.ArgumentSettings?.ExecutablePath);
+            var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
             if (string.IsNullOrWhiteSpace(gamePath)) return;
 
             Task.Run(() =>

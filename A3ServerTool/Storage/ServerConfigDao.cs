@@ -6,7 +6,6 @@ using System.Linq;
 using Interchangeable.IO;
 using A3ServerTool.Models.Config;
 using A3ServerTool.Helpers;
-using System.Threading.Tasks;
 
 namespace A3ServerTool.Storage
 {
@@ -17,10 +16,12 @@ namespace A3ServerTool.Storage
         private const string ConfigFileName = "server";
 
         private readonly IMissionDirector _missionDirector;
+        private readonly GameLocationFinder _locationFinder;
 
-        public ServerConfigDao(IMissionDirector missionDirector)
+        public ServerConfigDao(IMissionDirector missionDirector, GameLocationFinder locationFinder)
         {
             _missionDirector = missionDirector;
+            _locationFinder = locationFinder;
         }
 
         /// <inheritdoc/>
@@ -34,21 +35,13 @@ namespace A3ServerTool.Storage
             if (!properties.Any()) return null;
 
             var result = UniversalParser.Parse<ServerConfig>(properties);
+            if (result == null) return null;
+
             result.FileLocation = file.FullName;
-            result.Missions = _missionDirector.GetMissions(properties, GetGameInstallationPath(profile.ArgumentSettings.ExecutablePath)).ToList();
-            
-            foreach(var mission in result.Missions)
-            {
-                if(result.MissionWhitelist?.Any(m => m == mission.Name) == true)
-                {
-                    mission.IsWhitelisted = true;
-                }
-            }
+            GetAndMarkUsedMissions(profile, properties, result);
 
             return result;
         }
-
-        /// <inheritdoc/>
 
         /// <inheritdoc/>
         public void Save(Profile profile)
@@ -73,18 +66,23 @@ namespace A3ServerTool.Storage
         }
 
         /// <summary>
-        /// Gets the game installation path.
+        /// Gets the stored missions and marks them with IsWhitelisted property.
         /// </summary>
-        /// <param name="executablePath">The executable path.</param>
-        /// <returns>Installation path</returns>
-        public static string GetGameInstallationPath(string executablePath)
+        /// <param name="profile">The profile.</param>
+        /// <param name="properties">The properties.</param>
+        /// <param name="result">The result.</param>
+        private void GetAndMarkUsedMissions(Profile profile, List<string> properties, ServerConfig result)
         {
-            if (string.IsNullOrWhiteSpace(executablePath)) return string.Empty;
+            result.Missions = _missionDirector.GetMissions(properties, _locationFinder.GetGameInstallationPath(profile))
+                .ToList();
 
-            var arrayPath = executablePath.Split('\\').ToList();
-            arrayPath.RemoveAll(x => x.Contains(".exe"));
-
-            return string.Join("\\", arrayPath);
+            foreach (var mission in result.Missions)
+            {
+                if (result.MissionWhitelist?.Any(m => m == mission.Name) == true)
+                {
+                    mission.IsWhitelisted = true;
+                }
+            }
         }
     }
 }

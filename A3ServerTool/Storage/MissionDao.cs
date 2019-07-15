@@ -9,19 +9,30 @@ using System.Threading.Tasks;
 
 namespace A3ServerTool.Storage
 {
+    /// <summary>
+    /// Provides access to missions stored on server.
+    /// </summary>
+    /// <seealso cref="A3ServerTool.Storage.IDao{A3ServerTool.Models.Mission}" />
     public class MissionDao : IDao<Mission>
     {
         private const string MissionFolderName = "MPMissions";
         private const string MissionFileExtension = ".pbo";
 
+        /// <summary>
+        /// Gets all missions.
+        /// </summary>
+        /// <param name="gamePath">The game path.</param>
+        /// <returns>IList of missions.</returns>
         public IList<Mission> GetAll(string gamePath)
         {
             var missions = new List<Mission>();
 
-            var missionFolderContent = FileHelper.GetFolder(gamePath)?.FirstOrDefault(f => f.Name == MissionFolderName);
+            var missionFolderContent = FileHelper.GetFolder(gamePath)?
+                .FirstOrDefault(f => f.Name == MissionFolderName);
             if (missionFolderContent == null) return missions;
 
-            var files = FileHelper.GetAllFiles(missionFolderContent).Where(f => f.Extension == MissionFileExtension);
+            var files = FileHelper.GetAllFiles(missionFolderContent)
+                .Where(f => f.Extension == MissionFileExtension);
 
             Parallel.ForEach(files, file =>
             {
@@ -35,21 +46,33 @@ namespace A3ServerTool.Storage
             return missions;
         }
 
+        /// <summary>
+        /// NOT IMPLEMENTED!
+        /// </summary>
         public void Delete(Mission item)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// NOT IMPLEMENTED!
+        /// </summary>
         public Mission Get(Mission item)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// NOT IMPLEMENTED!
+        /// </summary>
         public IList<Mission> GetAll()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// NOT IMPLEMENTED!
+        /// </summary>
         public void Save(Mission item)
         {
             throw new NotImplementedException();
