@@ -120,6 +120,11 @@ namespace A3ServerTool.Helpers
         /// <param name="missions">Missions marked to play on server.</param>
         private string ParsePlayableMissions(IEnumerable<Mission> missions)
         {
+            if(missions?.Any() == false)
+            {
+                return string.Empty;
+            }
+
             missions = missions.Where(x => x.IsSelected).ToArray();
             if (!missions.Any()) return string.Empty;
 
