@@ -132,11 +132,11 @@
     <Compile Include="Models\Profile\IProfileDirector.cs" />
     <Compile Include="Models\Profile\Profile.cs" />
     <Compile Include="Models\Profile\ProfileDirector.cs" />
-    <Compile Include="Models\ServerLauncher\IServerLauncher.cs" />
-    <Compile Include="Models\ServerLauncher\IServerStringBuilder.cs" />
-    <Compile Include="Models\ServerLauncher\ServerLauncher.cs" />
+    <Compile Include="Helpers\ServerLauncher\IServerLauncher.cs" />
+    <Compile Include="Helpers\ServerLauncher\IServerStringBuilder.cs" />
+    <Compile Include="Helpers\ServerLauncher\ServerLauncher.cs" />
     <Compile Include="Models\Config\BasicConfig.cs" />
-    <Compile Include="Models\ServerLauncher\ServerStringBuilder.cs" />
+    <Compile Include="Helpers\ServerLauncher\ServerStringBuilder.cs" />
     <Compile Include="Storage\ArmaProfileDao.cs" />
     <Compile Include="Storage\BasicConfigDao.cs" />
     <Compile Include="Storage\IConfigDao.cs" />

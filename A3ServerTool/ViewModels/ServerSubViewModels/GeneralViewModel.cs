@@ -1,4 +1,5 @@
 ﻿using A3ServerTool.Enums;
+using A3ServerTool.Helpers.ServerLauncher;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using Interchangeable;
@@ -19,8 +20,16 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     public class GeneralViewModel : ViewModelBase, IDataErrorInfo
     {
         private readonly ServerViewModel _parentViewModel;
+        private readonly IServerStringBuilder _serverStringBuilder;
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+
+        /// <summary>
+        /// Gets the final server argument string.
+        /// </summary>
+        public string FinalServerArgumentString => _serverStringBuilder != null && CurrentProfile != null
+            ? _serverStringBuilder.GetFinalArgumentString(CurrentProfile)
+            : string.Empty;
 
         public string Port
         {
@@ -433,9 +442,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
         private ICommand _browseCommand;
 
-        public GeneralViewModel(ServerViewModel viewModel)
+        public GeneralViewModel(ServerViewModel viewModel, IServerStringBuilder serverStringBuilder)
         {
             _parentViewModel = viewModel;
+            _serverStringBuilder = serverStringBuilder;
         }
 
         /// <summary>

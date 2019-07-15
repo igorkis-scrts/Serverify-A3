@@ -50,7 +50,7 @@ namespace A3ServerTool.Models
         /// Gets all client modifications as single string.
         /// </summary>
         public string ClientModificationsAsString => Modifications?.Any(m => m.IsClientMod) == true
-            ? string.Join(";", Modifications.Where(m => m.IsClientMod))
+            ? string.Join(";", Modifications.Where(m => m.IsClientMod).Select(s => s.Name))
             : string.Empty;
 
         [JsonIgnore]
@@ -59,7 +59,7 @@ namespace A3ServerTool.Models
         /// Gets all client modifications as single string.
         /// </summary>
         public string ServerModificationsAsString => Modifications?.Any(m => m.IsServerMod) == true
-            ? string.Join(";", Modifications.Where(m => m.IsServerMod))
+            ? string.Join(";", Modifications.Where(m => m.IsServerMod).Select(s => s.Name))
             : string.Empty;
 
         #region INotifyPropertyChanged members

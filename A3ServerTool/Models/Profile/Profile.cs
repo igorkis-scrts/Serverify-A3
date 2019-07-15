@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using A3ServerTool.Annotations;
+using A3ServerTool.Attributes;
 using A3ServerTool.Models.Config;
 using Newtonsoft.Json;
 
@@ -162,18 +163,21 @@ namespace A3ServerTool.Models
         /// Gets the path to server configuration file.
         /// </summary>
         [JsonIgnore]
+        [ServerArgument(Argument = "-config", IsQuotationMarksRequired = true)]
         public string ServerConfigPath => ServerConfig != null ? ServerConfig.FileLocation : string.Empty;
 
         /// <summary>
         /// Gets the path to basic configuration file.
         /// </summary>
         [JsonIgnore]
+        [ServerArgument(Argument = "-cfg", IsQuotationMarksRequired = true)]
         public string BasicConfigPath => BasicConfig != null ? BasicConfig.FileLocation : string.Empty;
 
         /// <summary>
         /// Gets the path to profile itself.
         /// </summary>
         [JsonIgnore]
+        [ServerArgument(Argument = "-profiles", IsQuotationMarksRequired = true)]
         public string ProfilePath { get; set; }
 
         #region IDataErrorInfo members

@@ -1,7 +1,7 @@
 ﻿using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Models.Config;
-using A3ServerTool.Models.ServerLauncher;
+using A3ServerTool.Helpers.ServerLauncher;
 using A3ServerTool.Storage;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -27,6 +27,7 @@ namespace A3ServerTool
             SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
             SimpleIoc.Default.Register<IServerLauncher, ServerLauncher>();
             SimpleIoc.Default.Register<IMissionDirector, MissionDirector>();
+            SimpleIoc.Default.Register<IServerStringBuilder, ServerStringBuilder>();
 
             SimpleIoc.Default.Register<GameLocationFinder>();
         }
