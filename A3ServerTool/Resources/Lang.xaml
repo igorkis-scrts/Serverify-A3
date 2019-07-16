@@ -189,6 +189,9 @@
     <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
     <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable pnly through local network.</v:String>
 
+    <v:String x:Key="LocalizablePortTitle">Port</v:String>
+    <v:String x:Key="LocalizablePortTooltip">Specifies UDP port that will be used to connect with server.</v:String>
+
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">If server initiated callExtension takes longer than specified limit in milliseconds, the warning will be logged into server .rpt file as well as reflected in the extension return result.</v:String>
@@ -197,16 +200,19 @@
     <v:String x:Key="LocalizableLogFileWatermark">Console output file name</v:String>
     <v:String x:Key="LocalizableLogFileTooltip">Enables output of dedicated server console into textfile. Default location of log is same as crash dumps and other logs. Leave empty to disable console logging.</v:String>
 
-    <!--  Logging view  -->
+    <v:String x:Key="LocalizableTimeStampFormatTitle">Timestamp Format</v:String>
+    <v:String x:Key="LocalizableTimeStampFormatTooltip">Set the timestamp format used on each report line in server-side RPT file.</v:String>
+
+    <!-- Performance view-->
     <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Terrain Grid View Distance</v:String>
     <v:String x:Key="LocalizableTerrainGridViewDistanceTooltip">Terrain render distance in meters.</v:String>
 
     <v:String x:Key="LocalizableObjectViewDistanceTitle">Object View Distance</v:String>
     <v:String x:Key="LocalizableObjectViewDistanceTooltip">Objects render distance in meters.</v:String>
 
-    <v:String x:Key="LocalizableTimeStampFormatTitle">Timestamp Format</v:String>
-    <v:String x:Key="LocalizableTimeStampFormatTooltip">Set the timestamp format used on each report line in server-side RPT file.</v:String>
-
+    <v:String x:Key="LocalizableMaxMemoryTitle">Memory Allocation Limit</v:String>
+    <v:String x:Key="LocalizableMaxMemoryTooltip">Overrides memory allocation limit to a certain amount (in megabytes). Be aware that 32-bit(x86) executable and Windows OS have significantly lower memory ceiling than both 64-bit executable and OS.</v:String>
+    
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Forced Difficulty</v:String>
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran will be taken from from data config (CfgDifficultyPresets), Custom - from the server profile.</v:String>

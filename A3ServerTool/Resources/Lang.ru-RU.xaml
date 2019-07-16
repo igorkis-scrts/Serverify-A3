@@ -189,6 +189,9 @@
     <v:String x:Key="LocalizableLanModeTitle">Локальный сервер</v:String>
     <v:String x:Key="LocalizableLanModeTooltip">Сервер будет доступен только из локальной сети.</v:String>
 
+    <v:String x:Key="LocalizablePortTitle">Порт</v:String>
+    <v:String x:Key="LocalizablePortTooltip">Определяет UDP-порт, который будет использоваться для присоединения к серверу.</v:String>
+
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Если инициированная сервером команда callExtension занимает больше времени, чем указанное ограничение в миллисекундах, предупреждение будет записано в файл .rpt сервера, а также отражено в результате возврата расширения.</v:String>
@@ -197,15 +200,18 @@
     <v:String x:Key="LocalizableLogFileWatermark">Название файла вывода консоли сервера</v:String>
     <v:String x:Key="LocalizableLogFileTooltip">Сохраняет вывод консоли сервера в указанный файл. Файл находится в той же папке, где и краш-дампы и логи. Оставить пустым для выключения сохранения логов консоли.</v:String>
 
-    <!--  Logging view  -->
+    <v:String x:Key="LocalizableTimeStampFormatTitle">Формат метки времени</v:String>
+    <v:String x:Key="LocalizableTimeStampFormatTooltip">Определяет формат метки времени, используемый в rpt-логах сервера.</v:String>
+
+    <!--  Performance view  -->
     <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Дальность прорисовки ландшафта</v:String>
     <v:String x:Key="LocalizableTerrainGridViewDistanceTooltip">Дальность прорисовки ландшафта в метрах.</v:String>
 
     <v:String x:Key="LocalizableObjectViewDistanceTitle">Дальность прорисовки объектов</v:String>
     <v:String x:Key="LocalizableObjectViewDistanceTooltip">До какой дистанции объекты будут отрисовываться в метрах.</v:String>
 
-    <v:String x:Key="LocalizableTimeStampFormatTitle">Формат метки времени</v:String>
-    <v:String x:Key="LocalizableTimeStampFormatTooltip">Определяет формат метки времени, используемый в rpt-логах сервера.</v:String>
+    <v:String x:Key="LocalizableMaxMemoryTitle">Предел выделения памяти</v:String>
+    <v:String x:Key="LocalizableMaxMemoryTooltip">Переопределяет верхний предел выделения памяти (в мегабайтах).</v:String>
 
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Принудительная сложность</v:String>

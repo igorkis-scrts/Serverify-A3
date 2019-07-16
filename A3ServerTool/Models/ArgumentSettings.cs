@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
 using Newtonsoft.Json;
@@ -13,7 +11,9 @@ namespace A3ServerTool.Models
 {
     public class ArgumentSettings : INotifyPropertyChanged, IDataErrorInfo
     {
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
         public string Name
         {
             get => _name;
@@ -26,7 +26,10 @@ namespace A3ServerTool.Models
         }
         private string _name;
 
-        // <inheritdoc/>
+        /// <summary>
+        /// Gets or sets the port.
+        /// </summary>
+        [ServerArgument(Argument = "-port")]
         public string Port
         {
             get => _port;
@@ -38,6 +41,28 @@ namespace A3ServerTool.Models
             }
         }
         private string _port;
+
+        /// <summary>
+        /// Gets or sets the memory allocation limit.
+        /// </summary>
+        [ServerArgument(Argument = "-maxMem")]
+        public string MaximumMemory
+        {
+            get => _maximumMemory;
+            set
+            {
+                if (Equals(value, _maximumMemory)) return;
+                _maximumMemory = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _maximumMemory;
+
+        /// <summary>
+        /// Gets or sets the port.
+        /// </summary>
+        [ServerArgument(Argument = "-name")]
+        public string GameProfileName { get; } = "serverProfile";
 
         /// <summary>
         /// Gets or sets the required game modifications.
