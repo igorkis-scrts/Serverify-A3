@@ -28,6 +28,7 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 return string.Empty;
             }
 
+            //TODO: DRY violation?
             ParseArgumentProperties(profile.ArgumentSettings);
             ParseProfileProperties(profile);
 
@@ -64,7 +65,10 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 }
 
                 var value = properties[i].GetValue(argumentSettings, null);
-                AppendArgument(argumentName, value);
+                if(!string.IsNullOrWhiteSpace(value?.ToString()))
+                {
+                    AppendArgument(argumentName, value);
+                }
             }
         }
 
@@ -99,7 +103,10 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 }
 
                 var value = properties[i].GetValue(profile, null);
-                AppendArgument(argumentName, value);
+                if (!string.IsNullOrWhiteSpace(value?.ToString()))
+                {
+                    AppendArgument(argumentName, value);
+                }
             }
         }
 
