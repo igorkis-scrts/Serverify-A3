@@ -47,6 +47,23 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the memory allocation limit.
+        /// </summary>
+        /// <value>
+        /// The maximum memory.
+        /// </value>
+        public string MaximumMemory
+        {
+            get => CurrentProfile.ArgumentSettings.MaximumMemory;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.MaximumMemory)) return;
+                CurrentProfile.ArgumentSettings.MaximumMemory = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public PerfromanceViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;

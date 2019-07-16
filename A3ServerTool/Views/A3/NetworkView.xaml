@@ -51,13 +51,52 @@
                         Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                         ToolTip="{DynamicResource LocalizableUpnpTooltip}" />
 
+                    <DockPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizablePortTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            Margin="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="14">
+                            <Hyperlink NavigateUri="https://community.bistudio.com/wiki/Arma_3_Dedicated_Server#Port_Forwarding">
+                                Port Forwarding Information
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="RequestNavigate">
+                                        <ei:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Hyperlink>
+                        </TextBlock>
+                    </DockPanel>
+
+                    <TextBox
+                        MinWidth="128"
+                        MaxWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Left"
+                        mah:TextBoxHelper.UseFloatingWatermark="True"
+                        mah:TextBoxHelper.Watermark="{DynamicResource LocalizablePortTitle}"
+                        Text="{Binding Port, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        ToolTip="{DynamicResource LocalizablePortTooltip}">
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewTextInput">
+                                <ei:CallMethodAction MethodName="IsNumericInput" TargetObject="{Binding}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
                         Content="Maximum Messages Send"
                         FontSize="14"
                         FontWeight="Bold" />
-
                     <mah:NumericUpDown
                         MinWidth="192"
                         MaxWidth="512"

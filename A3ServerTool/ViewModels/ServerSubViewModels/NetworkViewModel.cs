@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using Interchangeable;
 using System.ComponentModel;
+using System.Windows.Navigation;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -211,6 +212,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the server port.
+        /// </summary>
+        public string Port
+        {
+            get => CurrentProfile.ArgumentSettings.Port;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.Port)) return;
+                CurrentProfile.ArgumentSettings.Port = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public NetworkViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
@@ -222,6 +237,27 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             e.Handled = !RegexPresetValues.OnlyOneOrTwoLimitedToSixWithCommas.IsMatch(SlowNetworkKickRules);
         }
 
+        /// <summary>
+        /// Determines whether [is numeric input] [the specified sender].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.TextCompositionEventArgs"/> instance containing the event data.</param>
+        public void IsNumericInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = RegexPresetValues.OnlyNumeric.IsMatch(e.Text);
+        }
+
+        /// <summary>
+        /// Opens the hyperlink in browser.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RequestNavigateEventArgs"/> instance containing the event data.</param>
+        public void OpenHyperlinkInBrowser(object sender, RequestNavigateEventArgs e)
+        {
+            UriDirector.OpenUri(e.Uri.AbsoluteUri);
+            e.Handled = true;
+        }
+
         #region IDataErrorInfo
 
         public string this[string columnName]
@@ -230,6 +266,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 switch (columnName)
                 {
+                    case nameof(Port) when string.IsNullOrWhiteSpace(Port):
+                        return "Port must be specified!";
                     case nameof(MaxMessagesSend) when MaxMessagesSend < 0:
                         return "MaxMessagesSend must be more than zero.";
                     case nameof(MaxSizeGuaranteed) when MaxSizeGuaranteed < 0:
@@ -296,6 +334,12 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return "MaxPacketSize must be more than zero.";
                 }
+
+                if(string.IsNullOrWhiteSpace(Port))
+                {
+                    return "Port must be specified!";
+                }
+
                 return string.Empty;
             }
         }
