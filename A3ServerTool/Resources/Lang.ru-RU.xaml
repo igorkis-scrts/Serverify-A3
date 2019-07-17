@@ -175,7 +175,6 @@
     <v:String x:Key="LocalizableMaxDesyncTitle">Максимальная рассинхронизация</v:String>
     <v:String x:Key="LocalizableMaxDesyncTooltip">Максимальное значение рассинхронизации между клиентом и сервером прежде чем сервер выгонит игрока.</v:String>
 
-
     <v:String x:Key="LocalizableMaxPingTitle">Максимальный пинг</v:String>
     <v:String x:Key="LocalizableMaxPingTooltip">Максимальный пинг между клиентом и сервером, прежде чем сервер выгонит игрока.</v:String>
 
@@ -203,6 +202,9 @@
     <v:String x:Key="LocalizableTimeStampFormatTitle">Формат метки времени</v:String>
     <v:String x:Key="LocalizableTimeStampFormatTooltip">Определяет формат метки времени, используемый в rpt-логах сервера.</v:String>
 
+    <v:String x:Key="LocalizableDisableLogsTitle">Отключить логгирование</v:String>
+    <v:String x:Key="LocalizableDisableLogsTooltip">Отключает логгирование в .rpt-файлы.</v:String>
+
     <!--  Performance view  -->
     <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Дальность прорисовки ландшафта</v:String>
     <v:String x:Key="LocalizableTerrainGridViewDistanceTooltip">Дальность прорисовки ландшафта в метрах.</v:String>
@@ -212,6 +214,21 @@
 
     <v:String x:Key="LocalizableMaxMemoryTitle">Предел выделения памяти</v:String>
     <v:String x:Key="LocalizableMaxMemoryTooltip">Переопределяет верхний предел выделения памяти (в мегабайтах).</v:String>
+
+    <v:String x:Key="LocalizableHyperThreadingTitle">Hyper Threading</v:String>
+    <v:String x:Key="LocalizableHyperThreadingTooltip">Включает использование логических ядер процессора помимо физических. Если процессор не поддерживает Hyper Threading или похожую технологию, параметр будет проигнорирован.</v:String>
+
+    <v:String x:Key="LocalizableCpuCoreCountTitle">Количество ядер процессора</v:String>
+    <v:String x:Key="LocalizableCpuCoreCountTooltip">Задает число физических ядер процессора, доступных серверу. Перезаписывает значение, обнаруживаемое автоматически.</v:String>
+
+    <v:String x:Key="LocalizableThreadCountTitle">Количество потоков</v:String>
+    <v:String x:Key="LocalizableThreadCountTooltip">Задает число дополнительных потоков, доступных серверу. Доступные значения - 0,1,3,5,7. Перезаписывает значение, обнаруживаемое автоматически.</v:String>
+
+    <v:String x:Key="LocalizableHugeMemoryPagesTitle">Выделять память большими страницами</v:String>
+    <v:String x:Key="LocalizableHugeMemoryPagesTooltip">Включает поддержку выделения памяти большими страницами.</v:String>
+
+    <v:String x:Key="LocalizableLoadMissionToMemoryTitle">Загрузка миссии в память</v:String>
+    <v:String x:Key="LocalizableLoadMissionToMemoryTooltip">Сервер загрузит миссию в память первого скачавшего её клиента. Затемо он будет раздавать её прекешированную версию другим клиентам, тем самым сохраняя некоторую производительность серверу.</v:String>
 
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Принудительная сложность</v:String>

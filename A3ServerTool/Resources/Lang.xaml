@@ -203,7 +203,10 @@
     <v:String x:Key="LocalizableTimeStampFormatTitle">Timestamp Format</v:String>
     <v:String x:Key="LocalizableTimeStampFormatTooltip">Set the timestamp format used on each report line in server-side RPT file.</v:String>
 
-    <!-- Performance view-->
+    <v:String x:Key="LocalizableDisableLogsTitle">No Logs</v:String>
+    <v:String x:Key="LocalizableDisableLogsTooltip">Disables logging to RPT files.</v:String>
+
+    <!--  Performance view  -->
     <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Terrain Grid View Distance</v:String>
     <v:String x:Key="LocalizableTerrainGridViewDistanceTooltip">Terrain render distance in meters.</v:String>
 
@@ -212,7 +215,22 @@
 
     <v:String x:Key="LocalizableMaxMemoryTitle">Memory Allocation Limit</v:String>
     <v:String x:Key="LocalizableMaxMemoryTooltip">Overrides memory allocation limit to a certain amount (in megabytes). Be aware that 32-bit(x86) executable and Windows OS have significantly lower memory ceiling than both 64-bit executable and OS.</v:String>
-    
+
+    <v:String x:Key="LocalizableHyperThreadingTitle">Hyper Threading</v:String>
+    <v:String x:Key="LocalizableHyperThreadingTooltip">Enables the use of all logical CPU cores for parallel tasks processing. If your CPU does not support Hyper-Threading or similar technology, this parameter is ignored.</v:String>
+
+    <v:String x:Key="LocalizableCpuCoreCountTitle">CPU Core Count</v:String>
+    <v:String x:Key="LocalizableCpuCoreCountTooltip">Change to a number less or equal than numbers of available cores. This will override auto detection (which equate to native cores).</v:String>
+
+    <v:String x:Key="LocalizableThreadCountTitle">Thread Count</v:String>
+    <v:String x:Key="LocalizableThreadCountTooltip">Option to define extra threads. Possible values - 0,1,3,5,7. This will override auto detection.</v:String>
+
+    <v:String x:Key="LocalizableHugeMemoryPagesTitle">Huge Memory Pages</v:String>
+    <v:String x:Key="LocalizableHugeMemoryPagesTooltip">Enables hugepages with the default memory allocator (malloc) for both client/server.</v:String>
+
+    <v:String x:Key="LocalizableLoadMissionToMemoryTitle">Load Mission To Memory</v:String>
+    <v:String x:Key="LocalizableLoadMissionToMemoryTooltip">Server will load mission into memory on first client downloading it. Then it keeps it pre-processed pre-cached in memory for next clients, saving some server CPU cycles.</v:String>
+
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Forced Difficulty</v:String>
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran will be taken from from data config (CfgDifficultyPresets), Custom - from the server profile.</v:String>
