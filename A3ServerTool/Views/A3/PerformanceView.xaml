@@ -1,15 +1,17 @@
-﻿<UserControl x:Class="A3ServerTool.Views.A3.PerformanceView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:A3ServerTool.Views.A3"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="960"
-             DataContext="{Binding Performance, Source={StaticResource Locator}}">
+﻿<UserControl
+    x:Class="A3ServerTool.Views.A3.PerformanceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:A3ServerTool.Views.A3"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="640"
+    d:DesignWidth="960"
+    DataContext="{Binding Performance, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -19,6 +21,107 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0">
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableHyperThreadingTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding IsHyperThreadingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableHyperThreadingTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableHugeMemoryPagesTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding AreHugePagesEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableHugeMemoryPagesTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableLoadMissionToMemoryTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding IsMissionLoadedToMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableLoadMissionToMemoryTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableCpuCoreCountTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="128"
+                    MaxWidth="256"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableCpuCoreCountTooltip}"
+                    Value="{Binding CpuCoreCount, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableThreadCountTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="128"
+                    MaxWidth="256"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    Interval="2"
+                    Maximum="7"
+                    Minimum="0"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableThreadCountTooltip}"
+                    Value="{Binding ThreadCount, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableMaxMemoryTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="128"
+                    MaxWidth="256"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableMaxMemoryTooltip}"
+                    Value="{Binding MaximumMemory, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -55,25 +158,8 @@
                     ToolTip="{DynamicResource LocalizableObjectViewDistanceTooltip}"
                     Value="{Binding ObjectViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableMaxMemoryTitle}"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <mah:NumericUpDown
-                    MinWidth="128"
-                    MaxWidth="256"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    mah:TextBoxHelper.ClearTextButton="True"
-                    Speedup="True"
-                    TextAlignment="Left"
-                    ToolTip="{DynamicResource LocalizableMaxMemoryTooltip}"
-                    Value="{Binding MaximumMemory, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
-            
+
         </Grid>
     </ScrollViewer>
 </UserControl>

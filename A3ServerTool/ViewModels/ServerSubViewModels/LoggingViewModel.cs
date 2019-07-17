@@ -49,6 +49,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [are logs disabled].
+        /// </summary>
+        public bool AreLogsDisabled
+        {
+            get => CurrentProfile.ArgumentSettings.AreLogsDisabled;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.AreLogsDisabled)) return;
+                CurrentProfile.ArgumentSettings.AreLogsDisabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the time stamp format.
         /// </summary>
         public TimeStampType TimeStampFormat

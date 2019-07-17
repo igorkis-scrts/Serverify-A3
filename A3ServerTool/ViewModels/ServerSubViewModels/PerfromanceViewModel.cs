@@ -48,6 +48,34 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets the cpu core count.
+        /// </summary>
+        public int? CpuCoreCount
+        {
+            get => CurrentProfile.ArgumentSettings.CpuCoreCount;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.CpuCoreCount)) return;
+                CurrentProfile.ArgumentSettings.CpuCoreCount = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the thread count.
+        /// </summary>
+        public int? ThreadCount
+        {
+            get => CurrentProfile.ArgumentSettings.ThreadCount;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.ThreadCount)) return;
+                CurrentProfile.ArgumentSettings.ThreadCount = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the memory allocation limit.
         /// </summary>
         /// <value>
@@ -60,6 +88,48 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.MaximumMemory)) return;
                 CurrentProfile.ArgumentSettings.MaximumMemory = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is hyper threading enabled.
+        /// </summary>
+        public bool IsHyperThreadingEnabled
+        {
+            get => CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled)) return;
+                CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [are huge pages enabled].
+        /// </summary>
+        public bool AreHugePagesEnabled
+        {
+            get => CurrentProfile.ArgumentSettings.AreHugePagesEnabled;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.AreHugePagesEnabled)) return;
+                CurrentProfile.ArgumentSettings.AreHugePagesEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is mission loaded to memory.
+        /// </summary>
+        public bool IsMissionLoadedToMemory
+        {
+            get => CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory)) return;
+                CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory = value;
                 RaisePropertyChanged();
             }
         }

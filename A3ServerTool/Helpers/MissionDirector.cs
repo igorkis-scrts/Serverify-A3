@@ -213,8 +213,6 @@ namespace A3ServerTool.Helpers
                 return fileContent;
             }
 
-            var tt = fileContent.Remove(tagIndex, endIndex - tagIndex + 2);
-
             return fileContent.Remove(tagIndex, endIndex - tagIndex + 2);
         }
 
