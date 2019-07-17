@@ -108,6 +108,7 @@
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Enums\AiLevelPresetType.cs" />
     <Compile Include="Enums\IndicationType.cs" />
+    <Compile Include="Enums\MemoryAllocatorType.cs" />
     <Compile Include="Enums\TacticalPingType.cs" />
     <Compile Include="Enums\VisibilityType.cs" />
     <Compile Include="Enums\DifficultyType.cs" />
