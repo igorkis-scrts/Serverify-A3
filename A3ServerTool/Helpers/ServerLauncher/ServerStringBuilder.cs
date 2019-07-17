@@ -103,6 +103,7 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 }
 
                 var value = properties[i].GetValue(profile, null);
+
                 if (!string.IsNullOrWhiteSpace(value?.ToString()))
                 {
                     AppendArgument(argumentName, value);
@@ -122,14 +123,24 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 return;
             }
 
-            if (argumentName.IsQuotationMarksRequired)
+            if (value.GetType() == typeof(bool))
             {
-                _stringBuilder.Append('\"').Append(argumentName.Argument)
-                    .Append("=").Append(value).Append('\"').Append(" ");
+                if ((bool)value)
+                {
+                    _stringBuilder.Append(argumentName.Argument).Append(" ");
+                }
             }
             else
             {
-                _stringBuilder.Append(argumentName.Argument).Append("=").Append(value).Append(" ");
+                if (argumentName.IsQuotationMarksRequired)
+                {
+                    _stringBuilder.Append('\"').Append(argumentName.Argument)
+                        .Append("=").Append(value).Append('\"').Append(" ");
+                }
+                else
+                {
+                    _stringBuilder.Append(argumentName.Argument).Append("=").Append(value).Append(" ");
+                }
             }
         }
     }
