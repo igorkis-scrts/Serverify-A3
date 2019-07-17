@@ -2,10 +2,10 @@
 using A3ServerTool.Models.Config;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Globalization;
 
 namespace A3ServerTool.Helpers
 {
@@ -21,75 +21,82 @@ namespace A3ServerTool.Helpers
         /// <returns>Instance of T class filled with properties.</returns>
         public static T Parse<T>(IEnumerable<string> configProperties)
         {
-            var textProperties = configProperties.ToArray();
-            if (!textProperties.Any()) return default;
-
-            var result = (T)Activator.CreateInstance(typeof(T));
-
-            Dictionary<string, string> nameToValueDictionary = ConvertFromTextToDictionary(textProperties, result.GetType());
-
-            foreach (var property in typeof(T).GetProperties())
+            try
             {
-                var configProperty = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
+                var textProperties = configProperties.ToArray();
+                if (!textProperties.Any()) return default;
 
-                if (configProperty?.IgnoreParsing != false) continue;
+                var result = (T)Activator.CreateInstance(typeof(T));
 
-                nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
-                if (value == null) continue;
+                Dictionary<string, string> nameToValueDictionary = ConvertFromTextToDictionary(textProperties, result.GetType());
 
-                if (property.PropertyType == typeof(int))
+                foreach (var property in typeof(T).GetProperties())
                 {
-                    property.SetValue(result, Convert.ToInt32(value));
-                }
-                else if (property.PropertyType == typeof(int?))
-                {
-                    if (int.TryParse(value, out int nullInt))
+                    var configProperty = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
+
+                    if (configProperty?.IgnoreParsing != false) continue;
+
+                    nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
+                    if (value == null) continue;
+
+                    if (property.PropertyType == typeof(int))
                     {
-                        property.SetValue(result, nullInt);
+                        property.SetValue(result, Convert.ToInt32(value));
                     }
-                }
-                else if (property.PropertyType == typeof(float))
-                {
-                    property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                else if (property.PropertyType == typeof(float?))
-                {
-                    if (float.TryParse(value, out float nullFloat))
+                    else if (property.PropertyType == typeof(int?))
                     {
-                        property.SetValue(result, nullFloat);
+                        if (int.TryParse(value, out int nullInt))
+                        {
+                            property.SetValue(result, nullInt);
+                        }
                     }
-                }
-                else if (property.PropertyType == typeof(string[]))
-                {
-                    property.SetValue(result, value?.Split(','));
-                }
-                else if (property.PropertyType == typeof(int[]))
-                {
-                    //TODO: very dirty, do better
-                    if (property.Name == "SlowNetworkKickRules")
+                    else if (property.PropertyType == typeof(float))
+                    {
+                        property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
+                    }
+                    else if (property.PropertyType == typeof(float?))
+                    {
+                        if (float.TryParse(value, out float nullFloat))
+                        {
+                            property.SetValue(result, nullFloat);
+                        }
+                    }
+                    else if (property.PropertyType == typeof(string[]))
+                    {
+                        property.SetValue(result, value?.Split(','));
+                    }
+                    else if (property.PropertyType == typeof(int[]))
+                    {
+                        //TODO: very dirty, do better
+                        if (property.Name == "SlowNetworkKickRules")
+                        {
+                            value = Regex.Replace(value, @"\s+", "");
+                            var valueAsIntArray = value.Split(',').Select(int.Parse).ToArray();
+                            property.SetValue(result, valueAsIntArray);
+                        }
+                    }
+                    else if (property.PropertyType == typeof(List<string>))
                     {
                         value = Regex.Replace(value, @"\s+", "");
-                        var valueAsIntArray = value.Split(',').Select(int.Parse).ToArray();
-                        property.SetValue(result, valueAsIntArray);
+                        property.SetValue(result, value?.Split(',').ToList());
+                    }
+                    else if (property.PropertyType == typeof(string))
+                    {
+                        value = value?.Replace("\"", string.Empty);
+                        property.SetValue(result, Convert.ToString(value));
+                    }
+                    else if (property.PropertyType == typeof(bool))
+                    {
+                        property.SetValue(result, Convert.ToBoolean(value));
                     }
                 }
-                else if (property.PropertyType == typeof(List<string>))
-                {
-                    value = Regex.Replace(value, @"\s+", "");
-                    property.SetValue(result, value?.Split(',').ToList());
-                }
-                else if (property.PropertyType == typeof(string))
-                {
-                    value = value?.Replace("\"", string.Empty);
-                    property.SetValue(result, Convert.ToString(value));
-                }
-                else if (property.PropertyType == typeof(bool))
-                {
-                    property.SetValue(result, Convert.ToBoolean(value));
-                }
-            }
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -337,7 +344,7 @@ namespace A3ServerTool.Helpers
         /// </summary>
         /// <param name="textProperties">Text properties.</param>
         /// <returns>"Property-value dictionary."</returns>
-        public static Dictionary<string, string> ConvertFromTextToDictionary(string[] textProperties, Type type)
+        private static Dictionary<string, string> ConvertFromTextToDictionary(string[] textProperties, Type type)
         {
             var nameToValueDictionary = new Dictionary<string, string>();
 

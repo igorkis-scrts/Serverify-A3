@@ -45,8 +45,10 @@ namespace A3ServerTool.Helpers
         public string SaveMissions(IEnumerable<Mission> missions, string fileContent)
         {
             if(!missions.Any()) return fileContent;
+
             var playableMissions = ParsePlayableMissions(missions);
             var whitelistedMissions = ConvertWhitelistedMissionsToText(missions);
+            fileContent = RemoveWhitelistField(fileContent);
 
             return fileContent + whitelistedMissions + playableMissions;
         }
@@ -185,6 +187,35 @@ namespace A3ServerTool.Helpers
             var missionAsStrings = missions.Select(m => m.Name).ToArray();
             //TODO: ParseArrayProperty should not be public
             return "\nmissionWhitelist[] = " + UniversalParser.ParseArrayProperty(missionAsStrings) + ";";
+        }
+
+
+        /// <summary>
+        /// Removes the mission whitelist tag.
+        /// </summary>
+        private string RemoveWhitelistField(string fileContent)
+        {
+            //TODO: this is quick workaround whitelist duping problem, need to rethink that moment
+            if (string.IsNullOrWhiteSpace(fileContent))
+            {
+                return string.Empty;
+            }
+
+            var tagIndex = fileContent.IndexOf("missionWhitelist[]");
+            if (tagIndex == -1)
+            {
+                return fileContent;
+            }
+
+            var endIndex = fileContent.IndexOf("};", tagIndex);
+            if(endIndex == -1)
+            {
+                return fileContent;
+            }
+
+            var tt = fileContent.Remove(tagIndex, endIndex - tagIndex + 2);
+
+            return fileContent.Remove(tagIndex, endIndex - tagIndex + 2);
         }
 
         /// <summary>
