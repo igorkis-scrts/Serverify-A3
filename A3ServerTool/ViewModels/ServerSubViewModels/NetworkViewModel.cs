@@ -119,11 +119,29 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsUpnp
         {
-            get => CurrentProfile.ServerConfig.IsUpnp;
+            get => CurrentProfile == null || CurrentProfile.ServerConfig == null
+                ? false
+                : CurrentProfile.ServerConfig.IsUpnp;
             set
             {
                 if (Equals(value, CurrentProfile.ServerConfig.IsUpnp)) return;
                 CurrentProfile.ServerConfig.IsUpnp = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is bandwidth algorhitm2 enabled.
+        /// </summary>
+        public bool IsBandwidthAlgorhitm2Enabled
+        {
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsBandwidthAlgorhitm2Enabled;
+            set
+            {
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.IsBandwidthAlgorhitm2Enabled)) return;
+                CurrentProfile.ArgumentSettings.IsBandwidthAlgorhitm2Enabled = value;
                 RaisePropertyChanged();
             }
         }

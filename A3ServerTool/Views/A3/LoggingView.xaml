@@ -3,6 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -31,7 +33,23 @@
                     OffLabel="{DynamicResource LocalizableOff}"
                     OnLabel="{DynamicResource LocalizableOn}"
                     Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    SwitchForeground="Red"
                     ToolTip="{DynamicResource LocalizableDisableLogsTooltip}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableNetlogTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding IsTrafficLogged, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableNetlogTooltip}" />
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
@@ -46,7 +64,6 @@
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableLogFileWatermark}"
                     Text="{Binding LogFileName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableLogFileTooltip}" />
-
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
@@ -85,7 +102,37 @@
 
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <!--  TODO LOGGING  -->
+                <DockPanel>
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LocalizableAutoTestTitle}"
+                        FontSize="14"
+                        FontWeight="Bold" />
+
+                    <TextBlock
+                        Margin="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="14">
+                        <Hyperlink NavigateUri="https://community.bistudio.com/wiki/Arma_3_Startup_Parameters#autotest">
+                            Autotest.cfg Information
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="RequestNavigate">
+                                    <ei:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Hyperlink>
+                    </TextBlock>
+                </DockPanel>
+                <TextBox
+                    Margin="{StaticResource ControlMargin}"
+                    mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableAutoTestWatermark}"
+                    Style="{StaticResource BrowseMetroTextBox}"
+                    Text="{Binding AutoTestPath, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    ToolTip="{DynamicResource LocalizableAutoTestTooltip}" />
             </StackPanel>
 
         </Grid>

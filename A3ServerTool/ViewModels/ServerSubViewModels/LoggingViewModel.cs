@@ -4,6 +4,9 @@ using GalaSoft.MvvmLight;
 using Interchangeable;
 using System;
 using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -49,15 +52,47 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets the automatic mission test path.
+        /// </summary>
+        public string AutoTestPath
+        {
+            get => CurrentProfile?.ArgumentSettings?.AutoTestPath;
+            set
+            {
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.AutoTestPath)) return;
+                CurrentProfile.ArgumentSettings.AutoTestPath = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [are logs disabled].
         /// </summary>
         public bool AreLogsDisabled
         {
-            get => CurrentProfile.ArgumentSettings.AreLogsDisabled;
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.AreLogsDisabled;
             set
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.AreLogsDisabled)) return;
                 CurrentProfile.ArgumentSettings.AreLogsDisabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is traffic logged.
+        /// </summary>
+        public bool IsTrafficLogged
+        {
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsTrafficLogged;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.IsTrafficLogged)) return;
+                CurrentProfile.ArgumentSettings.IsTrafficLogged = value;
                 RaisePropertyChanged();
             }
         }
@@ -80,9 +115,44 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the browse command.
+        /// </summary>
+        public ICommand BrowseCommand
+        {
+            get
+            {
+                return _browseCommand ??
+                       (_browseCommand = new RelayCommand(_ =>
+                       {
+                           using (var fileDialog = new OpenFileDialog())
+                           {
+                               if (fileDialog.ShowDialog() != DialogResult.OK)
+                               {
+                                   return;
+                               }
+
+                               AutoTestPath = fileDialog.FileName;
+                           }
+                       }));
+            }
+        }
+        private ICommand _browseCommand;
+
         public LoggingViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
+        }
+
+        /// <summary>
+        /// Opens the hyperlink in browser.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RequestNavigateEventArgs"/> instance containing the event data.</param>
+        public void OpenHyperlinkInBrowser(object sender, RequestNavigateEventArgs e)
+        {
+            UriDirector.OpenUri(e.Uri.AbsoluteUri);
+            e.Handled = true;
         }
 
         public string this[string columnName] => string.Empty;

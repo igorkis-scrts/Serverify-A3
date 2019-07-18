@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using A3ServerTool.Models;
+﻿using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using System.ComponentModel;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -97,7 +92,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsHyperThreadingEnabled
         {
-            get => CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled;
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled;
             set
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled)) return;
@@ -107,11 +104,29 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether is server thread disabled.
+        /// </summary>
+        public bool IsServerThreadDisabled
+        {
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsServerThreadDisabled;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.IsServerThreadDisabled)) return;
+                CurrentProfile.ArgumentSettings.IsServerThreadDisabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [are huge pages enabled].
         /// </summary>
         public bool AreHugePagesEnabled
         {
-            get => CurrentProfile.ArgumentSettings.AreHugePagesEnabled;
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.AreHugePagesEnabled;
             set
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.AreHugePagesEnabled)) return;
@@ -125,7 +140,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsMissionLoadedToMemory
         {
-            get => CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory;
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory;
             set
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory)) return;
@@ -145,7 +162,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                switch(columnName)
+                switch (columnName)
                 {
                     case nameof(TerrainGridViewDistance) when TerrainGridViewDistance < 0:
                         return "TerrainGridViewDistance must be more than zero.";
@@ -172,7 +189,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 return string.Empty;
             }
         }
-        
+
 
         #endregion
     }

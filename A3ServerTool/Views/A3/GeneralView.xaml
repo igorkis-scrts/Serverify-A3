@@ -6,8 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:h="clr-namespace:A3ServerTool.Helpers"
+    xmlns:v="clr-namespace:System;assembly=mscorlib"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:local="clr-namespace:A3ServerTool.ViewModels.ServerSubViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
     d:DesignWidth="960"
@@ -84,7 +86,7 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsPersistent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            IsChecked="{Binding IsPersistent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             OffLabel="{DynamicResource LocalizableOff}"
                             OnLabel="{DynamicResource LocalizableOn}"
                             Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
@@ -101,6 +103,7 @@
                 <TextBox
                     Margin="{StaticResource ControlMargin}"
                     mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
+                    mah:TextBoxHelper.ButtonCommandParameter="{x:Static local:GeneralViewModel.ExecutablePathToken}"
                     mah:TextBoxHelper.UseFloatingWatermark="True"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerExecWatermark}"
                     IsReadOnly="True"
@@ -108,6 +111,55 @@
                     Text="{Binding ExecutablePath, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
+                <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizableServerSettingsTitle}">
+                    <StackPanel>
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableProcessIdTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableProcessIdWatermark}"
+                            ToolTip="{DynamicResource LocalizableProcessIdTooltip}"
+                            Text="{Binding ProcessIdFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableRankingFileTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBox
+                            Margin="{StaticResource ControlMargin}"
+                            mah:TextBoxHelper.ButtonCommand="{Binding BrowseCommand}"
+                            mah:TextBoxHelper.ButtonCommandParameter="{x:Static local:GeneralViewModel.RankingPathToken}"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableRankingFileWatermark}"
+                            ToolTip="{DynamicResource LocalizableRankingFileTooltip}"
+                            IsReadOnly="True"
+                            Style="{StaticResource BrowseMetroTextBox}"
+                            Text="{Binding RankingFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableAutoInitTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:ToggleSwitch
+                            Margin="{StaticResource EndControlMargin}"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsMissionAutoInitialized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            OffLabel="{DynamicResource LocalizableOff}"
+                            OnLabel="{DynamicResource LocalizableOn}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            ToolTip="{DynamicResource LocalizableAutoInitTooltip}" />
+                    </StackPanel>
+                </Expander>
                 <Expander Margin="{StaticResource GroupBoxMargin}" Header="{DynamicResource LocalizablePlayerInteractionsGroupTitle}">
                     <StackPanel>
                         <Label
@@ -447,7 +499,10 @@
                     FontSize="14"
                     FontWeight="Bold" />
 
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Margin="{StaticResource EndControlMargin}">
+                <ScrollViewer
+                    Margin="{StaticResource EndControlMargin}"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Disabled">
                     <TextBox
                         IsReadOnly="True"
                         Text="{Binding FinalServerArgumentString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"

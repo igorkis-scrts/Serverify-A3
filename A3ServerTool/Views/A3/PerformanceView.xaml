@@ -158,6 +158,22 @@
                     ToolTip="{DynamicResource LocalizableObjectViewDistanceTooltip}"
                     Value="{Binding ObjectViewDistance, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableDisableServerThreadTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding IsServerThreadDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    SwitchForeground="Red"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableDisableServerThreadTooltip}" />
+
             </StackPanel>
 
         </Grid>

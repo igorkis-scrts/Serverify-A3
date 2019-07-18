@@ -95,13 +95,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// <summary>
         /// Gets or sets password required by alternate syntax of serverCommand server-side scripting. 
         /// </summary>
-        public FilePatching FilePatching
+        public FilePatchingType FilePatchingType
         {
             get
             {
                 return CurrentProfile?.ServerConfig?.FilePatchingMode != null
-                     ? (FilePatching)CurrentProfile.ServerConfig.FilePatchingMode
-                     : FilePatching.NoClients;
+                     ? (FilePatchingType)CurrentProfile.ServerConfig.FilePatchingMode
+                     : FilePatchingType.NoClients;
             }
             set
             {
@@ -270,6 +270,22 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ServerConfig.HasBattleEye)) return;
                 CurrentProfile.ServerConfig.HasBattleEye = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has Battle Eye anticheat engine.
+        /// </summary>
+        public bool IsFilePatchingAllowed
+        {
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsFilePatchingEnabled;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.IsFilePatchingEnabled)) return;
+                CurrentProfile.ArgumentSettings.IsFilePatchingEnabled = value;
                 RaisePropertyChanged();
             }
         }

@@ -30,7 +30,7 @@
                     <mah:ToggleSwitch
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        IsChecked="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        IsChecked="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         OffLabel="{DynamicResource LocalizableOff}"
                         OnLabel="{DynamicResource LocalizableOn}"
                         Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
@@ -356,6 +356,21 @@
                     Speedup="True"
                     TextAlignment="Left"
                     Value="{Binding MaxCustomFileSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableExpNetworkAlgorhitmTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:ToggleSwitch
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding IsBandwidthAlgorhitm2Enabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    OffLabel="{DynamicResource LocalizableOff}"
+                    OnLabel="{DynamicResource LocalizableOn}"
+                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    ToolTip="{DynamicResource LocalizableExpNetworkAlgorhitmTooltip}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

@@ -22,6 +22,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private readonly ServerViewModel _parentViewModel;
         private readonly IServerStringBuilder _serverStringBuilder;
 
+        public const string ExecutablePathToken = "ExecutablePathToken";
+        public const string RankingPathToken = "RankingPathToken";
+
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
@@ -52,6 +55,34 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ServerConfig?.HostName)) return;
                 CurrentProfile.ServerConfig.HostName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the process identifier file.
+        /// </summary>
+        public string ProcessIdFileName
+        {
+            get => CurrentProfile?.ArgumentSettings?.ProcessIdFileName;
+            set
+            {
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.ProcessIdFileName)) return;
+                CurrentProfile.ArgumentSettings.ProcessIdFileName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the ranking file path.
+        /// </summary>
+        public string RankingFilePath
+        {
+            get => CurrentProfile?.ArgumentSettings?.RankingFilePath;
+            set
+            {
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.RankingFilePath)) return;
+                CurrentProfile.ArgumentSettings.RankingFilePath = value;
                 RaisePropertyChanged();
             }
         }
@@ -322,6 +353,22 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether is mission automatic initialized.
+        /// </summary>
+        public bool IsMissionAutoInitialized
+        {
+            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
+                ? false
+                : CurrentProfile.ArgumentSettings.IsMissionAutoInitialized;
+            set
+            {
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.IsMissionAutoInitialized)) return;
+                CurrentProfile.ArgumentSettings.IsMissionAutoInitialized = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the is VON messaging enabled.
         /// </summary>
         /// <value>
@@ -426,16 +473,33 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 return _browseCommand ??
-                       (_browseCommand = new RelayCommand(_ =>
+                       (_browseCommand = new RelayCommand(callerToken =>
                        {
                            using (var fileDialog = new OpenFileDialog())
                            {
+                               var callerTokenString = callerToken.ToString();
+                               if (callerTokenString == ExecutablePathToken)
+                               {
+                                   fileDialog.Filter = "Exe files (*.exe) | *.exe;";
+                               }
+                               else if (callerTokenString == RankingPathToken)
+                               {
+                                   fileDialog.Filter = "log files (*.log)|*.log;";
+                               }
+
                                if (fileDialog.ShowDialog() != DialogResult.OK)
                                {
                                    return;
                                }
 
-                               ExecutablePath = fileDialog.FileName;
+                               if (callerTokenString == ExecutablePathToken)
+                               {
+                                   ExecutablePath = fileDialog.FileName;
+                               }
+                               else if(callerTokenString == RankingPathToken)
+                               {
+                                   RankingFilePath = fileDialog.FileName;
+                               }
                            }
                        }));
             }

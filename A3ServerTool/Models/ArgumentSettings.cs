@@ -75,20 +75,20 @@ namespace A3ServerTool.Models
         private bool _areHugePagesEnabled;
 
         /// <summary>
-        /// Gets or sets a value indicating whether [are file patching enabled].
+        /// Gets or sets a value indicating whether [is file patching enabled].
         /// </summary>
         [ServerArgument(Argument = "-filePatching")]
-        public bool AreFilePatchingEnabled
+        public bool IsFilePatchingEnabled
         {
-            get => _areFilePatchingEnabled;
+            get => _isFilePatchingEnabled;
             set
             {
-                if (Equals(value, _areFilePatchingEnabled)) return;
-                _areFilePatchingEnabled = value;
+                if (Equals(value, _isFilePatchingEnabled)) return;
+                _isFilePatchingEnabled = value;
                 OnPropertyChanged();
             }
         }
-        private bool _areFilePatchingEnabled;
+        private bool _isFilePatchingEnabled;
 
         /// <summary>
         /// Gets or sets the type of the memory allocator.
@@ -154,7 +154,6 @@ namespace A3ServerTool.Models
         }
         private bool _isHyperThreadingEnabled;
 
-
         /// <summary>
         /// Gets or sets the memory allocation limit.
         /// </summary>
@@ -171,13 +170,59 @@ namespace A3ServerTool.Models
         }
         private string _maximumMemory;
 
+        /// <summary>
+        /// Gets or sets the automatic test path.
+        /// </summary>
+        [ServerArgument(Argument = "-autotest", IsQuotationMarksRequired = true)]
+        public string AutoTestPath
+        {
+            get => _autoTestPath;
+            set
+            {
+                if (Equals(value, _autoTestPath)) return;
+                _autoTestPath = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _autoTestPath;
+
+        /// <summary>
+        /// Gets or sets the process identifier.
+        /// </summary>
+        [ServerArgument(Argument = "-pid")]
+        public string ProcessIdFileName
+        {
+            get => _processIdFileName;
+            set
+            {
+                if (Equals(value, _processIdFileName)) return;
+                _processIdFileName = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _processIdFileName;
+
+        /// <summary>
+        /// Gets or sets the path to the ranking file.
+        /// </summary>
+        [ServerArgument(Argument = "-ranking", IsQuotationMarksRequired = true)]
+        public string RankingFilePath
+        {
+            get => _rankingFilePath;
+            set
+            {
+                if (Equals(value, _rankingFilePath)) return;
+                _rankingFilePath = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _rankingFilePath;
 
         /// <summary>
         /// Gets the name of the game profile.
         /// </summary>
         [ServerArgument(Argument = "-name")]
         public string GameProfileName { get; } = "serverProfile";
-
 
         /// <summary>
         /// Gets or sets a value indicating whether is bandwidth algorhitm2 enabled.
