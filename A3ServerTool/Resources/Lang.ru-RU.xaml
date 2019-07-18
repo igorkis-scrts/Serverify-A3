@@ -30,6 +30,7 @@
 
     <!--  General view  -->
     <v:String x:Key="LocalizableCommonSettingsGroupTitle">Общие настройки</v:String>
+    <v:String x:Key="LocalizableServerSettingsTitle">Настройки сервера</v:String>
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Взаимодействие с игроками</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless-клиент</v:String>
     <v:String x:Key="LocalizableVonGroupTitle">Голосовая связь</v:String>
@@ -107,6 +108,21 @@
     <v:String x:Key="LocalizableAnalyticsTitle">Сбор статистики для Bohemia Interactive</v:String>
     <v:String x:Key="LocalizableAnalyticsTooltip">Собирает базовую информацию о игре на сервере - игровые настройки, включенные модификации, любимые игроками оружие и режимы игры, производительность, соотношение смертей и убийств игроков, и отправляет собранные данные на сервер разработчиков игры.</v:String>
 
+    <v:String x:Key="LocalizableProcessIdTitle">PID сервера</v:String>
+    <v:String x:Key="LocalizableProcessIdWatermark">Название файла для идентификатора процесса</v:String>
+    <v:String x:Key="LocalizableProcessIdTooltip">Название файла, куда будет записываться идентификатор процесса (process ID). Файл будет автоматически удален после того как сервер прекратит свою работу.</v:String>
+
+    <v:String x:Key="LocalizableRankingFileTitle">Ранги (статистика по игрокам)</v:String>
+    <v:String x:Key="LocalizableRankingFileWatermark">Путь до файла со статистикой по игрокам</v:String>
+    <v:String x:Key="LocalizableRankingFileTooltip">Предоставляет возможность сохранения статистики по игрокам в отдельный файл (например, ranking.log). Необходимо разрешение Windows для записи в файл.</v:String>
+
+    <v:String x:Key="LocalizableAutoInitTitle">Автоинициализация миссии</v:String>
+    <v:String x:Key="LocalizableAutoInitTooltip">
+        Автоматически инициализирует миссию без игроков (аналогично присоединению первого клиента).
+        Внимание: Постоянность миссии должна быть включена, иначе параметр будет проигнорирован.
+        Предупреждение: Включение этого параметра сломает Arma_3_Mission_Parameters-функцию!
+    </v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Серверные скрипты</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Администрация</v:String>
@@ -122,8 +138,11 @@
     <v:String x:Key="LocalizableKickDuplicateUidsTitle">Выгонять игроков с одинаковыми UID</v:String>
     <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Не разрешать игроков с одинаковыми UID. Второй игрок с дублирующим UID будет выброшен из игровой сессии.</v:String>
 
-    <v:String x:Key="LocalizableFilePatchingTitle">Разрешить File Patching</v:String>
-    <v:String x:Key="LocalizableFilePatchingTooltip">Разрешает или запрещает File Patching для клиентов.</v:String>
+    <v:String x:Key="LocalizableFilePatchingTitle">Разрешить загрузку несжатых данных</v:String>
+    <v:String x:Key="LocalizableFilePatchingTooltip">Разрешает загрузку несжатых данных серверу.</v:String>
+
+    <v:String x:Key="LocalizableFilePatchingTypeTitle">Тип загрузки несжатых данных</v:String>
+    <v:String x:Key="LocalizableFilePatchingTypeTooltip">Разрешает загрузку несжатых данных для разных типов клиентов.</v:String>
 
     <v:String x:Key="LocalizableFilePatchingIdsTitle">Исключения File Patching</v:String>
     <v:String x:Key="LocalizableFilePatchingIdsTooltip">Steam ID, которым разрешен  File Patching. Вводить через запятую.</v:String>
@@ -191,6 +210,9 @@
     <v:String x:Key="LocalizablePortTitle">Порт</v:String>
     <v:String x:Key="LocalizablePortTooltip">Определяет UDP-порт, который будет использоваться для присоединения к серверу.</v:String>
 
+    <v:String x:Key="LocalizableExpNetworkAlgorhitmTitle">Экспериментальный сетевой алгоритм</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorhitmTooltip">Включает новый экспериментальный сетевой алгоритм, который может быть лучше стандартного.</v:String>
+
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Если инициированная сервером команда callExtension занимает больше времени, чем указанное ограничение в миллисекундах, предупреждение будет записано в файл .rpt сервера, а также отражено в результате возврата расширения.</v:String>
@@ -204,6 +226,13 @@
 
     <v:String x:Key="LocalizableDisableLogsTitle">Отключить логгирование</v:String>
     <v:String x:Key="LocalizableDisableLogsTooltip">Отключает логгирование в .rpt-файлы.</v:String>
+
+    <v:String x:Key="LocalizableNetlogTitle">Логгирование сетевого траффика</v:String>
+    <v:String x:Key="LocalizableNetlogTooltip">Включает логгирование сетевого траффика в отдельный файл.</v:String>
+
+    <v:String x:Key="LocalizableAutoTestTitle">Автоматическое тестирование миссий</v:String>
+    <v:String x:Key="LocalizableAutoTestWatermark">Путь до конфигурационного файла</v:String>
+    <v:String x:Key="LocalizableAutoTestTooltip">Загружает серию указанных в конфигурационном файле миссий и записывает ошибки в лог-файлы. Необходимо задать путь до конфигурационного файла.</v:String>
 
     <!--  Performance view  -->
     <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Дальность прорисовки ландшафта</v:String>
@@ -230,6 +259,9 @@
     <v:String x:Key="LocalizableLoadMissionToMemoryTitle">Загрузка миссии в память</v:String>
     <v:String x:Key="LocalizableLoadMissionToMemoryTooltip">Сервер загрузит миссию в память первого скачавшего её клиента. Затемо он будет раздавать её прекешированную версию другим клиентам, тем самым сохраняя некоторую производительность серверу.</v:String>
 
+    <v:String x:Key="LocalizableDisableServerThreadTitle">Выключить серверный поток</v:String>
+    <v:String x:Key="LocalizableDisableServerThreadTooltip">Опция для выключения потока отправки сообщения сервера в случае случайных сбоев сервера. Может понизить производительность сервера на многоядерных процессорах.</v:String>
+
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Принудительная сложность</v:String>
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran будут взяты из конфигурационных файлов (CfgDifficultyPresets), Пользовательский уровень - из профиля сервера.</v:String>
@@ -249,7 +281,7 @@
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Сколько раз наступает событие missionEnd прежде чем сервер инициирует процесс выключения.</v:String>
     <v:String x:Key="LocalizableRefreshNote">Миссии ищутся в той же папке, что и исполняемый файл сервера. Если миссий нет - сначала укажите исполняемый файл сервера.</v:String>
 
-    <!--  Missions view  -->
+    <!--  Difficulty view  -->
     <v:String x:Key="LocalizableSituationalAwarenessTitle">Ситуационная осведомлённость</v:String>
     <v:String x:Key="LocalizablePersonalAwarenessTitle">Личная осведомлённость</v:String>
     <v:String x:Key="LocalizableSightTitle">Обзор</v:String>
@@ -337,7 +369,7 @@
 
     <v:String x:Key="LocalizableDefaultDifficultyTitle">Сложность по умолчанию</v:String>
 
-    <!--  ModificationsView view  -->
+    <!--  Modifications view  -->
     <v:String x:Key="LocalizableAvailableTitle">Доступно:</v:String>
     <v:String x:Key="LocalizableSelectedTitle">Выбрано:</v:String>
 

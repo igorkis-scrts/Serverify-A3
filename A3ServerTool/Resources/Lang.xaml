@@ -31,6 +31,7 @@
 
     <!--  General view  -->
     <v:String x:Key="LocalizableCommonSettingsGroupTitle">Common Settings</v:String>
+    <v:String x:Key="LocalizableServerSettingsTitle">Server Settings</v:String>
     <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Interactions With Players</v:String>
     <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless Client</v:String>
     <v:String x:Key="LocalizableVonGroupTitle">Voice-Over-Net</v:String>
@@ -104,6 +105,21 @@
     <v:String x:Key="LocalizableAnalyticsTitle">Analytics For Bohemia Interactive</v:String>
     <v:String x:Key="LocalizableAnalyticsTooltip">Collects basic information about the server's game, such as game settings, enabled mods, favorite scenarios and weapons, player deaths or actual performance, and report them to game developer's analytics server.</v:String>
 
+    <v:String x:Key="LocalizableProcessIdTitle">Server PID</v:String>
+    <v:String x:Key="LocalizableProcessIdWatermark">Name of process ID file</v:String>
+    <v:String x:Key="LocalizableProcessIdTooltip">File to write the server's PID (process ID) to. The file is removed automatically when the exe is stopped.</v:String>
+
+    <v:String x:Key="LocalizableRankingFileTitle">Ranking</v:String>
+    <v:String x:Key="LocalizableRankingFileWatermark">Path to ranking file</v:String>
+    <v:String x:Key="LocalizableRankingFileTooltip">Provides an option that allowes to output ranking info or otherwise know as player stats (for example, ranking.log). The windows user account would need permissions to write to the folder of choice.</v:String>
+
+    <v:String x:Key="LocalizableAutoInitTitle">Auto Init</v:String>
+    <v:String x:Key="LocalizableAutoInitTooltip">
+        Automatically initialize mission just like first client does.
+        Persistence must be turned on, otherwise this parameter will be ignored.
+        Warning: This will break the Arma_3_Mission_Parameters function!
+    </v:String>
+
     <!--  Security view  -->
     <v:String x:Key="LocalizableServerSideScriptingTitle">Server-side Scripting</v:String>
     <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
@@ -119,8 +135,11 @@
     <v:String x:Key="LocalizableKickDuplicateUidsTitle">Kick Duplicate UIDs</v:String>
     <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Do not allow duplicate game IDs. Second player with an existing ID will be kicked automatically.</v:String>
 
+    <v:String x:Key="LocalizableFilePatchingTypeTitle">File Patching Type</v:String>
+    <v:String x:Key="LocalizableFilePatchingTypeTooltip">Prevent or allow file patching for various types of clients.</v:String>
+
     <v:String x:Key="LocalizableFilePatchingTitle">Allow File Patching</v:String>
-    <v:String x:Key="LocalizableFilePatchingTooltip">Prevent or allow file patching for the clients.</v:String>
+    <v:String x:Key="LocalizableFilePatchingTooltip">Allow the game to load unpacked data.</v:String>
 
     <v:String x:Key="LocalizableFilePatchingIdsTitle">File Patching Exceptions</v:String>
     <v:String x:Key="LocalizableFilePatchingIdsTooltip">Whitelisted Steam IDs allowed filePatching.</v:String>
@@ -192,6 +211,9 @@
     <v:String x:Key="LocalizablePortTitle">Port</v:String>
     <v:String x:Key="LocalizablePortTooltip">Specifies UDP port that will be used to connect with server.</v:String>
 
+    <v:String x:Key="LocalizableExpNetworkAlgorhitmTitle">Experimental Networking Algorhitm</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorhitmTooltip">Enables a new experimental networking algorithm that might be better than the default one.</v:String>
+
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">If server initiated callExtension takes longer than specified limit in milliseconds, the warning will be logged into server .rpt file as well as reflected in the extension return result.</v:String>
@@ -205,6 +227,13 @@
 
     <v:String x:Key="LocalizableDisableLogsTitle">No Logs</v:String>
     <v:String x:Key="LocalizableDisableLogsTooltip">Disables logging to RPT files.</v:String>
+
+    <v:String x:Key="LocalizableNetlogTitle">Netlog</v:String>
+    <v:String x:Key="LocalizableNetlogTooltip">Enables multiplayer network traffic logging into a separate logfile.</v:String>
+
+    <v:String x:Key="LocalizableAutoTestTitle">Missions Autotest</v:String>
+    <v:String x:Key="LocalizableAutoTestWatermark">Path to configuration file with missions</v:String>
+    <v:String x:Key="LocalizableAutoTestTooltip">Loads automatically a series of defined missions and on error writes to a log file.</v:String>
 
     <!--  Performance view  -->
     <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Terrain Grid View Distance</v:String>
@@ -231,6 +260,9 @@
     <v:String x:Key="LocalizableLoadMissionToMemoryTitle">Load Mission To Memory</v:String>
     <v:String x:Key="LocalizableLoadMissionToMemoryTooltip">Server will load mission into memory on first client downloading it. Then it keeps it pre-processed pre-cached in memory for next clients, saving some server CPU cycles.</v:String>
 
+    <v:String x:Key="LocalizableDisableServerThreadTitle">Disable Server Thread</v:String>
+    <v:String x:Key="LocalizableDisableServerThreadTooltip">Option to disable the server send messaging thread in case of random crashing (may also decrease performance of server on multicore CPUs).</v:String>
+
     <!--  Missions view  -->
     <v:String x:Key="LocalizableForcedDifficultyTitle">Forced Difficulty</v:String>
     <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular or Veteran will be taken from from data config (CfgDifficultyPresets), Custom - from the server profile.</v:String>
@@ -250,7 +282,7 @@
     <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Number of times missionEnd happens before server initiate process shutdown.</v:String>
     <v:String x:Key="LocalizableRefreshNote">Missions are searched in the same folder as the server executable file. If there are no missions - specify server executable file first.</v:String>
 
-    <!--  Missions view  -->
+    <!--  Difficulty view  -->
     <v:String x:Key="LocalizableSituationalAwarenessTitle">Situational Awareness</v:String>
     <v:String x:Key="LocalizablePersonalAwarenessTitle">Personal Awareness</v:String>
     <v:String x:Key="LocalizableSightTitle">Sight</v:String>
