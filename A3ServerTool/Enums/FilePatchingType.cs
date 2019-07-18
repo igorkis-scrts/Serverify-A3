@@ -5,7 +5,7 @@ namespace A3ServerTool.Enums
     /// <summary>
     /// Provides representation of allowedFilePatching config property in code.
     /// </summary>
-    public enum FilePatching
+    public enum FilePatchingType
     {
         [Description("No Clients")]
         NoClients = 0,
