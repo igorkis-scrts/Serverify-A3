@@ -30,7 +30,7 @@ namespace A3ServerTool.ViewModels
         public AboutViewModel About => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public ProfilesViewModel Profiles => ServiceLocator.Current.GetInstance<ProfilesViewModel>();
         public SettingsViewModel Settings => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>(System.Guid.NewGuid().ToString());
+        public ProfileDialogViewModel ProfileDialog => ServiceLocator.Current.GetInstance<ProfileDialogViewModel>();
         public GeneralViewModel General => ServiceLocator.Current.GetInstance<GeneralViewModel>();
         public NetworkViewModel Network => ServiceLocator.Current.GetInstance<NetworkViewModel>();
         public SecurityViewModel Security => ServiceLocator.Current.GetInstance<SecurityViewModel>();

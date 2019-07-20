@@ -25,12 +25,6 @@
         </Style>
     </UserControl.Resources>-->
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="LayoutUpdated">
-            <i:InvokeCommandAction Command="{Binding StartupCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>

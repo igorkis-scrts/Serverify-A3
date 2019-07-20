@@ -25,8 +25,6 @@ namespace A3ServerTool.ViewModels
         private readonly IDialogCoordinator _dialogCoordinator = DialogCoordinator.Instance;
         private readonly CustomDialog _customDialog = new CustomDialog(); //TODO: isn't it a little MVVM break?
 
-        private bool _isRegistered;
-
         public ObservableCollection<Profile> Profiles
         {
             get => _profiles;
@@ -79,27 +77,9 @@ namespace A3ServerTool.ViewModels
             _mainViewModel = viewModel;
 
             Messenger.Default.Register<string>(this, MainViewModel.Token, DoByRequest);
+            Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessage);
 
             RefreshData();
-        }
-
-        //A tricky (and stupid too) way to beat the 
-        //"Context is not registered. Consider using DialogParticipation.Register in XAML to bind in the DataContext" error
-        //We can't register methods in constructor, so we should do it when userControl is rendered
-        //https://stackoverflow.com/questions/41663538/trouble-with-showing-a-mahapps-metro-dialog-with-a-reactiveui-command
-        //TODO: find better way to create listener only one time (right now it is constantly checking isRegistered field) - maybe different event exists?
-        public ICommand StartupCommand
-        {
-            get
-            {
-                return new RelayCommand(_ =>
-                {
-                    if (_isRegistered) return;
-
-                    Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessage);
-                    _isRegistered = true;
-                });
-            }
         }
 
         public ICommand SelectProfileCommand
