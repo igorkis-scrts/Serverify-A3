@@ -42,6 +42,10 @@
                 <controls:SecurityView />
             </TabItem>
 
+            <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}">
+                <controls:NetworkView />
+            </TabItem>
+
             <TabItem Header="{DynamicResource LocalizableMissionsTabTittle}">
                 <controls:MissionsView />
             </TabItem>
@@ -52,10 +56,6 @@
 
             <TabItem Header="{DynamicResource LocalizableDifficultyTabTittle}">
                 <controls:DifficultyView />
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}">
-                <controls:NetworkView />
             </TabItem>
 
             <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}">

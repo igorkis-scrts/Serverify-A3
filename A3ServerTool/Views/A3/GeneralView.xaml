@@ -4,15 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="clr-namespace:A3ServerTool.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:h="clr-namespace:A3ServerTool.Helpers"
-    xmlns:v="clr-namespace:System;assembly=mscorlib"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:local="clr-namespace:A3ServerTool.ViewModels.ServerSubViewModels"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="640"
     d:DesignWidth="960"
+    dialog:DialogParticipation.Register="{Binding}"
     DataContext="{Binding General, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -123,8 +125,8 @@
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableProcessIdWatermark}"
-                            ToolTip="{DynamicResource LocalizableProcessIdTooltip}"
-                            Text="{Binding ProcessIdFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            Text="{Binding ProcessIdFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="{DynamicResource LocalizableProcessIdTooltip}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
@@ -138,10 +140,9 @@
                             mah:TextBoxHelper.ButtonCommandParameter="{x:Static local:GeneralViewModel.RankingPathToken}"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableRankingFileWatermark}"
-                            ToolTip="{DynamicResource LocalizableRankingFileTooltip}"
-                            IsReadOnly="True"
                             Style="{StaticResource BrowseMetroTextBox}"
-                            Text="{Binding RankingFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            Text="{Binding RankingFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="{DynamicResource LocalizableRankingFileTooltip}" />
 
 
                         <Label
