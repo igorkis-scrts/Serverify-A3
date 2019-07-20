@@ -1,5 +1,6 @@
 ﻿using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using System.ComponentModel;
 using System.Windows.Navigation;
@@ -142,6 +143,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.IsBandwidthAlgorhitm2Enabled)) return;
                 CurrentProfile.ArgumentSettings.IsBandwidthAlgorhitm2Enabled = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -240,6 +242,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.Port)) return;
                 CurrentProfile.ArgumentSettings.Port = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }

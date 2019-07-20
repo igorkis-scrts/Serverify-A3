@@ -2,6 +2,7 @@
 using A3ServerTool.Helpers.ServerLauncher;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using System.ComponentModel;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
 
         public const string ExecutablePathToken = "ExecutablePathToken";
         public const string RankingPathToken = "RankingPathToken";
+        public const string Token = nameof(GeneralViewModel);
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
@@ -31,19 +33,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// Gets the final server argument string.
         /// </summary>
         public string FinalServerArgumentString => _serverStringBuilder != null && CurrentProfile != null
-            ? _serverStringBuilder.GetFinalArgumentString(CurrentProfile)
+            ? _serverStringBuilder.FinalArgumentString
             : string.Empty;
 
-        public string Port
-        {
-            get => CurrentProfile?.ArgumentSettings?.Port;
-            set
-            {
-                if (Equals(value, CurrentProfile.ArgumentSettings.Port)) return;
-                CurrentProfile.ArgumentSettings.Port = value;
-                RaisePropertyChanged();
-            }
-        }
 
         /// <summary>
         /// Gets or sets server name visible in the game browser.
@@ -69,6 +61,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.ProcessIdFileName)) return;
                 CurrentProfile.ArgumentSettings.ProcessIdFileName = value;
+
+                RaisePropertyChanged("FinalServerArgumentString");
                 RaisePropertyChanged();
             }
         }
@@ -83,6 +77,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.RankingFilePath)) return;
                 CurrentProfile.ArgumentSettings.RankingFilePath = value;
+                RaisePropertyChanged("FinalServerArgumentString");
                 RaisePropertyChanged();
             }
         }
@@ -364,6 +359,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.IsMissionAutoInitialized)) return;
                 CurrentProfile.ArgumentSettings.IsMissionAutoInitialized = value;
+                RaisePropertyChanged("FinalServerArgumentString");
                 RaisePropertyChanged();
             }
         }
@@ -510,6 +506,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             _parentViewModel = viewModel;
             _serverStringBuilder = serverStringBuilder;
+            _serverStringBuilder.Profile = CurrentProfile;
+            Messenger.Default.Register<string>(this, Token, UpdateFinalStringByRequest);
         }
 
         /// <summary>
@@ -523,6 +521,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Updates the final string by requests from Message Bus.
+        /// </summary>
+        private void UpdateFinalStringByRequest(string message)
+        {
+            RaisePropertyChanged("FinalServerArgumentString");
+        }
+
         #region IDataErrorInfo
 
         public string this[string columnName]
@@ -533,8 +539,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     case nameof(Name) when string.IsNullOrWhiteSpace(Name):
                         return "Name can't be null or empty.";
-                    case nameof(Port) when string.IsNullOrWhiteSpace(Port):
-                        return "Port can't be null or empty.";
                     case nameof(ExecutablePath) when string.IsNullOrWhiteSpace(ExecutablePath):
                         return "Server path can't be null or empty.";
                     case nameof(HeadlessClientIps) when !string.IsNullOrWhiteSpace(HeadlessClientIps)
@@ -557,10 +561,6 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return " Name of the server must be specified.";
                 }
-                //else if (string.IsNullOrWhiteSpace(Port))
-                //{
-                //    return "Port must be specified.";
-                //}
                 else if (string.IsNullOrWhiteSpace(ExecutablePath))
                 {
                     return "Server path must be specified.";

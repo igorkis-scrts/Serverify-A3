@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -286,6 +287,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsFilePatchingEnabled)) return;
                 CurrentProfile.ArgumentSettings.IsFilePatchingEnabled = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }

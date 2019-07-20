@@ -1,6 +1,7 @@
 ﻿using A3ServerTool.Enums;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using System;
 using System.ComponentModel;
@@ -61,6 +62,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.AutoTestPath)) return;
                 CurrentProfile.ArgumentSettings.AutoTestPath = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -77,6 +79,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.AreLogsDisabled)) return;
                 CurrentProfile.ArgumentSettings.AreLogsDisabled = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -93,6 +96,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsTrafficLogged)) return;
                 CurrentProfile.ArgumentSettings.IsTrafficLogged = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }

@@ -18,7 +18,7 @@ namespace A3ServerTool.Helpers.ServerLauncher
         {
             if (profile == null) return;
 
-            var finalParameterString = _serverStringBuilder.GetFinalArgumentString(profile);
+            var finalParameterString = _serverStringBuilder.FinalArgumentString;
             var server = new System.Diagnostics.Process
             {
                 StartInfo =

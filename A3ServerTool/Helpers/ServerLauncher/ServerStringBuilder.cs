@@ -1,7 +1,10 @@
-﻿using A3ServerTool.Attributes;
+﻿using A3ServerTool.Annotations;
+using A3ServerTool.Attributes;
 using A3ServerTool.Models;
 using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace A3ServerTool.Helpers.ServerLauncher
@@ -14,6 +17,22 @@ namespace A3ServerTool.Helpers.ServerLauncher
     {
         private readonly StringBuilder _stringBuilder = new StringBuilder();
 
+        public Profile Profile
+        {
+            get => _profile;
+            set
+            {
+                if (Equals(_profile, value))
+                {
+                    return;
+                }
+
+                _profile = value;
+                //OnPropertyChanged();
+            }
+        }
+        private Profile _profile;
+
         /// <summary>
         /// Parses the argument settings.
         /// </summary>
@@ -21,18 +40,37 @@ namespace A3ServerTool.Helpers.ServerLauncher
         /// <returns>
         /// Final string with all arguments that will be applied to the server executable file.
         /// </returns>
-        public string GetFinalArgumentString(Profile profile)
+        public string FinalArgumentString
         {
-            if (profile == null || profile.ArgumentSettings == null)
+            get
             {
-                return string.Empty;
+                if (_profile == null || _profile.ArgumentSettings == null)
+                {
+                    return string.Empty;
+                }
+                _stringBuilder.Clear();
+
+                //TODO: DRY violation?
+                ParseArgumentProperties(_profile.ArgumentSettings);
+                ParseProfileProperties(_profile);
+
+                OnPropertyChanged();
+                return _stringBuilder.ToString();
+            }
+        }
+
+        public void ReaggregateArgumentString()
+        {
+            if (_profile == null || _profile.ArgumentSettings == null)
+            {
+                return;
             }
 
-            //TODO: DRY violation?
-            ParseArgumentProperties(profile.ArgumentSettings);
-            ParseProfileProperties(profile);
+            _stringBuilder.Clear();
 
-            return _stringBuilder.ToString();
+            //TODO: DRY violation?
+            ParseArgumentProperties(_profile.ArgumentSettings);
+            ParseProfileProperties(_profile);
         }
 
         /// <summary>
@@ -143,5 +181,14 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 }
             }
         }
+
+        [NotifyPropertyChangedInvocator]
+        public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            ReaggregateArgumentString();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

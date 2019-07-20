@@ -1,5 +1,6 @@
 ﻿using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -52,6 +53,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.CpuCoreCount)) return;
                 CurrentProfile.ArgumentSettings.CpuCoreCount = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -66,6 +68,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.ThreadCount)) return;
                 CurrentProfile.ArgumentSettings.ThreadCount = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -83,6 +86,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.MaximumMemory)) return;
                 CurrentProfile.ArgumentSettings.MaximumMemory = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -99,6 +103,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled)) return;
                 CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -115,6 +120,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsServerThreadDisabled)) return;
                 CurrentProfile.ArgumentSettings.IsServerThreadDisabled = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -131,6 +137,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.AreHugePagesEnabled)) return;
                 CurrentProfile.ArgumentSettings.AreHugePagesEnabled = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
@@ -147,6 +154,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory)) return;
                 CurrentProfile.ArgumentSettings.IsMissionLoadedToMemory = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
         }
