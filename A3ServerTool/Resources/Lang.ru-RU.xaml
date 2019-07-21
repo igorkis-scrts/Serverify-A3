@@ -21,8 +21,11 @@
     <v:String x:Key="LocalizableModificationsTabTittle">Моды</v:String>
     <v:String x:Key="LocalizableMissionsTabTittle">Миссии</v:String>
 
+    <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>
+    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Фоновая тема</v:String>
+    <v:String x:Key="LocalizableSettingsAccentColorTitle">Акцентный цвет</v:String>
 
     <!--  Server view  -->
     <v:String x:Key="LocalizableServerViewTitle">Сервер</v:String>

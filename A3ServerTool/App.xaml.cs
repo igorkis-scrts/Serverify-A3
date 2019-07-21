@@ -1,4 +1,6 @@
-﻿using System;
+﻿using A3ServerTool.Enums;
+using MahApps.Metro;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -23,10 +25,24 @@ namespace A3ServerTool
         }
 
         public static event EventHandler LanguageChanged;
+        public static event EventHandler BackgroundThemeChanged;
+        public static event EventHandler AccentColorChanged;
 
         private void App_LanguageChanged(object sender, EventArgs e)
         {
-            A3ServerTool.Properties.Settings.Default.DefaultLanguage = Language;
+            A3ServerTool.Properties.Settings.Default.Language = Language;
+            A3ServerTool.Properties.Settings.Default.Save();
+        }
+
+        private void App_BackgroundThemeChanged(object sender, EventArgs e)
+        {
+            A3ServerTool.Properties.Settings.Default.BackgroundTheme = BackgroundTheme.Name;
+            A3ServerTool.Properties.Settings.Default.Save();
+        }
+
+        private void App_AccentColorChanged(object sender, EventArgs e)
+        {
+            A3ServerTool.Properties.Settings.Default.AccentColor = AccentColor.Name;
             A3ServerTool.Properties.Settings.Default.Save();
         }
 
@@ -75,12 +91,58 @@ namespace A3ServerTool
                 }
 
                 ApplyDot();
-                LanguageChanged(Application.Current, new EventArgs());
+                LanguageChanged(Application.Current, EventArgs.Empty);
+            }
+        }
+
+        public static AppTheme BackgroundTheme
+        {
+            get
+            {
+                return ThemeManager.DetectAppStyle(Application.Current).Item1;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                ThemeManager.ChangeAppTheme(Current, value.Name);
+
+                //ThemeManager.ChangeAppStyle(Application.Current,
+                //            ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
+                //            ThemeManager.GetAppTheme(value.Name));
+                BackgroundThemeChanged(Application.Current, EventArgs.Empty);
+            }
+        }
+
+        public static Accent AccentColor
+        {
+            get
+            {
+                return ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor);
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                ThemeManager.ChangeAppStyle(Application.Current,
+                            ThemeManager.GetAccent(value.Name),
+                            BackgroundTheme);
+                AccentColorChanged(Application.Current, EventArgs.Empty);
             }
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            ThemeManager.ChangeAppStyle(Application.Current,
+                ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
+                ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
+
             base.OnStartup(e);
 
             Languages.Clear();
@@ -88,8 +150,9 @@ namespace A3ServerTool
             Languages.Add(new CultureInfo("ru-RU"));
 
             LanguageChanged += App_LanguageChanged;
-            Language = A3ServerTool.Properties.Settings.Default.DefaultLanguage;
-
+            BackgroundThemeChanged += App_BackgroundThemeChanged;
+            AccentColorChanged += App_AccentColorChanged;
+            Language = A3ServerTool.Properties.Settings.Default.Language;
             Bindings.Register();
         }
 
@@ -100,8 +163,7 @@ namespace A3ServerTool
         {
             var customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
-            CultureInfo.CurrentCulture = customCulture;
+            //CultureInfo.CurrentCulture = customCulture;
         }
-
     }
 }

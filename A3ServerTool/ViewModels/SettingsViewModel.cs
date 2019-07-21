@@ -1,5 +1,8 @@
-﻿using A3ServerTool.Helpers;
+﻿using A3ServerTool.Enums;
+using A3ServerTool.Helpers;
 using GalaSoft.MvvmLight;
+using MahApps.Metro;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Input;
@@ -8,13 +11,7 @@ namespace A3ServerTool.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
-        public List<CultureInfo> Cultures
-        {
-            get
-            {
-                return App.Languages;
-            }
-        }
+        public List<CultureInfo> Cultures => App.Languages;
 
         public CultureInfo Culture
         {
@@ -31,6 +28,45 @@ namespace A3ServerTool.ViewModels
             }
         }
         private CultureInfo _culture;
+
+        /// <summary>
+        /// Gets or sets the background theme.
+        /// </summary>
+        public BackgroundThemeType BackgroundTheme
+        {
+            get => _backgroundTheme;
+            set
+            {
+                if (Equals(value, _backgroundTheme))
+                {
+                    return;
+                }
+
+                _backgroundTheme = value;
+                RaisePropertyChanged();
+            }
+        }
+        private BackgroundThemeType _backgroundTheme;
+
+        /// <summary>
+        /// Gets or sets the color of the accent.
+        /// </summary>
+        public AccentColorType AccentColor
+        {
+            get => _accentColor;
+            set
+            {
+                if (Equals(value, _accentColor))
+                {
+                    return;
+                }
+
+                _accentColor = value;
+                RaisePropertyChanged();
+            }
+        }
+        private AccentColorType _accentColor;
+
 
         /// <summary>
         /// Gets the window loaded command.
@@ -60,7 +96,11 @@ namespace A3ServerTool.ViewModels
 
         public SettingsViewModel()
         {
-            Culture = (CultureInfo)SettingsCoordinator.Retrieve(ApplicationSettingType.DefaultLanguage);
+            Culture = Properties.Settings.Default.Language;
+            Enum.TryParse(Properties.Settings.Default.BackgroundTheme, out BackgroundThemeType backgroundTheme);
+            BackgroundTheme = backgroundTheme;
+            Enum.TryParse(Properties.Settings.Default.AccentColor, out AccentColorType accentColor);
+            AccentColor = accentColor;
         }
 
         /// <summary>
@@ -69,7 +109,8 @@ namespace A3ServerTool.ViewModels
         private void ApplyAndSaveSettings()
         {
             App.Language = Culture;
-            SettingsCoordinator.Save(ApplicationSettingType.DefaultLanguage, Culture);
+            App.BackgroundTheme = ThemeManager.GetAppTheme(BackgroundTheme.ToString());
+            App.AccentColor = ThemeManager.GetAccent(AccentColor.ToString());
         }
     }
 }

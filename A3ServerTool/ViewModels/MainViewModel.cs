@@ -151,7 +151,7 @@ namespace A3ServerTool.ViewModels
 
                            Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessageResult);
 
-                           var lastProfileId = (Guid)SettingsCoordinator.Retrieve(ApplicationSettingType.LastUsedProfile);
+                           var lastProfileId = Properties.Settings.Default.LastUsedProfile;
                            if (lastProfileId != Guid.Empty)
                            {
                                CurrentProfile = _profileDirector.GetById(lastProfileId);
@@ -278,8 +278,8 @@ namespace A3ServerTool.ViewModels
             {
                 _profileDirector.SaveStorage(dialogResult.Object);
                 CurrentProfile = dialogResult.Object;
-                SettingsCoordinator.Save(ApplicationSettingType.LastUsedProfile, CurrentProfile.Id);
-
+                Properties.Settings.Default.LastUsedProfile = CurrentProfile.Id;
+                Properties.Settings.Default.Save();
                 Messenger.Default.Send("update", Token);
             }
         }

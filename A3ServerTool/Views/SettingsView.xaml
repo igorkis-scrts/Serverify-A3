@@ -60,6 +60,40 @@
                     ItemsSource="{Binding Cultures, Mode=OneTime}"
                     SelectedItem="{Binding Culture, Mode=TwoWay}" />
 
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableSettingsBackgroundThemeTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=BackgroundTheme, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=BackgroundTheme}"
+                    SelectedValuePath="Value" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableSettingsAccentColorTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <ComboBox
+                    MinWidth="192"
+                    MaxWidth="192"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Left"
+                    DisplayMemberPath="Description"
+                    ItemsSource="{Binding Path=AccentColor, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=AccentColor}"
+                    SelectedValuePath="Value" />
+
             </StackPanel>
             <DockPanel
                 Grid.Row="3"
@@ -81,7 +115,7 @@
 
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="ContentSave" />
-                        <TextBlock HorizontalAlignment="Center" Text="Save" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableSaveButton}" />
                     </StackPanel>
                 </Button>
                 <DockPanel />

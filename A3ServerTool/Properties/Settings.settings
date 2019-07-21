@@ -5,7 +5,7 @@
     <Setting Name="LastUsedProfile" Type="System.Guid" Scope="User">
       <Value Profile="(Default)">00000000-0000-0000-0000-000000000000</Value>
     </Setting>
-    <Setting Name="DefaultLanguage" Type="System.Globalization.CultureInfo" Scope="User">
+    <Setting Name="Language" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
     <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
@@ -16,6 +16,12 @@
     </Setting>
     <Setting Name="WindowState" Type="System.Windows.WindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="BackgroundTheme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BaseLight</Value>
+    </Setting>
+    <Setting Name="AccentColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Olive</Value>
     </Setting>
   </Settings>
 </SettingsFile>

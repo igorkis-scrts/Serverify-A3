@@ -21,9 +21,11 @@
     <v:String x:Key="LocalizableModificationsTabTittle">Mods</v:String>
     <v:String x:Key="LocalizableMissionsTabTittle">Missions</v:String>
 
-
+    <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Settings</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Language</v:String>
+    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Background Theme</v:String>
+    <v:String x:Key="LocalizableSettingsAccentColorTitle">Accent Color</v:String>
 
     <!--  Server view  -->
     <v:String x:Key="LocalizableServerViewTitle">Server</v:String>

@@ -20,23 +20,6 @@
                 x:Key="Locator"
                 d:IsDataSource="True" />
 
-            <!--<ObjectDataProvider
-                x:Key="Languages"
-                MethodName="GetValues"
-                ObjectType="{x:Type system:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="inter:Language" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>-->
-
-            <!--<ObjectDataProvider MethodName="GetValues"
-                    ObjectType="{x:Type system:Enum}"
-                    x:Key="DifficultyEnumDataProvider">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="local:ChoiseEnum" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>-->
-
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
@@ -72,10 +55,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-
-                <!--  Accent and AppTheme setting  -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Olive.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
 
                 <!--  My custom controls library  -->
                 <ResourceDictionary Source="pack://application:,,,/CustomControls;component/CustomControlsDictionary.xaml" />
