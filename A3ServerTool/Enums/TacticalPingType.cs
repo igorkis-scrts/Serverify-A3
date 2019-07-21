@@ -18,6 +18,5 @@ namespace A3ServerTool.Enums
 
         [Description("Both screen and map")]
         Both = 3
-
     }
 }
