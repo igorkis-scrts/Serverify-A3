@@ -67,17 +67,6 @@ namespace A3ServerTool.ViewModels
         }
         private AccentColorType _accentColor;
 
-
-        /// <summary>
-        /// Gets the window loaded command.
-        /// </summary>
-        public ICommand WindowLoadedCommand => _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(_ =>
-                       {
-                       }));
-        private ICommand _windowLoadedCommand;
-
-
         /// <summary>
         /// Gets the save profile command.
         /// </summary>
@@ -109,8 +98,8 @@ namespace A3ServerTool.ViewModels
         private void ApplyAndSaveSettings()
         {
             App.Language = Culture;
-            App.BackgroundTheme = ThemeManager.GetAppTheme(BackgroundTheme.ToString());
-            App.AccentColor = ThemeManager.GetAccent(AccentColor.ToString());
+            App.BackgroundTheme = BackgroundTheme.ToString();
+            App.AccentColor = AccentColor.ToString();
         }
     }
 }

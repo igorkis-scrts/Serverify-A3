@@ -3,21 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:local="clr-namespace:A3ServerTool.Views"
-    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
     d:DesignWidth="960"
     DataContext="{Binding Settings, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -100,9 +91,8 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Margin="0"
-                Background="{StaticResource ControlSecondaryColorBrush}">
+                Background="{DynamicResource ControlSecondaryColorBrush}">
                 <Button
-                    Width="64"
                     MinWidth="48"
                     MinHeight="48"
                     MaxWidth="96"
@@ -111,7 +101,8 @@
                     HorizontalAlignment="Center"
                     Command="{Binding SaveSettingsCommand}"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource SecondaryColorFlatButton}">
+                    Style="{DynamicResource SecondaryColorFlatButton}"
+                    Foreground="{DynamicResource TextColorBrush}">
 
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="ContentSave" />

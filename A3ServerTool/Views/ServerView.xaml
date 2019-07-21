@@ -73,29 +73,32 @@
             Grid.Row="3"
             Grid.Column="0"
             Margin="0"
-            Background="{StaticResource ControlSecondaryColorBrush}">
+            Background="{DynamicResource ControlSecondaryColorBrush}">
             <Button
                 Width="64"
                 MinWidth="48"
                 MinHeight="48"
                 MaxWidth="96"
                 MaxHeight="96"
-                Margin="{StaticResource ControlMargin}"
+                Margin="8,2,8,0"
                 HorizontalAlignment="Center"
                 Command="{Binding StartServerCommand}"
-                DockPanel.Dock="Left">
-                <Button.Style>
-                    <Style BasedOn="{StaticResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">
+                DockPanel.Dock="Left" Height="48" VerticalAlignment="Top"
+                Foreground="{DynamicResource TextColorBrush}"
+                Style="{DynamicResource SecondaryColorFlatButton}">
+                
+                <!--<Button.Style>
+                    --><!--<Style BasedOn="{DynamicResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">-->
                         <!--<Style.Triggers>
                             <DataTrigger Binding="{Binding Path=DataContext.CheckValidation}" Value="true">
                                 <Setter Property="ToolTip" Value="false"/>
                                 <Setter Property="Foreground" Value="Black" />
                                 <Setter Property="Background" Value="Blue" />
                             </DataTrigger>
-                        </Style.Triggers>-->
-                    </Style>
+                        </Style.Triggers>--><!--
+                    </Style>--><!--
 
-                </Button.Style>
+                </Button.Style>-->
 
 
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

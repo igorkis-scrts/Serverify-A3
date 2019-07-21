@@ -15,16 +15,6 @@
     DataContext="{Binding Profiles, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <!--<UserControl.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource SecondaryColorFlatButton}" x:Key="ButtonWithDependency">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=SelectedProfile}" Value="{x:Null}">
-                    <Setter Property="IsEnabled" Value="False"></Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>-->
-
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -107,7 +97,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Margin="0"
-                Background="{StaticResource ControlSecondaryColorBrush}">
+                Background="{DynamicResource ControlSecondaryColorBrush}">
                 <Button
                     Width="64"
                     MinWidth="48"
@@ -118,7 +108,8 @@
                     HorizontalAlignment="Center"
                     Command="{Binding SelectProfileCommand}"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource SecondaryColorFlatButton}">
+                    Foreground="{DynamicResource TextColorBrush}"
+                    Style="{DynamicResource SecondaryColorFlatButton}">
 
                     <StackPanel>
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Check" />
@@ -136,7 +127,8 @@
                     HorizontalAlignment="Center"
                     Command="{Binding CreateProfileCommand}"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource SecondaryColorFlatButton}"
+                    Foreground="{DynamicResource TextColorBrush}"
+                    Style="{DynamicResource SecondaryColorFlatButton}"
                     ToolTip="Save current settings into new profile">
 
                     <StackPanel>
@@ -154,7 +146,8 @@
                     HorizontalAlignment="Center"
                     Command="{Binding EditProfileCommand}"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource SecondaryColorFlatButton}">
+                    Foreground="{DynamicResource TextColorBrush}"
+                    Style="{DynamicResource SecondaryColorFlatButton}">
 
                     <StackPanel>
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Pencil" />
@@ -170,7 +163,8 @@
                     Margin="{StaticResource ControlMargin}"
                     Command="{Binding DeleteProfileCommand}"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource SecondaryColorFlatButton}">
+                    Foreground="{DynamicResource TextColorBrush}"
+                    Style="{DynamicResource SecondaryColorFlatButton}">
                     <StackPanel>
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Delete" />
                         <TextBlock HorizontalAlignment="Center" Text="Delete" />

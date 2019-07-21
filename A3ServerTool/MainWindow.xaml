@@ -15,7 +15,7 @@
     Height="800"
     Padding="10,10,10,10"
     mah:DialogParticipation.Register="{Binding}"
-    BorderBrush="{StaticResource ControlSecondaryColorBrush}"
+    BorderBrush="{DynamicResource ControlSecondaryColorBrush}"
     BorderThickness="1"
     Closing="MainWindow_OnClosing"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
@@ -24,7 +24,6 @@
     WindowCloseButtonStyle="{DynamicResource CleanCloseWindowButtonStyle}"
     WindowStartupLocation="CenterScreen"
     WindowState="{Binding WindowState, Mode=TwoWay}"
-    WindowTitleBrush="{StaticResource ControlSecondaryColorBrush}"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -118,7 +117,7 @@
                 TargetType="{x:Type mah:HamburgerMenu}">
                 <Setter Property="ItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
                 <Setter Property="OptionsItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
-                <Setter Property="PaneBackground" Value="{StaticResource ControlSecondaryColorBrush}" />
+                <Setter Property="PaneBackground" Value="{DynamicResource ControlSecondaryColorBrush}" />
                 <Setter Property="PaneForeground" Value="{DynamicResource TextBrush}" />
                 <Setter Property="ShowSelectionIndicator" Value="True" />
                 <Setter Property="Background" Value="LightGray" />
@@ -143,8 +142,8 @@
             </Label>
             <Button
                 Command="{Binding SaveProfileCommand}"
-                Content="{DynamicResource LocalizableSaveButton}"
-                Foreground="Black" />
+                Content="{DynamicResource LocalizableSaveButton}"               
+                Foreground="{DynamicResource TextColorBrush}" />
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
 

@@ -36,13 +36,14 @@ namespace A3ServerTool
 
         private void App_BackgroundThemeChanged(object sender, EventArgs e)
         {
-            A3ServerTool.Properties.Settings.Default.BackgroundTheme = BackgroundTheme.Name;
+            A3ServerTool.Properties.Settings.Default.BackgroundTheme = _backgroundTheme;
             A3ServerTool.Properties.Settings.Default.Save();
+            ApplyControlBackground();
         }
 
         private void App_AccentColorChanged(object sender, EventArgs e)
         {
-            A3ServerTool.Properties.Settings.Default.AccentColor = AccentColor.Name;
+            A3ServerTool.Properties.Settings.Default.AccentColor = _accentColor;
             A3ServerTool.Properties.Settings.Default.Save();
         }
 
@@ -95,11 +96,11 @@ namespace A3ServerTool
             }
         }
 
-        public static AppTheme BackgroundTheme
+        public static string BackgroundTheme
         {
             get
             {
-                return ThemeManager.DetectAppStyle(Application.Current).Item1;
+                return _backgroundTheme;
             }
             set
             {
@@ -107,21 +108,26 @@ namespace A3ServerTool
                 {
                     throw new ArgumentNullException("value");
                 }
+                if (Equals(_backgroundTheme, value))
+                {
+                    return;
+                }
 
-                ThemeManager.ChangeAppTheme(Current, value.Name);
+                _backgroundTheme = value;
 
-                //ThemeManager.ChangeAppStyle(Application.Current,
-                //            ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
-                //            ThemeManager.GetAppTheme(value.Name));
+                ThemeManager.ChangeAppStyle(Application.Current,
+                            ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
+                            ThemeManager.GetAppTheme(value));
                 BackgroundThemeChanged(Application.Current, EventArgs.Empty);
             }
         }
+        private static string _backgroundTheme;
 
-        public static Accent AccentColor
+        public static string AccentColor
         {
             get
             {
-                return ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor);
+                return _accentColor;
             }
             set
             {
@@ -129,19 +135,27 @@ namespace A3ServerTool
                 {
                     throw new ArgumentNullException("value");
                 }
+                if(Equals(_accentColor, value))
+                {
+                    return;
+                }
+
+                _accentColor = value;
 
                 ThemeManager.ChangeAppStyle(Application.Current,
-                            ThemeManager.GetAccent(value.Name),
-                            BackgroundTheme);
+                            ThemeManager.GetAccent(value),
+                            ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
                 AccentColorChanged(Application.Current, EventArgs.Empty);
             }
         }
+        private static string _accentColor;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             ThemeManager.ChangeAppStyle(Application.Current,
                 ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
                 ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
+            ApplyControlBackground();
 
             base.OnStartup(e);
 
@@ -154,6 +168,35 @@ namespace A3ServerTool
             AccentColorChanged += App_AccentColorChanged;
             Language = A3ServerTool.Properties.Settings.Default.Language;
             Bindings.Register();
+        }
+
+        private void ApplyControlBackground()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            switch (A3ServerTool.Properties.Settings.Default.BackgroundTheme)
+            {
+                case "BaseLight":
+                    dict.Source = new Uri("/CustomControls;component/LightThemeColors.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("/CustomControls;component/DarkThemeColors.xaml", UriKind.Relative);
+                    break;
+            }
+
+            var oldDictionary = Application.Current.Resources.MergedDictionaries.Where(d => d.Source != null
+                && d.Source.OriginalString.Contains("ThemeColors")).FirstOrDefault();
+
+            if(oldDictionary != null)
+            {
+                int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
+                Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
+                Application.Current.Resources.MergedDictionaries.Insert(index, dict);
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Add(dict);
+            }
         }
 
         /// <summary>
