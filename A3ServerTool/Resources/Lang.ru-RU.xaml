@@ -216,6 +216,33 @@
     <v:String x:Key="LocalizableExpNetworkAlgorhitmTitle">Экспериментальный сетевой алгоритм</v:String>
     <v:String x:Key="LocalizableExpNetworkAlgorhitmTooltip">Включает новый экспериментальный сетевой алгоритм, который может быть лучше стандартного.</v:String>
 
+    <v:String x:Key="LocalizableMaxMsgSendTitle">Максимальное число пакетов (сообщений)</v:String>
+    <v:String x:Key="LocalizableMaxMsgSendTooltip">Определяет максимальное число пакетов (сообщений), отославнных за один цикл симуляции (кадр). Увеличение этого параметра может уменьшить задержки на серверах с большой пропускной способностью.</v:String>
+
+    <v:String x:Key="LocalizableMaxSizeGuaranteedTitle">Максимальный размер гарантированных пакетов</v:String>
+    <v:String x:Key="LocalizableMaxSizeGuaranteedTooltip">Максимальный размер гарантированного пакета в байтах (без заголовков). Маленькие сообщения запаковываются в большие пакеты. Гарантированные пакеты используются используются для неповторяющихся событий (например, стрельба).</v:String>
+
+    <v:String x:Key="LocalizableMaxSizeNonguaranteedTitle">Максимальный размер негарантированных пакетов</v:String>
+    <v:String x:Key="LocalizableMaxSizeNonguaranteedTooltip">Максимальный размер негарантированного пакета в байтах (без заголовков). Маленькие сообщения запаковываются в большие пакеты. Негарантированные пакеты используются для повторяющихся событий - таких как сообщение текущей позиции техники или человека. Увеличение этого параметра может может улучшить требования к пропускной способности, но также и может увеличить задержки.</v:String>
+
+    <v:String x:Key="LocalizableMinBandwidthTitle">Минимальная пропускная способность</v:String>
+    <v:String x:Key="LocalizableMinBandwidthTooltip">Пропускная способность, который сервер гарантированно располагает (в битах в секунду, bps). Слишком оптимистичное увеличение может увеличить число задержек и нагрузку на процессор, так как слишком много сообщений будет отправлено и отвергнуто.</v:String>
+
+    <v:String x:Key="LocalizableMaxBandwidthTitle">Максимальная пропускная способность</v:String>
+    <v:String x:Key="LocalizableMaxBandwidthTooltip">Пропускная способность, который сервер не сможет гарантированно располагать (в битах в секунду, bps).</v:String>
+
+    <v:String x:Key="LocalizableMinErrorToSendTitle">Минимальная ошибка для отправки</v:String>
+    <v:String x:Key="LocalizableMinErrorToSendTooltip">Минимальная ошибка для отправки обновления статуса по сети. Использование меньшего значение может заставить юнитов, видимых в бинокль или мощный прицел двигаться более плавно ценой повышенной нагрузки сетевым траффиком.</v:String>
+
+    <v:String x:Key="LocalizableMinErrorToSendNearTitle">Минимальная ошибка для отправки рядом</v:String>
+    <v:String x:Key="LocalizableMinErrorToSendNearTooltip">Минимальная ошибка для отправки обновления статуса по сети для ближайших юнитов. Использование большего значения может уменьшить траффик, посылаемый ближайшим юнитам.</v:String>
+
+    <v:String x:Key="LocalizableMaxPacketSizeTitle">Максимальный размер пакета</v:String>
+    <v:String x:Key="LocalizableMaxPacketSizeTooltip">Максимальный размер пакета, отправляемого по сети. Использовать лишь в том случае если ваш роутер или провайдер требуют меньшего значения и/или у вас проблемы с соединением. Может случиться десинхронизация в случае если максимальный размер гарантированного/негарантированного пакетов больше чем максимальный размер пакета.</v:String>
+
+    <v:String x:Key="LocalizableCustomFileSizeTitle">Максимальный размер пользовательских файлов</v:String>
+    <v:String x:Key="LocalizableCustomFileSizeTooltip">Пользователи с текстурой лица или звуками при превышении указанного значении будут изгнаны из игры при подключении.</v:String>
+
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Если инициированная сервером команда callExtension занимает больше времени, чем указанное ограничение в миллисекундах, предупреждение будет записано в файл .rpt сервера, а также отражено в результате возврата расширения.</v:String>

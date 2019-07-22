@@ -216,6 +216,33 @@
     <v:String x:Key="LocalizableExpNetworkAlgorhitmTitle">Experimental Networking Algorhitm</v:String>
     <v:String x:Key="LocalizableExpNetworkAlgorhitmTooltip">Enables a new experimental networking algorithm that might be better than the default one.</v:String>
 
+    <v:String x:Key="LocalizableMaxMsgSendTitle">Maximum Messages Send</v:String>
+    <v:String x:Key="LocalizableMaxMsgSendTooltip">Maximum number of packets (aggregate messages) that can be sent in one simulation cycle. Increasing this value can decrease lag on high upload bandwidth servers.</v:String>
+
+    <v:String x:Key="LocalizableMaxSizeGuaranteedTitle">Maximum Size Guaranteed</v:String>
+    <v:String x:Key="LocalizableMaxSizeGuaranteedTooltip">Maximum size (payload) of guaranteed packet in bytes (without headers). Small messages are packed to larger packets (aggregate messages). Guaranteed packets (aggregate messages) are used for non-repetitive events like shooting.</v:String>
+
+    <v:String x:Key="LocalizableMaxSizeNonguaranteedTitle">Maximum Size Nonguaranteed</v:String>
+    <v:String x:Key="LocalizableMaxSizeNonguaranteedTooltip">Maximum size (payload) of non-guaranteed packet in bytes (without headers). Small messages are packed to larger packets (aggregate messages). Non-guaranteed packets (aggregate messages) are used  for repetitive updates like soldier or vehicle position. Increasing this value may improve bandwidth requirement, but it may increase lags.</v:String>
+
+    <v:String x:Key="LocalizableMinBandwidthTitle">Minimum Bandwidth</v:String>
+    <v:String x:Key="LocalizableMinBandwidthTooltip">Bandwidth the server is guaranteed to have (in bps). This value helps server to estimate bandwidth available. Increasing it to too optimistic values can increase lag and CPU load, as too many messages will be sent but discarded.</v:String>
+
+    <v:String x:Key="LocalizableMaxBandwidthTitle">Maximum Bandwidth</v:String>
+    <v:String x:Key="LocalizableMaxBandwidthTooltip">Bandwidth the server is guaranteed to never have (in bps). This value helps the server to estimate bandwidth available.</v:String>
+
+    <v:String x:Key="LocalizableMinErrorToSendTitle">Minimum Error To Send</v:String>
+    <v:String x:Key="LocalizableMinErrorToSendTooltip">Minimal error to send updates across network. Using a smaller value can make units observed by binoculars or sniper rifle to move smoother at the trade off of increased network traffic.</v:String>
+
+    <v:String x:Key="LocalizableMinErrorToSendNearTitle">Minimum Error To Send Near</v:String>
+    <v:String x:Key="LocalizableMinErrorToSendNearTooltip">Minimal error to send updates across network for near units. Using larger value can reduce traffic sent for near units.</v:String>
+
+    <v:String x:Key="LocalizableMaxPacketSizeTitle">Maximum Packet Size</v:String>
+    <v:String x:Key="LocalizableMaxPacketSizeTooltip">Maximal size of packet sent over network. Use please only in case Your router or ISP enforce lower packet size and You have connectivity issues with game. Desync might happen if used MaxSizeGuaranteed/MaxSizeNonguaranteed values over the maxPacketSize.</v:String>
+
+    <v:String x:Key="LocalizableCustomFileSizeTitle">Maximum Custom File Size</v:String>
+    <v:String x:Key="LocalizableCustomFileSizeTooltip">Users with custom face or custom sound larger than this size are kicked when trying to connect.</v:String>
+
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">If server initiated callExtension takes longer than specified limit in milliseconds, the warning will be logged into server .rpt file as well as reflected in the extension return result.</v:String>

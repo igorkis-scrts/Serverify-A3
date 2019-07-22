@@ -96,7 +96,7 @@
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Maximum Messages Send"
+                        Content="{DynamicResource LocalizableMaxMsgSendTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -109,12 +109,13 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMaxMsgSendTooltip}"
                         Value="{Binding MaxMessagesSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Maximum Size Guaranteed"
+                        Content="{DynamicResource LocalizableMaxSizeGuaranteedTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -127,12 +128,13 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMaxSizeNonguaranteedTitle}"
                         Value="{Binding MaxSizeGuaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Maximum Size Nonguaranteed"
+                        Content="{DynamicResource LocalizableMaxSizeNonguaranteedTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
 
@@ -146,12 +148,13 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMaxSizeNonguaranteedTooltip}"
                         Value="{Binding MaxSizeNonguaranteed, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Minimum Bandwidth"
+                        Content="{DynamicResource LocalizableMinBandwidthTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -163,12 +166,13 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMinBandwidthTooltip}"
                         Value="{Binding MinBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Maximum Bandwidth"
+                        Content="{DynamicResource LocalizableMaxBandwidthTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -180,12 +184,13 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMaxBandwidthTooltip}"
                         Value="{Binding MaxBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Minimum Error To Send"
+                        Content="{DynamicResource LocalizableMinErrorToSendTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -200,12 +205,13 @@
                         Speedup="True"
                         StringFormat="{}{0:F3}"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMinErrorToSendTooltip}"
                         Value="{Binding MinErrorToSend, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Minimum Error To Send Near"
+                        Content="{DynamicResource LocalizableMinErrorToSendNearTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -220,12 +226,13 @@
                         Speedup="True"
                         StringFormat="{}{0:F3}"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMinErrorToSendNearTooltip}"
                         Value="{Binding MinErrorToSendNear, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="Maximum Packet Size"
+                        Content="{DynamicResource LocalizableMaxPacketSizeTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -238,6 +245,7 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableMaxPacketSizeTooltip}"
                         Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                 </StackPanel>
@@ -345,7 +353,7 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="Maximum Custom File Size"
+                    Content="{DynamicResource LocalizableCustomFileSizeTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:NumericUpDown
@@ -357,6 +365,7 @@
                     Minimum="0"
                     Speedup="True"
                     TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableCustomFileSizeTooltip}"
                     Value="{Binding MaxCustomFileSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                 <Label
