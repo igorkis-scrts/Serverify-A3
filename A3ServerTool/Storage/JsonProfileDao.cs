@@ -80,21 +80,23 @@ namespace A3ServerTool.Storage
         /// <summary>
         /// Saves the specified profile.
         /// </summary>
-        /// <param name="item">Profile.</param>
-        public void Save(Profile item)
+        /// <param name="profile">Profile.</param>
+        public void Save(Profile profile)
         {
             var metadataDto = new SaveDataDto
             {
-                Content = JsonConvert.SerializeObject(item, Formatting.Indented, _serializerSettings),
+                Content = JsonConvert.SerializeObject(profile, Formatting.Indented, _serializerSettings),
                 FileExtension = ServerProfileFileExtension,
                 FileName = "Main",
                 Folders = new List<string>
                 {
                     Constants.RootFolder,
                     Constants.ServerProfileFolder,
-                    item.Id.ToString()
+                    profile.Id.ToString()
                 }
             };
+
+            profile.ProfilePath = Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString());
             FileHelper.Save(metadataDto);
         }
 
