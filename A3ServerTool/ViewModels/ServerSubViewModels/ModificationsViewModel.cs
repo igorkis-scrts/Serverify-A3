@@ -168,7 +168,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private Task RefreshModifications()
         {
             var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
-            if (string.IsNullOrWhiteSpace(gamePath)) return Task.FromResult<object>(null);
+            if (string.IsNullOrWhiteSpace(gamePath))
+            {
+                return Task.FromResult<object>(null);
+            }
 
             return Task.Run(() =>
             {

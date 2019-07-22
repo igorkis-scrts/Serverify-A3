@@ -6,11 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:A3ServerTool.Views"
+    xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
     d:DesignWidth="960"
     DataContext="{Binding Server, Source={StaticResource Locator}}"
+    dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d">
 
     <Grid>
@@ -75,28 +77,31 @@
             Margin="0"
             Background="{DynamicResource ControlSecondaryColorBrush}">
             <Button
-                Width="64"
-                MinWidth="48"
+                MinWidth="64"
                 MinHeight="48"
                 MaxWidth="96"
                 MaxHeight="96"
                 Margin="8,2,8,0"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 Command="{Binding StartServerCommand}"
-                DockPanel.Dock="Left" Height="48" VerticalAlignment="Top"
+                DockPanel.Dock="Left"
                 Foreground="{DynamicResource TextColorBrush}"
                 Style="{DynamicResource SecondaryColorFlatButton}">
-                
+
                 <!--<Button.Style>
-                    --><!--<Style BasedOn="{DynamicResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">-->
-                        <!--<Style.Triggers>
+                -->
+                <!--<Style BasedOn="{DynamicResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">-->
+                <!--<Style.Triggers>
                             <DataTrigger Binding="{Binding Path=DataContext.CheckValidation}" Value="true">
                                 <Setter Property="ToolTip" Value="false"/>
                                 <Setter Property="Foreground" Value="Black" />
                                 <Setter Property="Background" Value="Blue" />
                             </DataTrigger>
-                        </Style.Triggers>--><!--
-                    </Style>--><!--
+                        </Style.Triggers>-->
+                <!--
+                    </Style>-->
+                <!--
 
                 </Button.Style>-->
 

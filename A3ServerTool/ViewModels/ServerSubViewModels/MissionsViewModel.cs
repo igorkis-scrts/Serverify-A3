@@ -183,17 +183,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             _locationFinder = locationFinder;
         }
 
-        private void RefreshMissions()
+        private Task RefreshMissions()
         {
             var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
-            if (string.IsNullOrWhiteSpace(gamePath)) return;
+            if (string.IsNullOrWhiteSpace(gamePath))
+            {
+                return Task.FromResult<object>(null);
+            }
 
-            Task.Run(() =>
+            return Task.Run(() =>
             {
                 if(Missions != null)
                 {
                     var oldMissions = new List<Mission>(Missions);
-                    var updatedMissions = new ObservableCollection<Mission>(_missionDao.GetAll(gamePath));
+                    var updatedMissions = new List<Mission>(_missionDao.GetAll(gamePath));
 
                     foreach (var mission in updatedMissions)
                     {
@@ -206,11 +209,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         }
                     }
 
-                    Missions = updatedMissions;
+                    CurrentProfile.ServerConfig.Missions = updatedMissions;
+                    Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
                 }
                 else
                 {
-                    Missions = new ObservableCollection<Mission>(_missionDao.GetAll(gamePath));
+                    var missions = _missionDao.GetAll(gamePath);
+                    CurrentProfile.ServerConfig.Missions = missions.ToList();
+                    Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
                 }
             });
         }

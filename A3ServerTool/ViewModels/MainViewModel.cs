@@ -110,7 +110,7 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _exitApplicationCommand ??
-                       (_exitApplicationCommand = new RelayCommand(async obj =>
+                       (_exitApplicationCommand = new RelayCommand(async _ =>
                        {
                            var dialogSettings = new MetroDialogSettings()
                            {
