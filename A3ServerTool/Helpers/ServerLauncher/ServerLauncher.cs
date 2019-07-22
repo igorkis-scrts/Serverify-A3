@@ -30,8 +30,6 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 }
             };
             server.Start();
-
-            //TODO: check if server not starts - show message about server executable
         }
     }
 }

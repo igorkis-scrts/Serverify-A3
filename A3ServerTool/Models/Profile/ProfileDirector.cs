@@ -97,7 +97,6 @@ namespace A3ServerTool.Models
             });
         }
 
-
         /// <summary>
         /// Retrieves the server configuration.
         /// </summary>
@@ -154,7 +153,23 @@ namespace A3ServerTool.Models
             SetBasicConfigDefaultValues(profile);
             SetServerConfigDefaultValues(profile);
             SetArmaProfileDefaultValues(profile);
-            //TODO: Default values for CommandLineArguments
+            SetStartupParameterDefaultValues(profile);
+        }
+
+        /// <summary>
+        /// Sets the startup parameter default values.
+        /// </summary>
+        /// <param name="profile">The profile.</param>
+        private void SetStartupParameterDefaultValues(Profile profile)
+        {
+            if (profile == null) return;
+
+            if (profile.ArgumentSettings == null)
+            {
+                profile.ArgumentSettings = new ArgumentSettings();
+            }
+
+            profile.ArgumentSettings.Port = "2302";
         }
 
         /// <summary>
