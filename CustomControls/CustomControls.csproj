@@ -96,5 +96,11 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphics\logoSmall.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

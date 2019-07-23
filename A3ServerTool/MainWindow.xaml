@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
     xmlns:views="clr-namespace:A3ServerTool.Views"
-    Title="Socrates's A3 Server Tool"
+    Title="{Binding AppTitle, Mode=OneTime}"
     Width="1280"
     Height="800"
     Padding="10,10,10,10"
@@ -19,7 +19,6 @@
     BorderThickness="1"
     Closing="MainWindow_OnClosing"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
-    ShowIconOnTitleBar="True"
     TitleForeground="Black"
     WindowCloseButtonStyle="{DynamicResource CleanCloseWindowButtonStyle}"
     WindowStartupLocation="CenterScreen"
@@ -142,7 +141,7 @@
             </Label>
             <Button
                 Command="{Binding SaveProfileCommand}"
-                Content="{DynamicResource LocalizableSaveButton}"               
+                Content="{DynamicResource LocalizableSaveButton}"
                 Foreground="{DynamicResource TextColorBrush}" />
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>

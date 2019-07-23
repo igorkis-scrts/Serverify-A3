@@ -37,6 +37,9 @@
     <StartupObject>
     </StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iconSmall.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
@@ -298,6 +301,9 @@
       <Project>{4e544b4f-a484-400d-adc0-592236919a81}</Project>
       <Name>Interchangeable</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="iconSmall.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

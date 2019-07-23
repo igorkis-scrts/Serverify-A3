@@ -1,55 +1,82 @@
-﻿<UserControl x:Class="A3ServerTool.Views.AboutView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:A3ServerTool.Views"
-             mc:Ignorable="d"
-             DataContext="{Binding About, Source={StaticResource Locator}}"
-             d:DesignHeight="640" d:DesignWidth="960">
+﻿<UserControl
+    x:Class="A3ServerTool.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:A3ServerTool.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="640"
+    d:DesignWidth="960"
+    DataContext="{Binding About, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="logo" UriSource="/CustomControls;component/Graphics/logoSmall.png" />
+        </ResourceDictionary>
+    </UserControl.Resources>
 
     <Grid>
         <StackPanel>
-            <TextBlock FontSize="18" 
-                       HorizontalAlignment="Center" 
-                       Margin="{StaticResource ControlMargin}">
-                <Run FontWeight="Bold" 
-                     Text="Socrates's A3 Server Tool" />
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="18">
+                <Run FontWeight="Bold" Text="{Binding AppTitle, Mode=OneTime}" />
             </TextBlock>
-            <TextBlock Text="{Binding CurrentVersion}" 
-                       HorizontalAlignment="Center"
-                       Margin="{StaticResource ControlMargin}" 
-                       FontSize="14" />
-            
-            <Ellipse Height="48" 
-                     Width="48" 
-                     HorizontalAlignment="Center" 
-                     Margin="{StaticResource ControlMargin}">
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="14"
+                Text="{Binding CurrentVersion}" />
+
+            <Ellipse
+                Width="64"
+                Height="64"
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="{Binding Avatar}" 
-                                Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="{StaticResource logo}" Stretch="UniformToFill" />
                 </Ellipse.Fill>
             </Ellipse>
 
-            <TextBlock HorizontalAlignment="Center" 
-                       Margin="{StaticResource ControlMargin}" 
-                       FontSize="14"
-                       Text="Igor Kiselyov">
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="14">
+                <Bold>
+                    By Socrates
+                </Bold>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Center" 
-                       Margin="{StaticResource ControlMargin}" 
-                       FontSize="14">
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="14">
+                <Bold>Contact:</Bold>
+                <TextBlock>Igor Kiselyov,</TextBlock>
                 <Hyperlink NavigateUri="igorkiselyov74@gmail.com">igorkiselyov74@live.com</Hyperlink>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Center"
-                       Margin="{StaticResource ControlMargin}" 
-                       FontSize="14">
-                <Bold>Source code: </Bold> 
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="14">
+                <Bold>Source code:</Bold>
                 <Hyperlink NavigateUri="#">Github repo</Hyperlink>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Center" 
-                       Margin="{StaticResource ControlMargin}" 
-                       FontSize="14">Distributed under MIT License.</TextBlock>
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="14">
+                <Bold>App Icon By Hugo Alberto:</Bold>
+                <Hyperlink NavigateUri="NounProject page">https://thenounproject.com/hugugolplex/</Hyperlink>
+            </TextBlock>
+            <TextBlock
+                Margin="{StaticResource ControlMargin}"
+                HorizontalAlignment="Center"
+                FontSize="14">
+                Distributed under MIT License. Copyright ©
+                <TextBlock Text="{Binding CurrentDateTime}" />
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

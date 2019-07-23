@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="DialogResult.cs" />
     <Compile Include="Helpers\ValueDescription.cs" />
-    <Compile Include="Helpers\DownloadHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="IO\FileHelper.cs" />
     <Compile Include="IO\SaveDataDto.cs" />

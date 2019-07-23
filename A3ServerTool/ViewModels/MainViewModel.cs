@@ -24,6 +24,11 @@ namespace A3ServerTool.ViewModels
         private readonly CustomDialog _customDialog = new CustomDialog();
         private readonly IProfileDirector _profileDirector;
 
+        /// <summary>
+        /// Gets the application title.
+        /// </summary>
+        public string AppTitle { get; } = Properties.Settings.Default.AppTitle;
+
         public Profile CurrentProfile
         {
             get => _currentProfile;

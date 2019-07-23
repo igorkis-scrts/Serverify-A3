@@ -15,20 +15,14 @@ using Interchangeable.Helpers;
 namespace A3ServerTool.ViewModels
 {
     /// <summary>
-    /// About view model
+    /// Represents about viewmodel.
     /// </summary>
     public class AboutViewModel : ViewModelBase
     {
-        public AboutViewModel()
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                Avatar = GetImage();
-            });
-        }
-
-       
+        /// <summary>
+        /// Gets the application title.
+        /// </summary>
+        public string AppTitle { get; } = Properties.Settings.Default.AppTitle;
 
         /// <summary>
         /// Current application version
@@ -45,34 +39,16 @@ namespace A3ServerTool.ViewModels
         private string _currentVersion;
 
         /// <summary>
-        /// Github avatar
+        /// Gets the current date time.
         /// </summary>
-        public ImageSource Avatar
+        public string CurrentDateTime { get; } = DateTime.Today.Year.ToString();
+
+        public AboutViewModel()
         {
-            get => _avatar;
-            set
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                _avatar = value;
-                RaisePropertyChanged();
-            }
-        }
-        private ImageSource _avatar;
-
-        /// <summary>
-        /// Get current github avatar from URL
-        /// </summary>
-        /// <returns>BitmapImage object</returns>
-        private BitmapImage GetImage()
-        {
-            var bitmapImage = new BitmapImage();
-
-            //TODO: Get rid of hardcoded link?
-            bitmapImage.BeginInit();
-            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            bitmapImage.StreamSource = new DownloadHelper().DownloadFile("https://avatars2.githubusercontent.com/u/6746043?s=460&v=4");
-            bitmapImage.EndInit();
-
-            return bitmapImage;
+                CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            });
         }
     }
 }
