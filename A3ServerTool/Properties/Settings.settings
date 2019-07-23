@@ -23,5 +23,11 @@
     <Setting Name="AccentColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Olive</Value>
     </Setting>
+    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en-US</Value>
+    </Setting>
+    <Setting Name="AppTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Serverify A3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

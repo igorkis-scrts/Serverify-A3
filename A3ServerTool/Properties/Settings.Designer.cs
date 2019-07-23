@@ -106,5 +106,29 @@ namespace A3ServerTool.Properties {
                 this["AccentColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
+        public string DefaultLanguage {
+            get {
+                return ((string)(this["DefaultLanguage"]));
+            }
+            set {
+                this["DefaultLanguage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Serverify A3")]
+        public string AppTitle {
+            get {
+                return ((string)(this["AppTitle"]));
+            }
+            set {
+                this["AppTitle"] = value;
+            }
+        }
     }
 }
