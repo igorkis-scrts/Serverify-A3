@@ -27,16 +27,16 @@ namespace A3ServerTool.Helpers
             var configMissions = GetMissionsFromConfig(configProperties);
             var storedMissions = GetMissionsFromStorage(folderPath);
 
-            Parallel.ForEach(storedMissions, mission =>
+            foreach(var mission in storedMissions)
             {
                 var configMission = configMissions.FirstOrDefault(x => x.Name == mission.Name);
 
-                if(configMission != null)
+                if (configMission != null)
                 {
                     mission.IsSelected = true;
                     mission.Difficulty = configMission.Difficulty;
                 }
-            });
+            }
 
             return storedMissions;
         }
