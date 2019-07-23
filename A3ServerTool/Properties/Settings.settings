@@ -18,7 +18,7 @@
       <Value Profile="(Default)">Normal</Value>
     </Setting>
     <Setting Name="BackgroundTheme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BaseLight</Value>
+      <Value Profile="(Default)">BaseDark</Value>
     </Setting>
     <Setting Name="AccentColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Olive</Value>

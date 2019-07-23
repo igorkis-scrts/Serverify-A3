@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A3ServerTool", "A3ServerTool\A3ServerTool.csproj", "{4A6487D9-10C8-4881-A01D-872ECAF4D817}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerifyA3", "A3ServerTool\ServerifyA3.csproj", "{4A6487D9-10C8-4881-A01D-872ECAF4D817}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interchangeable", "Interchangeable\Interchangeable.csproj", "{4E544B4F-A484-400D-ADC0-592236919A81}"
 EndProject

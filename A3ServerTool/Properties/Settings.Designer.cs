@@ -85,7 +85,7 @@ namespace A3ServerTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("BaseLight")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BaseDark")]
         public string BackgroundTheme {
             get {
                 return ((string)(this["BackgroundTheme"]));
