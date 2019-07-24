@@ -25,7 +25,7 @@ namespace A3ServerTool.Storage
 
             var modFolders = FileHelper.GetFolder(location)?
                 .Where(f => f.Name.StartsWith("@")).ToList();
-            if (!modFolders.Any())
+            if (modFolders?.Any() != true)
             {
                 return mods;
             }
