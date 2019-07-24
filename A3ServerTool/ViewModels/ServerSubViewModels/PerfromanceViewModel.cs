@@ -20,7 +20,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public float? TerrainGridViewDistance
         {
-            get => CurrentProfile.BasicConfig.TerrainGridViewDistance;
+            get => CurrentProfile?.BasicConfig?.TerrainGridViewDistance;
             set
             {
                 if (Equals(value, CurrentProfile.BasicConfig.TerrainGridViewDistance)) return;

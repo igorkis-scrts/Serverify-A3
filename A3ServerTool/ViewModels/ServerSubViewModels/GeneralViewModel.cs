@@ -526,6 +526,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         private void UpdateFinalStringByRequest(string message)
         {
+            if(_serverStringBuilder.Profile != CurrentProfile)
+            {
+                _serverStringBuilder.Profile = CurrentProfile;
+            }
             RaisePropertyChanged("FinalServerArgumentString");
         }
 

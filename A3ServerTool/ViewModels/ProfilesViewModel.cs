@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using A3ServerTool.Models;
+using A3ServerTool.ViewModels.ServerSubViewModels;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -89,7 +90,13 @@ namespace A3ServerTool.ViewModels
                 return _selectProfileCommand ??
                        (_selectProfileCommand = new RelayCommand(_ =>
                        {
+                           if(Equals(_mainViewModel.CurrentProfile, SelectedProfile.Id))
+                           {
+                               return;
+                           }
+
                            _mainViewModel.CurrentProfile = _profileDirector.GetById(SelectedProfile.Id);
+                           Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                        }, _ => SelectedProfile != null));
             }
         }

@@ -26,10 +26,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public string AdminPassword
         {
-            get => CurrentProfile?.ServerConfig.AdminPassword;
+            get => CurrentProfile?.ServerConfig?.AdminPassword;
             set
             {
-                if (Equals(value, CurrentProfile.ServerConfig.AdminPassword)) return;
+                if (Equals(value, CurrentProfile?.ServerConfig?.AdminPassword)) return;
                 CurrentProfile.ServerConfig.AdminPassword = value;
                 RaisePropertyChanged();
             }
@@ -42,7 +42,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                var ids = CurrentProfile?.ServerConfig.AdminUids;
+                var ids = CurrentProfile?.ServerConfig?.AdminUids;
                 if (ids != null)
                 {
                     return string.Join(",", ids);
