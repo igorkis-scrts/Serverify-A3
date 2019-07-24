@@ -36,7 +36,7 @@
                         OffLabel="{DynamicResource LocalizableOff}"
                         OnLabel="{DynamicResource LocalizableOn}"
                         Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                        ToolTip="{DynamicResource LocalizableLanModeTooltip}" />
+                        ToolTip="{DynamicResource LocalizableExpNetworkAlgorithmTooltip}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
@@ -371,7 +371,7 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableExpNetworkAlgorhitmTitle}"
+                    Content="{DynamicResource LocalizableExpNetworkAlgorithmTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <mah:ToggleSwitch

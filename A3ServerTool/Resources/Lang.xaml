@@ -213,8 +213,8 @@
     <v:String x:Key="LocalizablePortTitle">Port</v:String>
     <v:String x:Key="LocalizablePortTooltip">Specifies UDP port that will be used to connect with server.</v:String>
 
-    <v:String x:Key="LocalizableExpNetworkAlgorhitmTitle">Experimental Networking Algorhitm</v:String>
-    <v:String x:Key="LocalizableExpNetworkAlgorhitmTooltip">Enables a new experimental networking algorithm that might be better than the default one.</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorithmTitle">Experimental Networking Algorithm</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorithmTooltip">Enables a new experimental networking algorithm that might be better than the default one.</v:String>
 
     <v:String x:Key="LocalizableMaxMsgSendTitle">Maximum Messages Send</v:String>
     <v:String x:Key="LocalizableMaxMsgSendTooltip">Maximum number of packets (aggregate messages) that can be sent in one simulation cycle. Increasing this value can decrease lag on high upload bandwidth servers.</v:String>

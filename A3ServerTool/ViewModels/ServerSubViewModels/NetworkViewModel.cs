@@ -134,15 +134,15 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// <summary>
         /// Gets or sets a value indicating whether is bandwidth algorhitm2 enabled.
         /// </summary>
-        public bool IsBandwidthAlgorhitm2Enabled
+        public bool IsBandwidthAlgorithm2Enabled
         {
             get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
                 ? false
-                : CurrentProfile.ArgumentSettings.IsBandwidthAlgorhitm2Enabled;
+                : CurrentProfile.ArgumentSettings.IsBandwidthAlgorithm2Enabled;
             set
             {
-                if (Equals(value, CurrentProfile?.ArgumentSettings?.IsBandwidthAlgorhitm2Enabled)) return;
-                CurrentProfile.ArgumentSettings.IsBandwidthAlgorhitm2Enabled = value;
+                if (Equals(value, CurrentProfile?.ArgumentSettings?.IsBandwidthAlgorithm2Enabled)) return;
+                CurrentProfile.ArgumentSettings.IsBandwidthAlgorithm2Enabled = value;
                 Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }

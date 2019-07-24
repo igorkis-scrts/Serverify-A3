@@ -213,8 +213,8 @@
     <v:String x:Key="LocalizablePortTitle">Порт</v:String>
     <v:String x:Key="LocalizablePortTooltip">Определяет UDP-порт, который будет использоваться для присоединения к серверу.</v:String>
 
-    <v:String x:Key="LocalizableExpNetworkAlgorhitmTitle">Экспериментальный сетевой алгоритм</v:String>
-    <v:String x:Key="LocalizableExpNetworkAlgorhitmTooltip">Включает новый экспериментальный сетевой алгоритм, который может быть лучше стандартного.</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorithmTitle">Экспериментальный сетевой алгоритм</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorithmTooltip">Включает новый экспериментальный сетевой алгоритм, который может быть лучше стандартного.</v:String>
 
     <v:String x:Key="LocalizableMaxMsgSendTitle">Максимальное число пакетов (сообщений)</v:String>
     <v:String x:Key="LocalizableMaxMsgSendTooltip">Определяет максимальное число пакетов (сообщений), отославнных за один цикл симуляции (кадр). Увеличение этого параметра может уменьшить задержки на серверах с большой пропускной способностью.</v:String>

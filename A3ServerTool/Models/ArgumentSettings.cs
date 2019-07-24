@@ -40,7 +40,7 @@ namespace A3ServerTool.Models
                 OnPropertyChanged();
             }
         }
-        private string _port;
+        private string _port = "2302";
 
         /// <summary>
         /// Gets or sets a value indicating whether [are logs disabled].
@@ -228,17 +228,17 @@ namespace A3ServerTool.Models
         /// Gets or sets a value indicating whether is bandwidth algorhitm2 enabled.
         /// </summary>
         [ServerArgument(Argument = "-bandwidthAlg=2")]
-        public bool IsBandwidthAlgorhitm2Enabled
+        public bool IsBandwidthAlgorithm2Enabled
         {
-            get => _isBandwidthAlgorhitm2Enabled;
+            get => _isBandwidthAlgorithm2Enabled;
             set
             {
-                if (Equals(value, _isBandwidthAlgorhitm2Enabled)) return;
-                _isBandwidthAlgorhitm2Enabled = value;
+                if (Equals(value, _isBandwidthAlgorithm2Enabled)) return;
+                _isBandwidthAlgorithm2Enabled = value;
                 OnPropertyChanged();
             }
         }
-        private bool _isBandwidthAlgorhitm2Enabled;
+        private bool _isBandwidthAlgorithm2Enabled;
 
         /// <summary>
         /// Gets or sets a value indicating whether is server thread disabled.
