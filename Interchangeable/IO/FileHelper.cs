@@ -106,15 +106,21 @@ namespace Interchangeable.IO
             if (dto == null) return;
 
             var path = Path.Combine(dto.Folders.ToArray());
+            var directoryInfo = new DirectoryInfo(path).GetDirectories();
 
             if (Directory.Exists(path))
             {
-                foreach(var file in GetAllFiles(new DirectoryInfo(path)))
+                foreach (DirectoryInfo directory in directoryInfo)
+                {
+                    directory.Delete(true);
+                }
+
+                foreach (var file in GetAllFiles(new DirectoryInfo(path)))
                 {
                     file.Delete();
                 }
 
-                Directory.Delete(path);
+                 Directory.Delete(path);
             }
             else
             {
