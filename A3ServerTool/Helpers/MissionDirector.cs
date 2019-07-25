@@ -8,6 +8,7 @@ using Interchangeable;
 using A3ServerTool.Storage;
 using System.Threading.Tasks;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace A3ServerTool.Helpers
 {
@@ -185,8 +186,7 @@ namespace A3ServerTool.Helpers
             if (!missions.Any()) return string.Empty;
 
             var missionAsStrings = missions.Select(m => m.Name).ToArray();
-            //TODO: ParseArrayProperty should not be public
-            return "\nmissionWhitelist[] = " + UniversalParser.ParseArrayProperty(missionAsStrings) + ";";
+            return "\nmissionWhitelist[] = " + ParseArrayProperty(missionAsStrings) + ";";
         }
 
 
@@ -224,6 +224,35 @@ namespace A3ServerTool.Helpers
         private List<Mission> GetMissionsFromStorage(string folderPath)
         {
             return _missionDao.GetAll(folderPath).ToList();
+        }
+
+        /// <summary>
+        /// Parses the array config properties.
+        /// </summary>
+        /// <param name="valueAsArray">The value as array.</param>
+        private string ParseArrayProperty(string[] valueAsArray)
+        {
+            if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;
+
+            //TODO: new attribute to check if property has empty lines 
+            for (int i = 0; i < valueAsArray.Length; i++)
+            {
+                valueAsArray[i] = Regex.Replace(valueAsArray[i], @"[^\S ]+", string.Empty);
+                valueAsArray[i] = valueAsArray[i].Replace("\"", string.Empty);
+
+                if (string.IsNullOrWhiteSpace(valueAsArray[i]))
+                {
+                    valueAsArray[i] = Regex.Replace(valueAsArray[i], @"\s+", string.Empty);
+                }
+                valueAsArray[i] = "\"" + valueAsArray[i] + "\"";
+            }
+
+            if (valueAsArray.Any())
+            {
+                valueAsArray[0] = "\t" + valueAsArray[0];
+            }
+
+            return "{\n" + string.Join("\n\t,", valueAsArray) + "\n}";
         }
     }
 }
