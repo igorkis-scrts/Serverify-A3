@@ -13,269 +13,273 @@ namespace A3ServerTool.Helpers
     /// <summary>
     /// Provides instruments to convert array of text lines into object and back.
     /// </summary>
-    public static class UniversalParser
+    public class UniversalParser : IUniversalParser
     {
         /// <summary>
         /// Converts lines of properties with values from config file into object instance.
         /// </summary>
         /// <returns>Instance of T class filled with properties.</returns>
-        public static T Parse<T>(IEnumerable<string> configProperties)
+        public T Parse<T>(IEnumerable<string> configProperties)
         {
-            try
+            var textProperties = configProperties.ToArray();
+            if (!textProperties.Any()) return default;
+
+            var result = (T)Activator.CreateInstance(typeof(T));
+
+            Dictionary<string, string> nameToValueDictionary = ConvertFromTextToDictionary(textProperties, result.GetType());
+
+            foreach (var property in typeof(T).GetProperties())
             {
-                var textProperties = configProperties.ToArray();
-                if (!textProperties.Any()) return default;
+                var configProperty = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
 
-                var result = (T)Activator.CreateInstance(typeof(T));
+                if (configProperty?.IgnoreParsing != false) continue;
 
-                Dictionary<string, string> nameToValueDictionary = ConvertFromTextToDictionary(textProperties, result.GetType());
+                nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
+                if (value == null) continue;
 
-                foreach (var property in typeof(T).GetProperties())
+                if (property.PropertyType == typeof(int))
                 {
-                    var configProperty = property.GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
-
-                    if (configProperty?.IgnoreParsing != false) continue;
-
-                    nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
-                    if (value == null) continue;
-
-                    if (property.PropertyType == typeof(int))
+                    property.SetValue(result, Convert.ToInt32(value));
+                }
+                else if (property.PropertyType == typeof(int?))
+                {
+                    if (int.TryParse(value, out int nullInt))
                     {
-                        property.SetValue(result, Convert.ToInt32(value));
-                    }
-                    else if (property.PropertyType == typeof(int?))
-                    {
-                        if (int.TryParse(value, out int nullInt))
-                        {
-                            property.SetValue(result, nullInt);
-                        }
-                    }
-                    else if (property.PropertyType == typeof(float))
-                    {
-                        property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
-                    }
-                    else if (property.PropertyType == typeof(float?))
-                    {
-                        if (float.TryParse(value, out float nullFloat))
-                        {
-                            property.SetValue(result, nullFloat);
-                        }
-                    }
-                    else if (property.PropertyType == typeof(string[]))
-                    {
-                        property.SetValue(result, value?.Split(','));
-                    }
-                    else if (property.PropertyType == typeof(int[]))
-                    {
-                        //TODO: very dirty, do better
-                        if (property.Name == "SlowNetworkKickRules")
-                        {
-                            value = Regex.Replace(value, @"\s+", "");
-                            var valueAsIntArray = value.Split(',').Select(int.Parse).ToArray();
-                            property.SetValue(result, valueAsIntArray);
-                        }
-                    }
-                    else if (property.PropertyType == typeof(List<string>))
-                    {
-                        value = Regex.Replace(value, @"\s+", "");
-                        property.SetValue(result, value?.Split(',').ToList());
-                    }
-                    else if (property.PropertyType == typeof(string))
-                    {
-                        value = value?.Replace("\"", string.Empty);
-                        property.SetValue(result, Convert.ToString(value));
-                    }
-                    else if (property.PropertyType == typeof(bool))
-                    {
-                        property.SetValue(result, Convert.ToBoolean(value));
+                        property.SetValue(result, nullInt);
                     }
                 }
+                else if (property.PropertyType == typeof(float))
+                {
+                    property.SetValue(result, float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture));
+                }
+                else if (property.PropertyType == typeof(float?))
+                {
+                    if (float.TryParse(value, out float nullFloat))
+                    {
+                        property.SetValue(result, nullFloat);
+                    }
+                }
+                else if (property.PropertyType == typeof(string[]))
+                {
+                    property.SetValue(result, value?.Split(','));
+                }
+                else if (property.PropertyType == typeof(int[]))
+                {
+                    //TODO: very dirty, do better
+                    if (property.Name == "SlowNetworkKickRules")
+                    {
+                        value = Regex.Replace(value, @"\s+", "");
+                        var valueAsIntArray = value.Split(',').Select(int.Parse).ToArray();
+                        property.SetValue(result, valueAsIntArray);
+                    }
+                }
+                else if (property.PropertyType == typeof(List<string>))
+                {
+                    value = Regex.Replace(value, @"\s+", "");
+                    property.SetValue(result, value?.Split(',').ToList());
+                }
+                else if (property.PropertyType == typeof(string))
+                {
+                    value = value?.Replace("\"", string.Empty);
+                    property.SetValue(result, Convert.ToString(value));
+                }
+                else if (property.PropertyType == typeof(bool))
+                {
+                    property.SetValue(result, Convert.ToBoolean(value));
+                }
+            }
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return result;
         }
-
 
         /// <summary>
         /// Converts object properties with values to config file content string.
         /// </summary>
         /// <param name="instance">The instance.</param>
         /// <returns>Config file in text representation.</returns>
-        public static string ConvertToText<T>(T instance)
+        public string ConvertToText<T>(T instance)
         {
-            WrappingClassAttribute previousWrappingClass = null;
-            int maxTab = 0;
-            bool hasZeroTabBracket = false;
-
-            var stringBuilder = new StringBuilder();
-            var properties = instance.GetType()
-                .GetProperties()
-                .Select(x => new
-                {
-                    PropertyInfo = x,
-                    Attribute = (WrappingClassAttribute)Attribute.GetCustomAttribute(x, typeof(WrappingClassAttribute))
-                })
-                .OrderByDescending(x => x.Attribute != null ? x.Attribute.ClassNames : new string[0], new StringArrayComparer())
-                .Select(x => x.PropertyInfo)
-                .Select(x => new
-                {
-                    Property = x,
-                    Attribute = (ConfigProperty)Attribute.GetCustomAttribute(x, typeof(ConfigProperty))
-                })
-                .Where(x => x.Attribute != null)
-                .Select(x => x.Property)
-                .ToArray();
-
-            for (int p = 0; p < properties.Length; p++)
+            try
             {
-                var configProperty = properties[p].GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
-                var wrappingClass = properties[p].GetCustomAttributes(typeof(WrappingClassAttribute), false).FirstOrDefault() as WrappingClassAttribute;
-
-                if (configProperty == null)
+                if (!(instance is IConfig))
                 {
-                    continue;
+                    throw new NotSupportedException("Provided type is not a IConfig.");
                 }
 
-                var classNames = wrappingClass?.ClassNames;
-                var previousClassNames = previousWrappingClass?.ClassNames;
+                WrappingClassAttribute previousWrappingClass = null;
+                int maxTab = 0;
+                bool hasZeroTabBracket = false;
 
-                if (previousClassNames == null
-                    || classNames?.SequenceEqual(previousClassNames) != true)
-                {
-                    for (int i = 0; i < classNames?.Length; i++)
+                var stringBuilder = new StringBuilder();
+                var properties = instance.GetType()
+                    .GetProperties()
+                    .Select(x => new
                     {
-                        if ((previousClassNames != null && i > previousClassNames.Length - 1)
-                            || (previousClassNames != null && classNames[i] == previousClassNames[i]))
-                        {
-                            continue;
-                        }
+                        PropertyInfo = x,
+                        Attribute = (WrappingClassAttribute)Attribute.GetCustomAttribute(x, typeof(WrappingClassAttribute))
+                    })
+                    .OrderByDescending(x => x.Attribute != null ? x.Attribute.ClassNames : new string[0], new StringArrayComparer())
+                    .Select(x => x.PropertyInfo)
+                    .Select(x => new
+                    {
+                        Property = x,
+                        Attribute = (ConfigProperty)Attribute.GetCustomAttribute(x, typeof(ConfigProperty))
+                    })
+                    .Where(x => x.Attribute != null)
+                    .Select(x => x.Property)
+                    .ToArray();
 
-                        if (i != 0)
-                        {
-                            var tab = new string('\t', i);
-                            maxTab = i;
-                            stringBuilder.Append(tab).Append("class ")
-                                .AppendLine(classNames[i])
-                                .Append(tab).AppendLine("{");
-                        }
-                        else
-                        {
-                            stringBuilder.Append("class ")
-                                .AppendLine(classNames[i])
-                                .AppendLine("{");
-                            hasZeroTabBracket = true;
-                        }
-                    }
-                }
-
-                previousWrappingClass = wrappingClass;
-                var value = properties[p].GetValue(instance, null);
-
-                value = ApplyConfigPropertyFlags(configProperty, value);
-
-                if (properties[p].PropertyType == typeof(int?))
+                for (int p = 0; p < properties.Length; p++)
                 {
-                    if (!int.TryParse(value?.ToString(), out int nullInt))
+                    var configProperty = properties[p].GetCustomAttributes(typeof(ConfigProperty), false).FirstOrDefault() as ConfigProperty;
+                    var wrappingClass = properties[p].GetCustomAttributes(typeof(WrappingClassAttribute), false).FirstOrDefault() as WrappingClassAttribute;
+
+                    if (configProperty == null)
                     {
                         continue;
                     }
-                }
-                else if (properties[p].PropertyType == typeof(float?))
-                {
-                    if (!float.TryParse(value?.ToString(), out float nullFloat))
-                    {
-                        continue;
-                    }
-                }
-                else if (properties[p].PropertyType == typeof(bool))
-                {
-                    value = value.ToString().ToLowerInvariant();
-                }
-                else if (properties[p].PropertyType == typeof(List<string>))
-                {
-                    if (value is List<string> valueAsList)
-                    {
-                        if (!valueAsList.Any() || valueAsList.Any(x => x == null)) continue;
-                        value = ParseArrayProperty(valueAsList.ToArray());
-                    }
 
-                    if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
-                }
-                else if (properties[p].PropertyType == typeof(string[]))
-                {
-                    if (value is string[] valueAsArray)
+                    var classNames = wrappingClass?.ClassNames;
+                    var previousClassNames = previousWrappingClass?.ClassNames;
+
+                    if (previousClassNames == null
+                        || classNames?.SequenceEqual(previousClassNames) != true)
                     {
-                        if (!valueAsArray.Any() || valueAsArray.Any(x => x == null)) continue;
-                        value = ParseArrayProperty(valueAsArray);
-                    }
-
-                    if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
-                }
-                else if (properties[p].PropertyType == typeof(int[]))
-                {
-                    if (value is int[] valueAsArray)
-                    {
-                        if (valueAsArray.Length == 0) continue;
-                        value = ParseArrayProperty(valueAsArray);
-                    }
-                }
-
-                //write string with property and value
-                stringBuilder.Append(new string('\t', wrappingClass == null ? 0 : maxTab + 1))
-                    .Append(configProperty.PropertyName)
-                    .Append(" = ")
-                    .Append(value)
-                    .AppendLine(";");
-
-                if (p + 1 != properties.Length)
-                {
-                    var nextElementWrappingClass = properties[p + 1]
-                        .GetCustomAttributes(typeof(WrappingClassAttribute), false)
-                        .FirstOrDefault() as WrappingClassAttribute;
-
-                    if (nextElementWrappingClass != null)
-                    {
-                        var nextClassNames = nextElementWrappingClass.ClassNames;
                         for (int i = 0; i < classNames?.Length; i++)
                         {
-                            if (i > nextClassNames.Length - 1 || nextClassNames[i] != classNames[i])
+                            if ((previousClassNames != null && i > previousClassNames.Length - 1)
+                                || (previousClassNames != null && classNames[i] == previousClassNames[i]))
                             {
-                                stringBuilder.Append(new string('\t', maxTab--)).AppendLine("};");
+                                continue;
+                            }
+
+                            if (i != 0)
+                            {
+                                var tab = new string('\t', i);
+                                maxTab = i;
+                                stringBuilder.Append(tab).Append("class ")
+                                    .AppendLine(classNames[i])
+                                    .Append(tab).AppendLine("{");
+                            }
+                            else
+                            {
+                                stringBuilder.Append("class ")
+                                    .AppendLine(classNames[i])
+                                    .AppendLine("{");
+                                hasZeroTabBracket = true;
                             }
                         }
                     }
-                    else
+
+                    previousWrappingClass = wrappingClass;
+                    var value = properties[p].GetValue(instance, null);
+
+                    value = ApplyConfigPropertyFlags(configProperty, value);
+
+                    if (properties[p].PropertyType == typeof(int?))
                     {
-                        while (maxTab > 0)
+                        if (!int.TryParse(value?.ToString(), out int nullInt))
                         {
-                            stringBuilder.Append(new string('\t', maxTab--)).AppendLine("};");
+                            continue;
+                        }
+                    }
+                    else if (properties[p].PropertyType == typeof(float?))
+                    {
+                        if (!float.TryParse(value?.ToString(), out float nullFloat))
+                        {
+                            continue;
+                        }
+                    }
+                    else if (properties[p].PropertyType == typeof(bool))
+                    {
+                        value = value.ToString().ToLowerInvariant();
+                    }
+                    else if (properties[p].PropertyType == typeof(List<string>))
+                    {
+                        if (value is List<string> valueAsList)
+                        {
+                            if (!valueAsList.Any() || valueAsList.Any(x => x == null)) continue;
+                            value = ParseArrayProperty(valueAsList.ToArray());
                         }
 
-                        if (hasZeroTabBracket)
+                        if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
+                    }
+                    else if (properties[p].PropertyType == typeof(string[]))
+                    {
+                        if (value is string[] valueAsArray)
                         {
-                            stringBuilder.AppendLine("};");
-                            hasZeroTabBracket = false;
+                            if (!valueAsArray.Any() || valueAsArray.Any(x => x == null)) continue;
+                            value = ParseArrayProperty(valueAsArray);
+                        }
+
+                        if (string.IsNullOrWhiteSpace(value?.ToString())) continue;
+                    }
+                    else if (properties[p].PropertyType == typeof(int[]))
+                    {
+                        if (value is int[] valueAsArray)
+                        {
+                            if (valueAsArray.Length == 0) continue;
+                            value = ParseArrayProperty(valueAsArray);
+                        }
+                    }
+
+                    //write string with property and value
+                    stringBuilder.Append(new string('\t', wrappingClass == null ? 0 : maxTab + 1))
+                        .Append(configProperty.PropertyName)
+                        .Append(" = ")
+                        .Append(value)
+                        .AppendLine(";");
+
+                    if (p + 1 != properties.Length)
+                    {
+                        var nextElementWrappingClass = properties[p + 1]
+                            .GetCustomAttributes(typeof(WrappingClassAttribute), false)
+                            .FirstOrDefault() as WrappingClassAttribute;
+
+                        if (nextElementWrappingClass != null)
+                        {
+                            var nextClassNames = nextElementWrappingClass.ClassNames;
+                            for (int i = 0; i < classNames?.Length; i++)
+                            {
+                                if (i > nextClassNames.Length - 1 || nextClassNames[i] != classNames[i])
+                                {
+                                    stringBuilder.Append(new string('\t', maxTab--)).AppendLine("};");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            while (maxTab > 0)
+                            {
+                                stringBuilder.Append(new string('\t', maxTab--)).AppendLine("};");
+                            }
+
+                            if (hasZeroTabBracket)
+                            {
+                                stringBuilder.AppendLine("};");
+                                hasZeroTabBracket = false;
+                            }
                         }
                     }
                 }
-            }
 
-            //close all code blocks that left unclosed
-            while (maxTab > 0)
+                //close all code blocks that left unclosed
+                while (maxTab > 0)
+                {
+                    stringBuilder.Append(new string('\t', maxTab--)).AppendLine("};");
+                }
+
+                if (hasZeroTabBracket)
+                {
+                    stringBuilder.AppendLine("};");
+                }
+
+                return stringBuilder.ToString();
+            }
+            catch (NullReferenceException)
             {
-                stringBuilder.Append(new string('\t', maxTab--)).AppendLine("};");
+                throw;
             }
-
-            if (hasZeroTabBracket)
-            {
-                stringBuilder.AppendLine("};");
-            }
-
-            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -283,7 +287,7 @@ namespace A3ServerTool.Helpers
         /// </summary>
         /// <param name="configProperty">The configuration property.</param>
         /// <param name="value">The value.</param>
-        private static object ApplyConfigPropertyFlags(ConfigProperty configProperty, object value)
+        private object ApplyConfigPropertyFlags(ConfigProperty configProperty, object value)
         {
             if (configProperty.IsQuotationMarksRequired)
             {
@@ -302,7 +306,7 @@ namespace A3ServerTool.Helpers
         /// Parses the array config properties.
         /// </summary>
         /// <param name="valueAsArray">The value as array.</param>
-        public static string ParseArrayProperty(string[] valueAsArray)
+        private string ParseArrayProperty(string[] valueAsArray)
         {
             if (valueAsArray == null || (valueAsArray.Length == 1 && string.IsNullOrEmpty(valueAsArray[0]))) return string.Empty;
 
@@ -332,7 +336,7 @@ namespace A3ServerTool.Helpers
         /// </summary>
         /// <param name="valueAsArray">The value as array.</param>
         /// <returns></returns>
-        public static string ParseArrayProperty(int[] valueAsArray)
+        public string ParseArrayProperty(int[] valueAsArray)
         {
             if (valueAsArray?.Any() != true) return string.Empty;
             var result = "\t" + string.Join("\n\t,", valueAsArray) + "\n}";
@@ -344,7 +348,7 @@ namespace A3ServerTool.Helpers
         /// </summary>
         /// <param name="textProperties">Text properties.</param>
         /// <returns>"Property-value dictionary."</returns>
-        private static Dictionary<string, string> ConvertFromTextToDictionary(string[] textProperties, Type type)
+        private Dictionary<string, string> ConvertFromTextToDictionary(string[] textProperties, Type type)
         {
             var nameToValueDictionary = new Dictionary<string, string>();
 

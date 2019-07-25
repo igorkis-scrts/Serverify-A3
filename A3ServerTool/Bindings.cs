@@ -23,12 +23,11 @@ namespace A3ServerTool
             SimpleIoc.Default.Register<IConfigDao<BasicConfig>,BasicConfigDao>();
             SimpleIoc.Default.Register<IConfigDao<ServerConfig>, ServerConfigDao>();
             SimpleIoc.Default.Register<IConfigDao<ArmaProfile>, ArmaProfileDao>();
-
             SimpleIoc.Default.Register<IProfileDirector, ProfileDirector>();
             SimpleIoc.Default.Register<IServerLauncher, ServerLauncher>();
             SimpleIoc.Default.Register<IMissionDirector, MissionDirector>();
             SimpleIoc.Default.Register<IServerStringBuilder, ServerStringBuilder>();
-
+            SimpleIoc.Default.Register<IUniversalParser, UniversalParser>();
             SimpleIoc.Default.Register<GameLocationFinder>();
         }
     }

@@ -18,6 +18,13 @@ namespace A3ServerTool.Storage
         private const string UserFolder = "Users";
         private const string GameProfileFileExtension = ".Arma3Profile";
 
+        private readonly IUniversalParser _parser;
+
+        public ArmaProfileDao(IUniversalParser parser)
+        {
+            _parser = parser;
+        }
+
         /// <inheritdoc/>
         public ArmaProfile Get(Profile profile)
         {
@@ -33,7 +40,7 @@ namespace A3ServerTool.Storage
             var properties = TextManager.ReadFileLineByLine(file);
             if (!properties.Any()) return null;
 
-            var resultArmaProfile = UniversalParser.Parse<ArmaProfile>(properties);
+            var resultArmaProfile = _parser.Parse<ArmaProfile>(properties);
             resultArmaProfile.FileLocation = file.FullName;
             return resultArmaProfile;
         }
@@ -42,7 +49,7 @@ namespace A3ServerTool.Storage
         {
             var armaProfileDto = new SaveDataDto
             {
-                Content = string.Join("\r\n", UniversalParser.ConvertToText(profile.ArmaProfile)),
+                Content = string.Join("\r\n", _parser.ConvertToText(profile.ArmaProfile)),
                 FileExtension = GameProfileFileExtension,
                 FileName = Constants.GameProfileName,
                 Folders = new List<string>

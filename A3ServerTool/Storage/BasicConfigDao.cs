@@ -16,6 +16,13 @@ namespace A3ServerTool.Storage
         private const string ConfigFileExtension = ".cfg";
         private const string ConfigFileName = "basic";
 
+        private readonly IUniversalParser _parser;
+
+        public BasicConfigDao(IUniversalParser parser)
+        {
+            _parser = parser;
+        }
+
         /// <inheritdoc/>
         public BasicConfig Get(Profile profile)
         {
@@ -26,7 +33,7 @@ namespace A3ServerTool.Storage
             var properties = TextManager.ReadFileLineByLine(file);
             if (!properties.Any()) return null;
 
-            var result = UniversalParser.Parse<BasicConfig>(properties);
+            var result = _parser.Parse<BasicConfig>(properties);
             result.FileLocation = file.FullName;
             return result;
         }
@@ -38,7 +45,7 @@ namespace A3ServerTool.Storage
         {
             var configDto = new SaveDataDto
             {
-                Content = string.Join("\r\n", UniversalParser.ConvertToText(profile.BasicConfig)),
+                Content = string.Join("\r\n", _parser.ConvertToText(profile.BasicConfig)),
                 FileExtension = ConfigFileExtension,
                 FileName = ConfigFileName,
                 Folders = new List<string>

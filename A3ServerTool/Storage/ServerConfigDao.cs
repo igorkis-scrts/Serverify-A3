@@ -17,11 +17,13 @@ namespace A3ServerTool.Storage
 
         private readonly IMissionDirector _missionDirector;
         private readonly GameLocationFinder _locationFinder;
+        private readonly IUniversalParser _parser;
 
-        public ServerConfigDao(IMissionDirector missionDirector, GameLocationFinder locationFinder)
+        public ServerConfigDao(IMissionDirector missionDirector, GameLocationFinder locationFinder, IUniversalParser parser)
         {
             _missionDirector = missionDirector;
             _locationFinder = locationFinder;
+            _parser = parser;
         }
 
         /// <inheritdoc/>
@@ -34,7 +36,7 @@ namespace A3ServerTool.Storage
             var properties = TextManager.ReadFileLineByLine(file);
             if (!properties.Any()) return null;
 
-            var result = UniversalParser.Parse<ServerConfig>(properties);
+            var result = _parser.Parse<ServerConfig>(properties);
             if (result == null) return null;
 
             result.FileLocation = file.FullName;
@@ -48,7 +50,7 @@ namespace A3ServerTool.Storage
         {
             var configDto = new SaveDataDto
             {
-                Content = string.Join("\r\n", UniversalParser.ConvertToText(profile.ServerConfig)),
+                Content = string.Join("\r\n", _parser.ConvertToText(profile.ServerConfig)),
                 FileExtension = ConfigFileExtension,
                 FileName = ConfigFileName,
                 Folders = new List<string>
