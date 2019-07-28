@@ -37,7 +37,7 @@
 App icon made by Hugo Alberto: [NounProject](https://thenounproject.com/hugugolplex/)
 
 ## Feedback
-If you have any suggestions or reports - feel free to contact me via PM or create in isssue in this repository. 
+If you have any suggestions or reports - feel free to contact me via PM or create an issue in this repository. 
 
 ## Used third-party tools, frameworks et cetera:
 - [MahApps.Metro UI Framework](https://github.com/MahApps/MahApps.Metro)
