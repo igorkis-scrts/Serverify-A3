@@ -35,7 +35,7 @@
                 <Label
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    Content="Profiles"
+                    Content="{DynamicResource LocalizableProfilesTabHeader}"
                     Style="{StaticResource DescriptionHeaderStyle}" />
             </DockPanel>
 
@@ -58,11 +58,11 @@
                     <DataGridTextColumn
                         Width="4*"
                         Binding="{Binding Name}"
-                        Header="Name" />
+                        Header="{DynamicResource LocalizableNameHeader}" />
                     <DataGridTextColumn
                         Width="16*"
                         Binding="{Binding Description}"
-                        Header="Description" />
+                        Header="{DynamicResource LocalizableDescriptionHeader}" />
                 </DataGrid.Columns>
                 <DataGrid.Style>
                     <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
@@ -99,11 +99,8 @@
                 Margin="0"
                 Background="{DynamicResource ControlSecondaryColorBrush}">
                 <Button
-                    Width="64"
-                    MinWidth="48"
+                    MinWidth="64"
                     MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Center"
                     Command="{Binding SelectProfileCommand}"
@@ -113,16 +110,31 @@
 
                     <StackPanel>
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Check" />
-                        <TextBlock HorizontalAlignment="Center" Text="Select" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableSelectButton}" />
                     </StackPanel>
                 </Button>
 
                 <Button
-                    Width="64"
                     MinWidth="48"
                     MinHeight="48"
-                    MaxWidth="96"
                     MaxHeight="96"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Center"
+                    Command="{Binding SaveCurrentProfileCommand}"
+                    DockPanel.Dock="Left"
+                    Foreground="{DynamicResource TextColorBrush}"
+                    Style="{DynamicResource SecondaryColorFlatButton}"
+                    ToolTip="Saves current profile">
+
+                    <StackPanel>
+                        <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Floppy" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableSaveCurrentButton}" />
+                    </StackPanel>
+                </Button>
+
+                <Button
+                    MinWidth="64"
+                    MinHeight="48"
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Center"
                     Command="{Binding CreateProfileCommand}"
@@ -132,16 +144,13 @@
                     ToolTip="Save current settings into new profile">
 
                     <StackPanel>
-                        <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Floppy" />
-                        <TextBlock HorizontalAlignment="Center" Text="Create" />
+                        <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Creation" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableCreateButton}" />
                     </StackPanel>
                 </Button>
                 <Button
-                    Width="64"
-                    MinWidth="48"
+                    MinWidth="64"
                     MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Center"
                     Command="{Binding EditProfileCommand}"
@@ -151,15 +160,12 @@
 
                     <StackPanel>
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Pencil" />
-                        <TextBlock HorizontalAlignment="Center" Text="Edit" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableEditButton}" />
                     </StackPanel>
                 </Button>
                 <Button
-                    Width="64"
-                    MinWidth="48"
+                    MinWidth="64"
                     MinHeight="48"
-                    MaxWidth="96"
-                    MaxHeight="96"
                     Margin="{StaticResource ControlMargin}"
                     Command="{Binding DeleteProfileCommand}"
                     DockPanel.Dock="Left"
@@ -167,7 +173,7 @@
                     Style="{DynamicResource SecondaryColorFlatButton}">
                     <StackPanel>
                         <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Delete" />
-                        <TextBlock HorizontalAlignment="Center" Text="Delete" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableDeleteButton}" />
                     </StackPanel>
                 </Button>
                 <DockPanel />

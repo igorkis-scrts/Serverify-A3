@@ -64,6 +64,10 @@ namespace A3ServerTool.ViewModels
         {
             return Task.Run(() =>
             {
+                if(!_profileDirector.ExistOnStorage(CurrentProfile))
+                {
+                    CurrentProfile.Name = "Default Profile";
+                }
                 _profileDirector.SaveStorage(CurrentProfile);
                 Properties.Settings.Default.LastUsedProfile = CurrentProfile.Id;
                 Properties.Settings.Default.Save();

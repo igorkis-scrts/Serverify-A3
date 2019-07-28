@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Models;
 using A3ServerTool.ViewModels.ServerSubViewModels;
@@ -102,6 +103,23 @@ namespace A3ServerTool.ViewModels
         }
         private ICommand _selectProfileCommand;
 
+        public ICommand SaveCurrentProfileCommand
+        {
+            get
+            {
+                return _saveCurrentProfileCommand ??
+                       (_saveCurrentProfileCommand = new RelayCommand(_ =>
+                       {
+                           if (string.IsNullOrEmpty(_mainViewModel.CurrentProfile.Name))
+                           {
+                               _mainViewModel.CurrentProfile.Name = "Default Profile";
+                           }
+                          _profileDirector.SaveStorage(_mainViewModel.CurrentProfile);
+                       }, _ => _mainViewModel.CurrentProfile != null));
+            }
+        }
+        private ICommand _saveCurrentProfileCommand;
+
         public ICommand CreateProfileCommand
         {
             get
@@ -172,7 +190,7 @@ namespace A3ServerTool.ViewModels
                 _profileDirector.SetDefaultValues(DialogResult.Object);
                 _profileDirector.SaveStorage(DialogResult.Object);
 
-                if (Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
+                if (!Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
                 {
                     _mainViewModel.CurrentProfile = DialogResult.Object;
                 }

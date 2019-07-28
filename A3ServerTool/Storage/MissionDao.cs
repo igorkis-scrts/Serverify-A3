@@ -33,6 +33,10 @@ namespace A3ServerTool.Storage
 
             var files = FileHelper.GetAllFiles(missionFolderContent)
                 .Where(f => f.Extension == MissionFileExtension);
+            if(files == null)
+            {
+                return missions;
+            }
 
             Parallel.ForEach(files, file =>
             {
