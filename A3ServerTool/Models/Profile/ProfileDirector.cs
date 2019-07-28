@@ -61,7 +61,6 @@ namespace A3ServerTool.Models
             if (profile.ArmaProfile == null)
             {
                 profile.ArmaProfile = new ArmaProfile();
-                SetArmaProfileDefaultValues(profile);
                 _armaProfileDao.Save(profile);
             }
         }
@@ -122,7 +121,6 @@ namespace A3ServerTool.Models
             if (profile.BasicConfig == null)
             {
                 profile.BasicConfig = new BasicConfig();
-                SetBasicConfigDefaultValues(profile);
                 _basicDao.Save(profile);
             }
         }
@@ -148,54 +146,10 @@ namespace A3ServerTool.Models
             _armaProfileDao.Save(profile);
         }
 
+        [Obsolete("Will be deleted in the next update.")]
         public void SetDefaultValues(Profile profile)
         {
-            SetBasicConfigDefaultValues(profile);
             SetServerConfigDefaultValues(profile);
-            SetArmaProfileDefaultValues(profile);
-            SetStartupParameterDefaultValues(profile);
-        }
-
-        /// <summary>
-        /// Sets the startup parameter default values.
-        /// </summary>
-        /// <param name="profile">The profile.</param>
-        private void SetStartupParameterDefaultValues(Profile profile)
-        {
-            if (profile == null) return;
-
-            if (profile.ArgumentSettings == null)
-            {
-                profile.ArgumentSettings = new ArgumentSettings();
-            }
-
-            profile.ArgumentSettings.Port = "2302";
-        }
-
-        /// <summary>
-        /// Sets the basic configuration default values.
-        /// </summary>
-        /// <param name="profile">The profile.</param>
-        private void SetBasicConfigDefaultValues(Profile profile)
-        {
-            if (profile == null) return;
-
-            if (profile.BasicConfig == null)
-            {
-                profile.BasicConfig = new BasicConfig();
-            }
-
-            profile.BasicConfig.MaxMessagesSend = 128;
-            profile.BasicConfig.MaxSizeGuaranteed = 512;
-            profile.BasicConfig.MaxSizeNonguaranteed = 256;
-            profile.BasicConfig.MinBandwidth = 131072;
-            profile.BasicConfig.MaxBandwidth = 1048576000;
-            profile.BasicConfig.MinErrorToSend = 0.001F;
-            profile.BasicConfig.MinErrorToSendNear = 0.01F;
-            profile.BasicConfig.MaxCustomFileSize = 160;
-            profile.BasicConfig.MaxPacketSize = 1400;
-            profile.BasicConfig.ObjectViewDistance = 2000;
-            profile.BasicConfig.TerrainGridViewDistance = 25.0F;
         }
 
         /// <summary>
@@ -235,47 +189,6 @@ namespace A3ServerTool.Models
             profile.ServerConfig.LoadFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
             profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
             profile.ServerConfig.HtmlFileExtensionsWhitelist.AddRange(new[] { "htm", "html", "xml", "txt" });
-        }
-
-        /// <summary>
-        /// Sets the basic configuration default values.
-        /// </summary>
-        /// <param name="profile">The profile.</param>
-        private void SetArmaProfileDefaultValues(Profile profile)
-        {
-            if (profile == null) return;
-
-            if (profile.ArmaProfile == null)
-            {
-                profile.ArmaProfile = new ArmaProfile();
-            }
-
-            profile.ArmaProfile.GroupIndicationType = 1;
-            profile.ArmaProfile.FriendlyTagsVisibilityType = 1;
-            profile.ArmaProfile.EnemyTagsVisibilityType = 0;
-            profile.ArmaProfile.DetectedMinesVisibilityType = 1;
-            profile.ArmaProfile.CommandsVisibilityType = 1;
-            profile.ArmaProfile.WaypointsVisibilityType = 2;
-            profile.ArmaProfile.TacticalPingType = 1;
-            profile.ArmaProfile.WeaponInfoVisibilityType = 2;
-            profile.ArmaProfile.StanceIndicatorVisibilityType = 2;
-            profile.ArmaProfile.IsStaminaBarShown = 1;
-            profile.ArmaProfile.IsCrosshairShown = 1;
-            profile.ArmaProfile.IsVisionAidAllowed = 0;
-            profile.ArmaProfile.IsThirdPersonViewAllowed = 1;
-            profile.ArmaProfile.IsCameraShakeAllowed = 1;
-            profile.ArmaProfile.IsScoreTableShown = 1;
-            profile.ArmaProfile.AreDeathMessagesShown = 1;
-            profile.ArmaProfile.AreVonIdsShown = 1;
-            profile.ArmaProfile.IsExtendedMapEnemyContentAllowed = 0;
-            profile.ArmaProfile.IsExtendedMapMinesContentAllowed = 1;
-            profile.ArmaProfile.IsExtendedMapFriendlyContentAllowed = 1;
-            profile.ArmaProfile.IsAutoReportEnabled = 1;
-            profile.ArmaProfile.AreMultipleSavesAllowed = 1;
-            profile.ArmaProfile.AiPrecision = 0.5F;
-            profile.ArmaProfile.AiLevelPreset = 2;
-            profile.ArmaProfile.AiSkill = 0.5F;
-            profile.ArmaProfile.DefaultDifficulty = "recruit";
         }
     }
 }
