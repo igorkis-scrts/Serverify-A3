@@ -43,6 +43,10 @@ namespace A3ServerTool.Storage
             Parallel.ForEach(profileFolders, folder =>
             {
                 var files = FileHelper.GetAllFiles(folder);
+                if(files == null)
+                {
+                    return;
+                }
 
                 Profile profile;
                 var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
@@ -116,7 +120,7 @@ namespace A3ServerTool.Storage
                 }
             };
 
-            FileHelper.DeleteFolder(dto);
+            FileHelper.DeleteFolder(Path.Combine(dto.Folders.ToArray()));
         }
     }
 }
