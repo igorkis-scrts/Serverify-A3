@@ -33,24 +33,5 @@ namespace A3ServerTool.Models
         /// </summary>
         [ConfigProperty(IgnoreParsing = true)]
         public bool IsWhitelisted { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Mission mission &&
-                   Name == mission.Name &&
-                   Difficulty == mission.Difficulty &&
-                   IsSelected == mission.IsSelected &&
-                   IsWhitelisted == mission.IsWhitelisted;
-        }
-
-        public override int GetHashCode()
-        {
-            var hashCode = 456417597;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            hashCode = hashCode * -1521134295 + Difficulty.GetHashCode();
-            hashCode = hashCode * -1521134295 + IsSelected.GetHashCode();
-            hashCode = hashCode * -1521134295 + IsWhitelisted.GetHashCode();
-            return hashCode;
-        }
     }
 }

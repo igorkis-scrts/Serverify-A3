@@ -35,9 +35,9 @@
                     GridLinesVisibility="Horizontal"
                     HeadersVisibility="All"
                     ItemsSource="{Binding Path=Missions}"
-                    SelectionMode="Single"
                     RowHeaderWidth="20"
                     SelectedItem="{Binding SelectedMission, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionMode="Single"
                     SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn
