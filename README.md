@@ -18,6 +18,7 @@
 
 - Windows 7/8/10
 - [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/thank-you/net472)
+- Steam account, purchased Arma 3 on it
 
 ## Installation and usage guide
 
