@@ -71,7 +71,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegrationTests.cs" />
+    <Compile Include="MissionDirectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerLauncherTests.cs" />
     <Compile Include="UniversalParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
