@@ -1,12 +1,11 @@
-﻿using A3ServerTool.Models;
-using A3ServerTool.Attributes;
+﻿using A3ServerTool.Attributes;
+using A3ServerTool.Enums;
+using A3ServerTool.Models;
+using A3ServerTool.Storage;
+using Interchangeable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using A3ServerTool.Enums;
-using Interchangeable;
-using A3ServerTool.Storage;
-using System.Threading.Tasks;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -28,7 +27,7 @@ namespace A3ServerTool.Helpers
             var configMissions = GetMissionsFromConfig(configProperties);
             var storedMissions = GetMissionsFromStorage(folderPath);
 
-            foreach(var mission in storedMissions)
+            foreach (var mission in storedMissions)
             {
                 var configMission = configMissions.FirstOrDefault(x => x.Name == mission.Name);
 
@@ -45,7 +44,7 @@ namespace A3ServerTool.Helpers
         /// <inheritdoc>
         public string SaveMissions(IEnumerable<Mission> missions, string fileContent)
         {
-            if(!missions.Any()) return fileContent;
+            if (!missions.Any()) return fileContent;
 
             var playableMissions = ParsePlayableMissions(missions);
             var whitelistedMissions = ConvertWhitelistedMissionsToText(missions);
@@ -61,6 +60,11 @@ namespace A3ServerTool.Helpers
         /// <returns>List of missions from server.cfg.</returns>
         private List<Mission> GetMissionsFromConfig(IEnumerable<string> configProperties)
         {
+            if (configProperties?.Any() != true)
+            {
+                return new List<Mission>();
+            }
+
             var missionIndex = configProperties.ToList().FindIndex(x => x.Trim() == "class Missions");
             if (missionIndex == -1) return new List<Mission>();
 
@@ -123,7 +127,7 @@ namespace A3ServerTool.Helpers
         /// <param name="missions">Missions marked to play on server.</param>
         private string ParsePlayableMissions(IEnumerable<Mission> missions)
         {
-            if(missions?.Any() == false)
+            if (missions?.Any() == false)
             {
                 return string.Empty;
             }
@@ -131,9 +135,9 @@ namespace A3ServerTool.Helpers
             missions = missions.Where(x => x.IsSelected).ToArray();
             if (!missions.Any()) return string.Empty;
 
-            foreach(var mission in missions)
+            foreach (var mission in missions)
             {
-                if(mission.Difficulty == DifficultyType.None)
+                if (mission.Difficulty == DifficultyType.None)
                 {
                     mission.Difficulty = DifficultyType.Recruit;
                 }
@@ -189,7 +193,6 @@ namespace A3ServerTool.Helpers
             return "\nmissionWhitelist[] = " + ParseArrayProperty(missionAsStrings) + ";";
         }
 
-
         /// <summary>
         /// Removes the mission whitelist tag.
         /// </summary>
@@ -208,7 +211,7 @@ namespace A3ServerTool.Helpers
             }
 
             var endIndex = fileContent.IndexOf("};", tagIndex);
-            if(endIndex == -1)
+            if (endIndex == -1)
             {
                 return fileContent;
             }
