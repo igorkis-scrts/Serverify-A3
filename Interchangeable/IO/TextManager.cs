@@ -24,7 +24,7 @@ namespace Interchangeable.IO
         }
 
         /// <summary>
-        /// Read text file line by line
+        /// Read text file line by line.
         /// </summary>
         /// <returns>List of strings</returns>
         public static List<string> ReadFileLineByLine(FileInfo file)

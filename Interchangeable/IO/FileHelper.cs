@@ -27,11 +27,19 @@ namespace Interchangeable.IO
         /// </summary>
         public static List<FileInfo> GetAllFiles(DirectoryInfo directory)
         {
-            if(directory == null) return new List<FileInfo>();
+            try
+            {
+                if (directory == null) return new List<FileInfo>();
 
-            return directory
+                return directory
                 .GetFiles("*", SearchOption.TopDirectoryOnly)
                 .ToList();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return null;
+                //sometimes windows blocks files, so we should move on there
+            }
         }
 
         /// <summary>
@@ -99,32 +107,33 @@ namespace Interchangeable.IO
         }
 
         /// <summary>
-        /// Deletes a folder with all it's content from hard drive
+        /// Deletes the folder recursively.
         /// </summary>
-        public static void DeleteFolder(SaveDataDto dto)
+        /// <param name="path">The path to folder.</param>
+        /// <remarks>Sometimes Directory.Delete when directory was blocked by something else.</remarks>
+        public static void DeleteFolder(string path)
         {
-            if (dto == null) return;
-
-            var path = Path.Combine(dto.Folders.ToArray());
-            var directoryInfo = new DirectoryInfo(path).GetDirectories();
-
-            if (Directory.Exists(path))
+            if(string.IsNullOrEmpty(path))
             {
-                foreach (DirectoryInfo directory in directoryInfo)
-                {
-                    directory.Delete(true);
-                }
-
-                foreach (var file in GetAllFiles(new DirectoryInfo(path)))
-                {
-                    file.Delete();
-                }
-
-                 Directory.Delete(path);
+                return;
             }
-            else
+
+            foreach (string directory in Directory.GetDirectories(path))
             {
-                throw new DirectoryNotFoundException("Directory not found!");
+                DeleteFolder(directory);
+            }
+
+            try
+            {
+                Directory.Delete(path, true);
+            }
+            catch (IOException)
+            {
+                Directory.Delete(path, true);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Directory.Delete(path, true);
             }
         }
 
