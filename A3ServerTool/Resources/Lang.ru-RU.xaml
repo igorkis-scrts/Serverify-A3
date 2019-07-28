@@ -21,6 +21,18 @@
     <v:String x:Key="LocalizableModificationsTabTittle">Моды</v:String>
     <v:String x:Key="LocalizableMissionsTabTittle">Миссии</v:String>
 
+    <!--  Profile view  -->
+    <v:String x:Key="LocalizableProfilesTabHeader">Профили</v:String>
+
+    <v:String x:Key="LocalizableNameHeader">Название</v:String>
+    <v:String x:Key="LocalizableDescriptionHeader">Описание</v:String>
+
+    <v:String x:Key="LocalizableSelectButton">Выбрать текущим</v:String>
+    <v:String x:Key="LocalizableCreateButton">Создать</v:String>
+    <v:String x:Key="LocalizableEditButton">Редактировать</v:String>
+    <v:String x:Key="LocalizableDeleteButton">Удалить</v:String>
+    <v:String x:Key="LocalizableSaveCurrentButton">Сохранить текущий профиль</v:String>
+
     <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>

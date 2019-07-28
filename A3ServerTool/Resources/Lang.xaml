@@ -21,6 +21,18 @@
     <v:String x:Key="LocalizableModificationsTabTittle">Mods</v:String>
     <v:String x:Key="LocalizableMissionsTabTittle">Missions</v:String>
 
+    <!--  Profile view  -->
+    <v:String x:Key="LocalizableProfilesTabHeader">Profiles</v:String>
+
+    <v:String x:Key="LocalizableNameHeader">Name</v:String>
+    <v:String x:Key="LocalizableDescriptionHeader">Description</v:String>
+
+    <v:String x:Key="LocalizableSelectButton">Select As Current</v:String>
+    <v:String x:Key="LocalizableCreateButton">Create</v:String>
+    <v:String x:Key="LocalizableEditButton">Edit</v:String>
+    <v:String x:Key="LocalizableDeleteButton">Delete</v:String>
+    <v:String x:Key="LocalizableSaveCurrentButton">Save Current Profile</v:String>
+
     <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Settings</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Language</v:String>
