@@ -61,6 +61,7 @@
                     ItemsSource="{Binding Path=Modifications}"
                     RowHeaderWidth="20"
                     SelectedItem="{Binding SelectedModification, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionMode="Single"
                     SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn
