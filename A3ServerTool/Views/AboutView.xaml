@@ -53,7 +53,6 @@
                 HorizontalAlignment="Center"
                 FontSize="14">
                 <Bold>Contact:</Bold>
-                <TextBlock>Igor Kiselyov,</TextBlock>
                 <Hyperlink NavigateUri="igorkiselyov74@gmail.com">igorkiselyov74@live.com</Hyperlink>
             </TextBlock>
             <TextBlock
@@ -74,8 +73,9 @@
                 Margin="{StaticResource ControlMargin}"
                 HorizontalAlignment="Center"
                 FontSize="14">
-                Distributed under MIT License. Copyright ©
+                Copyright ©
                 <TextBlock Text="{Binding CurrentDateTime}" />
+                Igor Kiselyov
             </TextBlock>
         </StackPanel>
     </Grid>
