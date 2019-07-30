@@ -39,7 +39,7 @@ App icon made by Hugo Alberto: [NounProject](https://thenounproject.com/hugugolp
 ## Feedback
 If you have any suggestions or reports - feel free to contact me via PM or create an issue in this repository. 
 
-## Used third-party tools, frameworks et cetera:
+## Third-party tools, frameworks et cetera:
 - [MahApps.Metro UI Framework](https://github.com/MahApps/MahApps.Metro)
 - [MVVMLight Model-View-ViewModel toolkit, SimpleIOC Dependency Injection container](https://github.com/lbugnion/mvvmlight)
 - [Newtonsoft.JSON parser](https://github.com/JamesNK/Newtonsoft.Json)
