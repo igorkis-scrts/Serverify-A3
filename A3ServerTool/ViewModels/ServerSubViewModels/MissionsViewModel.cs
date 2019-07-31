@@ -3,6 +3,7 @@ using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Storage;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     /// <seealso cref="GalaSoft.MvvmLight.ViewModelBase" />
     public class MissionsViewModel : ViewModelBase
     {
+        public const string Token = nameof(MissionsViewModel);
+
         private readonly ServerViewModel _parentViewModel;
         private readonly IDao<Mission> _missionDao;
         private readonly GameLocationFinder _locationFinder;
@@ -181,6 +184,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             _missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
             _missionDao = missionDao;
             _locationFinder = locationFinder;
+
+            Messenger.Default.Register<string>(this, Token, DoByRequest);
         }
 
         private Task RefreshMissions()
@@ -188,6 +193,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
             if (string.IsNullOrWhiteSpace(gamePath))
             {
+                Missions.Clear();
                 return Task.FromResult<object>(null);
             }
 
@@ -219,6 +225,15 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                     Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
                 }
             });
+        }
+
+        /// <summary>
+        /// Refreshes mission list by requests from other view models.
+        /// </summary>
+        /// <param name="request">message to do something in this viewmodel.</param>
+        private void DoByRequest(string request)
+        {
+            RefreshMissions();
         }
     }
 }

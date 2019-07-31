@@ -96,8 +96,15 @@ namespace A3ServerTool.ViewModels
                                return;
                            }
 
+                           var oldExecutablePath = _mainViewModel?.CurrentProfile?.ExecutablePath;
                            _mainViewModel.CurrentProfile = _profileDirector.GetById(SelectedProfile.Id);
                            Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
+
+                           if(_mainViewModel.CurrentProfile.ExecutablePath != oldExecutablePath)
+                           {
+                               Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                               Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
+                           }
                        }, _ => SelectedProfile != null));
             }
         }
@@ -144,9 +151,14 @@ namespace A3ServerTool.ViewModels
                            var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm deletion",
                                "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
                            if (dialogResult != MessageDialogResult.Affirmative) return;
+                           if (_mainViewModel.CurrentProfile.Id == SelectedProfile.Id)
+                           {
+                               _mainViewModel.CurrentProfile = new Profile(Guid.NewGuid());
+                               Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                               Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
+                           }
 
                            _profileDirector.Delete(SelectedProfile);
-                           _mainViewModel.CurrentProfile = new Profile(Guid.NewGuid());
 
                            RefreshData();
                        }, _ => SelectedProfile != null));
@@ -193,6 +205,8 @@ namespace A3ServerTool.ViewModels
                 if (!Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
                 {
                     _mainViewModel.CurrentProfile = DialogResult.Object;
+                    Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                    Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
                 }
             }
 

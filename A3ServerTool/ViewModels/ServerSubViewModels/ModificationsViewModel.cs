@@ -8,6 +8,7 @@ using A3ServerTool.Helpers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using A3ServerTool.Storage;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -17,6 +18,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     /// <seealso cref="GalaSoft.MvvmLight.ViewModelBase" />
     public class ModificationsViewModel : ViewModelBase
     {
+        public const string Token = nameof(ModificationsViewModel);
+
         private readonly ServerViewModel _parentViewModel;
         private readonly GameLocationFinder _locationFinder;
         private readonly IDao<Modification> _modDao;
@@ -163,6 +166,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             _mods = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
             _modDao = modDao;
             _locationFinder = locationFinder;
+
+            Messenger.Default.Register<string>(this, Token, DoByRequest);
         }
 
         private Task RefreshModifications()
@@ -170,6 +175,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
             if (string.IsNullOrWhiteSpace(gamePath))
             {
+                Modifications.Clear();
                 return Task.FromResult<object>(null);
             }
 
@@ -214,6 +220,15 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private void OnModChanged(object sender, EventArgs e)
         {
             RaisePropertyChanged("ModificationsCounter");
+        }
+
+        /// <summary>
+        /// Refreshes modlist by requests from other view models.
+        /// </summary>
+        /// <param name="request">message to do something in this viewmodel.</param>
+        private void DoByRequest(string request)
+        {
+            RefreshModifications();
         }
     }
 }
