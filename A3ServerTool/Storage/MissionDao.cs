@@ -28,7 +28,7 @@ namespace A3ServerTool.Storage
             var missions = new List<Mission>();
 
             var missionFolderContent = FileHelper.GetFolder(gamePath)?
-                .FirstOrDefault(f => f.Name == MissionFolderName);
+                .FirstOrDefault(f => string.Equals(f.Name, MissionFolderName, StringComparison.OrdinalIgnoreCase));
             if (missionFolderContent == null) return missions;
 
             var files = FileHelper.GetAllFiles(missionFolderContent)
