@@ -156,6 +156,7 @@ namespace A3ServerTool.ViewModels
                                _mainViewModel.CurrentProfile = new Profile(Guid.NewGuid());
                                Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
                                Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
+                               Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                            }
 
                            _profileDirector.Delete(SelectedProfile);

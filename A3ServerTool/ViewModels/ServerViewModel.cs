@@ -50,6 +50,7 @@ namespace A3ServerTool.ViewModels
                               {
                                   await SaveProfile();
                                   _launcher.Run(CurrentProfile);
+                                  Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                               }
                           }, _ => CheckValidation()));
             }
