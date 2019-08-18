@@ -6,6 +6,9 @@
   </p>
 </div>
 
+## Feedback thread on BI forums
+https://forums.bohemia.net/forums/topic/224504-serverifya3-a-dedicated-server-configuration-tool/
+
 ## Features 
 - Supports latest A3 version (1.94) and almost every (only 3-4 config properties are *temporarily* missing) configuration setting;
 - Supports Arma 3 startup parameters, basic.cfg, server.cfg, A3 user profile.
