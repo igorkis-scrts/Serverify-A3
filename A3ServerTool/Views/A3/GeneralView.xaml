@@ -5,9 +5,9 @@
     xmlns:b="clr-namespace:A3ServerTool.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:h="clr-namespace:A3ServerTool.Helpers"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:A3ServerTool.ViewModels.ServerSubViewModels"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,7 +15,7 @@
     d:DesignHeight="640"
     d:DesignWidth="960"
     dialog:DialogParticipation.Register="{Binding}"
-    DataContext="{Binding General, Source={StaticResource Locator}}"
+    DataContext="{Binding General, Source={StaticResource Bindings}}"
     mc:Ignorable="d">
 
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">

@@ -1,48 +1,49 @@
-<Application
-    x:Class="A3ServerTool.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:A3ServerTool.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:inter="clr-namespace:Interchangeable.Enums;assembly=Interchangeable"
-    xmlns:local="clr-namespace:A3ServerTool"
-    xmlns:models="clr-namespace:A3ServerTool.Models"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    d1P1:Ignorable="d"
-    DispatcherUnhandledException="App_OnDispatcherUnhandledException"
-    StartupUri="MainWindow.xaml">
-    <Application.Resources>
-        <ResourceDictionary>
-            <vm:ViewModelLocator
-                xmlns:vm="clr-namespace:A3ServerTool.ViewModels"
-                x:Key="Locator"
-                d:IsDataSource="True" />
-            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
-            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
-            <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
-            <converters:NullableIntToBoolConverter x:Key="NullableIntToBoolConverter" />
-            <Style x:Key="DescriptionHeaderStyle" TargetType="Label">
-                <Setter Property="Margin" Value="12" />
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-            </Style>
-            <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
-            <Thickness x:Key="LabelMargin">4 2 8 2</Thickness>
-            <Thickness x:Key="GroupBoxMargin">12 4 12 4</Thickness>
-            <Thickness x:Key="EndControlMargin">8 2 8 8</Thickness>
-            <ResourceDictionary.MergedDictionaries>
-                <!--  Localization  -->
-                <ResourceDictionary Source="Resources/Lang.xaml" />
-                <!--<ResourceDictionary Source="Resources/Lang.ru-RU.xaml" />-->
-                <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <!--  My custom controls library  -->
-                <ResourceDictionary Source="pack://application:,,,/CustomControls;component/CustomControlsDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+<Application x:Class="A3ServerTool.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:converters="clr-namespace:A3ServerTool.Converters" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+             xmlns:inter="clr-namespace:Interchangeable.Enums;assembly=Interchangeable" 
+             xmlns:local="clr-namespace:A3ServerTool" 
+             xmlns:models="clr-namespace:A3ServerTool.Models" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib" 
+             d1P1:Ignorable="d" 
+             DispatcherUnhandledException="App_OnDispatcherUnhandledException" 
+             StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <vm:Bindings xmlns:vm="clr-namespace:A3ServerTool" x:Key="Bindings" d:IsDataSource="True" />
+      <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+      <converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
+      <converters:NullableIntToBoolConverter x:Key="NullableIntToBoolConverter" />
+      <Style x:Key="DescriptionHeaderStyle" TargetType="Label">
+        <Setter Property="Margin" Value="12" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+      </Style>
+      <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
+      <Thickness x:Key="LabelMargin">4 2 8 2</Thickness>
+      <Thickness x:Key="GroupBoxMargin">12 4 12 4</Thickness>
+      <Thickness x:Key="EndControlMargin">8 2 8 8</Thickness>
+      <ResourceDictionary.MergedDictionaries>
+        <!--  Localization  -->
+        <ResourceDictionary Source="Resources/Lang.xaml">
         </ResourceDictionary>
-    </Application.Resources>
+        <!--<ResourceDictionary Source="Resources/Lang.ru-RU.xaml" />-->
+        <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml">
+        </ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml">
+        </ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml">
+        </ResourceDictionary>
+        <!--  My custom controls library  -->
+                <ResourceDictionary Source="pack://application:,,,/CustomControls;component/CustomControlsDictionary.xaml">
+                </ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>
