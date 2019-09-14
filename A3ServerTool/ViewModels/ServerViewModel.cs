@@ -2,11 +2,11 @@
 using A3ServerTool.Models;
 using A3ServerTool.ViewModels.ServerSubViewModels;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable.IO;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Practices.ServiceLocation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -81,9 +81,9 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         private bool CheckValidation()
         {
-            var detailsViewModel = ServiceLocator.Current.GetInstance<GeneralViewModel>();
-            var basicViewModel = ServiceLocator.Current.GetInstance<NetworkViewModel>();
-            return string.IsNullOrWhiteSpace(detailsViewModel.Error) && string.IsNullOrWhiteSpace(basicViewModel.Error);
+            var generalViewModel = SimpleIoc.Default.GetInstance<GeneralViewModel>();
+            var networkViewModel = SimpleIoc.Default.GetInstance<NetworkViewModel>();
+            return string.IsNullOrWhiteSpace(generalViewModel.Error) && string.IsNullOrWhiteSpace(networkViewModel.Error);
         }
     }
 }

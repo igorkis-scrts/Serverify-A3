@@ -70,7 +70,8 @@ namespace A3ServerTool
                 switch (value.Name)
                 {
                     case "ru-RU":
-                        dict.Source = new Uri(String.Format("Resources/Lang.{0}.xaml", value.Name), UriKind.Relative);
+                    case "de-DE":
+                        dict.Source = new Uri(string.Format("Resources/Lang.{0}.xaml", value.Name), UriKind.Relative);
                         break;
                     default:
                         dict.Source = new Uri("Resources/Lang.xaml", UriKind.Relative);
@@ -161,6 +162,7 @@ namespace A3ServerTool
 
             Languages.Clear();
             Languages.Add(new CultureInfo("en-US"));
+            Languages.Add(new CultureInfo("de-DE"));
             Languages.Add(new CultureInfo("ru-RU"));
 
             LanguageChanged += App_LanguageChanged;

@@ -4,15 +4,16 @@ using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
 using A3ServerTool.Models;
+using A3ServerTool.Properties;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.IconPacks;
-using Microsoft.Practices.ServiceLocation;
 
 namespace A3ServerTool.ViewModels
 {
@@ -236,25 +237,25 @@ namespace A3ServerTool.ViewModels
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
-                    Label = "Server",
-                    ToolTip = "General game server tuning",
-                    Tag = ServiceLocator.Current.GetInstance<ServerViewModel>()
+                    Label = Properties.StaticLang.ServerHamburgerMenuLocalizedTitle,
+                    ToolTip = Properties.StaticLang.ServerHamburgerMenuLocalizedTooltip,
+                    Tag = SimpleIoc.Default.GetInstance<ServerViewModel>()
                 },
 
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Account},
-                    Label = "Profiles",
-                    ToolTip = "Server profiles",
-                    Tag = ServiceLocator.Current.GetInstance<ProfilesViewModel>()
+                    Label = Properties.StaticLang.ProfilesHamburgerMenuLocalizedTitle,
+                    ToolTip = Properties.StaticLang.ProfilesHamburgerMenuLocalizedTooltip,
+                    Tag =  SimpleIoc.Default.GetInstance<ProfilesViewModel>()
                 },
 
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Settings},
-                    Label = "Settings",
-                    ToolTip = "Application settings",
-                    Tag = ServiceLocator.Current.GetInstance<SettingsViewModel>()
+                    Label = Properties.StaticLang.SettingsHamburgerMenuLozalizedTitle,
+                    ToolTip = Properties.StaticLang.SettingsHamburgerMenuLozalizedTooltip,
+                    Tag = SimpleIoc.Default.GetInstance<SettingsViewModel>()
                 }
             };
 
@@ -263,9 +264,9 @@ namespace A3ServerTool.ViewModels
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Help},
-                    Label = "About",
-                    ToolTip = "Some help.",
-                    Tag = ServiceLocator.Current.GetInstance<AboutViewModel>()
+                    Label = Properties.StaticLang.AboutHamburgerMenuLozalizedTitle,
+                    ToolTip = Properties.StaticLang.AboutHamburgerMenuLozalizedTooltip,
+                    Tag = SimpleIoc.Default.GetInstance<AboutViewModel>()
                 }
             };
         }

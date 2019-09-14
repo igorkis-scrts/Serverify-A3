@@ -11,7 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
     d:DesignWidth="960"
-    DataContext="{Binding Server, Source={StaticResource Locator}}"
+    DataContext="{Binding Server, Source={StaticResource Bindings}}"
     dialog:DialogParticipation.Register="{Binding}"
     mc:Ignorable="d">
 

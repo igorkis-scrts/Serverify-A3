@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
     dialog:DialogParticipation.Register="{Binding}"
-    DataContext="{Binding ProfileDialog, Source={StaticResource Locator}}"
+    DataContext="{Binding ProfileDialog, Source={StaticResource Bindings}}"
     mc:Ignorable="d">
 
     <dialog:CustomDialog.Content>

@@ -13,7 +13,6 @@ using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Practices.ServiceLocation;
 
 namespace A3ServerTool.ViewModels
 {
@@ -224,7 +223,7 @@ namespace A3ServerTool.ViewModels
         {
             Task.Run(() =>
             {
-                var servicesToClear = ServiceLocator.Current.GetAllInstances<ProfileDialogViewModel>()
+                var servicesToClear = SimpleIoc.Default.GetAllInstances<ProfileDialogViewModel>()
                     .Where(service => service.IsExpired).ToList();
 
                 foreach (var service in servicesToClear)
