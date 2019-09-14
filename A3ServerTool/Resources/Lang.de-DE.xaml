@@ -1,0 +1,428 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <v:String x:Key="LocalizableCurrentProfileTitle">Aktuelle Profile:</v:String>
+
+    <v:String x:Key="LocalizableSaveButton">Speichern</v:String>
+
+    <v:String x:Key="LocalizableOn">An</v:String>
+    <v:String x:Key="LocalizableOff">Aus</v:String>
+    <v:String x:Key="LocalizableEnterSqfTitle">Eingabe SQF code</v:String>
+    <v:String x:Key="LocalizableRefresh">Erneuern</v:String>
+
+    <v:String x:Key="LocalizableGeneralTabTitle">Allgemein</v:String>
+    <v:String x:Key="LocalizableSecurityTabTitle">Sicherheit</v:String>
+    <v:String x:Key="LocalizableNetworkTabTitle">Netzwerk</v:String>
+    <v:String x:Key="LocalizableLoggingTabTittle">Logging</v:String>
+    <v:String x:Key="LocalizablePerformanceTabTittle">Leistung</v:String>
+    <v:String x:Key="LocalizableDifficultyTabTittle">Schwierigkeit</v:String>
+    <v:String x:Key="LocalizableModificationsTabTittle">Mods</v:String>
+    <v:String x:Key="LocalizableMissionsTabTittle">Missionen</v:String>
+
+    <!--  Profile view  -->
+    <v:String x:Key="LocalizableProfilesTabHeader">Profile</v:String>
+
+    <v:String x:Key="LocalizableNameHeader">Name</v:String>
+    <v:String x:Key="LocalizableDescriptionHeader">Beschreibung</v:String>
+
+    <v:String x:Key="LocalizableSelectButton">Als Standard Setzen</v:String>
+    <v:String x:Key="LocalizableCreateButton">Erstellen</v:String>
+    <v:String x:Key="LocalizableEditButton">Bearbeiten</v:String>
+    <v:String x:Key="LocalizableDeleteButton">Loeschen</v:String>
+    <v:String x:Key="LocalizableSaveCurrentButton">Speicher Aktuelles Profil</v:String>
+
+    <!--  Settings view  -->
+    <v:String x:Key="LocalizableSettingsHeader">Einstellungen</v:String>
+    <v:String x:Key="LocalizableSettingsLanguageTitle">Sprache</v:String>
+    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Hindergrund Thema</v:String>
+    <v:String x:Key="LocalizableSettingsAccentColorTitle">Akzent Farbe</v:String>
+
+    <!--  Server view  -->
+    <v:String x:Key="LocalizableServerViewTitle">Server</v:String>
+    <v:String x:Key="LocalizableLaunchButtonTitle">Start</v:String>
+
+    <!--  General view  -->
+    <v:String x:Key="LocalizableCommonSettingsGroupTitle">Allgemeine Einstellungen</v:String>
+    <v:String x:Key="LocalizableServerSettingsTitle">Server Einstellungen</v:String>
+    <v:String x:Key="LocalizablePlayerInteractionsGroupTitle">Interaktion mit Spieler</v:String>
+    <v:String x:Key="LocalizableHeadlessClientGroupTitle">Headless Client</v:String>
+    <v:String x:Key="LocalizableVonGroupTitle">Voice-Over-Net</v:String>
+    <v:String x:Key="LocalizableMissionRotationGroupTitle">Mission Rotation Einstellungen</v:String>
+    <v:String x:Key="LocalizableMiscGroupTitle">Verschidenes</v:String>
+
+    <v:String x:Key="LocalizableServerNameTitle">Server Name</v:String>
+    <v:String x:Key="LocalizableServerNameWatermark">Name im Server Browser</v:String>
+
+    <v:String x:Key="LocalizablePasswordTitle">Passwort</v:String>
+    <v:String x:Key="LocalizablePasswordWatermark">Passwort für Server Beitritt</v:String>
+
+    <v:String x:Key="LocalizableMaxPlayersTitle">Max Spieler</v:String>
+    <v:String x:Key="LocalizableMaxPlayersTooltip">Maximale Anzahl von Spielern die auf den Server verbinden koennen.</v:String>
+
+    <v:String x:Key="LocalizableServerExecLocationTitle">Speicherort der ausführbaren Datei des Servers</v:String>
+    <v:String x:Key="LocalizableServerExecWatermark">Pfad zur ausführbaren Datei des Servers</v:String>
+
+    <v:String x:Key="LocalizableFinalServerParametersTitle">Finale Server Parameter</v:String>
+    <v:String x:Key="LocalizableFinalServerParametersTooltip">Stellt alle Befehlszeilenargumente bereit, die auf die ausführbare Datei des Servers angewendet werden.</v:String>
+
+    <v:String x:Key="LocalizableWelcomeMessagesTitle">Nachricht des Tages</v:String>
+    <v:String x:Key="LocalizableWelcomeMessagesWatermark">Begrüssungsnachricht</v:String>
+    <v:String x:Key="LocalizableWelcomeMessagesTooltip">Nachrichten, die Spieler beim Beitritt zum Server im Chat sehen. Drücken Sie die Eingabetaste, um eine neue Zeile zu erstellen.</v:String>
+
+    <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Interwal zwischen den Nchrichten</v:String>
+    <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Intervall zwischen Begruessungsnachrichten in Sekunden.</v:String>
+
+    <v:String x:Key="LocalizableHeadlessClientTitle">Headless Client IPs</v:String>
+    <v:String x:Key="LocalizableLocalClientTitle">Lokale Client IPs</v:String>
+    <v:String x:Key="LocalizableHeadlessClientWatermark">IPs eine nach der anderen, durch Komma getrennt</v:String>
+
+    <v:String x:Key="LocalizableVotingTresholdTitle">Abstimmungsschwelle</v:String>
+    <v:String x:Key="LocalizableVotingTresholdTooltip">Prozentsatz der Stimmen, die zur Bestaetigung einer Abstimmung benötigt werden.</v:String>
+
+    <v:String x:Key="LocalizableVotingMissionTitle">Missions Abstimmung Start</v:String>
+    <v:String x:Key="LocalizableVotingMissionTooltip">Starten Sie die Missionsabstimmung, wenn X Spieler eine Verbindung herstellen.</v:String>
+
+    <v:String x:Key="LocalizableVotingTimeoutTitle">Zeitlimit für Abstimmung</v:String>
+    <v:String x:Key="LocalizableVotingTimeoutTooltip">Zeit in Sekunden zwischen Abstimmungen.</v:String>
+
+    <v:String x:Key="LocalizableRoleSelectionTitle">Zeitlimit für Rollenauswahl</v:String>
+    <v:String x:Key="LocalizableRoleSelectionTooltip">Zeit in Sekunden zur Auswahl einer Rolle im Lobby Bildschirm.</v:String>
+
+    <v:String x:Key="LocalizableBriefingTimeoutTitle">Zeitlimit für Besprechnung</v:String>
+    <v:String x:Key="LocalizableBriefingTimeoutTooltip">Zeit in Sekunden für Besprechung.</v:String>
+
+    <v:String x:Key="LocalizableDebriefingTimeoutTitle">Zeitlimit für Nachbesprechung</v:String>
+    <v:String x:Key="LocalizableDebriefingTimeoutTooltip">Zeit in Sekunden für Nachbesprechung.</v:String>
+
+    <v:String x:Key="LocalizableLobbyIdleTimeoutTitle">Lobby Interaktivitäts Zeitraum</v:String>
+    <v:String x:Key="LocalizableLobbyIdleTimeoutTooltip">Zeit in Sekunden für Inaktivität in der Lobby.</v:String>
+
+    <v:String x:Key="LocalizableDrawingOnMapTitle">Auf Karte Zeichnen</v:String>
+    <v:String x:Key="LocalizableDrawingOnMapTooltip">Das Zeichnen auf der Karte verbieten.</v:String>
+
+    <v:String x:Key="LocalizableIsVonEnabledTitle">Deaktivieren von Sprachnachrichten</v:String>
+    <v:String x:Key="LocalizableIsVonEnabledTooltip">Sprachnachrichten abschalten.</v:String>
+
+    <v:String x:Key="LocalizableVonCodecQualityTitle">Sprachnachrichten Codec Qualität</v:String>
+    <v:String x:Key="LocalizableVonCodecQualityTooltip">Sprache-über-Netz Audio Qualität. 8kHz ist 0-10, 16kHz ist 11-20, für 21-30 ist es 32kHz für SPEEX codec und 48kHz für OPUS codec.</v:String>
+
+    <v:String x:Key="LocalizableVonCodecTypeTitle">Sprache-über-Netz Codec</v:String>
+
+    <v:String x:Key="LocalizablePersistenceTitle">Persistenz</v:String>
+    <v:String x:Key="LocalizablePersistenceTooltip">Die Mission auf dem Server wird auch dann weiter ausgeführt, wenn sich keine Spieler auf dem Server befinden.</v:String>
+
+    <v:String x:Key="LocalizableRotorLibTitle">RotorLib-Simulation erzwingen</v:String>
+    <v:String x:Key="LocalizableRotorLibTooltip">Erzwingt RotorLib Flugmodel für Helikopter.</v:String>
+
+    <v:String x:Key="LocalizableAnalyticsTitle">Analytics für Bohemia Interactive</v:String>
+    <v:String x:Key="LocalizableAnalyticsTooltip">Sammelt grundlegende Informationen über das Spiel des Servers, z. B. Spieleinstellungen, aktivierte Mods, bevorzugte Szenarien und Waffen, Todesfälle von Spielern oder tatsächliche Leistung, und meldet sie dem Analyseserver des Spieleentwicklers.</v:String>
+
+    <v:String x:Key="LocalizableProcessIdTitle">Server PID</v:String>
+    <v:String x:Key="LocalizableProcessIdWatermark">Name der Prozes ID Datei</v:String>
+    <v:String x:Key="LocalizableProcessIdTooltip">Datei, in die die PID (Prozess-ID) des Servers geschrieben werden soll. Die Datei wird automatisch entfernt, wenn die Exe gestoppt wird.</v:String>
+
+    <v:String x:Key="LocalizableRankingFileTitle">Rang</v:String>
+    <v:String x:Key="LocalizableRankingFileWatermark">Pfad zur Rangliste</v:String>
+    <v:String x:Key="LocalizableRankingFileTooltip">Bietet eine Option, mit der Ranglisteninformationen oder andere als Spielerstatistiken bekannte Informationen ausgegeben werden können (z. B. ranking.log). Das Windows-Benutzerkonto benötigt Berechtigungen zum Schreiben in den Ordner Ihrer Wahl.</v:String>
+
+    <v:String x:Key="LocalizableAutoInitTitle">Auto Init</v:String>
+    <v:String x:Key="LocalizableAutoInitTooltip">
+        Die Mission wird wie beim ersten Client automatisch initialisiert.
+        Die Persistenz muss aktiviert sein, andernfalls wird dieser Parameter ignoriert.
+        Warnung: Dadurch wird die Funktion Arma_3_Mission_Parameters unterbrochen!
+    </v:String>
+
+    <!--  Security view  -->
+    <v:String x:Key="LocalizableServerSideScriptingTitle">Serverseitiges Scripting</v:String>
+    <v:String x:Key="LocalizableAdministrationTitle">Administration</v:String>
+    <v:String x:Key="LocalizableAllowedFileExtensionsTitle">Erlaubte Datei Erweiterungen</v:String>
+
+    <v:String x:Key="LocalizableAdminPasswordTitle">Admin Passwort</v:String>
+    <v:String x:Key="LocalizableAdminPasswordWatermark">Passwort für admin Rechte auf dem Server</v:String>
+
+    <v:String x:Key="LocalizableAdminIdsTitle">Admin IDs</v:String>
+    <v:String x:Key="LocalizableAdminIdsWatermark">UIDs eine nach der anderen, durch Komma getrennt</v:String>
+    <v:String x:Key="LocalizableAdminIdsTooltip">Whitelisted-Player-IDs, mit denen Administratorrechte auf dem Server erworben werden können.</v:String>
+
+    <v:String x:Key="LocalizableKickDuplicateUidsTitle">Entferne doppelte UIDs</v:String>
+    <v:String x:Key="LocalizableKickDuplicateUidsTooltip">Erlaube keine doppelten Spiel-IDs. Der zweite Spieler mit einer vorhandenen ID wird automatisch gekickt.</v:String>
+
+    <v:String x:Key="LocalizableFilePatchingTypeTitle">Arten von Dataipatches</v:String>
+    <v:String x:Key="LocalizableFilePatchingTypeTooltip">Verhindern oder erlauben Sie das Patchen von Dateien für verschiedene Arten von clientsType.</v:String>
+
+    <v:String x:Key="LocalizableFilePatchingTitle">Erlauben von Dataipatches</v:String>
+    <v:String x:Key="LocalizableFilePatchingTooltip">Erlaube dem Spiel, entpackte Daten zu laden.</v:String>
+
+    <v:String x:Key="LocalizableFilePatchingIdsTitle">Ausnahmen beim Patchen von Dateien</v:String>
+    <v:String x:Key="LocalizableFilePatchingIdsTooltip">Whitelisted Steam IDs erlaubten filePatching.</v:String>
+    <v:String x:Key="LocalizableFilePatchingIdsWatermark">Steam IDs durch Komma getrennt</v:String>
+
+    <v:String x:Key="LocalizableSignatureVerificationTypeTitle">Art der Signaturüberprüfung</v:String>
+    <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version der Addon-Signaturprüfung, die auf dem Server verwendet wird.</v:String>
+
+    <v:String x:Key="LocalizableServerSidePasswordTitle">Serverseitiges Scripting Passwort</v:String>
+    <v:String x:Key="LocalizableDoubleIdCommandTitle">On Double ID-Command</v:String>
+    <v:String x:Key="LocalizableDoubleIdCommandTooltip">Wird ausgeführt, wenn der zweite Benutzer mit derselben ID erkannt wurde.</v:String>
+    <v:String x:Key="LocalizableUserConnectedCommandTitle">On User connected Command</v:String>
+    <v:String x:Key="LocalizableUserConnectedCommandTooltip">Wird ausgeführt, wenn der Benutzer mit dem Server verbunden ist.</v:String>
+    <v:String x:Key="LocalizableUserDisconnectedCommandTitle">On User disconnect Command</v:String>
+    <v:String x:Key="LocalizableUserDisconnectedCommandTooltip">Wird ausgeführt, wenn der Benutzer die Verbindung zum Server getrennt hat.</v:String>
+    <v:String x:Key="LocalizableHackedDataCommandTitle">On Hacked Data Command</v:String>
+    <v:String x:Key="LocalizableHackedDataCommandTooltip">Wird ausgeführt, wenn Spieldaten gehackt werden.</v:String>
+
+    <v:String x:Key="LocalizableUnsignedDataCommandTitle">On Unsignd Data Command</v:String>
+    <v:String x:Key="LocalizableUnsignedDataCommandTooltip">Wird ausgeführt, wenn die Spieldaten nicht signiert sind.</v:String>
+    <v:String x:Key="LocalizableDifferentDataCommandTitle">On Hacked Data Command</v:String>
+    <v:String x:Key="LocalizableDifferentDataCommandTooltip">Wird ausgeführt, wenn sich die Spieldaten zwischen Client und Server unterscheiden.</v:String>
+    <v:String x:Key="LocalizableUserKickedCommandTitle">On User Kicked Command</v:String>
+    <v:String x:Key="LocalizableUserKickedCommandTooltip">Wird ausgeführt, wenn der Benutzer gekickt wird.</v:String>
+
+    <v:String x:Key="LocalizableBattleEyeTitle">Battle Eye</v:String>
+    <v:String x:Key="LocalizableBattleEyeTooltip">Ein- / Ausschalten der Battleye-Anti-Cheat-Lösung.</v:String>
+
+    <v:String x:Key="LocalizableRequiredBuildTitle">Erforderliche Build</v:String>
+    <v:String x:Key="LocalizableRequiredBuildTooltip">Legt die Spielversion fest, die eine Verbindung zum Server herstellen darf.</v:String>
+    <v:String x:Key="LocalizableRequiredBuildWatermark">Build Version</v:String>
+
+    <v:String x:Key="LocalizableLoadFileExtensionsTitle">Load File Extensions</v:String>
+    <v:String x:Key="LocalizableLoadFileExtensionsTooltip">Das Laden von Dateien mit bestimmten Erweiterungen ist nur über den Befehl load File zulässig.</v:String>
+
+    <v:String x:Key="LocalizableHtmlFileExtensionsTitle">HTML File Extensions</v:String>
+    <v:String x:Key="LocalizableHtmlFileExtensionsTooltip">Erlauben Sie nur das Laden von Dateien mit angegebenen Erweiterungen über den Befehl HTMLLoad.</v:String>
+
+    <v:String x:Key="LocalizablePreprocessFileExtensionsTitle">Preprocess File Extensions</v:String>
+    <v:String x:Key="LocalizablePreprocessFileExtensionsTooltip">Das Laden von Dateien mit angegebenen Erweiterungen ist nur über die Befehle preprocessFile / preprocessFileLineNumber zulässig.</v:String>
+
+    <v:String x:Key="LocalizableFileExtensionsWatermark">Dateierweiterungen durch Komma getrennt, ohne Punkt</v:String>
+
+    <!--  Network View  -->
+    <v:String x:Key="LocalizableTimeoutHeader">Timeouts, Schwellenwerte</v:String>
+
+    <v:String x:Key="LocalizableUpnpTitle">UPNP Mode</v:String>
+    <v:String x:Key="LocalizableUpnpTooltip">Erstellt automatisch eine Portzuordnung auf UPNP / IGD-fähigen Routern. Mit dieser Option können Sie einen Server hinter NAT erstellen (Ihr Router muss über eine öffentliche IP-Adresse verfügen und das UPNP / IGD-Protokoll unterstützen)..</v:String>
+
+    <v:String x:Key="LocalizableDisconnectTimeoutTitle">Disconnect Timeout</v:String>
+    <v:String x:Key="LocalizableDisconnectTimeoutTooltip">Wartezeit des Servers, bevor der Client getrennt wird.</v:String>
+
+    <v:String x:Key="LocalizableMaxDesyncTitle">Maximum Desync</v:String>
+    <v:String x:Key="LocalizableMaxDesyncTooltip"> Maximaler Desync-Wert, bis der Server den Benutzer tritt.</v:String>
+
+    <v:String x:Key="LocalizableMaxPingTitle">Maximum Ping</v:String>
+    <v:String x:Key="LocalizableMaxPingTooltip">Maximaler Ping-Wert, bis der Server den Benutzer tritt.</v:String>
+
+    <v:String x:Key="LocalizableMaxPacketLossTitle">Maximum Packet Loss</v:String>
+    <v:String x:Key="LocalizableMaxPacketLossTooltip">Maximaler Paketverlustwert, bis der Server den Benutzer tritt.</v:String>
+
+    <v:String x:Key="LocalizableSlowNetworkRulesTitle">Slow Network Kick Rules</v:String>
+    <v:String x:Key="LocalizableSlowNetworkRulesWatermark">0 - log, 1 - log und kick, 4 Werte durch Komma getrennt</v:String>
+    <v:String x:Key="LocalizableSlowNetworkRulesTooltip">Legt fest, ob {MaxPing, MaxPacketLoss, MaxDesync, DisconnectTimeout} protokolliert (0) oder gekickt (1) wird.</v:String>
+
+    <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
+    <v:String x:Key="LocalizableLanModeTooltip">Der Server ist nur über das lokale Netzwerk erreichbar.</v:String>
+
+    <v:String x:Key="LocalizablePortTitle">Port</v:String>
+    <v:String x:Key="LocalizablePortTooltip">Gibt den UDP-Port an, über den die Verbindung zum Server hergestellt wird.</v:String>
+
+    <v:String x:Key="LocalizableExpNetworkAlgorithmTitle">Experimental Networking Algorithm</v:String>
+    <v:String x:Key="LocalizableExpNetworkAlgorithmTooltip">Aktiviert einen neuen experimentellen Netzwerkalgorithmus, der möglicherweise besser als der Standardalgorithmus ist.</v:String>
+
+    <v:String x:Key="LocalizableMaxMsgSendTitle">Maximum Messages Send</v:String>
+    <v:String x:Key="LocalizableMaxMsgSendTooltip">Maximale Anzahl von Paketen (Gesamtnachrichten), die in einem Simulationszyklus gesendet werden können. Durch Erhöhen dieses Werts kann die Verzögerung auf Servern mit hoher Upload-Bandbreite verringert werden.</v:String>
+
+    <v:String x:Key="LocalizableMaxSizeGuaranteedTitle">Maximum Size Guaranteed</v:String>
+    <v:String x:Key="LocalizableMaxSizeGuaranteedTooltip">Maximale Größe (Nutzlast) des garantierten Pakets in Bytes (ohne Header). Kleine Nachrichten werden zu größeren Paketen gepackt (aggregierte Nachrichten). Garantierte Pakete (aggregierte Nachrichten) werden für sich nicht wiederholende Ereignisse wie das Aufnehmen verwendet.</v:String>
+
+    <v:String x:Key="LocalizableMaxSizeNonguaranteedTitle">Maximum Size Nonguaranteed</v:String>
+    <v:String x:Key="LocalizableMaxSizeNonguaranteedTooltip">Maximale Größe (Nutzlast) des nicht garantierten Pakets in Bytes (ohne Header). Kleine Nachrichten werden zu größeren Paketen gepackt (aggregierte Nachrichten). Nicht garantierte Pakete (Gesamtnachrichten) werden für sich wiederholende Aktualisierungen wie Soldaten- oder Fahrzeugposition verwendet. Das Erhöhen dieses Werts kann die Bandbreitenanforderung verbessern, jedoch die Verzögerungen erhöhen.</v:String>
+
+    <v:String x:Key="LocalizableMinBandwidthTitle">Minimum Bandwidth</v:String>
+    <v:String x:Key="LocalizableMinBandwidthTooltip">Die garantierte Bandbreite des Servers (in Bit / s). Dieser Wert hilft dem Server, die verfügbare Bandbreite zu schätzen. Eine Erhöhung auf zu optimistische Werte kann die Verzögerung und die CPU-Auslastung erhöhen, da zu viele Nachrichten gesendet, aber verworfen werden.</v:String>
+
+    <v:String x:Key="LocalizableMaxBandwidthTitle">Maximum Bandwidth</v:String>
+    <v:String x:Key="LocalizableMaxBandwidthTooltip">Die Bandbreite, die der Server garantiert niemals hat (in Bit / s). Mit diesem Wert kann der Server die verfügbare Bandbreite schätzen.</v:String>
+
+    <v:String x:Key="LocalizableMinErrorToSendTitle">Minimum Error To Send</v:String>
+    <v:String x:Key="LocalizableMinErrorToSendTooltip">Minimaler Fehler beim Senden von Updates über das Netzwerk. Bei Verwendung eines kleineren Werts können Einheiten, die mit einem Fernglas oder einem Scharfschützengewehr beobachtet werden, sanfter bewegt werden, wenn der Netzwerkverkehr zunimmt.</v:String>
+
+    <v:String x:Key="LocalizableMinErrorToSendNearTitle">Minimum Error To Send Near</v:String>
+    <v:String x:Key="LocalizableMinErrorToSendNearTooltip">Minimaler Fehler beim Senden von Updates über das Netzwerk für Geräte in der Nähe. Die Verwendung eines höheren Werts kann den für nahe Einheiten gesendeten Datenverkehr verringern.</v:String>
+
+    <v:String x:Key="LocalizableMaxPacketSizeTitle">Maximum Packet Size</v:String>
+    <v:String x:Key="LocalizableMaxPacketSizeTooltip">Maximale Größe des über das Netzwerk gesendeten Pakets. Bitte nur verwenden, wenn Ihr Router oder ISP eine geringere Paketgröße erzwingt und Sie Verbindungsprobleme mit dem Spiel haben. Desync kann auftreten, wenn MaxSizeGuaranteed / MaxSizeNonguaranteed-Werte über maxPacketSize verwendet werden.</v:String>
+
+    <v:String x:Key="LocalizableCustomFileSizeTitle">Maximum Custom File Size</v:String>
+    <v:String x:Key="LocalizableCustomFileSizeTooltip">Benutzer mit benutzerdefiniertem Gesicht oder benutzerdefiniertem Sound, der größer als diese Größe ist, werden beim Verbindungsversuch gekickt.</v:String>
+
+    <!--  Logging view  -->
+    <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
+    <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Wenn die vom Server eingeleitete callExtension länger als in Millisekunden angegeben dauert, wird die Warnung in der RPT-Datei des Servers protokolliert und im Ergebnis der Rückgabe der Erweiterung wiedergegeben.</v:String>
+
+    <v:String x:Key="LocalizableLogFileTitle">Server Console Output</v:String>
+    <v:String x:Key="LocalizableLogFileWatermark">Console output file name</v:String>
+    <v:String x:Key="LocalizableLogFileTooltip">Aktiviert die Ausgabe der dedizierten Serverkonsole in eine Textdatei. Der Standardspeicherort des Protokolls ist derselbe wie bei Absturzabbildern und anderen Protokollen. Leer lassen, um die Konsolenprotokollierung zu deaktivieren.</v:String>
+
+    <v:String x:Key="LocalizableTimeStampFormatTitle">Timestamp Format</v:String>
+    <v:String x:Key="LocalizableTimeStampFormatTooltip">Legen Sie das Zeitstempelformat für jede Berichtszeile in der serverseitigen RPT-Datei fest.</v:String>
+
+    <v:String x:Key="LocalizableDisableLogsTitle">No Logs</v:String>
+    <v:String x:Key="LocalizableDisableLogsTooltip">Deaktiviert die Protokollierung in RPT-Dateien.</v:String>
+
+    <v:String x:Key="LocalizableNetlogTitle">Netlog</v:String>
+    <v:String x:Key="LocalizableNetlogTooltip">Aktiviert die Protokollierung des Mehrspieler-Netzwerkverkehrs in einer separaten Protokolldatei.</v:String>
+
+    <v:String x:Key="LocalizableAutoTestTitle">Missions Autotest</v:String>
+    <v:String x:Key="LocalizableAutoTestWatermark">Pfad zur Konfigurationsdatei mit Missionen</v:String>
+    <v:String x:Key="LocalizableAutoTestTooltip">Lädt automatisch eine Reihe definierter Missionen und schreibt bei Fehler in eine Protokolldatei.</v:String>
+
+    <!--  Performance view  -->
+    <v:String x:Key="LocalizableTerrainGridViewDistanceTitle">Terrain Grid View Distance</v:String>
+    <v:String x:Key="LocalizableTerrainGridViewDistanceTooltip">Terrain Renderabstand in Metern.</v:String>
+
+    <v:String x:Key="LocalizableObjectViewDistanceTitle">Object View Distance</v:String>
+    <v:String x:Key="LocalizableObjectViewDistanceTooltip">Objekte Renderabstand in Metern wieder.</v:String>
+
+    <v:String x:Key="LocalizableMaxMemoryTitle">Memory Allocation Limit</v:String>
+    <v:String x:Key="LocalizableMaxMemoryTooltip">Überschreibt die Speicherzuweisungsbeschränkung auf einen bestimmten Wert (in Megabyte). Beachten Sie, dass ausführbare 32-Bit-Dateien (x86) und Windows-Betriebssysteme eine deutlich niedrigere Speicherobergrenze aufweisen als ausführbare 64-Bit-Dateien und Betriebssysteme.</v:String>
+
+    <v:String x:Key="LocalizableHyperThreadingTitle">Hyper Threading</v:String>
+    <v:String x:Key="LocalizableHyperThreadingTooltip">Ermöglicht die Verwendung aller logischen CPU-Kerne für die parallele Aufgabenbearbeitung. Wenn Ihre CPU Hyper-Threading oder eine ähnliche Technologie nicht unterstützt, wird dieser Parameter ignoriert.</v:String>
+
+    <v:String x:Key="LocalizableCpuCoreCountTitle">CPU Core Count</v:String>
+    <v:String x:Key="LocalizableCpuCoreCountTooltip">Wechseln Sie zu einer Zahl, die kleiner oder gleich der Anzahl der verfügbaren Kerne ist. Dadurch wird die automatische Erkennung außer Kraft gesetzt (entspricht nativen Kernen)..</v:String>
+
+    <v:String x:Key="LocalizableThreadCountTitle">Thread Count</v:String>
+    <v:String x:Key="LocalizableThreadCountTooltip">Option zum Definieren zusätzlicher Threads. Mögliche Werte - 0,1,3,5,7. Dadurch wird die automatische Erkennung außer Kraft gesetzt.</v:String>
+
+    <v:String x:Key="LocalizableHugeMemoryPagesTitle">Huge Memory Pages</v:String>
+    <v:String x:Key="LocalizableHugeMemoryPagesTooltip">Aktiviert riesige Seiten durch Standardspeicherzuweisung (malloc) für Client / Server.</v:String>
+
+    <v:String x:Key="LocalizableLoadMissionToMemoryTitle">Load Mission To Memory</v:String>
+    <v:String x:Key="LocalizableLoadMissionToMemoryTooltip">Der Server lädt die Mission beim ersten Client-Download in den Speicher. Anschließend wird es für die nächsten Clients vorverarbeitet und im Arbeitsspeicher zwischengespeichert, wodurch einige Server-CPU-Zyklen eingespart werden.</v:String>
+
+    <v:String x:Key="LocalizableDisableServerThreadTitle">Disable Server Thread</v:String>
+    <v:String x:Key="LocalizableDisableServerThreadTooltip">Option zum Deaktivieren des Server-Sende-Messaging-Threads im Falle eines zufälligen Absturzes (kann auch die Leistung des Servers auf Multicore-CPUs verringern).</v:String>
+
+    <!--  Missions view  -->
+    <v:String x:Key="LocalizableForcedDifficultyTitle">Forced Difficulty</v:String>
+    <v:String x:Key="LocalizableForcedDifficultyTitleTooltip">Recruit, Regular oder Veteran werden aus data config (CfgDifficultyPresets), Custom - aus dem Serverprofil entnommen.</v:String>
+
+    <v:String x:Key="LocalizableIsMissionSelected">Play</v:String>
+    <v:String x:Key="LocalizableName">Name</v:String>
+    <v:String x:Key="LocalizableMissionDifficulty">Schwierigkeit</v:String>
+    <v:String x:Key="LocalizableIsMissonWhitelisted">Whitelist</v:String>
+
+    <v:String x:Key="LocalizableAutoSelectMissionsTitle">Autoauswahl Missionen</v:String>
+    <v:String x:Key="LocalizableAutoSelectMissionsTooltip">Wenn diese Option aktiviert ist, startet der Server die nächste Mission im Missionszyklus automatisch und wartet auf Spieler in der Rollenauswahl.</v:String>
+    <v:String x:Key="LocalizableRandomMissionOrderTitle">Zufällige Missionsreihenfolge</v:String>
+    <v:String x:Key="LocalizableRandomMissionOrderTooltip">Wenn diese Option aktiviert ist, startet der Server nach dem Zufallsprinzip mit einer der Missionen aus der Missionsrotationsliste.</v:String>
+    <v:String x:Key="LocalizableMissionsToServerRestartTitle">Missionen zum Serverneustart</v:String>
+    <v:String x:Key="LocalizableMissionsToServerRestartTooltip">Häufigkeit, mit der missionEnd vor dem Neustart des Servers ausgeführt wird.</v:String>
+    <v:String x:Key="LocalizableMissionsToServerShutdownTitle">Missionen zum Herunterfahren des Servers</v:String>
+    <v:String x:Key="LocalizableMissionsToServerShutdownTooltip">Häufigkeit, mit der missionEnd vor dem Herunterfahren des Servers ausgeführt wird.</v:String>
+    <v:String x:Key="LocalizableRefreshNote">Missionen werden in demselben Ordner durchsucht wie die ausführbare Datei des Servers. Wenn keine Missionen vorhanden sind, geben Sie zuerst die ausführbare Datei des Servers an.</v:String>
+
+    <!--  Difficulty view  -->
+    <v:String x:Key="LocalizableSituationalAwarenessTitle">Situative Aufmerksamkeit</v:String>
+    <v:String x:Key="LocalizablePersonalAwarenessTitle">Persönliche Aufmerksamkeit</v:String>
+    <v:String x:Key="LocalizableSightTitle">Sicht</v:String>
+    <v:String x:Key="LocalizableMultiplayerTitle">Multiplayer Optionen</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentTitle">Erweiterter Karteninhalt</v:String>
+
+    <v:String x:Key="LocalizableReducedDamageTitle">Veringerter Schaden</v:String>
+    <v:String x:Key="LocalizableReducedDamageTooltip">Verringert den Schaden, der dem Spieler und den Mitgliedern seiner Gruppe zugefügt wird.</v:String>
+
+    <v:String x:Key="LocalizableGroupIndicatorTypeTitle">Sichtbarkeit der Gruppenanzeigen</v:String>
+    <v:String x:Key="LocalizableGroupIndicatorTypeTooltip">Zeigt Anzeigesymbole auf Einheiten in der Gruppe des Spielers an.</v:String>
+
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTitle">Sichtbarkeit Befreundeter Einheiten</v:String>
+    <v:String x:Key="LocalizableFriendlyTagsVisibilityTypeTooltip">Identifizierung befreundeter Einheiten. Funktioniert nur, wenn der Spieler auf eine Einheit zielt.</v:String>
+
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTitle">Sichtbarkeit Feidlicher Einheiten</v:String>
+    <v:String x:Key="LocalizableEnemyTagsVisibilityTypeTooltip">Identifizierung feindlicher Einheiten. Funktioniert nur, wenn der Spieler auf eine Einheit zielt.</v:String>
+
+    <v:String x:Key="LocalizableDetectedMinesVisibilityTypeTitle">Sichtbarkeit erkannter Minen</v:String>
+    <v:String x:Key="LocalizableDetectedMinesVisibilityTypeTooltip">Zeigt Symbole an, die die genaue Position der Minen anzeigen. show = zeigt die Anzeigen auf Minen in 200 m und näher an.</v:String>
+
+    <v:String x:Key="LocalizableCommandsVisibilityTypeTitle">Sichtbarkeit Befehlssymbole</v:String>
+    <v:String x:Key="LocalizableCommandsVisibilityTypeTooltip">Zeigt Befehlssymbole wie Zielmarkierungen, Befehlsübernahme und andere an.</v:String>
+
+    <v:String x:Key="LocalizableWaypointsVisibilityTypeTitle">Sichtbarkeit Wegepunkte</v:String>
+    <v:String x:Key="LocalizableWaypointsVisibilityTypeTooltip">Verwaltet die Sichtbarkeit von Wegpunktmarkierungen.</v:String>
+
+    <v:String x:Key="LocalizableWeaponInfoVisibilityTypeTitle">Sichtbarkeit Waffendaten</v:String>
+    <v:String x:Key="LocalizableWeaponInfoVisibilityTypeTooltip">Waffendaten verwalten (enthält die Anzahl der Runden und Magazine, den Schussmodus usw.).</v:String>
+
+    <v:String x:Key="LocalizableStanceIndicatorVisibilityTypeTitle">Sichtbarkeit der Positionsangabe</v:String>
+    <v:String x:Key="LocalizableStanceIndicatorVisibilityTypeTooltip">Zeigt eine Positionsangabe an (enthält die aktuelle Position, Waffenruhe und den Einsatz).</v:String>
+
+    <v:String x:Key="LocalizableStaminaBarVisibilityTypeTitle">Sichtbarkeit Ausdaueranzeige</v:String>
+    <v:String x:Key="LocalizableStaminaBarVisibilityTypeTooltip">Verwaltet die Sichtbarkeit der Ausdaueranzeige. true = wird eingeblendet, wenn sich die Ausdauer ändert.</v:String>
+
+    <v:String x:Key="LocalizableWeaponCrosshairVisibilityTypeTitle">Sichtbarkeit Waffen-Fadenkreuz</v:String>
+    <v:String x:Key="LocalizableWeaponCrosshairVisibilityTypeTooltip">Zeigt das Waffen-Fadenkreuz sowohl in der Ansicht der ersten als auch der dritten Person an.</v:String>
+
+    <v:String x:Key="LocalizableVisionAidAllowanceTitle">Sehhilfe</v:String>
+    <v:String x:Key="LocalizableVisionAidAllowanceTooltip">Hilft Einheiten in Sichtweite zu erkennen und Freund von Feind zu identifizieren.</v:String>
+
+    <v:String x:Key="LocalizableThirdPersonViewAllowanceTitle">Dritte Person Sicht</v:String>
+    <v:String x:Key="LocalizablethirdPersonViewAllowanceTooltip">Ermöglicht das Umschalten der Kamera in die Ansicht der dritten Person.</v:String>
+
+    <v:String x:Key="LocalizableCameraShakeAllowanceTitle">Kamera Erschütterung</v:String>
+    <v:String x:Key="LocalizableCameraShakeAllowanceTooltip">Schüttelt die Kamera, wenn der Spieler in der Nähe einer Explosion ist, am Fahrzeug vorbeifährt oder wenn das Fahrzeug des Spielers unter G-Last steht.</v:String>
+
+    <v:String x:Key="LocalizableScoreTableAllowanceTitle">Punkte Tabelle</v:String>
+    <v:String x:Key="LocalizableScoreTableAllowanceTooltip">Zeigt eine Tabelle mit Abschüssen, Todesfällen und der Gesamtpunktzahl im Mehrspielermodus an.</v:String>
+
+    <v:String x:Key="LocalizableDeathMessagesAllowanceTitle">Todes Nachrichten</v:String>
+    <v:String x:Key="LocalizableDeathMessagesAllowanceTooltip">Zeigt im Chatfenster an, wer den Spieler getötet hat.</v:String>
+
+    <v:String x:Key="LocalizableVonIdVisibilityTitle">VoiceOverNetwork ID Sichtbarkeit</v:String>
+    <v:String x:Key="LocalizableVonIdVisibilityTooltip">Zeigt an, wer durch VON-Kommunikation spricht.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentFriendlyAllowanceTitle">Erweiterter Karteninhalt (Verbündete)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentFriendlyAllowanceTooltip">Zeigt freundliche Einheiten auf der Karte an.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentMinesAllowanceTitle">Erweiterter Karteninhalt (Minen)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentMinesAllowanceTooltip">Zeigt erkannte Minen auf der Karte an.</v:String>
+
+    <v:String x:Key="LocalizableExtendedMapContentEnemiesAllowanceTitle">Erweiterter Karteninhalt (Feinde)</v:String>
+    <v:String x:Key="LocalizableExtendedMapContentEnemiesAllowanceTooltip">Zeigt feindliche Einheiten auf der Karte an.</v:String>
+
+    <v:String x:Key="LocalizableAutoReportAllowanceTitle">Automatische Meldungen</v:String>
+    <v:String x:Key="LocalizableAutoReportAllowanceTooltip">Aktiviert / deaktiviert die automatische Meldung von entdeckten Gegnern nur durch Spieler. Diese Einstellung hat keine Auswirkung auf AI.</v:String>
+
+    <v:String x:Key="LocalizableMultipleSavesAllowanceTitle">Multiple Saves</v:String>
+    <v:String x:Key="LocalizableMultipleSavesAllowanceTooltip">Ermöglicht dem Spieler, in einer Mission mehrere Sicherungen zu erstellen.</v:String>
+
+    <v:String x:Key="LocalizableTacticalPingAllowanceTitle">Taktischer Ping</v:String>
+    <v:String x:Key="LocalizableTacticalPingAllowanceTooltip">Ermöglicht dem Spieler, taktisches Ping zu verwenden.</v:String>
+
+    <v:String x:Key="LocalizableAiSkillTitle">AI Skill</v:String>
+    <v:String x:Key="LocalizableAiSkillTooltip">Definiert die KI-Fähigkeitsstufe.</v:String>
+
+    <v:String x:Key="LocalizableAiPrecisionTitle">AI Precision</v:String>
+    <v:String x:Key="LocalizableAiPrecisionTooltip">Definiert die Schussgenauigkeit der KI.</v:String>
+
+    <v:String x:Key="LocalizableAiPresetTitle">AI Level</v:String>
+    <v:String x:Key="LocalizableAiPresetTooltip">Definiert den voreingestellten Level der KI.</v:String>
+
+    <v:String x:Key="LocalizableDefaultDifficultyTitle">Standard-Schwierigkeitsgrad</v:String>
+
+
+    <!--  ModificationsView view  -->
+    <v:String x:Key="LocalizableAvailableTitle">Verfügbar:</v:String>
+    <v:String x:Key="LocalizableSelectedTitle">Ausgewählt:</v:String>
+
+    <v:String x:Key="LocalizableSelectAllTitle">Alles ausgewählt</v:String>
+    <v:String x:Key="LocalizableDeselectAllTitle">Alles abgewählt</v:String>
+
+    <v:String x:Key="LocalizableServerModTitle">Server Mod</v:String>
+    <v:String x:Key="LocalizableServerModTooltip">Stellt Änderungen dar, die nur vom Server angewendet werden und von Clients nicht benötigt werden.</v:String>
+
+    <v:String x:Key="LocalizableClientModTitle">Wählen</v:String>
+    <v:String x:Key="LocalizableRefreshModNote">Änderungen werden im selben Ordner wie die ausführbare Datei des Servers gesucht. Wenn das Raster keine Änderungen enthält, geben Sie die zuerst ausführbare Datei des Servers an.</v:String>
+    <v:String x:Key="LocalizableActionTitle">Aktionen</v:String>
+
+</ResourceDictionary>
