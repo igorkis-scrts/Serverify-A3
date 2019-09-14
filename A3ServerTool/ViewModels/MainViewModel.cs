@@ -1,10 +1,7 @@
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using A3ServerTool.Helpers;
 using A3ServerTool.Models;
-using A3ServerTool.Properties;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;

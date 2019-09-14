@@ -8,8 +8,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
+using Interchangeable;
 using Interchangeable.Helpers;
 
 namespace A3ServerTool.ViewModels
@@ -49,6 +51,17 @@ namespace A3ServerTool.ViewModels
             {
                 CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             });
+        }
+
+        /// <summary>
+        /// Opens the hyperlink in browser.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RequestNavigateEventArgs"/> instance containing the event data.</param>
+        public void OpenHyperlinkInBrowser(object sender, RequestNavigateEventArgs e)
+        {
+            UriDirector.OpenUri(e.Uri.AbsoluteUri);
+            e.Handled = true;
         }
     }
 }

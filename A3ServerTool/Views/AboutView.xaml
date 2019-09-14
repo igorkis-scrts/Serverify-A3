@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:A3ServerTool.Views"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
     d:DesignWidth="960"
@@ -53,21 +54,37 @@
                 HorizontalAlignment="Center"
                 FontSize="14">
                 <Bold>Contact:</Bold>
-                <Hyperlink NavigateUri="igorkiselyov74@gmail.com">igorkiselyov74@live.com</Hyperlink>
+                <Hyperlink NavigateUri="igorkiselyov74@gmail.com">
+                    igorkiselyov74@live.com
+                </Hyperlink>
             </TextBlock>
             <TextBlock
                 Margin="{StaticResource ControlMargin}"
                 HorizontalAlignment="Center"
                 FontSize="14">
                 <Bold>Source code:</Bold>
-                <Hyperlink NavigateUri="#">Github repo</Hyperlink>
+                <Hyperlink NavigateUri="https://github.com/igorkis-scrts/Serverify-A3">
+                    github
+                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="RequestNavigate">
+                                            <i:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
+                                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Hyperlink>
             </TextBlock>
             <TextBlock
                 Margin="{StaticResource ControlMargin}"
                 HorizontalAlignment="Center"
                 FontSize="14">
                 <Bold>App Icon By Hugo Alberto:</Bold>
-                <Hyperlink NavigateUri="NounProject page">https://thenounproject.com/hugugolplex/</Hyperlink>
+                <Hyperlink NavigateUri="https://thenounproject.com/hugugolplex/">
+                    https://thenounproject.com/hugugolplex/
+                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="RequestNavigate">
+                                            <i:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
+                                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Hyperlink>
             </TextBlock>
             <TextBlock
                 Margin="{StaticResource ControlMargin}"

@@ -5,7 +5,6 @@
     xmlns:b="clr-namespace:A3ServerTool.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-    xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:h="clr-namespace:A3ServerTool.Helpers"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:A3ServerTool.ViewModels.ServerSubViewModels"
@@ -470,7 +469,7 @@
                                     BI Wiki
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="RequestNavigate">
-                                            <ei:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
+                                            <i:CallMethodAction MethodName="OpenHyperlinkInBrowser" TargetObject="{Binding}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Hyperlink>
