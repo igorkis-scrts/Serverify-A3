@@ -134,6 +134,21 @@
     <Compile Include="Helpers\ServerLauncher\ServerLauncher.cs" />
     <Compile Include="Models\Config\BasicConfig.cs" />
     <Compile Include="Helpers\ServerLauncher\ServerStringBuilder.cs" />
+    <Compile Include="Properties\StaticLang.de-DE1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticLang.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\StaticLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticLang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\StaticLang.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticLang.ru-RU.resx</DependentUpon>
+    </Compile>
     <Compile Include="Storage\ArmaProfileDao.cs" />
     <Compile Include="Storage\BasicConfigDao.cs" />
     <Compile Include="Storage\IConfigDao.cs" />
@@ -306,6 +321,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="iconSmall.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\StaticLang.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StaticLang.de-DE1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\StaticLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StaticLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\StaticLang.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StaticLang.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

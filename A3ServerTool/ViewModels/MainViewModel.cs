@@ -237,24 +237,24 @@ namespace A3ServerTool.ViewModels
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
-                    Label = "Server",
-                    ToolTip = "General game server tuning",
+                    Label = Properties.StaticLang.ServerHamburgerMenuLocalizedTitle,
+                    ToolTip = Properties.StaticLang.ServerHamburgerMenuLocalizedTooltip,
                     Tag = SimpleIoc.Default.GetInstance<ServerViewModel>()
                 },
 
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Account},
-                    Label = "Profiles",
-                    ToolTip = "Server profiles",
+                    Label = Properties.StaticLang.ProfilesHamburgerMenuLocalizedTitle,
+                    ToolTip = Properties.StaticLang.ProfilesHamburgerMenuLocalizedTooltip,
                     Tag =  SimpleIoc.Default.GetInstance<ProfilesViewModel>()
                 },
 
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Settings},
-                    Label = "Settings",
-                    ToolTip = "Application settings",
+                    Label = Properties.StaticLang.SettingsHamburgerMenuLozalizedTitle,
+                    ToolTip = Properties.StaticLang.SettingsHamburgerMenuLozalizedTooltip,
                     Tag = SimpleIoc.Default.GetInstance<SettingsViewModel>()
                 }
             };
@@ -264,8 +264,8 @@ namespace A3ServerTool.ViewModels
                 new HamburgerMenuIconItem
                 {
                     Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Help},
-                    Label = "About",
-                    ToolTip = "Some help.",
+                    Label = Properties.StaticLang.AboutHamburgerMenuLozalizedTitle,
+                    ToolTip = Properties.StaticLang.AboutHamburgerMenuLozalizedTooltip,
                     Tag = SimpleIoc.Default.GetInstance<AboutViewModel>()
                 }
             };
