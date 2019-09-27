@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using Interchangeable.Enums;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace A3ServerTool.ViewModels
@@ -57,7 +58,7 @@ namespace A3ServerTool.ViewModels
         }
         private Profile _selectedProfile;
 
-        public DialogResult<Profile> DialogResult
+        public SaveDialogResult<Profile> DialogResult
         {
             get => _dialogResult;
             set
@@ -70,7 +71,7 @@ namespace A3ServerTool.ViewModels
                 RaisePropertyChanged();
             }
         }
-        private DialogResult<Profile> _dialogResult;
+        private SaveDialogResult<Profile> _dialogResult;
 
         public ProfilesViewModel(MainViewModel viewModel, IProfileDirector profileDirector)
         {
@@ -78,7 +79,7 @@ namespace A3ServerTool.ViewModels
             _mainViewModel = viewModel;
 
             Messenger.Default.Register<string>(this, MainViewModel.Token, DoByRequest);
-            Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessage);
+            Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessage);
 
             RefreshData();
         }
@@ -95,15 +96,10 @@ namespace A3ServerTool.ViewModels
                                return;
                            }
 
-                           var oldExecutablePath = _mainViewModel?.CurrentProfile?.ExecutablePath;
                            _mainViewModel.CurrentProfile = _profileDirector.GetById(SelectedProfile.Id);
                            Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
-
-                           if(_mainViewModel.CurrentProfile.ExecutablePath != oldExecutablePath)
-                           {
-                               Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
-                               Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
-                           }
+                           Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                           Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
                        }, _ => SelectedProfile != null));
             }
         }
@@ -114,13 +110,30 @@ namespace A3ServerTool.ViewModels
             get
             {
                 return _saveCurrentProfileCommand ??
-                       (_saveCurrentProfileCommand = new RelayCommand(_ =>
+                       (_saveCurrentProfileCommand = new RelayCommand(async _ =>
                        {
                            if (string.IsNullOrEmpty(_mainViewModel.CurrentProfile.Name))
                            {
-                               _mainViewModel.CurrentProfile.Name = "Default Profile";
+                               ShowDialog();
+                               Messenger.Default.Send(_mainViewModel.CurrentProfile);
+                               Messenger.Default.Send(ViewMode.Edit);
                            }
-                          _profileDirector.SaveStorage(_mainViewModel.CurrentProfile);
+                           else
+                           {
+                               _profileDirector.SaveStorage(_mainViewModel.CurrentProfile);
+                               Properties.Settings.Default.LastUsedProfile = _mainViewModel.CurrentProfile.Id;
+                               Properties.Settings.Default.Save();
+
+                               var dialogSettings = new MetroDialogSettings
+                               {
+                                   AffirmativeButtonText = "OK",
+                                   ColorScheme = MetroDialogColorScheme.Accented
+                               };
+
+                               await ((MetroWindow)Application.Current.MainWindow)
+                                   .ShowMessageAsync(Properties.StaticLang.SuccessTitle, Properties.StaticLang.SuccessfulSavedProfileText, MessageDialogStyle.Affirmative, dialogSettings);
+                           }
+                           RefreshData();
                        }, _ => _mainViewModel.CurrentProfile != null));
             }
         }
@@ -181,6 +194,19 @@ namespace A3ServerTool.ViewModels
         }
         private ICommand _editProfileCommand;
 
+        /// <summary>
+        /// Gets the view model loaded command.
+        /// </summary>
+        public ICommand ViewModelLoadedCommand
+        {
+            get
+            {
+                return _viewModelLoadedCommand ??
+                       (_viewModelLoadedCommand = new RelayCommand(_ => RefreshData()));
+            }
+        }
+        private ICommand _viewModelLoadedCommand;
+
         private void RefreshData()
         {
             Profiles = new ObservableCollection<Profile>(_profileDirector.GetAll());
@@ -192,22 +218,25 @@ namespace A3ServerTool.ViewModels
             await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
         }
 
-        private async void ProcessMessage(DialogResult<Profile> messageContent)
+        private async void ProcessMessage(SaveDialogResult<Profile> messageContent)
         {
             DialogResult = messageContent;
             await _dialogCoordinator.HideMetroDialogAsync(this, _customDialog);
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                _profileDirector.SetDefaultValues(DialogResult.Object);
-                _profileDirector.SaveStorage(DialogResult.Object);
-
-                if (!Equals(DialogResult.Object.Id, _mainViewModel.CurrentProfile?.Id))
+                if(DialogResult.ActionType == SaveObjectActionType.Create)
                 {
-                    _mainViewModel.CurrentProfile = DialogResult.Object;
-                    Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
-                    Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
+                    _profileDirector.SetDefaultValues(DialogResult.Object);
                 }
+
+                _mainViewModel.CurrentProfile = DialogResult.Object;
+                _profileDirector.SaveStorage(DialogResult.Object);
+                Properties.Settings.Default.LastUsedProfile = DialogResult.Object.Id;
+                Properties.Settings.Default.Save();
+
+                Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
             }
 
             RefreshData();

@@ -152,7 +152,7 @@ namespace A3ServerTool.ViewModels
                            SetWindowState();
                            CreateMenuItems();
 
-                           Messenger.Default.Register<DialogResult<Profile>>(this, Token, ProcessMessageResult);
+                           Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessageResult);
 
                            var lastProfileId = Properties.Settings.Default.LastUsedProfile;
                            if (lastProfileId != Guid.Empty)
@@ -202,7 +202,7 @@ namespace A3ServerTool.ViewModels
                                };
 
                                await ((MetroWindow)Application.Current.MainWindow)
-                                   .ShowMessageAsync("Success", "Profile was saved.", MessageDialogStyle.Affirmative, dialogSettings);
+                                   .ShowMessageAsync(Properties.StaticLang.SuccessTitle, Properties.StaticLang.SuccessfulSavedProfileText, MessageDialogStyle.Affirmative, dialogSettings);
                            }
                            else
                            {
@@ -272,7 +272,7 @@ namespace A3ServerTool.ViewModels
         /// Processes the message result (profile creation dialog).
         /// </summary>
         /// <param name="messageContent">Content of the message.</param>
-        private async void ProcessMessageResult(DialogResult<Profile> messageContent)
+        private async void ProcessMessageResult(SaveDialogResult<Profile> messageContent)
         {
             var dialogResult = messageContent;
             await _dialogCoordinator.HideMetroDialogAsync(this, _customDialog);
