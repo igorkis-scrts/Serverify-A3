@@ -27,10 +27,9 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="Name"
+                    Content="{DynamicResource LocalizableNameTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
-
                 <TextBox
                     x:Name="NameTextBox"
                     Margin="{StaticResource ControlMargin}"
@@ -40,14 +39,13 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="Description"
+                    Content="{DynamicResource LocalizableDescriptionTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
-
                 <TextBox
                     x:Name="DescriptionTextBox"
                     Margin="{StaticResource ControlMargin}"
-                    mah:TextBoxHelper.Watermark="Short profile description"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableDescriptionWatermark}"
                     Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
             <Grid Grid.Row="1">
@@ -85,13 +83,12 @@
                     </Button>
 
                     <Button
-                        x:Name="CancelButton"
                         MinWidth="64"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Command="{Binding CancelCommand}"
-                        Content="Cancel"
+                        Content="{DynamicResource LocalizableCancelButtonTitle}"
                         Style="{StaticResource MetroFlatButton}" />
                 </DockPanel>
             </Grid>

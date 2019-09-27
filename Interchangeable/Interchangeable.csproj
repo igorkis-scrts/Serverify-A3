@@ -59,6 +59,7 @@
     <Compile Include="IO\SaveDataDto.cs" />
     <Compile Include="IO\TextManager.cs" />
     <Compile Include="RegexPresetValues.cs" />
+    <Compile Include="SaveObjectActionType.cs" />
     <Compile Include="SecureStringHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\ViewMode.cs" />

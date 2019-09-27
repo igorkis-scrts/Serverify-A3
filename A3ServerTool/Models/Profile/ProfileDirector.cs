@@ -81,10 +81,10 @@ namespace A3ServerTool.Models
                 .ToList();
             var configMods = profile.ArgumentSettings.Modifications;
 
-            Parallel.ForEach(storedMods, mod =>
+            foreach(var mod in storedMods)
             {
                 var configMod = configMods.FirstOrDefault(x => x.Name == mod.Name);
-                if(configMod?.IsClientMod == true)
+                if (configMod?.IsClientMod == true)
                 {
                     mod.IsClientMod = true;
                 }
@@ -93,7 +93,7 @@ namespace A3ServerTool.Models
                 {
                     mod.IsServerMod = true;
                 }
-            });
+            }
         }
 
         /// <summary>

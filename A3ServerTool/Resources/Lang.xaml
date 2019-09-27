@@ -425,4 +425,11 @@
     <v:String x:Key="LocalizableRefreshModNote">Modifications are searched in the same folder as the server executable file. If there are no modifications in the grid - specify server executable file first.</v:String>
     <v:String x:Key="LocalizableActionTitle">Actions</v:String>
 
+    <!--  Profile dialog view  -->
+    <v:String x:Key="LocalizableNameTitle">Name</v:String>
+    
+    <v:String x:Key="LocalizableDescriptionTitle">Description</v:String>
+    <v:String x:Key="LocalizableDescriptionWatermark">Profile short description.</v:String>
+         
+    <v:String x:Key="LocalizableCancelButtonTitle">Отмена</v:String>
 </ResourceDictionary>

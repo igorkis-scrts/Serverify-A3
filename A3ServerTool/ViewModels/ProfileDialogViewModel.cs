@@ -161,16 +161,19 @@ namespace A3ServerTool.ViewModels
         /// </summary>
         private void SendMessage(MessageDialogResult dialogResult, Profile profile = null)
         {
-            var result = new DialogResult<Profile>(dialogResult, profile);
-
             switch(_viewMode)
             {
                 case ViewMode.New:
+                    Messenger.Default.Send(new SaveDialogResult<Profile>(dialogResult, profile, SaveObjectActionType.Create),
+                        ProfilesViewModel.Token);
+                    break;
                 case ViewMode.Edit:
-                    Messenger.Default.Send(result, "ProfilesViewModel");
+                    Messenger.Default.Send(new SaveDialogResult<Profile>(dialogResult, profile, SaveObjectActionType.Update),
+                        ProfilesViewModel.Token);
                     break;
                 case ViewMode.Save:
-                    Messenger.Default.Send(result, "MainViewModel");
+                    Messenger.Default.Send(new SaveDialogResult<Profile>(dialogResult, profile, SaveObjectActionType.Create), 
+                        MainViewModel.Token);
                     break;
             }
         }
@@ -193,20 +196,20 @@ namespace A3ServerTool.ViewModels
             switch (mode)
             {
                 case ViewMode.Edit:
-                    HeaderText = "Edit profile";
-                    ButtonText = "Edit";
+                    HeaderText = Properties.StaticLang.ProfileDialogViewEditHeader;
+                    ButtonText = Properties.StaticLang.ProfileDialogEditButtonText;
                     VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.New:
-                    HeaderText = "Create profile";
-                    ButtonText = "Create";
+                    HeaderText = Properties.StaticLang.ProfileDialogViewHeader;
+                    ButtonText = Properties.StaticLang.ProfileDialogCreateButtonText;
                     //temporarily disabled
                     //VisibilityState = Visibility.Visible;
                     VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.Save:
-                    HeaderText = "Save profile";
-                    ButtonText = "Save";
+                    HeaderText = Properties.StaticLang.ProfileDialogViewSaveHeader;
+                    ButtonText = Properties.StaticLang.ProfileDialogSaveButtonText;
                     VisibilityState = Visibility.Collapsed;
                     break;
                 case ViewMode.None:

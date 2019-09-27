@@ -15,6 +15,12 @@
     DataContext="{Binding Profiles, Source={StaticResource Bindings}}"
     mc:Ignorable="d">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ViewModelLoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>

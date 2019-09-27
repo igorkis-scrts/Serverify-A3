@@ -10,15 +10,17 @@ namespace Interchangeable
     /// <summary>
     /// Custom dialog result
     /// </summary>
-    public struct DialogResult<T>
+    public struct SaveDialogResult<T>
     {
         public MessageDialogResult Message;
         public T Object;
+        public SaveObjectActionType ActionType;
 
-        public DialogResult(MessageDialogResult messageResult, T objectResult)
+        public SaveDialogResult(MessageDialogResult messageResult, T objectResult, SaveObjectActionType actionType)
         {
             Message = messageResult;
             Object = objectResult;
+            ActionType = actionType;
         }
     }
 }

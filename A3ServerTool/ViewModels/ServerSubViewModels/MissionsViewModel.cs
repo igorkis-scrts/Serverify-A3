@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -25,6 +26,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private readonly ServerViewModel _parentViewModel;
         private readonly IDao<Mission> _missionDao;
         private readonly GameLocationFinder _locationFinder;
+        private readonly SynchronizationContext _uiContext = SynchronizationContext.Current;
 
         public Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
@@ -122,6 +124,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 RaisePropertyChanged();
             }
         }
+
         private ObservableCollection<Mission> _missions;
 
         /// <summary>
@@ -151,10 +154,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 return _refreshCommand ??
-                       (_refreshCommand = new RelayCommand(_ =>
-                       {
-                           RefreshMissions();
-                       }));
+                       (_refreshCommand = new RelayCommand(_ => RefreshMissions()));
             }
         }
         private ICommand _refreshCommand;
@@ -167,15 +167,16 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(_ =>
+                       (_windowLoadedCommand = new RelayCommand(async _ =>
                        {
                            if(!Missions.Any())
                            {
-                               RefreshMissions();
+                               await RefreshMissions().ConfigureAwait(false);
                            }
                        }));
             }
         }
+
         private ICommand _windowLoadedCommand;
 
         public MissionsViewModel(ServerViewModel parentViewModel, IDao<Mission> missionDao, GameLocationFinder locationFinder)
@@ -190,41 +191,55 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
 
         private Task RefreshMissions()
         {
-            var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
-            if (string.IsNullOrWhiteSpace(gamePath))
+            try
             {
-                Missions.Clear();
-                return Task.FromResult<object>(null);
-            }
-
-            return Task.Run(() =>
-            {
-                if(Missions != null)
+                var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
+                if (string.IsNullOrWhiteSpace(gamePath))
                 {
-                    var oldMissions = new List<Mission>(Missions);
-                    var updatedMissions = new List<Mission>(_missionDao.GetAll(gamePath));
+                    Missions.Clear();
+                    return Task.FromResult<object>(null);
+                }
 
-                    foreach (var mission in updatedMissions)
+                return Task.Run(() =>
+                {
+                    try
                     {
-                        var oldMission = oldMissions.FirstOrDefault(m => m.Name == mission.Name);
-                        if (oldMission != null)
+                        if (Missions != null)
                         {
-                            mission.IsSelected = oldMission.IsSelected;
-                            mission.IsWhitelisted = oldMission.IsWhitelisted;
-                            mission.Difficulty = oldMission.Difficulty;
+                            var oldMissions = new List<Mission>(Missions);
+                            var updatedMissions = new List<Mission>(_missionDao.GetAll(gamePath));
+
+                            foreach (var mission in updatedMissions)
+                            {
+                                var oldMission = oldMissions.FirstOrDefault(m => m.Name == mission.Name);
+                                if (oldMission != null)
+                                {
+                                    mission.IsSelected = oldMission.IsSelected;
+                                    mission.IsWhitelisted = oldMission.IsWhitelisted;
+                                    mission.Difficulty = oldMission.Difficulty;
+                                }
+                            }
+
+                            CurrentProfile.ServerConfig.Missions = updatedMissions;
+                            Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
+                        }
+                        else
+                        {
+                            var missions = _missionDao.GetAll(gamePath);
+                            CurrentProfile.ServerConfig.Missions = missions.ToList();
+                            Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
                         }
                     }
-
-                    CurrentProfile.ServerConfig.Missions = updatedMissions;
-                    Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
-                }
-                else
-                {
-                    var missions = _missionDao.GetAll(gamePath);
-                    CurrentProfile.ServerConfig.Missions = missions.ToList();
-                    Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
-                }
-            });
+                    catch
+                    {
+                        throw;
+                    }
+                });
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         /// <summary>

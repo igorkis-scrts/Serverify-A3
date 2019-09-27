@@ -8,12 +8,9 @@ namespace Interchangeable.IO
     /// <summary>
     /// Various methods for I/O things
     /// </summary>
-    /// TODO: Is singleton really necessary here?
-    /// TODO: Class rename?
     public sealed class FileHelper
     {
         private static FileHelper _instance;
-        //private static string RootFolder => AppDomain.CurrentDomain.BaseDirectory;
 
         private FileHelper() {}
 
@@ -102,7 +99,7 @@ namespace Interchangeable.IO
             }
             else
             {
-                throw new FileNotFoundException("File is not exists.");
+                throw new FileNotFoundException("File not exists.");
             }
         }
 

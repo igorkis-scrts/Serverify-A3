@@ -120,13 +120,49 @@
   <data name="AboutHamburgerMenuLozalizedTitle" xml:space="preserve">
     <value>О программе</value>
   </data>
+  <data name="AboutHamburgerMenuLozalizedTooltip" xml:space="preserve">
+    <value>Информация об авторе и приложении.</value>
+  </data>
+  <data name="ProfileDialogCreateButtonText" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="ProfileDialogEditButtonText" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="ProfileDialogSaveButtonText" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ProfileDialogViewCreateHeader" xml:space="preserve">
+    <value>Создать профиль</value>
+  </data>
+  <data name="ProfileDialogViewEditHeader" xml:space="preserve">
+    <value>Редактировать профиль</value>
+  </data>
+  <data name="ProfileDialogViewSaveHeader" xml:space="preserve">
+    <value>Сохранить профиль</value>
+  </data>
   <data name="ProfilesHamburgerMenuLocalizedTitle" xml:space="preserve">
     <value>Профили</value>
+  </data>
+  <data name="ProfilesHamburgerMenuLocalizedTooltip" xml:space="preserve">
+    <value>Профили сервера.</value>
   </data>
   <data name="ServerHamburgerMenuLocalizedTitle" xml:space="preserve">
     <value>Сервер</value>
   </data>
+  <data name="ServerHamburgerMenuLocalizedTooltip" xml:space="preserve">
+    <value>Настройка игрового сервера.</value>
+  </data>
   <data name="SettingsHamburgerMenuLozalizedTitle" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="SettingsHamburgerMenuLozalizedTooltip" xml:space="preserve">
+    <value>Настройки приложения.</value>
+  </data>
+  <data name="SuccessfulSavedProfileText" xml:space="preserve">
+    <value>Профиль был успешно сохранён.</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Успех</value>
   </data>
 </root>

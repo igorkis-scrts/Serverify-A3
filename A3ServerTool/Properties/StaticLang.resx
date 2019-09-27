@@ -123,6 +123,24 @@
   <data name="AboutHamburgerMenuLozalizedTooltip" xml:space="preserve">
     <value>Info about author and application itself.</value>
   </data>
+  <data name="ProfileDialogCreateButtonText" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="ProfileDialogEditButtonText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ProfileDialogSaveButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ProfileDialogViewEditHeader" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="ProfileDialogViewHeader" xml:space="preserve">
+    <value>Create Profile</value>
+  </data>
+  <data name="ProfileDialogViewSaveHeader" xml:space="preserve">
+    <value>Save Profile</value>
+  </data>
   <data name="ProfilesHamburgerMenuLocalizedTitle" xml:space="preserve">
     <value>Profiles</value>
   </data>
@@ -140,5 +158,11 @@
   </data>
   <data name="SettingsHamburgerMenuLozalizedTooltip" xml:space="preserve">
     <value>Application settings.</value>
+  </data>
+  <data name="SuccessfulSavedProfileText" xml:space="preserve">
+    <value>Profile was saved.</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Success</value>
   </data>
 </root>

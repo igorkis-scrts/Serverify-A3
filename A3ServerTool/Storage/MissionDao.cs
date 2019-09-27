@@ -38,14 +38,14 @@ namespace A3ServerTool.Storage
                 return missions;
             }
 
-            Parallel.ForEach(files, file =>
+            foreach(var file in files)
             {
                 var mission = new Mission
                 {
                     Name = file.Name.Replace(MissionFileExtension, string.Empty)
                 };
                 missions.Add(mission);
-            });
+            }
 
             return missions;
         }
