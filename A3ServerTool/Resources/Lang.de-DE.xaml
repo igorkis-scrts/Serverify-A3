@@ -410,7 +410,6 @@
 
     <v:String x:Key="LocalizableDefaultDifficultyTitle">Standard-Schwierigkeitsgrad</v:String>
 
-
     <!--  ModificationsView view  -->
     <v:String x:Key="LocalizableAvailableTitle">Verfügbar:</v:String>
     <v:String x:Key="LocalizableSelectedTitle">Ausgewählt:</v:String>
@@ -425,4 +424,11 @@
     <v:String x:Key="LocalizableRefreshModNote">Änderungen werden im selben Ordner wie die ausführbare Datei des Servers gesucht. Wenn das Raster keine Änderungen enthält, geben Sie die zuerst ausführbare Datei des Servers an.</v:String>
     <v:String x:Key="LocalizableActionTitle">Aktionen</v:String>
 
+    <!--  Profile dialog view  -->
+    <v:String x:Key="LocalizableNameTitle">Name</v:String>
+
+    <v:String x:Key="LocalizableDescriptionTitle">Beschreibung</v:String>
+    <v:String x:Key="LocalizableDescriptionWatermark">Kurzbeschreibung des Profils.</v:String>
+
+    <v:String x:Key="LocalizableCancelButtonTitle">Stornieren</v:String>
 </ResourceDictionary>

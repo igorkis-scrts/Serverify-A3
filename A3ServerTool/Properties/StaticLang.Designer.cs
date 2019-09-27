@@ -79,6 +79,60 @@ namespace A3ServerTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string ProfileDialogCreateButtonText {
+            get {
+                return ResourceManager.GetString("ProfileDialogCreateButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string ProfileDialogEditButtonText {
+            get {
+                return ResourceManager.GetString("ProfileDialogEditButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ProfileDialogSaveButtonText {
+            get {
+                return ResourceManager.GetString("ProfileDialogSaveButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Profile.
+        /// </summary>
+        public static string ProfileDialogViewEditHeader {
+            get {
+                return ResourceManager.GetString("ProfileDialogViewEditHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Profile.
+        /// </summary>
+        public static string ProfileDialogViewHeader {
+            get {
+                return ResourceManager.GetString("ProfileDialogViewHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Profile.
+        /// </summary>
+        public static string ProfileDialogViewSaveHeader {
+            get {
+                return ResourceManager.GetString("ProfileDialogViewSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profiles.
         /// </summary>
         public static string ProfilesHamburgerMenuLocalizedTitle {
@@ -129,6 +183,24 @@ namespace A3ServerTool.Properties {
         public static string SettingsHamburgerMenuLozalizedTooltip {
             get {
                 return ResourceManager.GetString("SettingsHamburgerMenuLozalizedTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile was saved..
+        /// </summary>
+        public static string SuccessfulSavedProfileText {
+            get {
+                return ResourceManager.GetString("SuccessfulSavedProfileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        public static string SuccessTitle {
+            get {
+                return ResourceManager.GetString("SuccessTitle", resourceCulture);
             }
         }
     }

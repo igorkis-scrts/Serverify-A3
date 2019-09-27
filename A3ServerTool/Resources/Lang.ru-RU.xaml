@@ -425,4 +425,11 @@
     <v:String x:Key="LocalizableRefreshModNote">Модификации ищутся в той же папке, что и исполняемый файл сервера. Если моды отсутствуют в списке - сначала укажите исполняемый файл сервера.</v:String>
     <v:String x:Key="LocalizableActionTitle">Действия</v:String>
 
+    <!--  Profile dialog view  -->
+    <v:String x:Key="LocalizableNameTitle">Название</v:String>
+
+    <v:String x:Key="LocalizableDescriptionTitle">Описание</v:String>
+    <v:String x:Key="LocalizableDescriptionWatermark">Краткое описание профиля.</v:String>
+
+    <v:String x:Key="LocalizableCancelButtonTitle">Отмена</v:String>
 </ResourceDictionary>
