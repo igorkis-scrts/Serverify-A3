@@ -30,14 +30,14 @@ namespace A3ServerTool.Storage
                 return mods;
             }
 
-            Parallel.ForEach(modFolders, folder =>
+            foreach(var folder in modFolders)
             {
                 var mod = new Modification
                 {
                     Name = folder.Name
                 };
                 mods.Add(mod);
-            });
+            }
 
             return mods;
         }

@@ -37,15 +37,20 @@ namespace A3ServerTool.Storage
         public IList<Profile> GetAll()
         {
             var profiles = new ObservableCollection<Profile>();
+            if(!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder)))
+            {
+                return profiles;
+            }
+
             var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
             if (!profileFolders.Any()) return profiles;
 
-            Parallel.ForEach(profileFolders, folder =>
+            foreach(var folder in profileFolders)
             {
                 var files = FileHelper.GetAllFiles(folder);
-                if(files == null)
+                if (files == null)
                 {
-                    return;
+                    continue;
                 }
 
                 Profile profile;
@@ -56,7 +61,7 @@ namespace A3ServerTool.Storage
                     profile.ProfilePath = folder.FullName;
                     profiles.Add(profile);
                 }
-            });
+            }
 
             return profiles;
         }
