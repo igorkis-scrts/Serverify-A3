@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interchangeable", "Intercha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomControls\CustomControls.csproj", "{EB995AE3-01D4-489E-9F5A-425A8CDCAF7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerifyA3.Tests", "ServerifyA3.Tests\ServerifyA3.Tests.csproj", "{07FEB873-6D21-4615-BABD-E36CC6A13297}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerifyA3Tests", "ServerifyA3Tests\ServerifyA3Tests.csproj", "{E0D91641-72EC-487C-B47C-0CF3310DAAF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{EB995AE3-01D4-489E-9F5A-425A8CDCAF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB995AE3-01D4-489E-9F5A-425A8CDCAF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB995AE3-01D4-489E-9F5A-425A8CDCAF7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07FEB873-6D21-4615-BABD-E36CC6A13297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07FEB873-6D21-4615-BABD-E36CC6A13297}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07FEB873-6D21-4615-BABD-E36CC6A13297}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07FEB873-6D21-4615-BABD-E36CC6A13297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D91641-72EC-487C-B47C-0CF3310DAAF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D91641-72EC-487C-B47C-0CF3310DAAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D91641-72EC-487C-B47C-0CF3310DAAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D91641-72EC-487C-B47C-0CF3310DAAF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
