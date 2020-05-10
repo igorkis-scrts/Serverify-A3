@@ -139,6 +139,38 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
         private ICommand _deselectAllCommand;
 
+        /// <summary>
+        /// Gets the select all command.
+        /// </summary>
+        public ICommand AddModCommand
+        {
+            get
+            {
+                return _addModCommand ??
+                    (_addModCommand = new RelayCommand(_ =>
+                {
+
+                }));
+            }
+        }
+        private ICommand _addModCommand;
+
+        /// <summary>
+        /// Gets the select all command.
+        /// </summary>
+        public ICommand RemoveModCommand
+        {
+            get
+            {
+                return _removeModCommand ??
+                    (_removeModCommand = new RelayCommand(_ =>
+                    {
+
+                    }));
+            }
+        }
+        private ICommand _removeModCommand;
+
 
         /// <summary>
         /// Sets the actions that will be executed after form will be fully ready to be drawn on screen.

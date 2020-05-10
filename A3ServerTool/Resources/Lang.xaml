@@ -420,7 +420,9 @@
 
     <v:String x:Key="LocalizableSelectAllTitle">Select All</v:String>
     <v:String x:Key="LocalizableDeselectAllTitle">Deselect All</v:String>
-
+    <v:String x:Key="LocalizableAddModTitle">Add Mod</v:String>
+    <v:String x:Key="LocalizableRemoveModTitle">Remove Mod</v:String>
+    
     <v:String x:Key="LocalizableServerModTitle">Server Mod</v:String>
     <v:String x:Key="LocalizableServerModTooltip">Represents modifications that will be applied only by server and will be not required from clients.</v:String>
 

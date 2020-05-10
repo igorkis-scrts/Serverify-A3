@@ -6,6 +6,7 @@
     xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:A3ServerTool.Views.A3"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
@@ -92,50 +93,107 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1">
-
                 <DockPanel Margin="{StaticResource ControlMargin}">
-
                     <Button
-                        Height="28"
+                        Height="40"
                         MinWidth="64"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
                         Command="{Binding RefreshCommand}"
-                        Content="{DynamicResource LocalizableRefresh}"
-                        Style="{DynamicResource MetroFlatButton}" />
-
+                        Style="{DynamicResource MetroFlatButton}" 
+                    >
+                        <DockPanel>
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="Refresh" />
+                            <TextBlock Margin="4" Text="{DynamicResource LocalizableRefresh}" />
+                        </DockPanel>
+                    </Button>
                     <TextBlock
                         MinWidth="128"
                         MaxWidth="256"
                         Text="{DynamicResource LocalizableRefreshModNote}"
-                        TextWrapping="Wrap" />
+                        TextWrapping="Wrap" 
+                    />
                 </DockPanel>
 
                 <Label
                     Margin="{StaticResource ControlMargin}"
+                    Padding="10 8 8 8"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Content="{DynamicResource LocalizableActionTitle}"
                     Style="{StaticResource headerLabel}" />
 
-                <DockPanel Margin="{StaticResource EndControlMargin}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
                     <Button
-                        Height="28"
-                        MinWidth="64"
+                        Grid.Column="0"
+                        Height="40"
+                        MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
                         Command="{Binding SelectAllCommand}"
-                        Content="{DynamicResource LocalizableSelectAllTitle}"
-                        Style="{DynamicResource MetroFlatButton}" />
+                        Style="{DynamicResource MetroFlatButton}">
+                        <DockPanel>
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="SelectAll" />
+                            <TextBlock Margin="4" Text="{DynamicResource LocalizableSelectAllTitle}" />
+                        </DockPanel>
+                    </Button>
+
                     <Button
-                        Height="28"
-                        MinWidth="64"
+                        Grid.Column="1"
+                        Height="40"
+                        MinWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Right"
+                        Command="{Binding DeselectAllCommand}"
+                        Style="{DynamicResource MetroFlatButton}">
+                        <DockPanel>
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="SelectOff" />
+                            <TextBlock Margin="4" Text="{DynamicResource LocalizableDeselectAllTitle}" />
+                        </DockPanel>
+                    </Button>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="0"
+                        Height="40"
+                        MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        Command="{Binding DeselectAllCommand}"
-                        Content="{DynamicResource LocalizableDeselectAllTitle}"
-                        Style="{DynamicResource MetroFlatButton}" />
-                </DockPanel>
+                        Command="{Binding AddModCommand}"
+                        Style="{DynamicResource MetroFlatButton}">
+                        <DockPanel>
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="PlusBoxMultiple" />
+                            <TextBlock Margin="4" Text="{DynamicResource LocalizableAddModTitle}" />
+                        </DockPanel>
+                    </Button>
+
+                    <Button
+                        Grid.Column="1"
+                        Height="40"
+                        MinWidth="128"
+                        Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Right"
+                        Command="{Binding AddModCommand}"
+                        Style="{DynamicResource MetroFlatButton}">
+                        <DockPanel>
+                            <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="MinusBoxMultiple" />
+                            <TextBlock Margin="4" Text="{DynamicResource LocalizableRemoveModTitle}" />
+                        </DockPanel>
+                    </Button>
+
+                </Grid>
             </StackPanel>
         </Grid>
     </ScrollViewer>
