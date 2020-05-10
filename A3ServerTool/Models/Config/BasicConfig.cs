@@ -104,14 +104,14 @@ namespace A3ServerTool.Models.Config
         /// <summary>
         /// Maximum packet size
         /// </summary>
-        [ConfigProperty(PropertyName = "maxPacketSize")]
+        [ConfigProperty(PropertyName = "maxPacketSize", Parent = "sockets")]
         [WrappingClass(new string[] { "sockets" })]
         public int? SocketsMaxPacketSize { get; set; } = 1400;
 
         /// <summary>
         /// Maximum packet size
         /// </summary>
-        [ConfigProperty(PropertyName = "initBandwidth")]
+        [ConfigProperty(PropertyName = "initBandwidth", Parent = "sockets")]
         [WrappingClass(new string[] { "sockets" })]
         public int? SocketsInitBandwidth { get; set; } = 1250000;
 
@@ -120,7 +120,7 @@ namespace A3ServerTool.Models.Config
         /// This value helps server to estimate bandwidth available.
         /// Increasing it to too optimistic values can increase lag and CPU load, as too many messages will be sent but discarded.
         /// </summary>
-        [ConfigProperty(PropertyName = "MinBandwidth")]
+        [ConfigProperty(PropertyName = "MinBandwidth", Parent = "sockets")]
         [WrappingClass(new string[] { "sockets" })]
         public int? SocketsMinBandwidth { get; set; } = 65536;
 
@@ -128,7 +128,7 @@ namespace A3ServerTool.Models.Config
         /// Bandwidth the server is guaranteed to never have (in bps).
         /// This value helps the server to estimate bandwidth available.
         /// </summary>
-        [ConfigProperty(PropertyName = "MaxBandwidth")]
+        [ConfigProperty(PropertyName = "MaxBandwidth", Parent = "sockets")]
         [WrappingClass(new string[] { "sockets" })]
         public int? SocketsMaxBandwidth { get; set; } = 6250000;
 

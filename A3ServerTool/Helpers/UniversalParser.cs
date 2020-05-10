@@ -41,7 +41,8 @@ namespace A3ServerTool.Helpers
 
                     if (configProperty?.IgnoreParsing != false) continue;
 
-                    nameToValueDictionary.TryGetValue(configProperty.PropertyName, out var value);
+                    var name = string.IsNullOrEmpty(configProperty.Parent) ? configProperty.PropertyName : configProperty.Parent + configProperty.PropertyName;
+                    nameToValueDictionary.TryGetValue(name, out var value);
 
                     if (value == null) continue;
 
@@ -364,6 +365,7 @@ namespace A3ServerTool.Helpers
         private Dictionary<string, string> ConvertFromTextToDictionary(string[] textProperties, Type type)
         {
             var nameToValueDictionary = new Dictionary<string, string>();
+            var parent = "";
 
             for (int i = 0; i < textProperties.Length; i++)
             {
@@ -371,6 +373,8 @@ namespace A3ServerTool.Helpers
                     .Where(x => x != "=")
                     .Select(x => x.Trim())
                     .ToArray();
+                if (splittedProperty[0].StartsWith("class ")) parent = splittedProperty[0].Substring("class ".Length);
+                if (splittedProperty[0].StartsWith("};")) parent = "";
                 if (splittedProperty.Length != 2) continue;
 
                 if (splittedProperty[0].Contains("[]"))
@@ -382,7 +386,7 @@ namespace A3ServerTool.Helpers
                         if (textProperties[j] == "};")
                         {
                             value = Regex.Replace(value, @"[^\S ]+", "");
-                            nameToValueDictionary.Add(splittedProperty[0], value?.Replace("\"", string.Empty));
+                            nameToValueDictionary.Add(parent + splittedProperty[0], value?.Replace("\"", string.Empty));
                             break;
                         }
 
@@ -407,7 +411,7 @@ namespace A3ServerTool.Helpers
                         splittedProperty[1] = splittedProperty[1].Replace(";", string.Empty);
                     }
 
-                    nameToValueDictionary.Add(splittedProperty[0], splittedProperty[1]);
+                    nameToValueDictionary.Add(parent + splittedProperty[0], splittedProperty[1]);
                 }
             }
 

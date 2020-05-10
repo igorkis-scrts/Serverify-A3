@@ -14,6 +14,11 @@ namespace A3ServerTool.Attributes
         public string PropertyName { get; set; }
 
         /// <summary>
+        ///  Parent class while parsing.
+        /// </summary>
+        public string Parent { get; set; }
+
+        /// <summary>
         /// Gets or sets a value for enabling/disabling property parsing.
         /// </summary>
         public bool IgnoreParsing { get; set; }
