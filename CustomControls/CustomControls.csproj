@@ -91,7 +91,7 @@
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>2.3.0</Version>
+      <Version>4.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

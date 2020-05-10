@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
@@ -74,37 +75,7 @@ namespace A3ServerTool.ViewModels
             }
         }
         private WindowState _windowState;
-
-        /// <summary>
-        /// Gets or sets the width of the window.
-        /// </summary>
-        public int WindowWidth
-        {
-            get => _windowWidth;
-            set
-            {
-                if (Equals(value, _windowWidth)) return;
-                _windowWidth = value;
-                RaisePropertyChanged();
-            }
-        }
-        private int _windowWidth;
-
-        /// <summary>
-        /// Gets or sets the height of the window.
-        /// </summary>
-        public int WindowHeight
-        {
-            get => _windowHeight;
-            set
-            {
-                if (Equals(value, _windowHeight)) return;
-                _windowHeight = value;
-                RaisePropertyChanged();
-            }
-        }
-        private int _windowHeight;
-
+        
         /// <summary>
         /// Gets the exit application command.
         /// </summary>
@@ -149,7 +120,6 @@ namespace A3ServerTool.ViewModels
                 return _windowLoadedCommand ??
                        (_windowLoadedCommand = new RelayCommand(_ =>
                        {
-                           SetWindowState();
                            CreateMenuItems();
 
                            Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessageResult);
@@ -172,14 +142,6 @@ namespace A3ServerTool.ViewModels
             }
         }
         private ICommand _windowLoadedCommand;
-
-        private void SetWindowState()
-        {
-            //TODO: temporarily disabled, not restoring window size correctly
-            //WindowState = (WindowState)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowState);
-            //WindowWidth = (int)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowWidth);
-            //WindowHeight = (int)SettingsCoordinator.Retrieve(ApplicationSettingType.WindowHeight);
-        }
 
         /// <summary>
         /// Saves current profile.
@@ -249,7 +211,7 @@ namespace A3ServerTool.ViewModels
 
                 new HamburgerMenuIconItem
                 {
-                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Settings},
+                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Cog},
                     Label = Properties.StaticLang.SettingsHamburgerMenuLozalizedTitle,
                     ToolTip = Properties.StaticLang.SettingsHamburgerMenuLozalizedTooltip,
                     Tag = SimpleIoc.Default.GetInstance<SettingsViewModel>()
