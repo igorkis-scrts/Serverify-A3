@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Interchangeable;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace Interchangeable
+namespace A3ServerTool.Helpers
 {
     /// <summary>
     /// Custom dialog result
