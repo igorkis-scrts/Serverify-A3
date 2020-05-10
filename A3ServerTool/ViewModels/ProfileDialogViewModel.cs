@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
