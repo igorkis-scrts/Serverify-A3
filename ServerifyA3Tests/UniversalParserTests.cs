@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace ServerifyA3.Tests
+namespace ServerifyA3Tests
 {
     /// <summary>
     /// Provides tests for UniversalParser class.

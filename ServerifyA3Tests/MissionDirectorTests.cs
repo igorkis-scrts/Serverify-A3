@@ -6,7 +6,7 @@ using System.Linq;
 using Moq;
 using Xunit;
 
-namespace ServerifyA3.Tests
+namespace ServerifyA3Tests
 {
     /// <summary>
     /// Provides tests for MissionDirector class.
