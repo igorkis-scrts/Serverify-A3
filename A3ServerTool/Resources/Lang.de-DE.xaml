@@ -249,8 +249,17 @@
     <v:String x:Key="LocalizableMinErrorToSendNearTitle">Minimum Error To Send Near</v:String>
     <v:String x:Key="LocalizableMinErrorToSendNearTooltip">Minimaler Fehler beim Senden von Updates über das Netzwerk für Geräte in der Nähe. Die Verwendung eines höheren Werts kann den für nahe Einheiten gesendeten Datenverkehr verringern.</v:String>
 
-    <v:String x:Key="LocalizableMaxPacketSizeTitle">Maximum Packet Size</v:String>
-    <v:String x:Key="LocalizableMaxPacketSizeTooltip">Maximale Größe des über das Netzwerk gesendeten Pakets. Bitte nur verwenden, wenn Ihr Router oder ISP eine geringere Paketgröße erzwingt und Sie Verbindungsprobleme mit dem Spiel haben. Desync kann auftreten, wenn MaxSizeGuaranteed / MaxSizeNonguaranteed-Werte über maxPacketSize verwendet werden.</v:String>
+    <v:String x:Key="LocalizableSocketsMaxPacketSizeTitle">Sockets Maximum Packet Size</v:String>
+    <v:String x:Key="LocalizableSocketsMaxPacketSizeTooltip">Maximale Größe des über das Netzwerk gesendeten Pakets. Bitte nur verwenden, wenn Ihr Router oder ISP eine geringere Paketgröße erzwingt und Sie Verbindungsprobleme mit dem Spiel haben. Desync kann auftreten, wenn MaxSizeGuaranteed / MaxSizeNonguaranteed-Werte über maxPacketSize verwendet werden.</v:String>
+
+    <v:String x:Key="LocalizableSocketsInitBandwidthTitle">Sockets Init Bandwidth per Client</v:String>
+    <v:String x:Key="LocalizableSocketsInitBandwidthTooltip">Initial bandwidth per Client. Should be equal to or more than min bandwidth per client and equal to or les than max bandwidth per client.</v:String>
+
+    <v:String x:Key="LocalizableSocketsMinBandwidthTitle">Sockets Minimum Bandwidth</v:String>
+    <v:String x:Key="LocalizableSocketsMinBandwidthTooltip">Minimum bandwidth per Client.</v:String>
+
+    <v:String x:Key="LocalizableSocketsMaxBandwidthTitle">Sockets Maximum Bandwidth</v:String>
+    <v:String x:Key="LocalizableSocketsMaxBandwidthTooltip">Minimum bandwidth per Client.</v:String>
 
     <v:String x:Key="LocalizableCustomFileSizeTitle">Maximum Custom File Size</v:String>
     <v:String x:Key="LocalizableCustomFileSizeTooltip">Benutzer mit benutzerdefiniertem Gesicht oder benutzerdefiniertem Sound, der größer als diese Größe ist, werden beim Verbindungsversuch gekickt.</v:String>

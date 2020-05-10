@@ -37,7 +37,10 @@ namespace ServerifyA3.Tests
                 MaxCustomFileSize = 160,
                 MaxMessagesSend = 321,
                 MaxSizeGuaranteed = 554,
-                MaxPacketSize = 321,
+                SocketsMaxPacketSize = 321,
+                SocketsInitBandwidth = 321,
+                SocketsMinBandwidth = 321,
+                SocketsMaxBandwidth = 321,
                 MaxSizeNonguaranteed = 213,
                 MinErrorToSend = 0.01F,
                 MinErrorToSendNear = 0.1F,
@@ -200,6 +203,9 @@ namespace ServerifyA3.Tests
                 "class sockets",
                 "{",
                 "maxPacketSize = 1400;",
+                "initBandwidth = 1250000;",
+                "MinBandwidth = 65536;",
+                "MaxBandwidth = 6250000;",
                 "};",
                 "adapter = -1;",
                 "MaxMsgSend = 128;",
@@ -213,7 +219,10 @@ namespace ServerifyA3.Tests
 
             Assert.NotNull(basicConfig);
             Assert.Equal(128, basicConfig.MaxMessagesSend);
-            Assert.Equal(1400, basicConfig.MaxPacketSize);
+            Assert.Equal(1400, basicConfig.SocketsMaxPacketSize);
+            Assert.Equal(1250000, basicConfig.SocketsInitBandwidth);
+            Assert.Equal(65536, basicConfig.SocketsMinBandwidth);
+            Assert.Equal(6250000, basicConfig.SocketsMaxBandwidth);
             Assert.True(Math.Abs(0.001F - basicConfig.MinErrorToSend.Value) < 0.00001);
             Assert.True(Math.Abs(25F - basicConfig.TerrainGridViewDistance.Value) < 0.00001);
             Assert.Equal(2000, basicConfig.ObjectViewDistance);

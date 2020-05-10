@@ -104,13 +104,46 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-        public int? MaxPacketSize
+        public int? SocketsMaxPacketSize
         {
-            get => CurrentProfile.BasicConfig.MaxPacketSize;
+            get => CurrentProfile.BasicConfig.SocketsMaxPacketSize;
             set
             {
-                if (Equals(value, CurrentProfile.BasicConfig.MaxPacketSize)) return;
-                CurrentProfile.BasicConfig.MaxPacketSize = value;
+                if (Equals(value, CurrentProfile.BasicConfig.SocketsMaxPacketSize)) return;
+                CurrentProfile.BasicConfig.SocketsMaxPacketSize = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int? SocketsInitBandwidth
+        {
+            get => CurrentProfile.BasicConfig.SocketsInitBandwidth;
+            set
+            {
+                if (Equals(value, CurrentProfile.BasicConfig.SocketsInitBandwidth)) return;
+                CurrentProfile.BasicConfig.SocketsInitBandwidth = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int? SocketsMinBandwidth
+        {
+            get => CurrentProfile.BasicConfig.SocketsMinBandwidth;
+            set
+            {
+                if (Equals(value, CurrentProfile.BasicConfig.SocketsMinBandwidth)) return;
+                CurrentProfile.BasicConfig.SocketsMinBandwidth = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int? SocketsMaxBandwidth
+        {
+            get => CurrentProfile.BasicConfig.SocketsMaxBandwidth;
+            set
+            {
+                if (Equals(value, CurrentProfile.BasicConfig.SocketsMaxBandwidth)) return;
+                CurrentProfile.BasicConfig.SocketsMaxBandwidth = value;
                 RaisePropertyChanged();
             }
         }
@@ -305,8 +338,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         return "MinErrorToSend must be more than zero.";
                     case nameof(MaxCustomFileSize) when MaxCustomFileSize < 0:
                         return "MaxCustomFileSize must be more than zero.";
-                    case nameof(MaxPacketSize) when MaxPacketSize < 0:
-                        return "MaxPacketSize must be more than zero.";
+                    case nameof(SocketsMaxPacketSize) when SocketsMaxPacketSize < 0:
+                        return "SocketsMaxPacketSize must be more than zero.";
+                    case nameof(SocketsInitBandwidth) when SocketsInitBandwidth < 0:
+                        return "SocketsInitBandwidth must be more than zero.";
+                    case nameof(SocketsMinBandwidth) when SocketsMinBandwidth < 0:
+                        return "SocketsMinBandwidth must be more than zero.";
+                    case nameof(SocketsMaxBandwidth) when SocketsMaxBandwidth < 0:
+                        return "SocketsMaxBandwidth must be more than zero.";
                     case nameof(SlowNetworkKickRules) when SlowNetworkKickRules?.Replace(",", string.Empty).Length > 4:
                         return "There can be only four network rules.";
                     default:
@@ -351,12 +390,24 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return "MaxCustomFileSize must be more than zero.";
                 }
-                if (MaxPacketSize < 0 || MaxPacketSize == null)
+                if (SocketsMaxPacketSize < 0 || SocketsMaxPacketSize == null)
                 {
-                    return "MaxPacketSize must be more than zero.";
+                    return "SocketsMaxPacketSize must be more than zero.";
+                }
+                if (SocketsInitBandwidth < 0 || SocketsInitBandwidth == null)
+                {
+                    return "SocketsInitBandwidth must be more than zero.";
+                }
+                if (SocketsMinBandwidth < 0 || SocketsMinBandwidth == null)
+                {
+                    return "SocketsMinBandwidth must be more than zero.";
+                }
+                if (SocketsMaxBandwidth < 0 || SocketsMaxBandwidth == null)
+                {
+                    return "SocketsMaxBandwidth must be more than zero.";
                 }
 
-                if(string.IsNullOrWhiteSpace(Port))
+                if (string.IsNullOrWhiteSpace(Port))
                 {
                     return "Port must be specified!";
                 }
