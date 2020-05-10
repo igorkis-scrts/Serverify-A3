@@ -1,4 +1,4 @@
-﻿namespace ServerifyA3.Tests
+﻿namespace ServerifyA3Tests
 {
     public class IntegrationTests
     {
