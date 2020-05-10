@@ -30,6 +30,22 @@ namespace A3ServerTool.Helpers.ServerLauncher
                 }
             };
             server.Start();
+
+            var headlessClientParameterString = finalParameterString + " -client -connect=127.0.0.1 -password=" + profile.ServerConfig.Password;
+            for (int i = 0; i < profile.HeadlessClients; i++)
+            {
+                var headlessClient = new System.Diagnostics.Process
+                {
+                    StartInfo =
+                    {
+                        FileName = profile.ExecutablePath,
+                        Arguments = headlessClientParameterString,
+                        UseShellExecute = false,
+                        WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized
+                    }
+                };
+                headlessClient.Start();
+            }
         }
     }
 }

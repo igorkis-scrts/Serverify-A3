@@ -72,13 +72,13 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets whitelisted IPs for headless clients.
         /// </summary>
         [ConfigProperty(PropertyName = "headlessClients[]")]
-        public List<string> HeadlessClientIps { get; set; } = new List<string>();
+        public List<string> HeadlessClientIps { get; set; } = new List<string> { "127.0.0.1" };
 
         /// <summary>
         /// Gets or sets whitelisted IPs for clients with unlimited bandwidth and nearly no latency.
         /// </summary>
         [ConfigProperty(PropertyName = "localClient[]")]
-        public List<string> LocalClientIps { get; set; } = new List<string>();
+        public List<string> LocalClientIps { get; set; } = new List<string> { "127.0.0.1" };
 
         /// <summary>
         /// Gets or sets percentage of votes needed to confirm a vote. 

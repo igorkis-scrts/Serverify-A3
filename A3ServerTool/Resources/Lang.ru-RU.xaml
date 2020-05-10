@@ -74,6 +74,9 @@
     <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Интервал между сообщениями</v:String>
     <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Интервал между приветственными сообщениями в секундах.</v:String>
 
+    <v:String x:Key="LocalizableHeadlessClientsTitle">Headless Clients</v:String>
+    <v:String x:Key="LocalizableHeadlessClientsTooltip">Number of Headless Clients to spawn when server is launched.</v:String>
+
     <v:String x:Key="LocalizableHeadlessClientTitle">IP-адреса headless-клиентов</v:String>
     <v:String x:Key="LocalizableLocalClientTitle">IP-адреса локальных клиентов</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IP-адреса через запятую</v:String>

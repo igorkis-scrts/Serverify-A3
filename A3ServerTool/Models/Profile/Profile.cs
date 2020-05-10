@@ -76,6 +76,21 @@ namespace A3ServerTool.Models
         private string _description;
 
         /// <summary>
+        /// Gets or sets the number of headless clients.
+        /// </summary>
+        public int? HeadlessClients
+        {
+            get => _headlessClients;
+            set
+            {
+                if (Equals(value, _headlessClients)) return;
+                _headlessClients = value;
+                OnPropertyChanged();
+            }
+        }
+        private int? _headlessClients;
+
+        /// <summary>
         /// Gets or sets the path to server executable file.
         /// </summary>
         public string ExecutablePath
