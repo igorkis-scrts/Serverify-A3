@@ -92,6 +92,23 @@
                             OnLabel="{DynamicResource LocalizableOn}"
                             Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizablePersistenceTooltip}" />
+
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableHeadlessClientsTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <mah:NumericUpDown
+                            MinWidth="96"
+                            MaxWidth="128"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            Minimum="0"
+                            Speedup="True"
+                            TextAlignment="Left"
+                            ToolTip="{DynamicResource LocalizableHeadlessClientsTooltip}"
+                            Value="{Binding HeadlessClients, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                     </StackPanel>
                 </GroupBox>
 

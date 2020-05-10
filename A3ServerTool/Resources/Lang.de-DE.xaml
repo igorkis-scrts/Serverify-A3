@@ -74,6 +74,9 @@
     <v:String x:Key="LocalizableIntervalBetweenMessagesTitle">Interwal zwischen den Nchrichten</v:String>
     <v:String x:Key="LocalizableIntervalBetweenMessagesTooltip">Intervall zwischen Begruessungsnachrichten in Sekunden.</v:String>
 
+    <v:String x:Key="LocalizableHeadlessClientsTitle">Headless Clients</v:String>
+    <v:String x:Key="LocalizableHeadlessClientsTooltip">Number of Headless Clients to spawn when server is launched.</v:String>
+
     <v:String x:Key="LocalizableHeadlessClientTitle">Headless Client IPs</v:String>
     <v:String x:Key="LocalizableLocalClientTitle">Lokale Client IPs</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IPs eine nach der anderen, durch Komma getrennt</v:String>

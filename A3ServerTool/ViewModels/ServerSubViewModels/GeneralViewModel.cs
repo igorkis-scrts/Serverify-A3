@@ -110,6 +110,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets password required to connect to server. 
+        /// </summary>
+        public int? HeadlessClients
+        {
+            get => CurrentProfile?.HeadlessClients;
+            set
+            {
+                if (Equals(value, CurrentProfile?.HeadlessClients)) return;
+                CurrentProfile.HeadlessClients = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public string ExecutablePath
         {
             get => CurrentProfile?.ExecutablePath;
