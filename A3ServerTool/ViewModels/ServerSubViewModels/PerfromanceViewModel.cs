@@ -92,6 +92,24 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
+        /// Gets or sets the server fps limit.
+        /// </summary>
+        /// <value>
+        /// The fps limit.
+        /// </value>
+        public int? LimitFps
+        {
+            get => CurrentProfile.ArgumentSettings.LimitFps;
+            set
+            {
+                if (Equals(value, CurrentProfile.ArgumentSettings.LimitFps)) return;
+                CurrentProfile.ArgumentSettings.LimitFps = value;
+                Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this instance is hyper threading enabled.
         /// </summary>
         public bool IsHyperThreadingEnabled

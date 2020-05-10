@@ -289,6 +289,9 @@
     <v:String x:Key="LocalizableMaxMemoryTitle">Предел выделения памяти</v:String>
     <v:String x:Key="LocalizableMaxMemoryTooltip">Переопределяет верхний предел выделения памяти (в мегабайтах).</v:String>
 
+    <v:String x:Key="LocalizableLimitFpsTitle">FPS-лимит</v:String>
+    <v:String x:Key="LocalizableLimitFpsTooltip">Переопределяет стандартный ограничитель кадров в секунду. Доступен только при использовании performance-, profiling- и development-бранчей.</v:String>
+
     <v:String x:Key="LocalizableHyperThreadingTitle">Hyper Threading</v:String>
     <v:String x:Key="LocalizableHyperThreadingTooltip">Включает использование логических ядер процессора помимо физических. Если процессор не поддерживает Hyper Threading или похожую технологию, параметр будет проигнорирован.</v:String>
 

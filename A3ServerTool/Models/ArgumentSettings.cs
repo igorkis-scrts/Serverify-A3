@@ -171,6 +171,22 @@ namespace A3ServerTool.Models
         private string _maximumMemory;
 
         /// <summary>
+        /// Gets or sets the server fps limit.
+        /// </summary>
+        [ServerArgument(Argument = "-limitFPS")]
+        public int? LimitFps
+        {
+            get => _limitFps;
+            set
+            {
+                if (Equals(value, _limitFps)) return;
+                _limitFps = value;
+                OnPropertyChanged();
+            }
+        }
+        private int? _limitFps = 50;
+
+        /// <summary>
         /// Gets or sets the automatic test path.
         /// </summary>
         [ServerArgument(Argument = "-autotest", IsQuotationMarksRequired = true)]
