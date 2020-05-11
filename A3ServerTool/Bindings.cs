@@ -7,7 +7,6 @@ using GalaSoft.MvvmLight.Ioc;
 using A3ServerTool.ViewModels;
 using A3ServerTool.ViewModels.ServerSubViewModels;
 using MahApps.Metro.Controls.Dialogs;
-using CommonServiceLocator;
 
 namespace A3ServerTool
 {
