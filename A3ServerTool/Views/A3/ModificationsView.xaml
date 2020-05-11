@@ -95,7 +95,7 @@
             <StackPanel Grid.Column="1">
                 <DockPanel Margin="{StaticResource ControlMargin}">
                     <Button
-                        Height="40"
+                        Height="42"
                         MinWidth="64"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
@@ -125,13 +125,13 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
                     <Button
                         Grid.Column="0"
-                        Height="40"
+                        Height="42"
                         MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
@@ -145,7 +145,7 @@
 
                     <Button
                         Grid.Column="1"
-                        Height="40"
+                        Height="42"
                         MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Right"
@@ -167,7 +167,7 @@
 
                     <Button
                         Grid.Column="0"
-                        Height="40"
+                        Height="42"
                         MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
@@ -181,7 +181,7 @@
 
                     <Button
                         Grid.Column="1"
-                        Height="40"
+                        Height="42"
                         MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Right"
