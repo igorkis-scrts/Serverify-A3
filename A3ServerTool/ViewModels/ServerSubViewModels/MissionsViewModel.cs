@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -153,8 +154,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _refreshCommand ??
-                       (_refreshCommand = new RelayCommand(_ => RefreshMissions()));
+                return _refreshCommand ??= new RelayCommand(_ => RefreshMissions());
             }
         }
         private ICommand _refreshCommand;
@@ -166,14 +166,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(async _ =>
-                       {
-                           if(!Missions.Any())
-                           {
-                               await RefreshMissions().ConfigureAwait(false);
-                           }
-                       }));
+                return _windowLoadedCommand ??= new RelayCommand(async _ =>
+                {
+                    if(!Missions.Any())
+                    {
+                        await RefreshMissions().ConfigureAwait(false);
+                    }
+                });
             }
         }
 

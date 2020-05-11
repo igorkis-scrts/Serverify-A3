@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Models.Profile
 {
     /// <summary>
     /// Provides an interface between VMs and DAO to interact with profiles.

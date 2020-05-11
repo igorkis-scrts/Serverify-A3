@@ -1,10 +1,5 @@
-﻿using A3ServerTool.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.Helpers.ServerLauncher
 {
@@ -23,7 +18,5 @@ namespace A3ServerTool.Helpers.ServerLauncher
         /// </summary>
         /// <returns>Final string with all arguments that will be applied to the server executable file.</returns>
         string FinalArgumentString { get; }
-
-        void ReaggregateArgumentString();
     }
 }

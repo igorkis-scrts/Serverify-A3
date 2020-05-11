@@ -7,6 +7,7 @@ using System.Windows.Input;
 using A3ServerTool.Helpers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using A3ServerTool.Models.Profile;
 using A3ServerTool.Storage;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -78,11 +79,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _refreshCommand ??
-                       (_refreshCommand = new RelayCommand(async _ =>
-                       {
-                           await RefreshModifications().ConfigureAwait(false);
-                       }));
+                return _refreshCommand ??= new RelayCommand(async _ =>
+                {
+                    await RefreshModifications().ConfigureAwait(false);
+                });
             }
         }
         private ICommand _refreshCommand;
@@ -147,14 +147,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(async _ =>
-                       {
-                           if (!Modifications.Any())
-                           {
-                               await RefreshModifications().ConfigureAwait(false);
-                           }
-                       }));
+                return _windowLoadedCommand ??= new RelayCommand(async _ =>
+                {
+                    if (!Modifications.Any())
+                    {
+                        await RefreshModifications().ConfigureAwait(false);
+                    }
+                });
             }
         }
         private ICommand _windowLoadedCommand;

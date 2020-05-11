@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.Storage
 {

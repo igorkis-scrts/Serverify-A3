@@ -1,5 +1,5 @@
-﻿using A3ServerTool.Models;
-using A3ServerTool.Models.Config;
+﻿using A3ServerTool.Models.Config;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.Storage
 {
