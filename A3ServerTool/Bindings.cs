@@ -26,7 +26,7 @@ namespace A3ServerTool
         public NetworkViewModel Network => SimpleIoc.Default.GetInstance<NetworkViewModel>();
         public SecurityViewModel Security => SimpleIoc.Default.GetInstance<SecurityViewModel>();
         public LoggingViewModel Logging => SimpleIoc.Default.GetInstance<LoggingViewModel>();
-        public PerfromanceViewModel Performance => SimpleIoc.Default.GetInstance<PerfromanceViewModel>();
+        public PerformanceViewModel Performance => SimpleIoc.Default.GetInstance<PerformanceViewModel>();
         public ModificationsViewModel Modifications => SimpleIoc.Default.GetInstance<ModificationsViewModel>();
         public MissionsViewModel Missions => SimpleIoc.Default.GetInstance<MissionsViewModel>();
         public DifficultyViewModel Difficulty => SimpleIoc.Default.GetInstance<DifficultyViewModel>();
@@ -47,7 +47,7 @@ namespace A3ServerTool
             SimpleIoc.Default.Register<NetworkViewModel>();
             SimpleIoc.Default.Register<SecurityViewModel>();
             SimpleIoc.Default.Register<LoggingViewModel>();
-            SimpleIoc.Default.Register<PerfromanceViewModel>();
+            SimpleIoc.Default.Register<PerformanceViewModel>();
             SimpleIoc.Default.Register<ModificationsViewModel>();
             SimpleIoc.Default.Register<MissionsViewModel>();
             SimpleIoc.Default.Register<DifficultyViewModel>();
