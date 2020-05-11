@@ -21,14 +21,6 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Content="{DynamicResource LocalizableSettingsHeader}"
-                Style="{StaticResource DescriptionHeaderStyle}" />
 
             <StackPanel
                 Grid.Row="1"

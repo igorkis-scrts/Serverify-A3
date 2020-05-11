@@ -2,28 +2,33 @@
     x:Class="A3ServerTool.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:A3ServerTool.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:A3ServerTool"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
     xmlns:views="clr-namespace:A3ServerTool.Views"
     Title="{Binding AppTitle, Mode=OneTime}"
     Width="1280"
     Height="800"
     Padding="10,10,10,10"
     mah:DialogParticipation.Register="{Binding}"
-    BorderBrush="{DynamicResource ControlSecondaryColorBrush}"
-    BorderThickness="1"
-    Closing="MainWindow_OnClosing"
-    DataContext="{Binding Main, Source={StaticResource Bindings}}"
     TitleForeground="Black"
-    WindowCloseButtonStyle="{DynamicResource CleanCloseWindowButtonStyle}"
     WindowStartupLocation="CenterScreen"
-    WindowState="{Binding WindowState, Mode=TwoWay}"
+    GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+    NonActiveGlowBrush="Black"
+    DataContext="{Binding Main, Source={StaticResource Bindings}}"
+    Closing="MainWindow_OnClosing"
     mc:Ignorable="d">
+    
+    <!--
+        TODO:
+        if using DialogParticipation on Windows which open/close frequently you will get a
+        memory leak unless you unregister.  The easiest way to do this is in your Closing/Unloaded
+        event, as so:
+        
+        DialogParticipation.SetRegister(this, null);
+    -->
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding ExitApplicationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
@@ -32,98 +37,10 @@
             <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Themes/HamburgerMenuTemplate.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <Style
-                x:Key="CleanCloseWindowButtonStyle"
-                BasedOn="{StaticResource MetroWindowButtonStyle}"
-                TargetType="{x:Type Button}">
-
-                <Setter Property="Foreground" Value="Black" />
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#EB2F2F" />
-                        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
-                    </Trigger>
-                    <Trigger Property="IsPressed" Value="True">
-                        <Setter Property="Background" Value="#7C0000" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <DataTemplate x:Key="HamburgerMenuItem" DataType="{x:Type mah:HamburgerMenuGlyphItem}">
-                <Grid Height="48">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Image
-                        Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Source="{Binding Glyph}"
-                        Stretch="UniformToFill" />
-                    <TextBlock
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="16"
-                        Text="{Binding Label}" />
-                </Grid>
-            </DataTemplate>
-
-            <!--  This is the template for all option menu items.  -->
-            <DataTemplate x:Key="HamburgerOptionsMenuItem" DataType="{x:Type mah:HamburgerMenuItem}">
-                <Grid Height="48">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ContentControl
-                        Grid.Column="0"
-                        Content="{Binding Tag}"
-                        Focusable="False"
-                        IsTabStop="False" />
-                    <TextBlock
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="16"
-                        Text="{Binding Label}" />
-                </Grid>
-            </DataTemplate>
-            <Style
-                x:Key="HamburgerMenuCreatorsItemStyle"
-                BasedOn="{StaticResource HamburgerMenuItemStyle}"
-                TargetType="{x:Type ListBoxItem}">
-                <Setter Property="mah:ItemHelper.ActiveSelectionBackgroundBrush" Value="Transparent" />
-                <Setter Property="mah:ItemHelper.ActiveSelectionForegroundBrush" Value="{DynamicResource AccentBaseColorBrush}" />
-                <Setter Property="mah:ItemHelper.DisabledForegroundBrush" Value="{DynamicResource GrayNormalBrush}" />
-                <Setter Property="mah:ItemHelper.DisabledSelectedBackgroundBrush" Value="Transparent" />
-                <Setter Property="mah:ItemHelper.DisabledSelectedForegroundBrush" Value="{DynamicResource GrayNormalBrush}" />
-                <Setter Property="mah:ItemHelper.HoverBackgroundBrush" Value="{DynamicResource GrayBrush9}" />
-                <Setter Property="mah:ItemHelper.HoverSelectedBackgroundBrush" Value="{DynamicResource GrayBrush9}" />
-                <Setter Property="mah:ItemHelper.SelectedBackgroundBrush" Value="Transparent" />
-                <Setter Property="mah:ItemHelper.SelectedForegroundBrush" Value="{DynamicResource AccentBaseColorBrush}" />
-            </Style>
-
-            <Style
-                x:Key="HamburgerMenuCreatorsStyle"
-                BasedOn="{StaticResource {x:Type mah:HamburgerMenu}}"
-                TargetType="{x:Type mah:HamburgerMenu}">
-                <Setter Property="ItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
-                <Setter Property="OptionsItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
-                <Setter Property="PaneBackground" Value="{DynamicResource ControlSecondaryColorBrush}" />
-                <Setter Property="PaneForeground" Value="{DynamicResource TextBrush}" />
-                <Setter Property="ShowSelectionIndicator" Value="True" />
-                <Setter Property="Background" Value="LightGray" />
-            </Style>
-        </ResourceDictionary>
-
-    </Window.Resources>
+    
+    <mah:MetroWindow.WindowButtonCommands>
+        <mah:WindowButtonCommands Style="{DynamicResource MahApps.Styles.WindowButtonCommands.Win10}" />
+    </mah:MetroWindow.WindowButtonCommands>
 
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands ShowLastSeparator="True">
@@ -132,12 +49,6 @@
                 VerticalAlignment="Center"
                 Content="{Binding CurrentProfile.Name, FallbackValue='N/A', TargetNullValue='N/A'}"
                 FontWeight="Bold">
-                <!--<Label.Content>
-                    <PriorityBinding>
-                        <Binding Path="CurrentProfile.Name" TargetNullValue="N/A"/>
-                        <Binding Source="N/A"/>
-                    </PriorityBinding>
-                </Label.Content>-->
             </Label>
             <Button
                 Command="{Binding SaveProfileCommand}"
@@ -147,89 +58,8 @@
     </mah:MetroWindow.RightWindowCommands>
 
     <Grid>
-        <Grid.Resources>
-            <converters:SelectedItemToContentConverter x:Key="SelectedItemToContentConverter" />
-            <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type mah:HamburgerMenuIconItem}">
-                <Grid
-                    x:Name="RootGrid"
-                    Height="48"
-                    Background="Transparent">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ContentControl
-                        Grid.Column="0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Content="{Binding Icon}"
-                        Focusable="False" />
-                    <TextBlock
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        FontSize="16"
-                        Text="{Binding Label}" />
-                </Grid>
-                <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:HamburgerMenu}}, Path=IsPaneOpen}" Value="False">
-                        <Setter TargetName="RootGrid" Property="ToolTip" Value="{Binding ToolTip, Mode=OneWay}" />
-                    </DataTrigger>
-                </DataTemplate.Triggers>
-            </DataTemplate>
-
-            <!--  templates for view models  -->
-            <DataTemplate DataType="{x:Type viewModels:ServerViewModel}">
-                <views:GeneralView DataContext="{Binding}" />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:AboutViewModel}">
-                <views:AboutView DataContext="{Binding}" />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:ProfilesViewModel}">
-                <views:ProfilesView DataContext="{Binding}" />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
-                <views:SettingsView DataContext="{Binding}" />
-            </DataTemplate>
-
-        </Grid.Resources>
-
-
-        <mah:HamburgerMenu
-            x:Name="HamburgerMenuControl"
-            Background="{x:Static SystemParameters.WindowGlassBrush}"
-            DisplayMode="CompactInline"
-            IsPaneOpen="False"
-            ItemTemplate="{StaticResource MenuItemTemplate}"
-            ItemsSource="{Binding MenuItems}"
-            OptionsItemTemplate="{StaticResource MenuItemTemplate}"
-            OptionsItemsSource="{Binding MenuOptionItems}"
-            SelectedIndex="0"
-            Style="{StaticResource HamburgerMenuCreatorsStyle}">
-
-            <!--  select the tag (ViewModel) of the selected item (options item)  -->
-            <mah:HamburgerMenu.Content>
-                <MultiBinding Converter="{StaticResource SelectedItemToContentConverter}">
-                    <Binding
-                        FallbackValue="{x:Null}"
-                        Mode="OneWay"
-                        Path="SelectedItem.Tag"
-                        RelativeSource="{RelativeSource Self}" />
-                    <Binding
-                        FallbackValue="{x:Null}"
-                        Mode="OneWay"
-                        Path="SelectedOptionsItem.Tag"
-                        RelativeSource="{RelativeSource Self}" />
-                </MultiBinding>
-
-            </mah:HamburgerMenu.Content>
-        </mah:HamburgerMenu>
-
+        <views:AppHamburgerMenu/>
     </Grid>
 </mah:MetroWindow>
-
-
-
-
-
 
 

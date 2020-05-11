@@ -11,6 +11,16 @@
     <v:String x:Key="LocalizableOff">Выкл</v:String>
     <v:String x:Key="LocalizableEnterSqfTitle">Вводить SQF-код</v:String>
     <v:String x:Key="LocalizableRefresh">Обновить</v:String>
+    
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTitle">Сервер</v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTitle">О Программе</v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTitle">Настройки</v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTitle">Профили</v:String>
+    
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTooltip">Настройка игрового сервера.</v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTooltip">Информация об авторе и приложении.</v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTooltip">Настройки приложения.</v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTooltip">Профили сервера.</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">Основное</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Безопасность</v:String>

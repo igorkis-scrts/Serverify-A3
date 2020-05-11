@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using A3ServerTool.Helpers;
 using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -120,7 +121,7 @@ namespace A3ServerTool.ViewModels
         public ProfileDialogViewModel()
         {
             Messenger.Default.Register<ViewMode>(this, HandleViewState);
-            Messenger.Default.Register<Profile>(this, RecieveProfile);
+            Messenger.Default.Register<Profile>(this, ReceiveProfile);
         }
 
         /// <summary>
@@ -130,12 +131,11 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _okCommand
-                       ?? (_okCommand = new RelayCommand(obj =>
-                       {
-                           SendMessage(MessageDialogResult.Affirmative, _profile);
-                           IsExpired = true;
-                       }));
+                return _okCommand ??= new RelayCommand(obj =>
+                {
+                    SendMessage(MessageDialogResult.Affirmative, _profile);
+                    IsExpired = true;
+                });
             }
         }
         private RelayCommand _okCommand;
@@ -147,12 +147,11 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _cancelCommand
-                       ?? (_cancelCommand = new RelayCommand(obj =>
-                       {
-                           SendMessage(MessageDialogResult.Canceled);
-                           IsExpired = true;
-                       }));
+                return _cancelCommand ??= new RelayCommand(obj =>
+                {
+                    SendMessage(MessageDialogResult.Canceled);
+                    IsExpired = true;
+                });
             }
         }
         private RelayCommand _cancelCommand;
@@ -179,7 +178,7 @@ namespace A3ServerTool.ViewModels
             }
         }
 
-        private void RecieveProfile(Profile profile)
+        private void ReceiveProfile(Profile profile)
         {
             if(profile != null)
             {

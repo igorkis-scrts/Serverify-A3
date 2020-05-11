@@ -1,5 +1,4 @@
-﻿using A3ServerTool.Models;
-using System.Text;
+﻿using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.Helpers.ServerLauncher
 {

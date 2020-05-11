@@ -2,10 +2,11 @@
 using A3ServerTool.Models;
 using A3ServerTool.Models.Config;
 using A3ServerTool.Helpers.ServerLauncher;
+using A3ServerTool.Models.Profile;
 using A3ServerTool.Storage;
-using GalaSoft.MvvmLight.Ioc;
 using A3ServerTool.ViewModels;
 using A3ServerTool.ViewModels.ServerSubViewModels;
+using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro.Controls.Dialogs;
 
 namespace A3ServerTool

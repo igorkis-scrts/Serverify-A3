@@ -1,7 +1,6 @@
-﻿using A3ServerTool.Annotations;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using A3ServerTool.Properties;
 
 namespace A3ServerTool.Models
 {

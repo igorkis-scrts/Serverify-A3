@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="A3ServerTool.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -18,7 +18,7 @@
       <Value Profile="(Default)">Normal</Value>
     </Setting>
     <Setting Name="BackgroundTheme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BaseDark</Value>
+      <Value Profile="(Default)">Dark.Olive</Value>
     </Setting>
     <Setting Name="AccentColor" Type="System.String" Scope="User">
       <Value Profile="(Default)">Olive</Value>
@@ -31,3 +31,4 @@
     </Setting>
   </Settings>
 </SettingsFile>
+

@@ -30,9 +30,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding HasBattleEye, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
+                    IsOn="{Binding HasBattleEye, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableBattleEyeTooltip}" />
 
@@ -45,9 +45,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding KickDuplicateUids, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
+                    IsOn="{Binding KickDuplicateUids, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableKickDuplicateUidsTooltip}" />
 
@@ -60,9 +60,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsFilePatchingAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
+                    IsOn="{Binding IsFilePatchingAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableFilePatchingTooltip}" />
 

@@ -8,12 +8,11 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Shared.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBox.xaml" />
-        <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro.IconPacks.Material;component/Themes/IconPacks.xaml" />-->
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/controls.textbox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="BrowseMetroTextBox"
-           BasedOn="{StaticResource MetroButtonTextBox}"
+           BasedOn="{StaticResource MahApps.Styles.TextBox.Button}"
            TargetType="{x:Type TextBox}">
         <Setter Property="controls:TextBoxHelper.ButtonContentTemplate">
             <Setter.Value>
@@ -34,15 +33,14 @@
 
     <Style TargetType="{x:Type dialogs:MessageDialog}" BasedOn="{StaticResource {x:Type dialogs:BaseMetroDialog}}">
         <Style.Resources>
-            <Style BasedOn="{StaticResource MetroFlatButton}" TargetType="{x:Type Button}">
-                <!--<Setter Property="controls:ControlsHelper.ContentCharacterCasing" Value="Upper"></Setter>-->
+            <Style BasedOn="{StaticResource MahApps.Styles.Button.Flat}" TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
             </Style>
 
             <Style x:Key="AccentedDialogSquareButton"
-                   BasedOn="{StaticResource MetroFlatButton}"
+                   BasedOn="{StaticResource MahApps.Styles.Button.Flat}"
                    TargetType="{x:Type Button}">
                 <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
             </Style>

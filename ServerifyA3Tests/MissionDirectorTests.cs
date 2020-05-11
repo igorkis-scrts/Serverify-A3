@@ -1,8 +1,8 @@
-﻿using A3ServerTool.Helpers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using A3ServerTool.Helpers;
 using A3ServerTool.Models;
 using A3ServerTool.Storage;
-using System.Collections.Generic;
-using System.Linq;
 using Moq;
 using Xunit;
 

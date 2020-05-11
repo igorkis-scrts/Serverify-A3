@@ -1,6 +1,6 @@
 ﻿using System;
 using A3ServerTool.Helpers.ServerLauncher;
-using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using Moq;
 using Xunit;
 

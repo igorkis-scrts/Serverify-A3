@@ -12,6 +12,16 @@
     <v:String x:Key="LocalizableEnterSqfTitle">Eingabe SQF code</v:String>
     <v:String x:Key="LocalizableRefresh">Erneuern</v:String>
 
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTitle">Server</v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTitle">Über</v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTitle">Einstellungen</v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTitle">Profil</v:String>
+    
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTooltip"></v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTooltip"></v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTooltip"></v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTooltip"></v:String>
+    
     <v:String x:Key="LocalizableGeneralTabTitle">Allgemein</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Sicherheit</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Netzwerk</v:String>

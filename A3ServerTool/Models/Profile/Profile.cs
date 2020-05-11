@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
 using A3ServerTool.Models.Config;
+using A3ServerTool.Properties;
 using Newtonsoft.Json;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Models.Profile
 {
     /// <summary>
     /// Provides server profile - class-agregator for other configs, startup parameters etc.
@@ -161,7 +160,7 @@ namespace A3ServerTool.Models
             get => _armaProfile;
             set
             {
-                if (Equals(value, _serverConfig)) return;
+                if (Equals(value, _armaProfile)) return;
                 _armaProfile = value;
                 OnPropertyChanged();
             }

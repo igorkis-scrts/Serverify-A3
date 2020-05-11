@@ -1,14 +1,10 @@
-﻿using A3ServerTool.Enums;
-using MahApps.Metro;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using ControlzEx.Theming;
 
 namespace A3ServerTool
 {
@@ -115,10 +111,10 @@ namespace A3ServerTool
                 }
 
                 _backgroundTheme = value;
-
-                ThemeManager.ChangeAppStyle(Application.Current,
-                            ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
-                            ThemeManager.GetAppTheme(value));
+                
+                // ThemeManager.ChangeAppStyle(Application.Current,
+                //             ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
+                //             ThemeManager.GetAppTheme(value));
                 BackgroundThemeChanged(Application.Current, EventArgs.Empty);
             }
         }
@@ -143,9 +139,14 @@ namespace A3ServerTool
 
                 _accentColor = value;
 
-                ThemeManager.ChangeAppStyle(Application.Current,
-                            ThemeManager.GetAccent(value),
-                            ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
+                //ThemeManager.Current.ChangeThemeColorScheme(Application.Current)
+
+                ThemeManager.Current.ChangeTheme(Application.Current,
+                    A3ServerTool.Properties.Settings.Default.BackgroundTheme);
+                
+                // ThemeManager.ChangeAppStyle(Application.Current,
+                //             ThemeManager.GetAccent(value),
+                //             ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
                 AccentColorChanged(Application.Current, EventArgs.Empty);
             }
         }
@@ -153,9 +154,11 @@ namespace A3ServerTool
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            ThemeManager.ChangeAppStyle(Application.Current,
-                ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
-                ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
+            //ThemeManager.Current.ChangeTheme(Application.Current, A3ServerTool.Properties.Settings.Default.BackgroundTheme);
+            ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Olive");
+            // ThemeManager.ChangeAppStyle(Application.Current,
+            //     ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
+            //     ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
             ApplyControlBackground();
 
             base.OnStartup(e);
@@ -174,30 +177,29 @@ namespace A3ServerTool
 
         private void ApplyControlBackground()
         {
-            ResourceDictionary dict = new ResourceDictionary();
+            var dictionary = new ResourceDictionary();
 
-            switch (A3ServerTool.Properties.Settings.Default.BackgroundTheme)
+            if (A3ServerTool.Properties.Settings.Default.BackgroundTheme.Contains("Light"))
             {
-                case "BaseLight":
-                    dict.Source = new Uri("/CustomControls;component/LightThemeColors.xaml", UriKind.Relative);
-                    break;
-                default:
-                    dict.Source = new Uri("/CustomControls;component/DarkThemeColors.xaml", UriKind.Relative);
-                    break;
+                dictionary.Source = new Uri("/CustomControls;component/LightThemeColors.xaml", UriKind.Relative);
+            }
+            else
+            {
+                dictionary.Source = new Uri("/CustomControls;component/DarkThemeColors.xaml", UriKind.Relative);
             }
 
-            var oldDictionary = Application.Current.Resources.MergedDictionaries.Where(d => d.Source != null
-                && d.Source.OriginalString.Contains("ThemeColors")).FirstOrDefault();
+            var oldDictionary = Current.Resources.MergedDictionaries.FirstOrDefault(d => 
+                d.Source != null && d.Source.OriginalString.Contains("ThemeColors"));
 
             if(oldDictionary != null)
             {
                 int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
                 Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
-                Application.Current.Resources.MergedDictionaries.Insert(index, dict);
+                Application.Current.Resources.MergedDictionaries.Insert(index, dictionary);
             }
             else
             {
-                Application.Current.Resources.MergedDictionaries.Add(dict);
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
             }
         }
 

@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using A3ServerTool.Enums;
-using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -98,12 +97,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public FilePatchingType FilePatchingType
         {
-            get
-            {
-                return CurrentProfile?.ServerConfig?.FilePatchingMode != null
-                     ? (FilePatchingType)CurrentProfile.ServerConfig.FilePatchingMode
-                     : FilePatchingType.NoClients;
-            }
+            get =>
+                CurrentProfile?.ServerConfig?.FilePatchingMode != null
+                    ? (FilePatchingType)CurrentProfile.ServerConfig.FilePatchingMode
+                    : FilePatchingType.NoClients;
             set
             {
                 if (Equals((int)value, CurrentProfile?.ServerConfig?.FilePatchingMode)) return;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
+using A3ServerTool.Properties;
 using Newtonsoft.Json;
 
 namespace A3ServerTool.Models

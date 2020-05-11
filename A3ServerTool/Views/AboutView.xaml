@@ -45,9 +45,8 @@
                 Margin="{StaticResource ControlMargin}"
                 HorizontalAlignment="Center"
                 FontSize="14">
-                <Bold>
-                    By Socrates
-                </Bold>
+                <Bold>Contributors:</Bold>
+                Socrates, Dahlgren
             </TextBlock>
             <TextBlock
                 Margin="{StaticResource ControlMargin}"

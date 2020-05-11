@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
 
 namespace A3ServerTool.Models.Config

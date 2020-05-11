@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MahApps.Metro">
-      <Version>1.6.5</Version>
+      <Version>2.0.0-alpha0775</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
       <Version>4.0.0</Version>

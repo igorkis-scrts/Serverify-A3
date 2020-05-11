@@ -3,11 +3,11 @@ using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
 using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using Interchangeable;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -40,42 +40,6 @@ namespace A3ServerTool.ViewModels
         }
         private Profile _currentProfile;
 
-        public HamburgerMenuItemCollection MenuItems
-        {
-            get => _menuItems;
-            set
-            {
-                if (Equals(value, _menuItems)) return;
-                _menuItems = value;
-                RaisePropertyChanged();
-            }
-        }
-        private HamburgerMenuItemCollection _menuItems;
-
-        public HamburgerMenuItemCollection MenuOptionItems
-        {
-            get => _menuOptionItems;
-            set
-            {
-                if (Equals(value, _menuOptionItems)) return;
-                _menuOptionItems = value;
-                RaisePropertyChanged();
-            }
-        }
-        private HamburgerMenuItemCollection _menuOptionItems;
-
-        public WindowState WindowState
-        {
-            get => _windowState;
-            set
-            {
-                if (Equals(value, _windowState)) return;
-                _windowState = value;
-                RaisePropertyChanged();
-            }
-        }
-        private WindowState _windowState;
-        
         /// <summary>
         /// Gets the exit application command.
         /// </summary>
@@ -83,29 +47,25 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _exitApplicationCommand ??
-                       (_exitApplicationCommand = new RelayCommand(async _ =>
-                       {
-                           var dialogSettings = new MetroDialogSettings()
-                           {
-                               AffirmativeButtonText = "Quit",
-                               NegativeButtonText = "Cancel",
-                               AnimateShow = true,
-                               AnimateHide = true
-                           };
+                return _exitApplicationCommand ??= new RelayCommand(async _ =>
+                {
+                    var dialogSettings = new MetroDialogSettings
+                    {
+                        AffirmativeButtonText = "Quit",
+                        NegativeButtonText = "Cancel",
+                        AnimateShow = true,
+                        AnimateHide = true,
+                        ColorScheme = MetroDialogColorScheme.Theme
+                    };
 
-                           var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm exit",
-                               "Are you sure that you want to quit?",
-                               MessageDialogStyle.AffirmativeAndNegative, dialogSettings);
+                    var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm exit",
+                        "Are you sure that you want to quit?",
+                        MessageDialogStyle.AffirmativeAndNegative, dialogSettings);
 
-                           if (dialogResult != MessageDialogResult.Affirmative) return;
-
-                           //TODO: temporarily disabled, not restoring window size correctly
-                           //SettingsCoordinator.Save(ApplicationSettingType.WindowState, WindowState);
-                           //SettingsCoordinator.Save(ApplicationSettingType.WindowHeight, WindowHeight);
-                           //SettingsCoordinator.Save(ApplicationSettingType.WindowWidth, WindowWidth);
-                           Application.Current.Shutdown();
-                       }));
+                    if (dialogResult != MessageDialogResult.Affirmative) return;
+                    
+                    Application.Current.Shutdown();
+                });
             }
         }
         private ICommand _exitApplicationCommand;
@@ -117,28 +77,25 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(_ =>
-                       {
-                           CreateMenuItems();
+                return _windowLoadedCommand ??= new RelayCommand(_ =>
+                {
+                    Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessageResult);
 
-                           Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessageResult);
-
-                           var lastProfileId = Properties.Settings.Default.LastUsedProfile;
-                           if (lastProfileId != Guid.Empty)
-                           {
-                               CurrentProfile = _profileDirector.GetById(lastProfileId);
-                               if(CurrentProfile == null)
-                               {
-                                  CurrentProfile = new Profile(Guid.NewGuid());
-                                  _profileDirector.SetDefaultValues(CurrentProfile);
-                               }
-                           }
-                           else
-                           {
-                               CurrentProfile = new Profile(Guid.NewGuid());
-                           }
-                       }));
+                    var lastProfileId = Properties.Settings.Default.LastUsedProfile;
+                    if (lastProfileId != Guid.Empty)
+                    {
+                        CurrentProfile = _profileDirector.GetById(lastProfileId);
+                        if(CurrentProfile == null)
+                        {
+                            CurrentProfile = new Profile(Guid.NewGuid());
+                            _profileDirector.SetDefaultValues(CurrentProfile);
+                        }
+                    }
+                    else
+                    {
+                        CurrentProfile = new Profile(Guid.NewGuid());
+                    }
+                });
             }
         }
         private ICommand _windowLoadedCommand;
@@ -150,30 +107,29 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _saveProfileCommand ??
-                       (_saveProfileCommand = new RelayCommand(async _ =>
-                       {
-                           if (_profileDirector.ExistOnStorage(CurrentProfile))
-                           {
-                               _profileDirector.SaveStorage(CurrentProfile);
+                return _saveProfileCommand ??= new RelayCommand(async _ =>
+                {
+                    if (_profileDirector.ExistOnStorage(CurrentProfile))
+                    {
+                        _profileDirector.SaveStorage(CurrentProfile);
 
-                               var dialogSettings = new MetroDialogSettings
-                               {
-                                   AffirmativeButtonText = "OK",
-                                   ColorScheme = MetroDialogColorScheme.Accented
-                               };
+                        var dialogSettings = new MetroDialogSettings
+                        {
+                            AffirmativeButtonText = "OK",
+                            ColorScheme = MetroDialogColorScheme.Accented
+                        };
 
-                               await ((MetroWindow)Application.Current.MainWindow)
-                                   .ShowMessageAsync(Properties.StaticLang.SuccessTitle, Properties.StaticLang.SuccessfulSavedProfileText, MessageDialogStyle.Affirmative, dialogSettings);
-                           }
-                           else
-                           {
-                               _customDialog.Content = new ProfileDialogView();
-                               await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
-                               Messenger.Default.Send(CurrentProfile);
-                               Messenger.Default.Send(ViewMode.Save);
-                           }
-                       }));
+                        await ((MetroWindow)Application.Current.MainWindow)
+                            .ShowMessageAsync(Properties.StaticLang.SuccessTitle, Properties.StaticLang.SuccessfulSavedProfileText, MessageDialogStyle.Affirmative, dialogSettings);
+                    }
+                    else
+                    {
+                        _customDialog.Content = new ProfileDialogView();
+                        await _dialogCoordinator.ShowMetroDialogAsync(this, _customDialog);
+                        Messenger.Default.Send(CurrentProfile);
+                        Messenger.Default.Send(ViewMode.Save);
+                    }
+                });
             }
         }
         private ICommand _saveProfileCommand;
@@ -184,50 +140,6 @@ namespace A3ServerTool.ViewModels
         public MainViewModel(IProfileDirector director)
         {
             _profileDirector = director;
-        }
-
-        /// <summary>
-        /// Populates hamburger menu.
-        /// </summary>
-        private void CreateMenuItems()
-        {
-            MenuItems = new HamburgerMenuItemCollection
-            {
-                new HamburgerMenuIconItem
-                {
-                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Server},
-                    Label = Properties.StaticLang.ServerHamburgerMenuLocalizedTitle,
-                    ToolTip = Properties.StaticLang.ServerHamburgerMenuLocalizedTooltip,
-                    Tag = SimpleIoc.Default.GetInstance<ServerViewModel>()
-                },
-
-                new HamburgerMenuIconItem
-                {
-                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Account},
-                    Label = Properties.StaticLang.ProfilesHamburgerMenuLocalizedTitle,
-                    ToolTip = Properties.StaticLang.ProfilesHamburgerMenuLocalizedTooltip,
-                    Tag =  SimpleIoc.Default.GetInstance<ProfilesViewModel>()
-                },
-
-                new HamburgerMenuIconItem
-                {
-                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Cog},
-                    Label = Properties.StaticLang.SettingsHamburgerMenuLozalizedTitle,
-                    ToolTip = Properties.StaticLang.SettingsHamburgerMenuLozalizedTooltip,
-                    Tag = SimpleIoc.Default.GetInstance<SettingsViewModel>()
-                }
-            };
-
-            MenuOptionItems = new HamburgerMenuItemCollection
-            {
-                new HamburgerMenuIconItem
-                {
-                    Icon = new PackIconMaterial {Kind = PackIconMaterialKind.Help},
-                    Label = Properties.StaticLang.AboutHamburgerMenuLozalizedTitle,
-                    ToolTip = Properties.StaticLang.AboutHamburgerMenuLozalizedTooltip,
-                    Tag = SimpleIoc.Default.GetInstance<AboutViewModel>()
-                }
-            };
         }
 
         /// <summary>

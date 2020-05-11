@@ -1,12 +1,11 @@
-﻿using A3ServerTool.Helpers;
-using A3ServerTool.Models.Config;
-using A3ServerTool.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using A3ServerTool.Helpers;
+using A3ServerTool.Models.Config;
+using A3ServerTool.Storage;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Models.Profile
 {
     /// <inheritdoc/>
     public class ProfileDirector : IProfileDirector
@@ -158,6 +157,7 @@ namespace A3ServerTool.Models
         /// <param name="profile">The profile.</param>
         private void SetServerConfigDefaultValues(Profile profile)
         {
+            //TODO: delet dis
             if (profile == null) return;
 
             if (profile.ServerConfig == null)
