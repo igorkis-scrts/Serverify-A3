@@ -49,70 +49,22 @@ namespace A3ServerTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1280")]
-        public int WindowWidth {
-            get {
-                return ((int)(this["WindowWidth"]));
-            }
-            set {
-                this["WindowWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("640")]
-        public int WindowHeight {
-            get {
-                return ((int)(this["WindowHeight"]));
-            }
-            set {
-                this["WindowHeight"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.WindowState WindowState {
-            get {
-                return ((global::System.Windows.WindowState)(this["WindowState"]));
-            }
-            set {
-                this["WindowState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Dark.Olive")]
-        public string BackgroundTheme {
+        public string Theme {
             get {
-                return ((string)(this["BackgroundTheme"]));
+                return ((string)(this["Theme"]));
             }
             set {
-                this["BackgroundTheme"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Olive")]
-        public string AccentColor {
-            get {
-                return ((string)(this["AccentColor"]));
-            }
-            set {
-                this["AccentColor"] = value;
+                this["Theme"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string DefaultLanguage {
+        public global::System.Globalization.CultureInfo DefaultLanguage {
             get {
-                return ((string)(this["DefaultLanguage"]));
+                return ((global::System.Globalization.CultureInfo)(this["DefaultLanguage"]));
             }
             set {
                 this["DefaultLanguage"] = value;

@@ -46,8 +46,7 @@
     <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Einstellungen</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Sprache</v:String>
-    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Hindergrund Thema</v:String>
-    <v:String x:Key="LocalizableSettingsAccentColorTitle">Akzent Farbe</v:String>
+    <v:String x:Key="LocalizableSettingsThemeTitle">Hindergrund Thema</v:String>
 
     <!--  Server view  -->
     <v:String x:Key="LocalizableServerViewTitle">Server</v:String>

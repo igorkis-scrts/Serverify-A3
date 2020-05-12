@@ -46,8 +46,7 @@
     <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>
-    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Фоновая тема</v:String>
-    <v:String x:Key="LocalizableSettingsAccentColorTitle">Акцентный цвет</v:String>
+    <v:String x:Key="LocalizableSettingsThemeTitle">Фоновая тема</v:String>
 
     <!--  Server view  -->
     <v:String x:Key="LocalizableServerViewTitle">Сервер</v:String>

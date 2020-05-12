@@ -64,6 +64,7 @@ namespace A3ServerTool
             SimpleIoc.Default.Register<IServerStringBuilder, ServerStringBuilder>();
             SimpleIoc.Default.Register<IUniversalParser, UniversalParser>();
             SimpleIoc.Default.Register<GameLocationFinder>();
+            SimpleIoc.Default.Register<IThemeParser, ThemeParser>();
         }
     }
 }

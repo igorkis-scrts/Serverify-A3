@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="A3ServerTool.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -8,22 +8,10 @@
     <Setting Name="Language" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
-    <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1280</Value>
-    </Setting>
-    <Setting Name="WindowHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">640</Value>
-    </Setting>
-    <Setting Name="WindowState" Type="System.Windows.WindowState" Scope="User">
-      <Value Profile="(Default)">Normal</Value>
-    </Setting>
-    <Setting Name="BackgroundTheme" Type="System.String" Scope="User">
+    <Setting Name="Theme" Type="System.String" Scope="User">
       <Value Profile="(Default)">Dark.Olive</Value>
     </Setting>
-    <Setting Name="AccentColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Olive</Value>
-    </Setting>
-    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+    <Setting Name="DefaultLanguage" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
     <Setting Name="AppTitle" Type="System.String" Scope="User">
@@ -31,4 +19,3 @@
     </Setting>
   </Settings>
 </SettingsFile>
-
