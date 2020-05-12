@@ -39,6 +39,10 @@ https://forums.bohemia.net/forums/topic/224504-serverifya3-a-dedicated-server-co
 ## Credits
 App icon made by Hugo Alberto: [NounProject](https://thenounproject.com/hugugolplex/)
 
+## Contributors
+Socrates
+Dahlgren
+
 ## Feedback
 If you have any suggestions or reports - feel free to contact me via PM or create an issue in this repository. 
 
