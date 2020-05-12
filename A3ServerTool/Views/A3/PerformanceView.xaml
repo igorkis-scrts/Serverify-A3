@@ -118,6 +118,25 @@
                     TextAlignment="Left"
                     ToolTip="{DynamicResource LocalizableMaxMemoryTooltip}"
                     Value="{Binding MaximumMemory, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableLimitFpsTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="128"
+                    MaxWidth="256"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    Maximum="1000"
+                    Minimum="5"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableLimitFpsTooltip}"
+                    Value="{Binding LimitFps, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
             </StackPanel>
 
             <StackPanel Grid.Column="1">

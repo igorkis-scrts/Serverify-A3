@@ -289,6 +289,9 @@
     <v:String x:Key="LocalizableMaxMemoryTitle">Memory Allocation Limit</v:String>
     <v:String x:Key="LocalizableMaxMemoryTooltip">Overrides memory allocation limit to a certain amount (in megabytes). Be aware that 32-bit(x86) executable and Windows OS have significantly lower memory ceiling than both 64-bit executable and OS.</v:String>
 
+    <v:String x:Key="LocalizableLimitFpsTitle">Limit FPS</v:String>
+    <v:String x:Key="LocalizableLimitFpsTooltip">Overrides default server fps limit. Only available with performance, profiling and development binary.</v:String>
+
     <v:String x:Key="LocalizableHyperThreadingTitle">Hyper Threading</v:String>
     <v:String x:Key="LocalizableHyperThreadingTooltip">Enables the use of all logical CPU cores for parallel tasks processing. If your CPU does not support Hyper-Threading or similar technology, this parameter is ignored.</v:String>
 
