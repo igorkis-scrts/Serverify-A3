@@ -232,7 +232,7 @@
                     <Label
                         Margin="{StaticResource LabelMargin}"
                         HorizontalAlignment="Left"
-                        Content="{DynamicResource LocalizableMaxPacketSizeTitle}"
+                        Content="{DynamicResource LocalizableSocketsMaxPacketSizeTitle}"
                         FontSize="14"
                         FontWeight="Bold" />
                     <mah:NumericUpDown
@@ -245,8 +245,62 @@
                         Minimum="0"
                         Speedup="True"
                         TextAlignment="Left"
-                        ToolTip="{DynamicResource LocalizableMaxPacketSizeTooltip}"
-                        Value="{Binding MaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                        ToolTip="{DynamicResource LocalizableSocketsMaxPacketSizeTooltip}"
+                        Value="{Binding SocketsMaxPacketSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LocalizableSocketsInitBandwidthTitle}"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="192"
+                        MaxWidth="512"
+                        Margin="{StaticResource EndControlMargin}"
+                        HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableSocketsInitBandwidthTooltip}"
+                        Value="{Binding SocketsInitBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LocalizableSocketsMinBandwidthTitle}"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="192"
+                        MaxWidth="512"
+                        Margin="{StaticResource EndControlMargin}"
+                        HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableSocketsMinBandwidthTooltip}"
+                        Value="{Binding SocketsMinBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                    <Label
+                        Margin="{StaticResource LabelMargin}"
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LocalizableSocketsMaxBandwidthTitle}"
+                        FontSize="14"
+                        FontWeight="Bold" />
+                    <mah:NumericUpDown
+                        MinWidth="192"
+                        MaxWidth="512"
+                        Margin="{StaticResource EndControlMargin}"
+                        HorizontalAlignment="Left"
+                        mah:TextBoxHelper.ClearTextButton="True"
+                        Minimum="0"
+                        Speedup="True"
+                        TextAlignment="Left"
+                        ToolTip="{DynamicResource LocalizableSocketsMaxBandwidthTooltip}"
+                        Value="{Binding SocketsMaxBandwidth, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                 </StackPanel>
             </StackPanel>
