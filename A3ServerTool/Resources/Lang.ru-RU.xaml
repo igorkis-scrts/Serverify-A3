@@ -6,6 +6,8 @@
     <v:String x:Key="LocalizableCurrentProfileTitle">Текущий профиль:</v:String>
 
     <v:String x:Key="LocalizableSaveButton">Сохранить</v:String>
+    
+    <v:String x:Key="LocalizableHamburgerMenuTitle">Меню</v:String>
 
     <v:String x:Key="LocalizableOn">Вкл</v:String>
     <v:String x:Key="LocalizableOff">Выкл</v:String>

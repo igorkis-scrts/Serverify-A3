@@ -9,8 +9,10 @@
 
     <Color x:Key="EtherealGrey">#FF444444</Color>
     <Color x:Key="TextColor">#FFFFFFFF</Color>
+    
     <SolidColorBrush x:Key="ControlSecondaryColorBrush" Color="{StaticResource EtherealGrey}" />
     <SolidColorBrush x:Key="TextColorBrush" Color="{StaticResource TextColor}" />
+
     <Style x:Key="DescriptionHeaderStyle" TargetType="Label">
         <Setter Property="Margin" Value="12" />
         <Setter Property="FontSize" Value="24" />

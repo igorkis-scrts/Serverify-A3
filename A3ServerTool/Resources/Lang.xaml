@@ -7,6 +7,8 @@
 
     <v:String x:Key="LocalizableSaveButton">Save</v:String>
 
+    <v:String x:Key="LocalizableHamburgerMenuTitle">Menu</v:String>
+    
     <v:String x:Key="LocalizableOn">On</v:String>
     <v:String x:Key="LocalizableOff">Off</v:String>
     <v:String x:Key="LocalizableEnterSqfTitle">Enter SQF code</v:String>
