@@ -56,28 +56,11 @@
                 </Grid>
             </DataTemplate>
             
-            <Style x:Key="HamburgerMenuCreatorsItemStyle"
-                   BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"
-                   TargetType="{x:Type ListBoxItem}">
-                <Setter Property="mah:ItemHelper.ActiveSelectionBackgroundBrush" Value="Transparent" />
-                <Setter Property="mah:ItemHelper.ActiveSelectionForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
-                <Setter Property="mah:ItemHelper.DisabledForegroundBrush" Value="{DynamicResource MahApps.Brushes.Gray}" />
-                <Setter Property="mah:ItemHelper.DisabledSelectedBackgroundBrush" Value="Transparent" />
-                <Setter Property="mah:ItemHelper.DisabledSelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.Gray}" />
-                <Setter Property="mah:ItemHelper.HoverBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Gray9}" />
-                <Setter Property="mah:ItemHelper.HoverSelectedBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Gray9}" />
-                <Setter Property="mah:ItemHelper.SelectedBackgroundBrush" Value="Transparent" />
-                <Setter Property="mah:ItemHelper.SelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
-            </Style>
-            
             <Style x:Key="HamburgerMenuCreatorsStyle"
                    BasedOn="{StaticResource {x:Type mah:HamburgerMenu}}"
                    TargetType="{x:Type mah:HamburgerMenu}">
-                <Setter Property="ItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
-                <Setter Property="OptionsItemContainerStyle" Value="{StaticResource HamburgerMenuCreatorsItemStyle}" />
                 <Setter Property="PaneBackground" Value="{DynamicResource ControlSecondaryColorBrush}" />
                 <Setter Property="PaneForeground" Value="{DynamicResource MahApps.Brushes.Text}" />
-                <Setter Property="ShowSelectionIndicator" Value="True" />
             </Style>
             
         </ResourceDictionary>
