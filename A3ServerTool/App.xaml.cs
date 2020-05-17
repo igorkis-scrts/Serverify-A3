@@ -52,31 +52,7 @@ namespace A3ServerTool
 
                 System.Threading.Thread.CurrentThread.CurrentUICulture = value;
 
-                var languageDictionary = new ResourceDictionary();
-                switch (value.Name)
-                {
-                    case "ru-RU":
-                    case "de-DE":
-                        languageDictionary.Source = new Uri($"Resources/Lang.{value.Name}.xaml", UriKind.Relative);
-                        break;
-                    default:
-                        languageDictionary.Source = new Uri("Resources/Lang.xaml", UriKind.Relative);
-                        break;
-                }
-
-                var oldDictionary = (Application.Current.Resources.MergedDictionaries
-                    .Where(d => d.Source != null && d.Source.OriginalString.StartsWith("Resources/Lang.")))
-                    .First();
-                if (oldDictionary != null)
-                {
-                    int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
-                    Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
-                    Application.Current.Resources.MergedDictionaries.Insert(index, languageDictionary);
-                }
-                else
-                {
-                    Application.Current.Resources.MergedDictionaries.Add(languageDictionary);
-                }
+                ApplyCulture(value);
 
                 ApplyDot();
                 LanguageChanged(Application.Current, EventArgs.Empty);
@@ -118,9 +94,11 @@ namespace A3ServerTool
             Languages.Add(new CultureInfo("de-DE"));
             Languages.Add(new CultureInfo("ru-RU"));
 
+            Language = A3ServerTool.Properties.Settings.Default.Language;
+            ApplyCulture(A3ServerTool.Properties.Settings.Default.Language);
+
             LanguageChanged += App_LanguageChanged;
             ThemeChanged += App_ThemeChanged;
-            Language = A3ServerTool.Properties.Settings.Default.Language;
             Bindings.Register();
         }
 
@@ -160,6 +138,40 @@ namespace A3ServerTool
             var customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             CultureInfo.CurrentCulture = customCulture;
+        }
+
+        /// <summary>
+        /// Applies culture using according dictionary.
+        /// </summary>
+        /// <param name="culture">Culture.</param>
+        private static void ApplyCulture(CultureInfo culture)
+        {
+            var languageDictionary = new ResourceDictionary();
+            switch (culture.Name)
+            {
+                case "ru-RU":
+                case "de-DE":
+                    languageDictionary.Source = new Uri($"Resources/Lang.{culture.Name}.xaml", UriKind.Relative);
+                    break;
+                default:
+                    languageDictionary.Source = new Uri("Resources/Lang.xaml", UriKind.Relative);
+                    break;
+            }
+
+            var oldDictionary = (Application.Current.Resources.MergedDictionaries
+                .Where(d => d.Source != null && d.Source.OriginalString.StartsWith("Resources/Lang.")))
+                .FirstOrDefault();
+
+            if (oldDictionary != null)
+            {
+                int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
+                Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
+                Application.Current.Resources.MergedDictionaries.Insert(index, languageDictionary);
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Add(languageDictionary);
+            }
         }
     }
 }
