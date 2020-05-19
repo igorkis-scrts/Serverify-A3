@@ -41,6 +41,8 @@ namespace A3ServerTool
             ExceptionHandler.Instance.ShowMessage(e.Exception);
             e.Handled = true;
         }
+        
+        
 
         public static CultureInfo Language
         {
@@ -89,6 +91,9 @@ namespace A3ServerTool
 
             base.OnStartup(e);
 
+            LanguageChanged += App_LanguageChanged;
+            ThemeChanged += App_ThemeChanged;
+
             Languages.Clear();
             Languages.Add(new CultureInfo("en-US"));
             Languages.Add(new CultureInfo("de-DE"));
@@ -97,8 +102,6 @@ namespace A3ServerTool
             Language = A3ServerTool.Properties.Settings.Default.Language;
             ApplyCulture(A3ServerTool.Properties.Settings.Default.Language);
 
-            LanguageChanged += App_LanguageChanged;
-            ThemeChanged += App_ThemeChanged;
             Bindings.Register();
         }
 
@@ -164,7 +167,7 @@ namespace A3ServerTool
 
             if (oldDictionary != null)
             {
-                int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
+                var index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
                 Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
                 Application.Current.Resources.MergedDictionaries.Insert(index, languageDictionary);
             }

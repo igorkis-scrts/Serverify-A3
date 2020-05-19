@@ -5,7 +5,6 @@
     xmlns:controls="clr-namespace:A3ServerTool.Views.A3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:local="clr-namespace:A3ServerTool.Views"
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -23,49 +22,61 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="{StaticResource ControlMargin}"
-            HorizontalAlignment="Left"
-            Content="{DynamicResource LocalizableServerViewTitle}"
-            Style="{StaticResource DescriptionHeaderStyle}" />
-
         <mah:MetroAnimatedSingleRowTabControl
             Grid.Row="1"
             Grid.Column="0"
             Margin="{StaticResource ControlMargin}"
             mah:TabControlHelper.Underlined="SelectedTabItem">
-            <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}">
-                <controls:GeneralView />
-            </TabItem>
+            <!-- <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}"> -->
+            <!--     <controls:GeneralView /> -->
+            <!-- </TabItem> -->
+            <!-- -->
+            <!-- <TabItem Header="{DynamicResource LocalizableSecurityTabTitle}"> -->
+            <!--     <controls:SecurityView /> -->
+            <!-- </TabItem> -->
+            <!-- -->
+            <!-- <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}"> -->
+            <!--     <controls:NetworkView /> -->
+            <!-- </TabItem> -->
+            <!-- -->
+            <!-- <TabItem Header="{DynamicResource LocalizableMissionsTabTittle}"> -->
+            <!--     <controls:MissionsView /> -->
+            <!-- </TabItem> -->
+            <!-- -->
+            <!-- <TabItem Header="{DynamicResource LocalizableModificationsTabTittle}"> -->
+            <!--     <controls:ModificationsView /> -->
+            <!-- </TabItem> -->
+            <!-- -->
+            <!-- <TabItem Header="{DynamicResource LocalizableDifficultyTabTittle}"> -->
+            <!--     <controls:DifficultyView /> -->
+            <!-- </TabItem> -->
+            <!-- -->
+            <!-- <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}"> -->
+            <!--     <controls:PerformanceView /> -->
+            <!-- </TabItem> -->
 
-            <TabItem Header="{DynamicResource LocalizableSecurityTabTitle}">
-                <controls:SecurityView />
-            </TabItem>
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="ScriptText" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                                />
+                            <TextBlock
+                                Text="{DynamicResource LocalizableLoggingTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
-            <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}">
-                <controls:NetworkView />
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LocalizableMissionsTabTittle}">
-                <controls:MissionsView />
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LocalizableModificationsTabTittle}">
-                <controls:ModificationsView />
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LocalizableDifficultyTabTittle}">
-                <controls:DifficultyView />
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}">
-                <controls:PerformanceView />
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LocalizableLoggingTabTittle}">
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:LoggingView />
+                
             </TabItem>
 
         </mah:MetroAnimatedSingleRowTabControl>

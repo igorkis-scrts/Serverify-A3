@@ -2,16 +2,13 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
-using A3ServerTool.Models;
 using A3ServerTool.Models.Profile;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using MahApps.Metro.IconPacks;
 
 namespace A3ServerTool.ViewModels
 {
@@ -71,34 +68,33 @@ namespace A3ServerTool.ViewModels
         private ICommand _exitApplicationCommand;
 
         /// <summary>
-        /// Sets the actions that will be executed after form will be fully ready to be drawn on screen.
+        /// Sets the actions that will be executed after form initialization.
         /// </summary>
-        public ICommand WindowLoadedCommand
+        public ICommand WindowInitializedCommand
         {
             get
             {
-                return _windowLoadedCommand ??= new RelayCommand(_ =>
-                {
-                    Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessageResult);
+                Messenger.Default.Register<SaveDialogResult<Profile>>(this, Token, ProcessMessageResult);
 
-                    var lastProfileId = Properties.Settings.Default.LastUsedProfile;
-                    if (lastProfileId != Guid.Empty)
-                    {
-                        CurrentProfile = _profileDirector.GetById(lastProfileId);
-                        if(CurrentProfile == null)
-                        {
-                            CurrentProfile = new Profile(Guid.NewGuid());
-                            _profileDirector.SetDefaultValues(CurrentProfile);
-                        }
-                    }
-                    else
+                var lastProfileId = Properties.Settings.Default.LastUsedProfile;
+                if (lastProfileId != Guid.Empty)
+                {
+                    CurrentProfile = _profileDirector.GetById(lastProfileId);
+                    if (CurrentProfile == null)
                     {
                         CurrentProfile = new Profile(Guid.NewGuid());
+                        _profileDirector.SetDefaultValues(CurrentProfile);
                     }
-                });
+                }
+                else
+                {
+                    CurrentProfile = new Profile(Guid.NewGuid());
+                }
+
+                //for some reason WPF refuses to execute code wrapped into relay command after initialization
+                return new RelayCommand(_ => {});
             }
         }
-        private ICommand _windowLoadedCommand;
 
         /// <summary>
         /// Saves current profile.

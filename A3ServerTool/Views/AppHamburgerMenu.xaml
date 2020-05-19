@@ -128,6 +128,16 @@
             <mah:HamburgerMenu.ItemsSource>
                 <mah:HamburgerMenuItemCollection>
                     <mah:HamburgerMenuIconItem 
+                        Label="{DynamicResource LocalizableServerHamburgerMenuItemTitle}" 
+                        ToolTip="{DynamicResource LocalizableServerHamburgerMenuItemTooltip}">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="Server" />
+                        </mah:HamburgerMenuIconItem.Icon>
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <views:GeneralView />
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+                    <mah:HamburgerMenuIconItem 
                         Label="{DynamicResource LocalizableProfilesHamburgerMenuItemTitle}" 
                         ToolTip="{DynamicResource LocalizableProfilesHamburgerMenuItemTooltip}">
                         <mah:HamburgerMenuIconItem.Icon>
