@@ -54,6 +54,31 @@
             <!-- <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}"> -->
             <!--     <controls:PerformanceView /> -->
             <!-- </TabItem> -->
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="RunFast" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizablePerformanceTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
+                <controls:PerformanceView />
+                
+            </TabItem>
 
             <TabItem>
                 <TabItem.HeaderTemplate>
@@ -68,6 +93,7 @@
                                 Margin="8"
                                 />
                             <TextBlock
+                                Margin="0 0 8 0"
                                 Text="{DynamicResource LocalizableLoggingTabTittle}"
                                 FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
@@ -99,28 +125,10 @@
                 DockPanel.Dock="Left"
                 Foreground="{DynamicResource TextColorBrush}"
                 Style="{DynamicResource SecondaryColorFlatButton}">
-
-                <!--<Button.Style>
-                -->
-                <!--<Style BasedOn="{DynamicResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">-->
-                <!--<Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=DataContext.CheckValidation}" Value="true">
-                                <Setter Property="ToolTip" Value="false"/>
-                                <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="Background" Value="Blue" />
-                            </DataTrigger>
-                        </Style.Triggers>-->
-                <!--
-                    </Style>-->
-                <!--
-
-                </Button.Style>-->
-
-
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Server" />
-                    <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableLaunchButtonTitle}" />
-                </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Server" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableLaunchButtonTitle}" />
+                    </StackPanel>
             </Button>
             <DockPanel />
         </DockPanel>
