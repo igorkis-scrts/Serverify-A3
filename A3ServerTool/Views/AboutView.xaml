@@ -13,7 +13,7 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <BitmapImage x:Key="logo" UriSource="/CustomControls;component/Graphics/logoSmall.png" />
+            <BitmapImage x:Key="Logo" UriSource="/CustomControls;component/Graphics/logoSmall.png" />
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -37,7 +37,7 @@
                 Margin="{StaticResource ControlMargin}"
                 HorizontalAlignment="Center">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="{StaticResource logo}" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="{StaticResource Logo}" Stretch="UniformToFill" />
                 </Ellipse.Fill>
             </Ellipse>
 
