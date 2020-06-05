@@ -27,17 +27,56 @@
             Grid.Column="0"
             Margin="{StaticResource ControlMargin}"
             mah:TabControlHelper.Underlined="SelectedTabItem">
-            <!-- <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}"> -->
-            <!--     <controls:GeneralView /> -->
-            <!-- </TabItem> -->
-            <!-- -->
-            <!-- <TabItem Header="{DynamicResource LocalizableSecurityTabTitle}"> -->
-            <!--     <controls:SecurityView /> -->
-            <!-- </TabItem> -->
-            <!-- -->
-            <!-- <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}"> -->
-            <!--     <controls:NetworkView /> -->
-            <!-- </TabItem> -->
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="Domain" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableGeneralTabTitle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
+                <controls:GeneralView />
+                
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="Security" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableSecurityTabTitle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
+                <controls:SecurityView />
+                
+            </TabItem>
             
             <TabItem>
                 <TabItem.HeaderTemplate>
@@ -49,7 +88,7 @@
                                 Kind="Network" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Margin="8"
+                                Margin="4"
                             />
                             <TextBlock
                                 Margin="0 0 8 0"
@@ -74,7 +113,7 @@
                                 Kind="FileMultiple" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Margin="8"
+                                Margin="4"
                             />
                             <TextBlock
                                 Margin="0 0 8 0"
@@ -99,7 +138,7 @@
                                 Kind="FolderMultiple" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Margin="8"
+                                Margin="4"
                             />
                             <TextBlock
                                 Margin="0 0 8 0"
@@ -124,7 +163,7 @@
                                 Kind="TargetAccount" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Margin="8"
+                                Margin="4"
                             />
                             <TextBlock
                                 Margin="0 0 8 0"
@@ -149,7 +188,7 @@
                                 Kind="RunFast" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Margin="8"
+                                Margin="4"
                             />
                             <TextBlock
                                 Margin="0 0 8 0"
@@ -174,7 +213,7 @@
                                 Kind="ScriptText" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Margin="8"
+                                Margin="4"
                                 />
                             <TextBlock
                                 Margin="0 0 8 0"

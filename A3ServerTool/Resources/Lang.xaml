@@ -92,8 +92,8 @@
     <v:String x:Key="LocalizableLocalClientTitle">Local Client IPs</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IPs one by one through comma</v:String>
 
-    <v:String x:Key="LocalizableVotingTresholdTitle">Voting Treshold</v:String>
-    <v:String x:Key="LocalizableVotingTresholdTooltip">Percentage of votes needed to confirm a vote.</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTitle">Voting Threshold</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTooltip">Percentage of votes needed to confirm a vote.</v:String>
 
     <v:String x:Key="LocalizableVotingMissionTitle">Mission Voting Start</v:String>
     <v:String x:Key="LocalizableVotingMissionTooltip">Start mission voting when X number of players connect.</v:String>

@@ -27,7 +27,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         public const string RankingPathToken = "RankingPathToken";
         public const string Token = nameof(GeneralViewModel);
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets the final server argument string.
@@ -248,9 +248,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets the voting treshold.
+        /// Gets or sets the voting threshold.
         /// </summary>
-        public float? VotingTreshold
+        public float? VotingThreshold
         {
             get => CurrentProfile?.ServerConfig?.VoteThreshold;
             set

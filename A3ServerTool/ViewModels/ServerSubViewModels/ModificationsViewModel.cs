@@ -25,7 +25,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private readonly GameLocationFinder _locationFinder;
         private readonly IDao<Modification> _modDao;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets or sets the client modifications.

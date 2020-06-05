@@ -5,12 +5,10 @@
     xmlns:b="clr-namespace:A3ServerTool.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-    xmlns:h="clr-namespace:A3ServerTool.Helpers"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:A3ServerTool.ViewModels.ServerSubViewModels"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:v="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="640"
     d:DesignWidth="960"
     dialog:DialogParticipation.Register="{Binding}"
@@ -55,7 +53,7 @@
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizablePasswordWatermark}"
-                            Style="{StaticResource MetroButtonRevealedPasswordBox}">
+                            Style="{DynamicResource MahApps.Styles.TextBox.Revealed}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding ServerPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>
@@ -87,10 +85,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsPersistent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsPersistent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizablePersistenceTooltip}" />
 
                         <Label
@@ -170,10 +167,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsMissionAutoInitialized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsMissionAutoInitialized, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableAutoInitTooltip}" />
                     </StackPanel>
                 </Expander>
@@ -188,16 +184,15 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsDrawingOnMapAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsDrawingOnMapAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableDrawingOnMapTooltip}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
                             HorizontalAlignment="Left"
-                            Content="{DynamicResource LocalizableVotingTresholdTitle}"
+                            Content="{DynamicResource LocalizableVotingThresholdTitle}"
                             FontSize="14"
                             FontWeight="Bold" />
                         <mah:NumericUpDown
@@ -212,8 +207,8 @@
                             Speedup="True"
                             StringFormat="{}{0:F2}%"
                             TextAlignment="Left"
-                            ToolTip="{DynamicResource LocalizableVotingTresholdTooltip}"
-                            Value="{Binding VotingTreshold, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                            ToolTip="{DynamicResource LocalizableVotingThresholdTooltip}"
+                            Value="{Binding VotingThreshold, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
@@ -403,12 +398,11 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsVonDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                            SwitchForeground="Red"
+                            IsOn="{Binding IsVonDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableIsVonEnabledTooltip}" />
+                        <!-- SwitchForeground="Red" -->
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
@@ -496,15 +490,14 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding HasAnalytics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding HasAnalytics, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableAnalyticsTooltip}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"

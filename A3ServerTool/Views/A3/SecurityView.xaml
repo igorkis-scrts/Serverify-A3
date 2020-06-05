@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
@@ -33,7 +32,6 @@
                     IsOn="{Binding HasBattleEye, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     OffContent="{DynamicResource LocalizableOff}"
                     OnContent="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableBattleEyeTooltip}" />
 
                 <Label
@@ -48,7 +46,6 @@
                     IsOn="{Binding KickDuplicateUids, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     OffContent="{DynamicResource LocalizableOff}"
                     OnContent="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableKickDuplicateUidsTooltip}" />
 
                 <Label
@@ -63,7 +60,6 @@
                     IsOn="{Binding IsFilePatchingAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     OffContent="{DynamicResource LocalizableOff}"
                     OnContent="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableFilePatchingTooltip}" />
 
                 <Label
@@ -156,11 +152,10 @@
                             FontSize="14"
                             FontWeight="Bold" />
                         <PasswordBox
-                            x:Name="AdminPasswordTextBox"
                             Margin="{StaticResource ControlMargin}"
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizableAdminPasswordWatermark}"
-                            Style="{StaticResource MetroButtonRevealedPasswordBox}">
+                            Style="{DynamicResource MahApps.Styles.TextBox.Revealed}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding AdminPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>
@@ -196,7 +191,7 @@
                             mah:TextBoxHelper.ClearTextButton="True"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="Password for server-side scripting"
-                            Style="{StaticResource MetroButtonRevealedPasswordBox}">
+                            Style="{DynamicResource MahApps.Styles.TextBox.Revealed}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding ServerCommandPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>

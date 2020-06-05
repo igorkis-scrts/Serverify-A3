@@ -92,8 +92,8 @@
     <v:String x:Key="LocalizableLocalClientTitle">Lokale Client IPs</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IPs eine nach der anderen, durch Komma getrennt</v:String>
 
-    <v:String x:Key="LocalizableVotingTresholdTitle">Abstimmungsschwelle</v:String>
-    <v:String x:Key="LocalizableVotingTresholdTooltip">Prozentsatz der Stimmen, die zur Bestaetigung einer Abstimmung benötigt werden.</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTitle">Abstimmungsschwelle</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTooltip">Prozentsatz der Stimmen, die zur Bestaetigung einer Abstimmung benötigt werden.</v:String>
 
     <v:String x:Key="LocalizableVotingMissionTitle">Missions Abstimmung Start</v:String>
     <v:String x:Key="LocalizableVotingMissionTooltip">Starten Sie die Missionsabstimmung, wenn X Spieler eine Verbindung herstellen.</v:String>
