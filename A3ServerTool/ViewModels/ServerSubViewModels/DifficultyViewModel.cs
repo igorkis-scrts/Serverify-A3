@@ -16,7 +16,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         public DifficultyViewModel(ServerViewModel parentViewModel)
         {

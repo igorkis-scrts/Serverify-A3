@@ -46,6 +46,31 @@
                             <iconPacks:PackIconMaterial 
                                 Width="24" 
                                 Height="24" 
+                                Kind="Network" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableNetworkTabTitle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
+                <controls:NetworkView />
+                
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
                                 Kind="FileMultiple" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"

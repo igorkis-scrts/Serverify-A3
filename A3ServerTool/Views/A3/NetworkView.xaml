@@ -6,7 +6,6 @@
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:ei="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
@@ -32,10 +31,9 @@
                     <mah:ToggleSwitch
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        IsChecked="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        OffLabel="{DynamicResource LocalizableOff}"
-                        OnLabel="{DynamicResource LocalizableOn}"
-                        Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                        IsOn="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        OffContent="{DynamicResource LocalizableOff}"
+                        OnContent="{DynamicResource LocalizableOn}"
                         ToolTip="{DynamicResource LocalizableExpNetworkAlgorithmTooltip}" />
 
                     <Label
@@ -47,10 +45,9 @@
                     <mah:ToggleSwitch
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
-                        IsChecked="{Binding IsUpnp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                        OffLabel="{DynamicResource LocalizableOff}"
-                        OnLabel="{DynamicResource LocalizableOn}"
-                        Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                        IsOn="{Binding IsUpnp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        OffContent="{DynamicResource LocalizableOff}"
+                        OnContent="{DynamicResource LocalizableOn}"
                         ToolTip="{DynamicResource LocalizableUpnpTooltip}" />
 
                     <DockPanel>
@@ -377,11 +374,10 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsBandwidthAlgorhitm2Enabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                    ToolTip="{DynamicResource LocalizableExpNetworkAlgorhitmTooltip}" />
+                    IsOn="{Binding IsBandwidthAlgorithm2Enabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
+                    ToolTip="{DynamicResource LocalizableExpNetworkAlgorithmTooltip}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>
