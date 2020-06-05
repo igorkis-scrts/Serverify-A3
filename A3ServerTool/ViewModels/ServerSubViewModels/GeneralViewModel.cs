@@ -143,11 +143,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 var messages = CurrentProfile?.ServerConfig.WelcomeMessages;
-                if (messages != null)
-                {
-                    return string.Join("\n", messages);
-                }
-                return null;
+                if (messages == null) return null;
+                
+                return messages.All(string.IsNullOrEmpty) 
+                    ? null 
+                    : string.Join("\n", messages);
             }
             set
             {
