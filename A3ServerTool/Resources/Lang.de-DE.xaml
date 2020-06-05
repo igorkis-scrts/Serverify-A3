@@ -325,7 +325,7 @@
     <v:String x:Key="LocalizableIsMissionSelected">Play</v:String>
     <v:String x:Key="LocalizableName">Name</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Schwierigkeit</v:String>
-    <v:String x:Key="LocalizableIsMissonWhitelisted">Whitelist</v:String>
+    <v:String x:Key="LocalizableIsMissionWhitelisted">Whitelist</v:String>
 
     <v:String x:Key="LocalizableAutoSelectMissionsTitle">Autoauswahl Missionen</v:String>
     <v:String x:Key="LocalizableAutoSelectMissionsTooltip">Wenn diese Option aktiviert ist, startet der Server die nächste Mission im Missionszyklus automatisch und wartet auf Spieler in der Rollenauswahl.</v:String>

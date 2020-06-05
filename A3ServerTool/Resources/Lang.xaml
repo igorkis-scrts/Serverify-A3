@@ -325,7 +325,7 @@
     <v:String x:Key="LocalizableIsMissionSelected">Play</v:String>
     <v:String x:Key="LocalizableName">Name</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Difficulty</v:String>
-    <v:String x:Key="LocalizableIsMissonWhitelisted">Whitelist</v:String>
+    <v:String x:Key="LocalizableIsMissionWhitelisted">Whitelist</v:String>
 
     <v:String x:Key="LocalizableAutoSelectMissionsTitle">Autoselect Missions</v:String>
     <v:String x:Key="LocalizableAutoSelectMissionsTooltip">When enabled, the server auto-starts next mission in mission cycle and waits for players in the role selection.</v:String>

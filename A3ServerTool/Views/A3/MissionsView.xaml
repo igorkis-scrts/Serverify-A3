@@ -67,7 +67,7 @@
                             Binding="{Binding IsWhitelisted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                             ElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            Header="{DynamicResource LocalizableIsMissonWhitelisted}" />
+                            Header="{DynamicResource LocalizableIsMissionWhitelisted}" />
                         <DataGridCheckBoxColumn
                             Width="1*"
                             Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -76,7 +76,7 @@
                             Header="{DynamicResource LocalizableIsMissionSelected}" />
                     </DataGrid.Columns>
                     <DataGrid.Style>
-                        <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
+                        <Style BasedOn="{StaticResource MahApps.Styles.DataGrid}" TargetType="{x:Type DataGrid}">
                             <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
                         </Style>
                     </DataGrid.Style>
@@ -96,7 +96,7 @@
                         HorizontalAlignment="Left"
                         Command="{Binding RefreshCommand}"
                         Content="{DynamicResource LocalizableRefresh}"
-                        Style="{DynamicResource MetroFlatButton}" />
+                        Style="{DynamicResource MahApps.Styles.Button.Flat}" />
 
                     <TextBlock
                         MinWidth="128"
@@ -133,10 +133,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsAutoSelectMissions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsAutoSelectMissions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableAutoSelectMissionsTooltip}" />
 
                         <Label
@@ -148,10 +147,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsRandomMissionOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsRandomMissionOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableRandomMissionOrderTooltip}" />
                         <Label
                             Margin="{StaticResource LabelMargin}"

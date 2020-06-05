@@ -325,7 +325,7 @@
     <v:String x:Key="LocalizableIsMissionSelected">Играть на сервере</v:String>
     <v:String x:Key="LocalizableName">Название</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Сложность</v:String>
-    <v:String x:Key="LocalizableIsMissonWhitelisted">В белом списке</v:String>
+    <v:String x:Key="LocalizableIsMissionWhitelisted">В белом списке</v:String>
 
     <v:String x:Key="LocalizableAutoSelectMissionsTitle">Автовыбор миссий</v:String>
     <v:String x:Key="LocalizableAutoSelectMissionsTooltip">Когда включено, сервер автоматически запускает следующую миссию и ждёт игроков в лобби на экране выбора ролей.</v:String>
