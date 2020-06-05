@@ -47,13 +47,31 @@
             <!--     <controls:ModificationsView /> -->
             <!-- </TabItem> -->
             <!-- -->
-            <!-- <TabItem Header="{DynamicResource LocalizableDifficultyTabTittle}"> -->
-            <!--     <controls:DifficultyView /> -->
-            <!-- </TabItem> -->
-            <!-- -->
-            <!-- <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}"> -->
-            <!--     <controls:PerformanceView /> -->
-            <!-- </TabItem> -->
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="TargetAccount" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableDifficultyTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
+                <controls:DifficultyView />
+                
+            </TabItem>
             
             <TabItem>
                 <TabItem.HeaderTemplate>

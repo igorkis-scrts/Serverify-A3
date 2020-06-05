@@ -182,7 +182,6 @@
                             IsOn="{Binding IsStaminaBarShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableStaminaBarVisibilityTypeTooltip}" />
 
                         <Label
@@ -197,7 +196,6 @@
                             IsOn="{Binding IsCrosshairShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableWeaponCrosshairVisibilityTypeTooltip}" />
 
                         <Label
@@ -212,7 +210,6 @@
                             IsOn="{Binding IsVisualAidAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableVisionAidAllowanceTooltip}" />
 
                         <Label
@@ -227,7 +224,6 @@
                             IsOn="{Binding IsThirdPersonViewAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizablethirdPersonViewAllowanceTooltip}" />
 
                         <Label
@@ -242,7 +238,6 @@
                             IsOn="{Binding IsCameraShakeAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableCameraShakeAllowanceTooltip}" />
 
                     </StackPanel>
@@ -262,7 +257,6 @@
                             IsOn="{Binding IsScoreTableShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableScoreTableAllowanceTooltip}" />
 
                         <Label
@@ -277,7 +271,6 @@
                             IsOn="{Binding AreDeathMessagesShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableDeathMessagesAllowanceTooltip}" />
 
                         <Label
@@ -292,7 +285,6 @@
                             IsOn="{Binding AreVonIdsShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableVonIdVisibilityTooltip}" />
 
 
@@ -313,7 +305,6 @@
                             IsOn="{Binding IsExtendedMapFriendlyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableExtendedMapContentFriendlyAllowanceTitle}" />
 
                         <Label
@@ -328,7 +319,6 @@
                             IsOn="{Binding IsExtendedMapEnemyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableExtendedMapContentEnemiesAllowanceTooltip}" />
 
                         <Label
@@ -343,7 +333,6 @@
                             IsOn="{Binding IsExtendedMapMinesContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                             ToolTip="{DynamicResource LocalizableExtendedMapContentMinesAllowanceTooltip}" />
                     </StackPanel>
                 </Expander>
@@ -360,7 +349,6 @@
                     IsOn="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     OffContent="{DynamicResource LocalizableOff}"
                     OnContent="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableReducedDamageTooltip}" />
 
                 <Label
@@ -375,7 +363,6 @@
                     IsOn="{Binding IsAutoReportEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     OffContent="{DynamicResource LocalizableOff}"
                     OnContent="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableAutoReportAllowanceTooltip}" />
 
                 <Label
@@ -390,7 +377,6 @@
                     IsOn="{Binding AreMultipleSavesAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     OffContent="{DynamicResource LocalizableOff}"
                     OnContent="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
                     ToolTip="{DynamicResource LocalizableMultipleSavesAllowanceTooltip}" />
 
                 <Label
