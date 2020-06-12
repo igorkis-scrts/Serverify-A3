@@ -177,6 +177,7 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version der Addon-Signaturprüfung, die auf dem Server verwendet wird.</v:String>
 
     <v:String x:Key="LocalizableServerSidePasswordTitle">Serverseitiges Scripting Passwort</v:String>
+    <v:String x:Key="LocalizableServerSidePasswordTooltip">Serverseitiges Scripting Passwort</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTitle">On Double ID-Command</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTooltip">Wird ausgeführt, wenn der zweite Benutzer mit derselben ID erkannt wurde.</v:String>
     <v:String x:Key="LocalizableUserConnectedCommandTitle">On User connected Command</v:String>
@@ -269,6 +270,9 @@
     <v:String x:Key="LocalizableCustomFileSizeTitle">Maximum Custom File Size</v:String>
     <v:String x:Key="LocalizableCustomFileSizeTooltip">Benutzer mit benutzerdefiniertem Gesicht oder benutzerdefiniertem Sound, der größer als diese Größe ist, werden beim Verbindungsversuch gekickt.</v:String>
 
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTitle">Maximale Datengröße des Steam-Protokolls</v:String>
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTooltip">Limit für maximale Steam Query-Paketlänge. Das Erhöhen dieses Werts ist gefährlich, da dies dazu führen kann, dass der Arma-Server UDP-Pakete mit einer Größe sendet, die größer als die MTU ist. Dies führt dazu, dass UDP-Pakete fragmentiert werden, was von einigen älteren Routern nicht unterstützt wird. Kann das Längenlimit für Modlisten in Arma 3 Launcher korrigieren.</v:String>
+    
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Wenn die vom Server eingeleitete callExtension länger als in Millisekunden angegeben dauert, wird die Warnung in der RPT-Datei des Servers protokolliert und im Ergebnis der Rückgabe der Erweiterung wiedergegeben.</v:String>

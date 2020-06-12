@@ -177,6 +177,7 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version of addon signature verification that will be used on server.</v:String>
 
     <v:String x:Key="LocalizableServerSidePasswordTitle">Server-side Scripting Password</v:String>
+    <v:String x:Key="LocalizableServerSidePasswordTooltip">Password for server-side scripting.</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTitle">On Double ID Command</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTooltip">Executes when 2nd user with the same ID detected.</v:String>
     <v:String x:Key="LocalizableUserConnectedCommandTitle">On User Connected Command</v:String>
@@ -234,7 +235,7 @@
     <v:String x:Key="LocalizableSlowNetworkRulesTooltip">Defines if {MaxPing, MaxPacketLoss, MaxDesync, DisconnectTimeout} will be logged (0) or kicked (1).</v:String>
 
     <v:String x:Key="LocalizableLanModeTitle">LAN Mode</v:String>
-    <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable pnly through local network.</v:String>
+    <v:String x:Key="LocalizableLanModeTooltip">Server will be reachable only through local network.</v:String>
 
     <v:String x:Key="LocalizablePortTitle">Port</v:String>
     <v:String x:Key="LocalizablePortTooltip">Specifies UDP port that will be used to connect with server.</v:String>
@@ -268,6 +269,9 @@
 
     <v:String x:Key="LocalizableCustomFileSizeTitle">Maximum Custom File Size</v:String>
     <v:String x:Key="LocalizableCustomFileSizeTooltip">Users with custom face or custom sound larger than this size are kicked when trying to connect.</v:String>
+    
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTitle">Steam Protocol Max Data Size</v:String>
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTooltip">Limit for maximum Steam Query packet length. Increasing this value is dangerous as it can cause Arma server to send UDP packets of a size larger than the MTU. This will cause UDP packets to be fragmented which is not supported by some older routers. Can fix the modlist length limit in Arma 3 Launcher. </v:String>
 
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>

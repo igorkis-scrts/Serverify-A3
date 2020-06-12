@@ -181,6 +181,7 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Тип верификации сигнатур аддонов.</v:String>
 
     <v:String x:Key="LocalizableServerSidePasswordTitle">Пароль доступа к серверным скриптам</v:String>
+    <v:String x:Key="LocalizableServerSidePasswordTooltip">Пароль доступа к серверным скриптам</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTitle">OnDoubleIdCommand</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTooltip">Выполняется при обнаружении второго клиента с одинаковым ID.</v:String>
     <v:String x:Key="LocalizableUserConnectedCommandTitle">OnUserConnectedCommand</v:String>
@@ -268,6 +269,9 @@
 
     <v:String x:Key="LocalizableCustomFileSizeTitle">Максимальный размер пользовательских файлов</v:String>
     <v:String x:Key="LocalizableCustomFileSizeTooltip">Пользователи с текстурой лица или звуками при превышении указанного значении будут изгнаны из игры при подключении.</v:String>
+    
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTitle">Максимальный размер пакета для Steam Query</v:String>
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTooltip">Увеличение этого значения может быть опасно из-за способности заставить Arma-сервер слать UPD-пакеты размером больше чем MTU, из-за чего UPD-пакеты могут фрагментироваться, что не поддерживается некоторыми старыми роутерами. Может пофиксить проблему с длиной строки модлиста в лаунчере Arma 3.</v:String>
 
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>

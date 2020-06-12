@@ -363,6 +363,12 @@ namespace A3ServerTool.Models.Config
         public int? HasBisAnalytics { get; set; }
 
         /// <summary>
+        /// Gets or sets a value for limiting maximum Steam Query packet length.
+        /// <see cref="https://community.bistudio.com/wiki/Arma_3_Analytics"/>
+        /// </summary>
+        public int? SteamProtocolMaxDataSize { get; set; } = 1024;
+
+        /// <summary>
         /// Gets or sets a value if missions will be autoselected.
         /// </summary>
         [ConfigProperty(PropertyName = "autoSelectMission")]

@@ -216,6 +216,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 RaisePropertyChanged();
             }
         }
+        
+        public int? SteamProtocolMaxDataSize
+        {
+            get => CurrentProfile.ServerConfig.SteamProtocolMaxDataSize;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.SteamProtocolMaxDataSize)) return;
+                CurrentProfile.ServerConfig.SteamProtocolMaxDataSize = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the welcome messages.
