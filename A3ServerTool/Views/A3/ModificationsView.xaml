@@ -4,9 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:A3ServerTool.Views.A3"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="640"
     d:DesignWidth="960"
@@ -120,8 +118,8 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -131,7 +129,7 @@
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
                         Command="{Binding SelectAllCommand}"
-                        Style="{DynamicResource MetroFlatButton}">
+                        Style="{DynamicResource MahApps.Styles.Button.Flat}">
                         <DockPanel>
                             <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="SelectAll" />
                             <TextBlock Margin="4" Text="{DynamicResource LocalizableSelectAllTitle}" />
@@ -156,8 +154,8 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
                     </Grid.ColumnDefinitions>
 
                     <Button

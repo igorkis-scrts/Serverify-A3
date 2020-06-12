@@ -34,7 +34,7 @@
                         IsOn="{Binding IsLan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         OffContent="{DynamicResource LocalizableOff}"
                         OnContent="{DynamicResource LocalizableOn}"
-                        ToolTip="{DynamicResource LocalizableExpNetworkAlgorithmTooltip}" />
+                        ToolTip="{DynamicResource LocalizableLanModeTooltip}" />
 
                     <Label
                         Margin="{StaticResource LabelMargin}"
@@ -364,6 +364,24 @@
                     TextAlignment="Left"
                     ToolTip="{DynamicResource LocalizableCustomFileSizeTooltip}"
                     Value="{Binding MaxCustomFileSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+                
+                <Label
+                    Margin="{StaticResource LabelMargin}"
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LocalizableSteamProtocolMaxDataSizeTitle}"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <mah:NumericUpDown
+                    MinWidth="192"
+                    MaxWidth="512"
+                    Margin="{StaticResource ControlMargin}"
+                    HorizontalAlignment="Left"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    Minimum="1"
+                    Speedup="True"
+                    TextAlignment="Left"
+                    ToolTip="{DynamicResource LocalizableSteamProtocolMaxDataSizeTooltip}"
+                    Value="{Binding SteamProtocolMaxDataSize, TargetNullValue='', ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                 <Label
                     Margin="{StaticResource LabelMargin}"

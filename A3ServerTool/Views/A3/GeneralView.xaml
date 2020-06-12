@@ -50,10 +50,10 @@
                             FontWeight="Bold" />
                         <PasswordBox
                             Margin="{StaticResource ControlMargin}"
-                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(mah:TextBoxHelper.HasText), Mode=OneWay}"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
                             mah:TextBoxHelper.Watermark="{DynamicResource LocalizablePasswordWatermark}"
-                            Style="{DynamicResource MahApps.Styles.TextBox.Revealed}">
+                            Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding ServerPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>

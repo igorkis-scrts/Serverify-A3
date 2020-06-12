@@ -153,9 +153,10 @@
                             FontWeight="Bold" />
                         <PasswordBox
                             Margin="{StaticResource ControlMargin}"
-                            mah:TextBoxHelper.ClearTextButton="True"
-                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableAdminPasswordWatermark}"
-                            Style="{DynamicResource MahApps.Styles.TextBox.Revealed}">
+                            mah:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(mah:TextBoxHelper.HasText), Mode=OneWay}"
+                            mah:TextBoxHelper.UseFloatingWatermark="True"
+                            Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableAdminPasswordWatermark}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding AdminPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>
@@ -186,12 +187,11 @@
                             FontWeight="Bold" />
 
                         <PasswordBox
-                            x:Name="ServerCommandPasswordTextBox"
                             Margin="{StaticResource ControlMargin}"
-                            mah:TextBoxHelper.ClearTextButton="True"
+                            mah:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(mah:TextBoxHelper.HasText), Mode=OneWay}"
                             mah:TextBoxHelper.UseFloatingWatermark="True"
-                            mah:TextBoxHelper.Watermark="Password for server-side scripting"
-                            Style="{DynamicResource MahApps.Styles.TextBox.Revealed}">
+                            Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}"
+                            mah:TextBoxHelper.Watermark="{DynamicResource LocalizableServerSidePasswordTooltip}">
                             <i:Interaction.Behaviors>
                                 <b:PasswordBehaviour Password="{Binding ServerCommandPassword, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
                             </i:Interaction.Behaviors>
