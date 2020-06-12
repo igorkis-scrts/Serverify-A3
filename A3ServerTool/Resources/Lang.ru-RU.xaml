@@ -431,6 +431,8 @@
 
     <v:String x:Key="LocalizableSelectAllTitle">Выбрать всё</v:String>
     <v:String x:Key="LocalizableDeselectAllTitle">Отменить всё</v:String>
+    <v:String x:Key="LocalizableAddModTitle">Добавить мод</v:String>
+    <v:String x:Key="LocalizableRemoveModTitle">Удалить мод</v:String>
 
     <v:String x:Key="LocalizableServerModTitle">Серверный мод</v:String>
     <v:String x:Key="LocalizableServerModTooltip">Модификации, отмеченные данным флагом, будут использоваться только на сервере и не будет требоваться от подключающихся клиентов.</v:String>

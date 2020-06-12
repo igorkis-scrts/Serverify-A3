@@ -430,6 +430,8 @@
 
     <v:String x:Key="LocalizableSelectAllTitle">Alles ausgewählt</v:String>
     <v:String x:Key="LocalizableDeselectAllTitle">Alles abgewählt</v:String>
+    <v:String x:Key="LocalizableAddModTitle">Mod hinzufügen</v:String>
+    <v:String x:Key="LocalizableRemoveModTitle">Mod entfernen</v:String>
 
     <v:String x:Key="LocalizableServerModTitle">Server Mod</v:String>
     <v:String x:Key="LocalizableServerModTooltip">Stellt Änderungen dar, die nur vom Server angewendet werden und von Clients nicht benötigt werden.</v:String>
