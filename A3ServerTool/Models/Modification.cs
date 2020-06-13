@@ -51,6 +51,28 @@ namespace A3ServerTool.Models
         }
 
         private bool _isServerMod;
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is absolute path.
+        /// </summary>
+        public bool IsAbsolutePathMod
+        {
+            get => _isAbsolutePathMod;
+            set
+            {
+                if (Equals(_isAbsolutePathMod, value))
+                {
+                    return;
+                }
+                _isAbsolutePathMod = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isAbsolutePathMod;
+
+
+        #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -59,5 +81,7 @@ namespace A3ServerTool.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

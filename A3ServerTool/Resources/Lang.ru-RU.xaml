@@ -444,6 +444,8 @@
     <v:String x:Key="LocalizableClientModTitle">Выбрать</v:String>
     <v:String x:Key="LocalizableRefreshModNote">Модификации ищутся в той же папке, что и исполняемый файл сервера. Если моды отсутствуют в списке - сначала укажите исполняемый файл сервера.</v:String>
     <v:String x:Key="LocalizableActionTitle">Действия</v:String>
+    
+    <v:String x:Key="LocalizableIsAbsolutePathModTitle">Прямая ссылка</v:String>
 
     <!--  Profile dialog view  -->
     <v:String x:Key="LocalizableNameTitle">Название</v:String>

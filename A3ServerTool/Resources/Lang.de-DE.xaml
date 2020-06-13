@@ -439,6 +439,8 @@
 
     <v:String x:Key="LocalizableServerModTitle">Server Mod</v:String>
     <v:String x:Key="LocalizableServerModTooltip">Stellt Änderungen dar, die nur vom Server angewendet werden und von Clients nicht benötigt werden.</v:String>
+    
+    <v:String x:Key="LocalizableIsAbsolutePathModTitle">Direkter Pfad</v:String>
 
     <v:String x:Key="LocalizableClientModTitle">Wählen</v:String>
     <v:String x:Key="LocalizableRefreshModNote">Änderungen werden im selben Ordner wie die ausführbare Datei des Servers gesucht. Wenn das Raster keine Änderungen enthält, geben Sie die zuerst ausführbare Datei des Servers an.</v:String>
