@@ -30,8 +30,7 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-
-
+            
             <StackPanel Grid.Column="0">
                 <StackPanel HorizontalAlignment="Right">
 
@@ -56,7 +55,7 @@
                     CanUserAddRows="False"
                     GridLinesVisibility="Horizontal"
                     HeadersVisibility="All"
-                    ItemsSource="{Binding Path=Modifications}"
+                    ItemsSource="{Binding Path=Modifications, Mode=TwoWay}"
                     RowHeaderWidth="20"
                     SelectedItem="{Binding SelectedModification, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SelectionMode="Single"
@@ -69,20 +68,27 @@
                             IsReadOnly="True" />
                         <DataGridCheckBoxColumn
                             Binding="{Binding IsClientMod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
+                            ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
                             Header="{DynamicResource LocalizableClientModTitle}" />
                         <DataGridCheckBoxColumn
                             Binding="{Binding IsServerMod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
+                            ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
                             Header="{DynamicResource LocalizableServerModTitle}" />
+                        <DataGridCheckBoxColumn
+                            IsReadOnly="True"
+                            EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
+                            ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
+                            Binding="{Binding IsAbsolutePathMod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Header="{DynamicResource LocalizableIsAbsolutePathModTitle}" />
                     </DataGrid.Columns>
                     <DataGrid.Style>
                         <Style BasedOn="{StaticResource MahApps.Styles.DataGrid}" TargetType="{x:Type DataGrid}">
                             <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
                         </Style>
                     </DataGrid.Style>
+                    
                 </DataGrid>
             </StackPanel>
 
@@ -178,7 +184,7 @@
                         MinWidth="128"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Right"
-                        Command="{Binding AddModCommand}"
+                        Command="{Binding RemoveModCommand}"
                         Style="{DynamicResource MahApps.Styles.Button.Flat}">
                         <DockPanel>
                             <iconPacks:PackIconMaterial VerticalAlignment="Center" Kind="MinusBoxMultiple" />

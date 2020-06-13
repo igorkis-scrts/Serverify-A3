@@ -65,14 +65,14 @@
                         </DataGridTemplateColumn>
                         <DataGridCheckBoxColumn
                             Binding="{Binding IsWhitelisted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
+                            ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
                             Header="{DynamicResource LocalizableIsMissionWhitelisted}" />
                         <DataGridCheckBoxColumn
                             Width="1*"
                             Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                            ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
+                            ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
                             Header="{DynamicResource LocalizableIsMissionSelected}" />
                     </DataGrid.Columns>
                     <DataGrid.Style>
