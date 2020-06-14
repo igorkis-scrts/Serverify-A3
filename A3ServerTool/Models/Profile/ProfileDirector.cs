@@ -105,7 +105,6 @@ namespace A3ServerTool.Models.Profile
             if (profile.ServerConfig == null)
             {
                 profile.ServerConfig = new ServerConfig();
-                SetServerConfigDefaultValues(profile);
                 _serverDao.Save(profile);
             }
         }
@@ -143,52 +142,6 @@ namespace A3ServerTool.Models.Profile
             _basicDao.Save(profile);
             _serverDao.Save(profile);
             _armaProfileDao.Save(profile);
-        }
-
-        [Obsolete("Will be deleted in the next update.")]
-        public void SetDefaultValues(Profile profile)
-        {
-            SetServerConfigDefaultValues(profile);
-        }
-
-        /// <summary>
-        /// Sets the server configuration default values.
-        /// </summary>
-        /// <param name="profile">The profile.</param>
-        private void SetServerConfigDefaultValues(Profile profile)
-        {
-            //TODO: delet dis
-            if (profile == null) return;
-
-            if (profile.ServerConfig == null)
-            {
-                profile.ServerConfig = new ServerConfig();
-            }
-
-            profile.ServerConfig.MaximumAmountOfPlayers = 64;
-            profile.ServerConfig.FilePatchingMode = 0;
-            profile.ServerConfig.DisconnectTimeout = 90;
-            profile.ServerConfig.MaximumPing = 200;
-            profile.ServerConfig.MaximumDesync = 150;
-            profile.ServerConfig.MaximumPacketLoss = 50;
-            profile.ServerConfig.HasBattleEye = true;
-            profile.ServerConfig.TimeStampFormat = "none";
-            profile.ServerConfig.RotorLibSimulationType = 0;
-            profile.ServerConfig.LogFileName = "server_console.log";
-            profile.ServerConfig.VoiceCodecType = 0;
-            profile.ServerConfig.VoiceCodecQuality = 3;
-            profile.ServerConfig.IsDrawingOnMapAllowed = true;
-            profile.ServerConfig.SignatureVerificationMode = 2;
-            profile.ServerConfig.LobbyIdleTimeout = 99999;
-            profile.ServerConfig.DebriefingTimeout = 45;
-            profile.ServerConfig.BriefingTimeout = 60;
-            profile.ServerConfig.RoleSelectionTimeout = 99999;
-            profile.ServerConfig.HasBattleEye = true;
-            profile.ServerConfig.SignatureVerificationMode = 2;
-            profile.ServerConfig.FilePatchingMode = 0;
-            profile.ServerConfig.LoadFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
-            profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
-            profile.ServerConfig.HtmlFileExtensionsWhitelist.AddRange(new[] { "htm", "html", "xml", "txt" });
         }
     }
 }

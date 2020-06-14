@@ -221,11 +221,6 @@ namespace A3ServerTool.ViewModels
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                if(DialogResult.ActionType == SaveObjectActionType.Create)
-                {
-                    _profileDirector.SetDefaultValues(DialogResult.Object);
-                }
-
                 _mainViewModel.CurrentProfile = DialogResult.Object;
                 _profileDirector.SaveStorage(DialogResult.Object);
                 Properties.Settings.Default.LastUsedProfile = DialogResult.Object.Id;

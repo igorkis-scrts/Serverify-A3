@@ -47,16 +47,13 @@ namespace A3ServerTool.Storage
             foreach(var folder in profileFolders)
             {
                 var files = FileHelper.GetAllFiles(folder);
-                if (files == null)
-                {
-                    continue;
-                }
 
-                Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
+                var metadata = files?.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
                 if (metadata != null)
                 {
-                    profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    var profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    if (profile == null) continue;
+                    
                     profile.ProfilePath = folder.FullName;
                     profiles.Add(profile);
                 }

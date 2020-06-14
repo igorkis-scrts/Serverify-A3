@@ -83,7 +83,6 @@ namespace A3ServerTool.ViewModels
                     if (CurrentProfile == null)
                     {
                         CurrentProfile = new Profile(Guid.NewGuid());
-                        _profileDirector.SetDefaultValues(CurrentProfile);
                     }
                 }
                 else
@@ -108,6 +107,8 @@ namespace A3ServerTool.ViewModels
                     if (_profileDirector.ExistOnStorage(CurrentProfile))
                     {
                         _profileDirector.SaveStorage(CurrentProfile);
+                        Properties.Settings.Default.LastUsedProfile = CurrentProfile.Id;
+                        Properties.Settings.Default.Save();
 
                         var dialogSettings = new MetroDialogSettings
                         {

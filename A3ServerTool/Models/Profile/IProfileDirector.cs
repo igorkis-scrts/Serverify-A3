@@ -37,11 +37,5 @@ namespace A3ServerTool.Models.Profile
         /// Checks if profile has physical presence on hard drive
         /// </summary>
         Profile GetById(Guid id);
-
-        /// <summary>
-        /// Sets the default values.
-        /// </summary>
-        /// <param name="profile">The profile.</param>
-        void SetDefaultValues(Profile profile);
     }
 }
