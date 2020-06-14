@@ -70,12 +70,12 @@
                             Binding="{Binding IsClientMod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
                             ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
-                            Header="{DynamicResource LocalizableClientModTitle}" />
+                            Header="{DynamicResource LocalizableClientModTitle}"/>
                         <DataGridCheckBoxColumn
                             Binding="{Binding IsServerMod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
                             ElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"
-                            Header="{DynamicResource LocalizableServerModTitle}" />
+                            Header="{DynamicResource LocalizableServerModTitle}"/>
                         <DataGridCheckBoxColumn
                             IsReadOnly="True"
                             EditingElementStyle="{DynamicResource MahApps.Styles.CheckBox.DataGrid.Win10}"

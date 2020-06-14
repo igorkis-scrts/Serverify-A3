@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using A3ServerTool.Helpers;
@@ -45,7 +45,7 @@ namespace A3ServerTool.Models.Profile
             RetrieveBasicConfig(profile);
             RetrieveServerConfig(profile);
             RetrieveArmaProfile(profile);
-            RetrieveModifications(profile);
+            GetProfileModifications(profile);
 
             return profile;
         }
@@ -68,17 +68,19 @@ namespace A3ServerTool.Models.Profile
         /// Retrieves the arma profile.
         /// </summary>
         /// <param name="profile">The profile.</param>
-        private void RetrieveModifications(Profile profile)
+        public void GetProfileModifications(Profile profile)
         {
-            if (profile.ArgumentSettings == null)
-            {
-                profile.ArgumentSettings = new ArgumentSettings();
-            }
+            profile.ArgumentSettings ??= new ArgumentSettings();
 
             //merge stored mods in arma folder and mods located in config
             var storedMods = _modDao.GetAll(_locationFinder.GetGameInstallationPath(profile))
                 .ToList();
             var configMods = profile.ArgumentSettings.Modifications;
+            if (!configMods.Any())
+            {
+                profile.ArgumentSettings.Modifications = storedMods;
+                return;
+            }
 
             foreach(var mod in storedMods)
             {

@@ -39,9 +39,9 @@ namespace A3ServerTool.Models.Profile
         Profile GetById(Guid id);
 
         /// <summary>
-        /// Sets the default values.
+        /// Get mods that used by profile.
         /// </summary>
-        /// <param name="profile">The profile.</param>
-        void SetDefaultValues(Profile profile);
+        /// <param name="profile"></param>
+        void GetProfileModifications(Profile profile);
     }
 }
