@@ -5,14 +5,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
-using A3ServerTool.Models;
 using A3ServerTool.Models.Profile;
 using A3ServerTool.ViewModels.ServerSubViewModels;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using Interchangeable;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -221,11 +219,6 @@ namespace A3ServerTool.ViewModels
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                if(DialogResult.ActionType == SaveObjectActionType.Create)
-                {
-                    _profileDirector.SetDefaultValues(DialogResult.Object);
-                }
-
                 _mainViewModel.CurrentProfile = DialogResult.Object;
                 _profileDirector.SaveStorage(DialogResult.Object);
                 Properties.Settings.Default.LastUsedProfile = DialogResult.Object.Id;

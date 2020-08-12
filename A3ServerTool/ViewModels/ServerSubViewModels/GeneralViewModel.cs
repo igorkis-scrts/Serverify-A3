@@ -482,36 +482,34 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _browseCommand ??
-                       (_browseCommand = new RelayCommand(callerToken =>
+                return _browseCommand ??= new RelayCommand(callerToken =>
                        {
-                           using (var fileDialog = new OpenFileDialog())
+                           using var fileDialog = new OpenFileDialog();
+                           
+                           var callerTokenString = callerToken.ToString();
+                           if (callerTokenString == ExecutablePathToken)
                            {
-                               var callerTokenString = callerToken.ToString();
-                               if (callerTokenString == ExecutablePathToken)
-                               {
-                                   fileDialog.Filter = "Exe files (*.exe) | *.exe;";
-                               }
-                               else if (callerTokenString == RankingPathToken)
-                               {
-                                   fileDialog.Filter = "log files (*.log)|*.log;";
-                               }
-
-                               if (fileDialog.ShowDialog() != DialogResult.OK)
-                               {
-                                   return;
-                               }
-
-                               if (callerTokenString == ExecutablePathToken)
-                               {
-                                   ExecutablePath = fileDialog.FileName;
-                               }
-                               else if(callerTokenString == RankingPathToken)
-                               {
-                                   RankingFilePath = fileDialog.FileName;
-                               }
+                               fileDialog.Filter = "Exe files (*.exe) | *.exe;";
                            }
-                       }));
+                           else if (callerTokenString == RankingPathToken)
+                           {
+                               fileDialog.Filter = "log files (*.log)|*.log;";
+                           }
+
+                           if (fileDialog.ShowDialog() != DialogResult.OK)
+                           {
+                               return;
+                           }
+
+                           if (callerTokenString == ExecutablePathToken)
+                           {
+                               ExecutablePath = fileDialog.FileName;
+                           }
+                           else if(callerTokenString == RankingPathToken)
+                           {
+                               RankingFilePath = fileDialog.FileName;
+                           }
+                       });
             }
         }
         private ICommand _browseCommand;
