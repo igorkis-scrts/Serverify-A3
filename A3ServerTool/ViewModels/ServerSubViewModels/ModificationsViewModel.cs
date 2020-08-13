@@ -173,6 +173,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                     };
 
                     Modifications.Add(mod);
+                    CurrentProfile.ArgumentSettings.Modifications = new List<Modification>(Modifications);
+                    
                     RaisePropertyChanged(nameof(ModificationsCounter));
                 });
             }
@@ -245,9 +247,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Modifications != null)
                 {
-                    var oldMods = new List<Modification>(Modifications);
+                    var oldMods = CurrentProfile.ArgumentSettings.Modifications.ConvertAll(mod => mod.Clone());
                     _profileDirector.GetProfileModifications(CurrentProfile);
-                    
+
                     var updatedMods = CurrentProfile.ArgumentSettings.Modifications;
 
                     foreach (var mod in updatedMods)

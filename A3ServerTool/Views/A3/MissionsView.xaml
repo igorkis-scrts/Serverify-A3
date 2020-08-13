@@ -27,13 +27,15 @@
 
             <StackPanel Grid.Column="0">
                 <DataGrid
+                    EnableRowVirtualization="True"
+                    EnableColumnVirtualization="True"
                     Margin="{StaticResource ControlMargin}"
                     VerticalAlignment="Top"
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     GridLinesVisibility="Horizontal"
                     HeadersVisibility="All"
-                    ItemsSource="{Binding Path=Missions}"
+                    ItemsSource="{Binding Path=Missions, IsAsync=True}"
                     RowHeaderWidth="20"
                     SelectedItem="{Binding SelectedMission, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SelectionMode="Single"

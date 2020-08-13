@@ -1,10 +1,13 @@
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
 using A3ServerTool.Models.Profile;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls;
@@ -156,6 +159,28 @@ namespace A3ServerTool.ViewModels
                 Properties.Settings.Default.Save();
                 Messenger.Default.Send("update", Token);
             }
+            
+            ClearDialogServices();
+        }
+        
+        /// <summary>
+        /// Clears view models when we don't need them
+        /// </summary>
+        /// <remarks>Since ServiceLocator creates new instance of ProfileDialogVM every time we're calling it,
+        /// we need to manualy unregister that VMs after it's usage so there will be no memory leak</remarks>
+        private void ClearDialogServices()
+        {
+            //TODO: refacrtor this delicious copypasta
+            Task.Run(() =>
+            {
+                var servicesToClear = SimpleIoc.Default.GetAllInstances<ProfileDialogViewModel>()
+                    .Where(service => service.IsExpired).ToList();
+
+                foreach (var service in servicesToClear)
+                {
+                    SimpleIoc.Default.Unregister(service);
+                }
+            });
         }
     }
 }

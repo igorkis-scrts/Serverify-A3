@@ -82,7 +82,13 @@ namespace A3ServerTool.Models.Profile
                 return;
             }
 
-            foreach(var mod in storedMods)
+            var configAbsolutePathMods = configMods.Where(cm => cm.IsAbsolutePathMod);
+            if (configAbsolutePathMods.Any())
+            {
+                storedMods.AddRange(configAbsolutePathMods);
+            }
+
+            foreach (var mod in storedMods)
             {
                 var configMod = configMods.FirstOrDefault(x => x.Name == mod.Name);
                 if (configMod?.IsClientMod == true)
@@ -94,7 +100,14 @@ namespace A3ServerTool.Models.Profile
                 {
                     mod.IsServerMod = true;
                 }
+
+                if (configMod?.IsAbsolutePathMod == true)
+                {
+                    mod.IsAbsolutePathMod = true;
+                }
             }
+
+            profile.ArgumentSettings.Modifications = storedMods;
         }
 
         /// <summary>

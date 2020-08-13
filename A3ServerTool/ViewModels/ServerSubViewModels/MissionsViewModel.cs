@@ -152,7 +152,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _refreshCommand ??= new RelayCommand(_ => RefreshMissions());
+                return _refreshCommand ??= new RelayCommand(async _ => await RefreshMissions());
             }
         }
         private ICommand _refreshCommand;
@@ -186,20 +186,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             Messenger.Default.Register<string>(this, Token, DoByRequest);
         }
 
-        private Task RefreshMissions()
+        private async Task RefreshMissions()
         {
             var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
             if (string.IsNullOrWhiteSpace(gamePath))
             {
                 Missions.Clear();
-                return Task.FromResult<object>(null);
+                return;
             }
 
-            return Task.Run(() =>
+            var result = await Task.Run(() =>
             {
                 if (Missions != null)
                 {
-                    var oldMissions = new List<Mission>(Missions);
+                    var oldMissions = new List<Mission>(CurrentProfile.ServerConfig.Missions);
                     var updatedMissions = new List<Mission>(_missionDao.GetAll(gamePath));
 
                     foreach (var mission in updatedMissions)
@@ -213,25 +213,25 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         }
                     }
 
-                    CurrentProfile.ServerConfig.Missions = updatedMissions;
-                    Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
+                    return updatedMissions;
                 }
-                else
-                {
-                    var missions = _missionDao.GetAll(gamePath);
-                    CurrentProfile.ServerConfig.Missions = missions.ToList();
-                    Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
-                }
+
+                var missions = _missionDao.GetAll(gamePath);
+                    
+                return missions.ToList();
             });
+            
+            CurrentProfile.ServerConfig.Missions = result;
+            Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
         }
 
         /// <summary>
         /// Refreshes mission list by requests from other view models.
         /// </summary>
         /// <param name="request">message to do something in this viewmodel.</param>
-        private void DoByRequest(string request)
+        private async void DoByRequest(string request)
         {
-            RefreshMissions();
+            await RefreshMissions();
         }
     }
 }
