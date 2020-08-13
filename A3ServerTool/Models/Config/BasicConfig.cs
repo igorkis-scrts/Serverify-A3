@@ -106,7 +106,7 @@ namespace A3ServerTool.Models.Config
         /// </summary>
         [ConfigProperty(PropertyName = "maxPacketSize")]
         [WrappingClass(new string[] { "sockets" })]
-        public int? MaxPacketSize { get; set; } = 1400;
+        public int? MaxPacketSize { get; set; } = 1440;
 
         //TODO: check where it is actually belong - basic.cfg or armaprofile config?
         /// <summary>
