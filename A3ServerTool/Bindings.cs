@@ -17,6 +17,8 @@ namespace A3ServerTool
     public class Bindings
     {
         public MainViewModel Main => SimpleIoc.Default.GetInstance<MainViewModel>();
+
+        public AppHamburgerMenuViewModel AppHamburgerMenu => SimpleIoc.Default.GetInstance<AppHamburgerMenuViewModel>();
         public ServerViewModel Server => SimpleIoc.Default.GetInstance<ServerViewModel>();
         public AboutViewModel About => SimpleIoc.Default.GetInstance<AboutViewModel>();
         public ProfilesViewModel Profiles => SimpleIoc.Default.GetInstance<ProfilesViewModel>();
@@ -37,6 +39,7 @@ namespace A3ServerTool
         public static void Register()
         {
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<AppHamburgerMenuViewModel>();
             SimpleIoc.Default.Register<ProfilesViewModel>();
             SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();

@@ -3,12 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="clr-namespace:A3ServerTool.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:viewModels="clr-namespace:A3ServerTool.ViewModels"
              xmlns:views="clr-namespace:A3ServerTool.Views"
+             DataContext="{Binding AppHamburgerMenu, Source={StaticResource Bindings}}"
              mc:Ignorable="d">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -68,6 +76,7 @@
 
     <Grid>
         <Grid.Resources>
+            <converters:SelectedItemToContentConverter x:Key="SelectedItemToContentConverter" />
             <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type mah:HamburgerMenuIconItem}">
                 <Grid
                     x:Name="RootGrid"
@@ -97,23 +106,38 @@
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
+
+            <!--  templates for view models  -->
+            <DataTemplate DataType="{x:Type viewModels:ServerViewModel}">
+                <views:GeneralView DataContext="{Binding}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:AboutViewModel}">
+                <views:AboutView DataContext="{Binding}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:ProfilesViewModel}">
+                <views:ProfilesView DataContext="{Binding}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+                <views:SettingsView DataContext="{Binding}" />
+            </DataTemplate>
         </Grid.Resources>
 
         <mah:HamburgerMenu
             x:Name="HamburgerMenuControl"
             Margin="0"
             HamburgerWidth="48"
+            ItemInvoked="HamburgerMenuControl_OnItemInvoked"
+            OptionsItemClick="HamburgerMenuControl_OnOptionsItemClick"
             Background="{x:Static SystemParameters.WindowGlassBrush}"
             DisplayMode="CompactOverlay"
             IsPaneOpen="False"
-            ItemInvoked="HamburgerMenuControl_OnItemInvoked"
-            OptionsItemClick="HamburgerMenuControl_OnOptionsItemClick"
             ItemTemplate="{StaticResource HamburgerMenuItem}"
+            ItemsSource="{Binding MenuItems}"
             OptionsItemTemplate="{StaticResource MenuItemTemplate}"
-            VerticalScrollBarOnLeftSide="False"
+            OptionsItemsSource="{Binding MenuOptionItems}"
             Style="{StaticResource HamburgerMenuCreatorsStyle}"
             SelectedIndex="0">
-            
+
             <mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
                 <DataTemplate>
                     <TextBlock HorizontalAlignment="Center"
@@ -124,57 +148,20 @@
                 </DataTemplate>
             </mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
 
+            <!--  select the tag (ViewModel) of the selected item (options item)  -->
+            <mah:HamburgerMenu.Content>
+                <MultiBinding Converter="{StaticResource SelectedItemToContentConverter}">
+                    <Binding FallbackValue="{x:Null}"
+                             Mode="OneWay"
+                             Path="SelectedItem"
+                             RelativeSource="{RelativeSource Self}" />
+                    <Binding FallbackValue="{x:Null}"
+                             Mode="OneWay"
+                             Path="SelectedOptionsItem"
+                             RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+            </mah:HamburgerMenu.Content>
 
-            <mah:HamburgerMenu.ItemsSource>
-                <mah:HamburgerMenuItemCollection>
-                    <mah:HamburgerMenuIconItem 
-                        Label="{DynamicResource LocalizableServerHamburgerMenuItemTitle}" 
-                        ToolTip="{DynamicResource LocalizableServerHamburgerMenuItemTooltip}">
-                        <mah:HamburgerMenuIconItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="Server" />
-                        </mah:HamburgerMenuIconItem.Icon>
-                        <mah:HamburgerMenuIconItem.Tag>
-                            <views:GeneralView />
-                        </mah:HamburgerMenuIconItem.Tag>
-                    </mah:HamburgerMenuIconItem>
-                    <mah:HamburgerMenuIconItem 
-                        Label="{DynamicResource LocalizableProfilesHamburgerMenuItemTitle}" 
-                        ToolTip="{DynamicResource LocalizableProfilesHamburgerMenuItemTooltip}">
-                        <mah:HamburgerMenuIconItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="AccountMultiple" />
-                        </mah:HamburgerMenuIconItem.Icon>
-                        <mah:HamburgerMenuIconItem.Tag>
-                            <views:ProfilesView />
-                        </mah:HamburgerMenuIconItem.Tag>
-                    </mah:HamburgerMenuIconItem>
-                    <mah:HamburgerMenuIconItem 
-                        Label="{DynamicResource LocalizableSettingsHamburgerMenuItemTitle}" 
-                        ToolTip="{DynamicResource LocalizableSettingsHamburgerMenuItemTooltip}">
-                        <mah:HamburgerMenuIconItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="Cog" />
-                        </mah:HamburgerMenuIconItem.Icon>
-                        <mah:HamburgerMenuIconItem.Tag>
-                            <views:SettingsView />
-                        </mah:HamburgerMenuIconItem.Tag>
-                    </mah:HamburgerMenuIconItem>
-                </mah:HamburgerMenuItemCollection>
-            </mah:HamburgerMenu.ItemsSource>
-            
-            <mah:HamburgerMenu.OptionsItemsSource>
-                <mah:HamburgerMenuItemCollection>
-                    <mah:HamburgerMenuIconItem 
-                        Label="{DynamicResource LocalizableAboutHamburgerMenuItemTitle}" 
-                        ToolTip="{DynamicResource LocalizableAboutHamburgerMenuItemTooltip}">
-                        <mah:HamburgerMenuIconItem.Icon>
-                            <iconPacks:PackIconMaterial Kind="Help" />
-                        </mah:HamburgerMenuIconItem.Icon>
-                        <mah:HamburgerMenuIconItem.Tag>
-                            <views:AboutView />
-                        </mah:HamburgerMenuIconItem.Tag>
-                    </mah:HamburgerMenuIconItem>
-                </mah:HamburgerMenuItemCollection>
-            </mah:HamburgerMenu.OptionsItemsSource>
-            
             <!--  Content  -->
             <mah:HamburgerMenu.ContentTemplate>
                 <DataTemplate DataType="{x:Type mah:HamburgerMenuItem}">

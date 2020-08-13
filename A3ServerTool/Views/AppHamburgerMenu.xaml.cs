@@ -12,7 +12,7 @@ namespace A3ServerTool.Views
         
         private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
         {
-            this.HamburgerMenuControl.Content = e.InvokedItem;
+            //this.HamburgerMenuControl.Content = e.InvokedItem;
         
             if (!e.IsItemOptions && this.HamburgerMenuControl.IsPaneOpen)
             {
@@ -23,7 +23,7 @@ namespace A3ServerTool.Views
 
         private void HamburgerMenuControl_OnOptionsItemClick(object sender, ItemClickEventArgs e)
         {
-            this.HamburgerMenuControl.Content = e.ClickedItem;
+            //this.HamburgerMenuControl.Content = e.ClickedItem;
         
             if (this.HamburgerMenuControl.IsPaneOpen)
             {
