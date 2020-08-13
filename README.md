@@ -58,3 +58,5 @@ If you have any suggestions or reports - feel free to contact me via PM or creat
 ![2](https://user-images.githubusercontent.com/6746043/62007528-eb5d0300-b167-11e9-8dd5-101866d673ea.png)
 ![3](https://user-images.githubusercontent.com/6746043/62007529-eb5d0300-b167-11e9-8a66-e02c3f5d43ca.png)
 ![4](https://user-images.githubusercontent.com/6746043/62007530-eb5d0300-b167-11e9-8d28-6a89a547b3fe.png)
+![5](https://user-images.githubusercontent.com/6746043/62007530-eb5d0300-b167-11e9-8d28-6a89a547b3fe.png)
+![6](https://user-images.githubusercontent.com/6746043/90130833-cb4cb180-dd73-11ea-85ec-c9c039a38e66.png)
