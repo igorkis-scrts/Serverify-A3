@@ -17,6 +17,7 @@
                 <iconPacks:PackIconMaterial Kind="Folder" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Background" Value="{DynamicResource AccentColorBrush}"/>
         <Setter Property="controls:TextBoxHelper.Watermark" Value="Path to file"></Setter>
     </Style>
 
