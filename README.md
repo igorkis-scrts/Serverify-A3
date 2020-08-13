@@ -20,7 +20,7 @@ https://forums.bohemia.net/forums/topic/224504-serverifya3-a-dedicated-server-co
 ## Prerequisites
 
 - Windows 7/8/10
-- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/thank-you/net472)
+- .NET Core 3.1
 - Steam account, purchased Arma 3 on it
 
 ## Installation and usage guide
