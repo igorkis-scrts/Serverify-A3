@@ -1,13 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using A3ServerTool.Properties;
 
 namespace A3ServerTool.Models
 {
+    public interface ICloneable<T>
+    {
+        T Clone();
+    }
+    
     /// <summary>
     /// Represents game mod.
     /// </summary>
-    public class Modification : INotifyPropertyChanged
+    public class Modification : INotifyPropertyChanged, ICloneable<Modification>
     {     
         /// <summary>
         /// Gets or sets the name.
@@ -83,5 +89,16 @@ namespace A3ServerTool.Models
         }
 
         #endregion
+
+        public Modification Clone()
+        {
+            return new Modification
+            {
+                Name = this.Name,
+                IsAbsolutePathMod = this._isAbsolutePathMod,
+                IsClientMod = this._isClientMod,
+                IsServerMod = this._isServerMod
+            };
+        }
     }
 }
