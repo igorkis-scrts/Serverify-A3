@@ -4,12 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-    xmlns:local="clr-namespace:A3ServerTool.Views"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
     dialog:DialogParticipation.Register="{Binding}"
     DataContext="{Binding ProfileDialog, Source={StaticResource Bindings}}"
+    Margin="0 0 0 8"
     mc:Ignorable="d">
 
     <dialog:CustomDialog.Content>
@@ -18,12 +18,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <!--<Label Grid.Row="0" Margin="0 0 0 0"
-               Style="{StaticResource DescriptionHeaderStyle}"
-               Content="{Binding HeaderText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
-
-            <StackPanel Grid.Row="0" Margin="0,0,0,4">
+            
+            <StackPanel Grid.Row="0" Margin="0 8 0 24">
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
@@ -33,7 +29,7 @@
                 <TextBox
                     x:Name="NameTextBox"
                     Margin="{StaticResource ControlMargin}"
-                    mah:TextBoxHelper.Watermark="Profile name"
+                    mah:TextBoxHelper.Watermark="{DynamicResource LocalizableNameTitle}"
                     Text="{Binding ProfileName, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
 
                 <Label
@@ -43,7 +39,6 @@
                     FontSize="14"
                     FontWeight="Bold" />
                 <TextBox
-                    x:Name="DescriptionTextBox"
                     Margin="{StaticResource ControlMargin}"
                     mah:TextBoxHelper.Watermark="{DynamicResource LocalizableDescriptionWatermark}"
                     Text="{Binding ProfileDescription, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
@@ -56,17 +51,17 @@
 
                 <DockPanel Grid.ColumnSpan="2">
                     <Button
-                        x:Name="OkButton"
                         MinWidth="64"
+                        Height="32"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Command="{Binding OkCommand}"
                         Content="{Binding ButtonText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         <Button.Style>
-                            <Style BasedOn="{StaticResource MetroFlatButton}" TargetType="Button">
+                            <Style BasedOn="{StaticResource MahApps.Styles.Button.Flat}" TargetType="Button">
                                 <Setter Property="IsEnabled" Value="False" />
-                                <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
                                 <Setter Property="Foreground" Value="{DynamicResource IdealForegroundColorBrush}" />
                                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
 
@@ -84,19 +79,16 @@
 
                     <Button
                         MinWidth="64"
+                        Height="32"
                         Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Command="{Binding CancelCommand}"
                         Content="{DynamicResource LocalizableCancelButtonTitle}"
-                        Style="{StaticResource MetroFlatButton}" />
+                        Style="{StaticResource MahApps.Styles.Button.Flat}" />
                 </DockPanel>
             </Grid>
         </Grid>
     </dialog:CustomDialog.Content>
-
-    <!--<dialog:CustomDialog.DialogBottom>
-    For some reason validation stops working in this tag
-    </dialog:CustomDialog.DialogBottom>-->
 </mah:CustomDialog>
 

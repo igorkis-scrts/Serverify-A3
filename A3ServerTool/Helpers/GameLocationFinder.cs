@@ -1,5 +1,5 @@
-﻿using A3ServerTool.Models;
-using System.Linq;
+﻿using System.Linq;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.Helpers
 {

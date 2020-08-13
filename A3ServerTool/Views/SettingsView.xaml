@@ -9,7 +9,7 @@
     d:DesignWidth="960"
     DataContext="{Binding Settings, Source={StaticResource Bindings}}"
     mc:Ignorable="d">
-
+    
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -21,14 +21,6 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="{StaticResource ControlMargin}"
-                HorizontalAlignment="Left"
-                Content="{DynamicResource LocalizableSettingsHeader}"
-                Style="{StaticResource DescriptionHeaderStyle}" />
 
             <StackPanel
                 Grid.Row="1"
@@ -54,7 +46,7 @@
                 <Label
                     Margin="{StaticResource LabelMargin}"
                     HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableSettingsBackgroundThemeTitle}"
+                    Content="{DynamicResource LocalizableSettingsThemeTitle}"
                     FontSize="14"
                     FontWeight="Bold" />
                 <ComboBox
@@ -64,27 +56,10 @@
                     HorizontalAlignment="Left"
                     HorizontalContentAlignment="Left"
                     DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=BackgroundTheme, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=BackgroundTheme}"
+                    ItemsSource="{Binding Path=Theme, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                    SelectedValue="{Binding Path=Theme}"
                     SelectedValuePath="Value" />
-
-                <Label
-                    Margin="{StaticResource LabelMargin}"
-                    HorizontalAlignment="Left"
-                    Content="{DynamicResource LocalizableSettingsAccentColorTitle}"
-                    FontSize="14"
-                    FontWeight="Bold" />
-                <ComboBox
-                    MinWidth="192"
-                    MaxWidth="192"
-                    Margin="{StaticResource ControlMargin}"
-                    HorizontalAlignment="Left"
-                    HorizontalContentAlignment="Left"
-                    DisplayMemberPath="Description"
-                    ItemsSource="{Binding Path=AccentColor, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                    SelectedValue="{Binding Path=AccentColor}"
-                    SelectedValuePath="Value" />
-
+                
             </StackPanel>
             <DockPanel
                 Grid.Row="3"

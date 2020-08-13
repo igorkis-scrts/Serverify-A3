@@ -147,9 +147,6 @@
   <data name="ProfilesHamburgerMenuLocalizedTooltip" xml:space="preserve">
     <value />
   </data>
-  <data name="ServerHamburgerMenuLocalizedTitle" xml:space="preserve">
-    <value>Server</value>
-  </data>
   <data name="ServerHamburgerMenuLocalizedTooltip" xml:space="preserve">
     <value />
   </data>

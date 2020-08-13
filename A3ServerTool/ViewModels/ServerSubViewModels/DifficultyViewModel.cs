@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using Interchangeable;
 using System;
 using System.ComponentModel;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -15,7 +16,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         public DifficultyViewModel(ServerViewModel parentViewModel)
         {

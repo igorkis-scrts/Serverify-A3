@@ -1,14 +1,19 @@
-﻿using A3ServerTool.Annotations;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using A3ServerTool.Properties;
 
 namespace A3ServerTool.Models
 {
+    public interface ICloneable<T>
+    {
+        T Clone();
+    }
+    
     /// <summary>
     /// Represents game mod.
     /// </summary>
-    public class Modification : INotifyPropertyChanged
+    public class Modification : INotifyPropertyChanged, ICloneable<Modification>
     {     
         /// <summary>
         /// Gets or sets the name.
@@ -52,6 +57,28 @@ namespace A3ServerTool.Models
         }
 
         private bool _isServerMod;
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is absolute path.
+        /// </summary>
+        public bool IsAbsolutePathMod
+        {
+            get => _isAbsolutePathMod;
+            set
+            {
+                if (Equals(_isAbsolutePathMod, value))
+                {
+                    return;
+                }
+                _isAbsolutePathMod = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isAbsolutePathMod;
+
+
+        #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -59,6 +86,19 @@ namespace A3ServerTool.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        public Modification Clone()
+        {
+            return new Modification
+            {
+                Name = this.Name,
+                IsAbsolutePathMod = this._isAbsolutePathMod,
+                IsClientMod = this._isClientMod,
+                IsServerMod = this._isServerMod
+            };
         }
     }
 }

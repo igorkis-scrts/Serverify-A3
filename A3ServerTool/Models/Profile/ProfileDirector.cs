@@ -1,12 +1,11 @@
-﻿using A3ServerTool.Helpers;
-using A3ServerTool.Models.Config;
-using A3ServerTool.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using A3ServerTool.Helpers;
+using A3ServerTool.Models.Config;
+using A3ServerTool.Storage;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Models.Profile
 {
     /// <inheritdoc/>
     public class ProfileDirector : IProfileDirector
@@ -46,7 +45,7 @@ namespace A3ServerTool.Models
             RetrieveBasicConfig(profile);
             RetrieveServerConfig(profile);
             RetrieveArmaProfile(profile);
-            RetrieveModifications(profile);
+            GetProfileModifications(profile);
 
             return profile;
         }
@@ -69,19 +68,27 @@ namespace A3ServerTool.Models
         /// Retrieves the arma profile.
         /// </summary>
         /// <param name="profile">The profile.</param>
-        private void RetrieveModifications(Profile profile)
+        public void GetProfileModifications(Profile profile)
         {
-            if (profile.ArgumentSettings == null)
-            {
-                profile.ArgumentSettings = new ArgumentSettings();
-            }
+            profile.ArgumentSettings ??= new ArgumentSettings();
 
             //merge stored mods in arma folder and mods located in config
             var storedMods = _modDao.GetAll(_locationFinder.GetGameInstallationPath(profile))
                 .ToList();
             var configMods = profile.ArgumentSettings.Modifications;
+            if (!configMods.Any())
+            {
+                profile.ArgumentSettings.Modifications = storedMods;
+                return;
+            }
 
-            foreach(var mod in storedMods)
+            var configAbsolutePathMods = configMods.Where(cm => cm.IsAbsolutePathMod);
+            if (configAbsolutePathMods.Any())
+            {
+                storedMods.AddRange(configAbsolutePathMods);
+            }
+
+            foreach (var mod in storedMods)
             {
                 var configMod = configMods.FirstOrDefault(x => x.Name == mod.Name);
                 if (configMod?.IsClientMod == true)
@@ -93,7 +100,14 @@ namespace A3ServerTool.Models
                 {
                     mod.IsServerMod = true;
                 }
+
+                if (configMod?.IsAbsolutePathMod == true)
+                {
+                    mod.IsAbsolutePathMod = true;
+                }
             }
+
+            profile.ArgumentSettings.Modifications = storedMods;
         }
 
         /// <summary>
@@ -106,7 +120,6 @@ namespace A3ServerTool.Models
             if (profile.ServerConfig == null)
             {
                 profile.ServerConfig = new ServerConfig();
-                SetServerConfigDefaultValues(profile);
                 _serverDao.Save(profile);
             }
         }
@@ -144,51 +157,6 @@ namespace A3ServerTool.Models
             _basicDao.Save(profile);
             _serverDao.Save(profile);
             _armaProfileDao.Save(profile);
-        }
-
-        [Obsolete("Will be deleted in the next update.")]
-        public void SetDefaultValues(Profile profile)
-        {
-            SetServerConfigDefaultValues(profile);
-        }
-
-        /// <summary>
-        /// Sets the server configuration default values.
-        /// </summary>
-        /// <param name="profile">The profile.</param>
-        private void SetServerConfigDefaultValues(Profile profile)
-        {
-            if (profile == null) return;
-
-            if (profile.ServerConfig == null)
-            {
-                profile.ServerConfig = new ServerConfig();
-            }
-
-            profile.ServerConfig.MaximumAmountOfPlayers = 64;
-            profile.ServerConfig.FilePatchingMode = 0;
-            profile.ServerConfig.DisconnectTimeout = 90;
-            profile.ServerConfig.MaximumPing = 200;
-            profile.ServerConfig.MaximumDesync = 150;
-            profile.ServerConfig.MaximumPacketLoss = 50;
-            profile.ServerConfig.HasBattleEye = true;
-            profile.ServerConfig.TimeStampFormat = "none";
-            profile.ServerConfig.RotorLibSimulationType = 0;
-            profile.ServerConfig.LogFileName = "server_console.log";
-            profile.ServerConfig.VoiceCodecType = 0;
-            profile.ServerConfig.VoiceCodecQuality = 3;
-            profile.ServerConfig.IsDrawingOnMapAllowed = true;
-            profile.ServerConfig.SignatureVerificationMode = 2;
-            profile.ServerConfig.LobbyIdleTimeout = 99999;
-            profile.ServerConfig.DebriefingTimeout = 45;
-            profile.ServerConfig.BriefingTimeout = 60;
-            profile.ServerConfig.RoleSelectionTimeout = 99999;
-            profile.ServerConfig.HasBattleEye = true;
-            profile.ServerConfig.SignatureVerificationMode = 2;
-            profile.ServerConfig.FilePatchingMode = 0;
-            profile.ServerConfig.LoadFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
-            profile.ServerConfig.PreprocessFileExtensionsWhitelist.AddRange(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
-            profile.ServerConfig.HtmlFileExtensionsWhitelist.AddRange(new[] { "htm", "html", "xml", "txt" });
         }
     }
 }

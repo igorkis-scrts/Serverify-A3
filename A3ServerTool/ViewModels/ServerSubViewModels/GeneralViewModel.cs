@@ -1,6 +1,5 @@
 ﻿using A3ServerTool.Enums;
 using A3ServerTool.Helpers.ServerLauncher;
-using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -10,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -27,7 +27,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         public const string RankingPathToken = "RankingPathToken";
         public const string Token = nameof(GeneralViewModel);
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets the final server argument string.
@@ -143,11 +143,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             get
             {
                 var messages = CurrentProfile?.ServerConfig.WelcomeMessages;
-                if (messages != null)
-                {
-                    return string.Join("\n", messages);
-                }
-                return null;
+                if (messages == null) return null;
+                
+                return messages.All(string.IsNullOrEmpty) 
+                    ? null 
+                    : string.Join("\n", messages);
             }
             set
             {
@@ -248,9 +248,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets the voting treshold.
+        /// Gets or sets the voting threshold.
         /// </summary>
-        public float? VotingTreshold
+        public float? VotingThreshold
         {
             get => CurrentProfile?.ServerConfig?.VoteThreshold;
             set
@@ -482,36 +482,34 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _browseCommand ??
-                       (_browseCommand = new RelayCommand(callerToken =>
+                return _browseCommand ??= new RelayCommand(callerToken =>
                        {
-                           using (var fileDialog = new OpenFileDialog())
+                           using var fileDialog = new OpenFileDialog();
+                           
+                           var callerTokenString = callerToken.ToString();
+                           if (callerTokenString == ExecutablePathToken)
                            {
-                               var callerTokenString = callerToken.ToString();
-                               if (callerTokenString == ExecutablePathToken)
-                               {
-                                   fileDialog.Filter = "Exe files (*.exe) | *.exe;";
-                               }
-                               else if (callerTokenString == RankingPathToken)
-                               {
-                                   fileDialog.Filter = "log files (*.log)|*.log;";
-                               }
-
-                               if (fileDialog.ShowDialog() != DialogResult.OK)
-                               {
-                                   return;
-                               }
-
-                               if (callerTokenString == ExecutablePathToken)
-                               {
-                                   ExecutablePath = fileDialog.FileName;
-                               }
-                               else if(callerTokenString == RankingPathToken)
-                               {
-                                   RankingFilePath = fileDialog.FileName;
-                               }
+                               fileDialog.Filter = "Exe files (*.exe) | *.exe;";
                            }
-                       }));
+                           else if (callerTokenString == RankingPathToken)
+                           {
+                               fileDialog.Filter = "log files (*.log)|*.log;";
+                           }
+
+                           if (fileDialog.ShowDialog() != DialogResult.OK)
+                           {
+                               return;
+                           }
+
+                           if (callerTokenString == ExecutablePathToken)
+                           {
+                               ExecutablePath = fileDialog.FileName;
+                           }
+                           else if(callerTokenString == RankingPathToken)
+                           {
+                               RankingFilePath = fileDialog.FileName;
+                           }
+                       });
             }
         }
         private ICommand _browseCommand;

@@ -11,7 +11,7 @@
     dialog:DialogParticipation.Register="{Binding}"
     DataContext="{Binding Performance, Source={StaticResource Bindings}}"
     mc:Ignorable="d">
-
+    
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -30,10 +30,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsHyperThreadingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding IsHyperThreadingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableHyperThreadingTooltip}" />
 
                 <Label
@@ -45,10 +44,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding AreHugePagesEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding AreHugePagesEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableHugeMemoryPagesTooltip}" />
 
                 <Label
@@ -60,10 +58,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsMissionLoadedToMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding IsMissionLoadedToMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableLoadMissionToMemoryTooltip}" />
 
                 <Label
@@ -185,12 +182,12 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsServerThreadDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                    SwitchForeground="Red"
-                    ToolTip="{DynamicResource LocalizableDisableServerThreadTooltip}" />
+                    IsOn="{Binding IsServerThreadDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
+                    ToolTip="{DynamicResource LocalizableDisableServerThreadTooltip}"
+                    />
+                <!-- SwitchForeground="Red" -->
 
             </StackPanel>
 

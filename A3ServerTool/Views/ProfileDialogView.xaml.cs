@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MahApps.Metro.Controls.Dialogs;
+﻿using MahApps.Metro.Controls.Dialogs;
 
 namespace A3ServerTool.Views
 {

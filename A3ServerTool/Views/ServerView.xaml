@@ -5,7 +5,6 @@
     xmlns:controls="clr-namespace:A3ServerTool.Views.A3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:local="clr-namespace:A3ServerTool.Views"
     xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -23,49 +22,210 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="{StaticResource ControlMargin}"
-            HorizontalAlignment="Left"
-            Content="{DynamicResource LocalizableServerViewTitle}"
-            Style="{StaticResource DescriptionHeaderStyle}" />
-
         <mah:MetroAnimatedSingleRowTabControl
             Grid.Row="1"
             Grid.Column="0"
             Margin="{StaticResource ControlMargin}"
             mah:TabControlHelper.Underlined="SelectedTabItem">
-            <TabItem Header="{DynamicResource LocalizableGeneralTabTitle}">
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="Domain" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableGeneralTabTitle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:GeneralView />
+                
             </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="Security" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="8"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableSecurityTabTitle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
-            <TabItem Header="{DynamicResource LocalizableSecurityTabTitle}">
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:SecurityView />
+                
             </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="Network" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="4"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableNetworkTabTitle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
-            <TabItem Header="{DynamicResource LocalizableNetworkTabTitle}">
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:NetworkView />
+                
             </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="FileMultiple" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="4"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableMissionsTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
-            <TabItem Header="{DynamicResource LocalizableMissionsTabTittle}">
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:MissionsView />
+                
             </TabItem>
 
-            <TabItem Header="{DynamicResource LocalizableModificationsTabTittle}">
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="FolderMultiple" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="4"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableModificationsTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:ModificationsView />
+                
             </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="TargetAccount" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="4"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableDifficultyTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
-            <TabItem Header="{DynamicResource LocalizableDifficultyTabTittle}">
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:DifficultyView />
+                
             </TabItem>
+            
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="RunFast" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="4"
+                            />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizablePerformanceTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
 
-            <TabItem Header="{DynamicResource LocalizablePerformanceTabTittle}">
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:PerformanceView />
+                
             </TabItem>
 
-            <TabItem Header="{DynamicResource LocalizableLoggingTabTittle}">
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <ItemContainerTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial 
+                                Width="24" 
+                                Height="24" 
+                                Kind="ScriptText" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="4"
+                                />
+                            <TextBlock
+                                Margin="0 0 8 0"
+                                Text="{DynamicResource LocalizableLoggingTabTittle}"
+                                FontSize="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.FontSize)}"/>
+
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </TabItem.HeaderTemplate>
+                
                 <controls:LoggingView />
+                
             </TabItem>
 
         </mah:MetroAnimatedSingleRowTabControl>
@@ -88,28 +248,10 @@
                 DockPanel.Dock="Left"
                 Foreground="{DynamicResource TextColorBrush}"
                 Style="{DynamicResource SecondaryColorFlatButton}">
-
-                <!--<Button.Style>
-                -->
-                <!--<Style BasedOn="{DynamicResource SecondaryColorFlatButton}" TargetType="{x:Type Button}">-->
-                <!--<Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=DataContext.CheckValidation}" Value="true">
-                                <Setter Property="ToolTip" Value="false"/>
-                                <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="Background" Value="Blue" />
-                            </DataTrigger>
-                        </Style.Triggers>-->
-                <!--
-                    </Style>-->
-                <!--
-
-                </Button.Style>-->
-
-
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Server" />
-                    <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableLaunchButtonTitle}" />
-                </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <iconPacks:PackIconMaterial HorizontalAlignment="Center" Kind="Server" />
+                        <TextBlock HorizontalAlignment="Center" Text="{DynamicResource LocalizableLaunchButtonTitle}" />
+                    </StackPanel>
             </Button>
             <DockPanel />
         </DockPanel>

@@ -179,10 +179,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsStaminaBarShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsStaminaBarShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableStaminaBarVisibilityTypeTooltip}" />
 
                         <Label
@@ -194,10 +193,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsCrosshairShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsCrosshairShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableWeaponCrosshairVisibilityTypeTooltip}" />
 
                         <Label
@@ -209,10 +207,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsVisualAidAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsVisualAidAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableVisionAidAllowanceTooltip}" />
 
                         <Label
@@ -224,10 +221,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsThirdPersonViewAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsThirdPersonViewAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizablethirdPersonViewAllowanceTooltip}" />
 
                         <Label
@@ -239,10 +235,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsCameraShakeAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsCameraShakeAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableCameraShakeAllowanceTooltip}" />
 
                     </StackPanel>
@@ -259,10 +254,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsScoreTableShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsScoreTableShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableScoreTableAllowanceTooltip}" />
 
                         <Label
@@ -274,10 +268,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding AreDeathMessagesShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding AreDeathMessagesShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableDeathMessagesAllowanceTooltip}" />
 
                         <Label
@@ -289,10 +282,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding AreVonIdsShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding AreVonIdsShown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableVonIdVisibilityTooltip}" />
 
 
@@ -310,10 +302,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsExtendedMapFriendlyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsExtendedMapFriendlyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableExtendedMapContentFriendlyAllowanceTitle}" />
 
                         <Label
@@ -325,10 +316,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource ControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsExtendedMapEnemyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsExtendedMapEnemyContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableExtendedMapContentEnemiesAllowanceTooltip}" />
 
                         <Label
@@ -340,10 +330,9 @@
                         <mah:ToggleSwitch
                             Margin="{StaticResource EndControlMargin}"
                             HorizontalAlignment="Left"
-                            IsChecked="{Binding IsExtendedMapMinesContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffLabel="{DynamicResource LocalizableOff}"
-                            OnLabel="{DynamicResource LocalizableOn}"
-                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                            IsOn="{Binding IsExtendedMapMinesContentAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                            OffContent="{DynamicResource LocalizableOff}"
+                            OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableExtendedMapContentMinesAllowanceTooltip}" />
                     </StackPanel>
                 </Expander>
@@ -357,10 +346,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding IsDamageReduced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableReducedDamageTooltip}" />
 
                 <Label
@@ -372,10 +360,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsAutoReportEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding IsAutoReportEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableAutoReportAllowanceTooltip}" />
 
                 <Label
@@ -387,10 +374,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding AreMultipleSavesAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding AreMultipleSavesAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableMultipleSavesAllowanceTooltip}" />
 
                 <Label

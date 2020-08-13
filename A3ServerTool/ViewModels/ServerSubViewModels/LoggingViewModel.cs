@@ -1,5 +1,4 @@
 ﻿using A3ServerTool.Enums;
-using A3ServerTool.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -8,6 +7,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -20,7 +20,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets or sets the call extension report limit.
@@ -31,6 +31,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ServerConfig.CallExtensionReportLimit)) return;
+                if (CurrentProfile?.ServerConfig == null) return;
+                
                 CurrentProfile.ServerConfig.CallExtensionReportLimit = value;
                 RaisePropertyChanged();
             }
@@ -45,6 +47,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile.ServerConfig?.LogFileName)) return;
+                if (CurrentProfile?.ServerConfig == null) return;
+                
                 CurrentProfile.ServerConfig.LogFileName = !value.Contains(".log")
                     ? value + ".log"
                     : value;
@@ -61,6 +65,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.AutoTestPath)) return;
+                if (CurrentProfile?.ArgumentSettings == null) return;
+                
                 CurrentProfile.ArgumentSettings.AutoTestPath = value;
                 Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
@@ -126,19 +132,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _browseCommand ??
-                       (_browseCommand = new RelayCommand(_ =>
-                       {
-                           using (var fileDialog = new OpenFileDialog())
-                           {
-                               if (fileDialog.ShowDialog() != DialogResult.OK)
-                               {
-                                   return;
-                               }
+                return _browseCommand ??= new RelayCommand(_ =>
+                {
+                    using var fileDialog = new OpenFileDialog();
+                    
+                    if (fileDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
 
-                               AutoTestPath = fileDialog.FileName;
-                           }
-                       }));
+                    AutoTestPath = fileDialog.FileName;
+                });
             }
         }
         private ICommand _browseCommand;

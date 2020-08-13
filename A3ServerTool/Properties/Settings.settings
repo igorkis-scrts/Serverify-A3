@@ -8,22 +8,10 @@
     <Setting Name="Language" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
-    <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1280</Value>
+    <Setting Name="Theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dark.Olive</Value>
     </Setting>
-    <Setting Name="WindowHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">640</Value>
-    </Setting>
-    <Setting Name="WindowState" Type="System.Windows.WindowState" Scope="User">
-      <Value Profile="(Default)">Normal</Value>
-    </Setting>
-    <Setting Name="BackgroundTheme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BaseDark</Value>
-    </Setting>
-    <Setting Name="AccentColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Olive</Value>
-    </Setting>
-    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+    <Setting Name="DefaultLanguage" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
     <Setting Name="AppTitle" Type="System.String" Scope="User">

@@ -1,14 +1,10 @@
-﻿using A3ServerTool.Enums;
-using MahApps.Metro;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using ControlzEx.Theming;
 
 namespace A3ServerTool
 {
@@ -25,8 +21,7 @@ namespace A3ServerTool
         }
 
         public static event EventHandler LanguageChanged;
-        public static event EventHandler BackgroundThemeChanged;
-        public static event EventHandler AccentColorChanged;
+        public static event EventHandler ThemeChanged;
 
         private void App_LanguageChanged(object sender, EventArgs e)
         {
@@ -34,17 +29,11 @@ namespace A3ServerTool
             A3ServerTool.Properties.Settings.Default.Save();
         }
 
-        private void App_BackgroundThemeChanged(object sender, EventArgs e)
+        private void App_ThemeChanged(object sender, EventArgs e)
         {
-            A3ServerTool.Properties.Settings.Default.BackgroundTheme = _backgroundTheme;
+            A3ServerTool.Properties.Settings.Default.Theme = _theme;
             A3ServerTool.Properties.Settings.Default.Save();
             ApplyControlBackground();
-        }
-
-        private void App_AccentColorChanged(object sender, EventArgs e)
-        {
-            A3ServerTool.Properties.Settings.Default.AccentColor = _accentColor;
-            A3ServerTool.Properties.Settings.Default.Save();
         }
 
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -52,152 +41,95 @@ namespace A3ServerTool
             ExceptionHandler.Instance.ShowMessage(e.Exception);
             e.Handled = true;
         }
+        
+        
 
         public static CultureInfo Language
         {
-            get
-            {
-                return System.Threading.Thread.CurrentThread.CurrentUICulture;
-            }
+            get => System.Threading.Thread.CurrentThread.CurrentUICulture;
             set
             {
-                if (value == null) throw new ArgumentNullException("value");
-                if (value == System.Threading.Thread.CurrentThread.CurrentUICulture) return;
+                if (value == null) throw new ArgumentNullException(nameof(value));
+                if (Equals(value, System.Threading.Thread.CurrentThread.CurrentUICulture)) return;
 
                 System.Threading.Thread.CurrentThread.CurrentUICulture = value;
 
-                ResourceDictionary dict = new ResourceDictionary();
-                switch (value.Name)
-                {
-                    case "ru-RU":
-                    case "de-DE":
-                        dict.Source = new Uri(string.Format("Resources/Lang.{0}.xaml", value.Name), UriKind.Relative);
-                        break;
-                    default:
-                        dict.Source = new Uri("Resources/Lang.xaml", UriKind.Relative);
-                        break;
-                }
-
-                ResourceDictionary oldDictionary = (from d in Application.Current.Resources.MergedDictionaries
-                                              where d.Source != null && d.Source.OriginalString.StartsWith("Resources/Lang.")
-                                              select d).First();
-                if (oldDictionary != null)
-                {
-                    int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
-                    Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
-                    Application.Current.Resources.MergedDictionaries.Insert(index, dict);
-                }
-                else
-                {
-                    Application.Current.Resources.MergedDictionaries.Add(dict);
-                }
+                ApplyCulture(value);
 
                 ApplyDot();
                 LanguageChanged(Application.Current, EventArgs.Empty);
             }
         }
 
-        public static string BackgroundTheme
+        public static string Theme
         {
-            get
-            {
-                return _backgroundTheme;
-            }
+            get => _theme;
             set
             {
-                if (value == null)
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
-                if (Equals(_backgroundTheme, value))
+                if (Equals(_theme, value))
                 {
                     return;
                 }
 
-                _backgroundTheme = value;
-
-                ThemeManager.ChangeAppStyle(Application.Current,
-                            ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
-                            ThemeManager.GetAppTheme(value));
-                BackgroundThemeChanged(Application.Current, EventArgs.Empty);
+                _theme = value;
+                
+                ThemeManager.Current.ChangeTheme(Application.Current,  value);
+                ThemeChanged(Application.Current, EventArgs.Empty);
             }
         }
-        private static string _backgroundTheme;
-
-        public static string AccentColor
-        {
-            get
-            {
-                return _accentColor;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                if(Equals(_accentColor, value))
-                {
-                    return;
-                }
-
-                _accentColor = value;
-
-                ThemeManager.ChangeAppStyle(Application.Current,
-                            ThemeManager.GetAccent(value),
-                            ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
-                AccentColorChanged(Application.Current, EventArgs.Empty);
-            }
-        }
-        private static string _accentColor;
+        private static string _theme;
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            ThemeManager.ChangeAppStyle(Application.Current,
-                ThemeManager.GetAccent(A3ServerTool.Properties.Settings.Default.AccentColor),
-                ThemeManager.GetAppTheme(A3ServerTool.Properties.Settings.Default.BackgroundTheme));
+            _theme = A3ServerTool.Properties.Settings.Default.Theme;
+            ThemeManager.Current.ChangeTheme(Application.Current,  _theme);
             ApplyControlBackground();
 
             base.OnStartup(e);
+
+            LanguageChanged += App_LanguageChanged;
+            ThemeChanged += App_ThemeChanged;
 
             Languages.Clear();
             Languages.Add(new CultureInfo("en-US"));
             Languages.Add(new CultureInfo("de-DE"));
             Languages.Add(new CultureInfo("ru-RU"));
 
-            LanguageChanged += App_LanguageChanged;
-            BackgroundThemeChanged += App_BackgroundThemeChanged;
-            AccentColorChanged += App_AccentColorChanged;
             Language = A3ServerTool.Properties.Settings.Default.Language;
+            ApplyCulture(A3ServerTool.Properties.Settings.Default.Language);
+
             Bindings.Register();
         }
 
         private void ApplyControlBackground()
         {
-            ResourceDictionary dict = new ResourceDictionary();
+            var dictionary = new ResourceDictionary();
 
-            switch (A3ServerTool.Properties.Settings.Default.BackgroundTheme)
+            if (A3ServerTool.Properties.Settings.Default.Theme.Contains("Light"))
             {
-                case "BaseLight":
-                    dict.Source = new Uri("/CustomControls;component/LightThemeColors.xaml", UriKind.Relative);
-                    break;
-                default:
-                    dict.Source = new Uri("/CustomControls;component/DarkThemeColors.xaml", UriKind.Relative);
-                    break;
+                dictionary.Source = new Uri("/CustomControls;component/LightThemeColors.xaml", UriKind.Relative);
+            }
+            else
+            {
+                dictionary.Source = new Uri("/CustomControls;component/DarkThemeColors.xaml", UriKind.Relative);
             }
 
-            var oldDictionary = Application.Current.Resources.MergedDictionaries.Where(d => d.Source != null
-                && d.Source.OriginalString.Contains("ThemeColors")).FirstOrDefault();
+            var oldDictionary = Current.Resources.MergedDictionaries.FirstOrDefault(d => 
+                d.Source != null && d.Source.OriginalString.Contains("ThemeColors"));
 
             if(oldDictionary != null)
             {
                 int index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
                 Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
-                Application.Current.Resources.MergedDictionaries.Insert(index, dict);
+                Application.Current.Resources.MergedDictionaries.Insert(index, dictionary);
             }
             else
             {
-                Application.Current.Resources.MergedDictionaries.Add(dict);
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
             }
         }
 
@@ -209,6 +141,40 @@ namespace A3ServerTool
             var customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             CultureInfo.CurrentCulture = customCulture;
+        }
+
+        /// <summary>
+        /// Applies culture using according dictionary.
+        /// </summary>
+        /// <param name="culture">Culture.</param>
+        private static void ApplyCulture(CultureInfo culture)
+        {
+            var languageDictionary = new ResourceDictionary();
+            switch (culture.Name)
+            {
+                case "ru-RU":
+                case "de-DE":
+                    languageDictionary.Source = new Uri($"Resources/Lang.{culture.Name}.xaml", UriKind.Relative);
+                    break;
+                default:
+                    languageDictionary.Source = new Uri("Resources/Lang.xaml", UriKind.Relative);
+                    break;
+            }
+
+            var oldDictionary = (Application.Current.Resources.MergedDictionaries
+                .Where(d => d.Source != null && d.Source.OriginalString.StartsWith("Resources/Lang.")))
+                .FirstOrDefault();
+
+            if (oldDictionary != null)
+            {
+                var index = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
+                Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
+                Application.Current.Resources.MergedDictionaries.Insert(index, languageDictionary);
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Add(languageDictionary);
+            }
         }
     }
 }

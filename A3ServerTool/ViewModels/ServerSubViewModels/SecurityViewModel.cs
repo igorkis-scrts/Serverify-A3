@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using A3ServerTool.Enums;
-using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
@@ -19,7 +18,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets or sets password required to get admin rights on server. 
@@ -30,7 +29,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ServerConfig?.AdminPassword)) return;
-                CurrentProfile.ServerConfig.AdminPassword = value;
+                if (CurrentProfile?.ServerConfig != null) CurrentProfile.ServerConfig.AdminPassword = value;
                 RaisePropertyChanged();
             }
         }
@@ -47,6 +46,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return string.Join(",", ids);
                 }
+
                 return null;
             }
             set
@@ -59,7 +59,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     var valueAsArray = value?.Split(',');
                     if (Equals(valueAsArray, CurrentProfile?.ServerConfig.AdminUids)) return;
-                    CurrentProfile.ServerConfig.AdminUids = valueAsArray.ToList();
+                    if (CurrentProfile != null) CurrentProfile.ServerConfig.AdminUids = valueAsArray.ToList();
                     RaisePropertyChanged();
                 }
             }
@@ -98,16 +98,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public FilePatchingType FilePatchingType
         {
-            get
-            {
-                return CurrentProfile?.ServerConfig?.FilePatchingMode != null
-                     ? (FilePatchingType)CurrentProfile.ServerConfig.FilePatchingMode
-                     : FilePatchingType.NoClients;
-            }
+            get =>
+                CurrentProfile?.ServerConfig?.FilePatchingMode != null
+                    ? (FilePatchingType) CurrentProfile.ServerConfig.FilePatchingMode
+                    : FilePatchingType.NoClients;
             set
             {
-                if (Equals((int)value, CurrentProfile?.ServerConfig?.FilePatchingMode)) return;
-                CurrentProfile.ServerConfig.FilePatchingMode = (int) value;
+                if (Equals((int) value, CurrentProfile?.ServerConfig?.FilePatchingMode)) return;
+                if (CurrentProfile?.ServerConfig != null) CurrentProfile.ServerConfig.FilePatchingMode = (int) value;
                 RaisePropertyChanged();
             }
         }
@@ -124,6 +122,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return string.Join(",", messages);
                 }
+
                 return null;
             }
             set
@@ -136,7 +135,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     var valueAsArray = value?.Split(',');
                     if (Equals(valueAsArray, CurrentProfile?.ServerConfig.FilePatchingExceptions)) return;
-                    CurrentProfile.ServerConfig.FilePatchingExceptions = valueAsArray.ToList();
+                    if (CurrentProfile != null)
+                    {
+                        CurrentProfile.ServerConfig.FilePatchingExceptions = valueAsArray.ToList();
+                    }
+
                     RaisePropertyChanged();
                 }
             }
@@ -245,16 +248,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public SignatureVerificationType SignatureVerificationType
         {
-            get
-            {
-                return CurrentProfile?.ServerConfig?.SignatureVerificationMode != null
-                    ? (SignatureVerificationType)CurrentProfile.ServerConfig.SignatureVerificationMode
-                    : SignatureVerificationType.SecondVersion;
-            }
+            get => CurrentProfile?.ServerConfig?.SignatureVerificationMode != null
+                ? (SignatureVerificationType) CurrentProfile.ServerConfig.SignatureVerificationMode
+                : SignatureVerificationType.SecondVersion;
             set
             {
-                if (Equals((int)value, CurrentProfile.ServerConfig.SignatureVerificationMode)) return;
-                CurrentProfile.ServerConfig.SignatureVerificationMode = (int)value;
+                if (Equals((int) value, CurrentProfile.ServerConfig.SignatureVerificationMode)) return;
+                CurrentProfile.ServerConfig.SignatureVerificationMode = (int) value;
                 RaisePropertyChanged();
             }
         }
@@ -280,9 +280,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsFilePatchingAllowed
         {
-            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
-                ? false
-                : CurrentProfile.ArgumentSettings.IsFilePatchingEnabled;
+            get => CurrentProfile?.ArgumentSettings?.IsFilePatchingEnabled ?? false;
             set
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsFilePatchingEnabled)) return;
@@ -318,6 +316,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return string.Join(",", extensions);
                 }
+
                 return null;
             }
             set
@@ -328,13 +327,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 }
                 else
                 {
-                    if (value != null)
-                    {
-                        value = Regex.Replace(value, @"\s+", string.Empty);
-                    }
+                    value = Regex.Replace(value, @"\s+", string.Empty);
+
                     var valueAsArray = value?.Split(',');
                     if (Equals(valueAsArray, CurrentProfile?.ServerConfig.LoadFileExtensionsWhitelist)) return;
-                    CurrentProfile.ServerConfig.LoadFileExtensionsWhitelist = valueAsArray.ToList();
+                    if (CurrentProfile != null)
+                    {
+                        CurrentProfile.ServerConfig.LoadFileExtensionsWhitelist = valueAsArray.ToList();
+                    }
                     RaisePropertyChanged();
                 }
             }
@@ -352,6 +352,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return string.Join(",", extensions);
                 }
+
                 return null;
             }
             set
@@ -362,13 +363,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 }
                 else
                 {
-                    if (value != null)
-                    {
-                        value = Regex.Replace(value, @"\s+", string.Empty);
-                    }
+                    value = Regex.Replace(value, @"\s+", string.Empty);
+
                     var valueAsArray = value?.Split(',');
                     if (Equals(valueAsArray, CurrentProfile?.ServerConfig.HtmlFileExtensionsWhitelist)) return;
-                    CurrentProfile.ServerConfig.HtmlFileExtensionsWhitelist = valueAsArray.ToList();
+                    if (CurrentProfile != null)
+                    {
+                        CurrentProfile.ServerConfig.HtmlFileExtensionsWhitelist = valueAsArray.ToList();
+                    }
                     RaisePropertyChanged();
                 }
             }
@@ -386,6 +388,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 {
                     return string.Join(",", extensions);
                 }
+
                 return null;
             }
             set
@@ -396,13 +399,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 }
                 else
                 {
-                    if (value != null)
-                    {
-                        value = Regex.Replace(value, @"\s+", string.Empty);
-                    }
+                    value = Regex.Replace(value, @"\s+", string.Empty);
+
                     var valueAsArray = value?.Split(',');
                     if (Equals(valueAsArray, CurrentProfile?.ServerConfig.PreprocessFileExtensionsWhitelist)) return;
-                    CurrentProfile.ServerConfig.PreprocessFileExtensionsWhitelist = valueAsArray.ToList();
+                    if (CurrentProfile != null)
+                    {
+                        CurrentProfile.ServerConfig.PreprocessFileExtensionsWhitelist = valueAsArray.ToList();
+                    }
                     RaisePropertyChanged();
                 }
             }
@@ -436,7 +440,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 switch (columnName)
                 {
-                    case nameof(AdminIds) when !string.IsNullOrWhiteSpace(AdminIds) && Regex.Matches(AdminIds, @"[a-zA-Z]").Count > 0:
+                    case nameof(AdminIds) when !string.IsNullOrWhiteSpace(AdminIds) &&
+                                               Regex.Matches(AdminIds, @"[a-zA-Z]").Count > 0:
                         return "Admin identifiers can be only numbers.";
                     default:
                         return null;

@@ -1,7 +1,7 @@
-﻿using A3ServerTool.Models;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -9,11 +9,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     /// Represents view model with server performance properties.
     /// </summary>
     /// <seealso cref="GalaSoft.MvvmLight.ViewModelBase" />
-    public class PerfromanceViewModel : ViewModelBase, IDataErrorInfo
+    public class PerformanceViewModel : ViewModelBase, IDataErrorInfo
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets or sets the terrain grid view distance.
@@ -114,9 +114,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsHyperThreadingEnabled
         {
-            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
-                ? false
-                : CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled;
+            get => CurrentProfile?.ArgumentSettings?.IsHyperThreadingEnabled ?? false;
             set
             {
                 if (Equals(value, CurrentProfile.ArgumentSettings.IsHyperThreadingEnabled)) return;
@@ -177,7 +175,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             }
         }
 
-        public PerfromanceViewModel(ServerViewModel viewModel)
+        public PerformanceViewModel(ServerViewModel viewModel)
         {
             _parentViewModel = viewModel;
         }

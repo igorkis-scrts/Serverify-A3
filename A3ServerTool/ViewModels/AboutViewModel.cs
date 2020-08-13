@@ -49,7 +49,9 @@ namespace A3ServerTool.ViewModels
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                if (version != null)
+                    CurrentVersion = version.ToString();
             });
         }
 

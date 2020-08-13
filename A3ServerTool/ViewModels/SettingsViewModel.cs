@@ -1,16 +1,16 @@
 ﻿using A3ServerTool.Enums;
-using A3ServerTool.Helpers;
 using GalaSoft.MvvmLight;
-using MahApps.Metro;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Input;
+using A3ServerTool.Helpers;
 
 namespace A3ServerTool.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
+        private readonly IThemeParser _themeParser;
+        
         public List<CultureInfo> Cultures => App.Languages;
 
         public CultureInfo Culture
@@ -32,40 +32,21 @@ namespace A3ServerTool.ViewModels
         /// <summary>
         /// Gets or sets the background theme.
         /// </summary>
-        public BackgroundThemeType BackgroundTheme
+        public ThemeType Theme
         {
-            get => _backgroundTheme;
+            get => _theme;
             set
             {
-                if (Equals(value, _backgroundTheme))
+                if (Equals(value, _theme))
                 {
                     return;
                 }
 
-                _backgroundTheme = value;
+                _theme = value;
                 RaisePropertyChanged();
             }
         }
-        private BackgroundThemeType _backgroundTheme;
-
-        /// <summary>
-        /// Gets or sets the color of the accent.
-        /// </summary>
-        public AccentColorType AccentColor
-        {
-            get => _accentColor;
-            set
-            {
-                if (Equals(value, _accentColor))
-                {
-                    return;
-                }
-
-                _accentColor = value;
-                RaisePropertyChanged();
-            }
-        }
-        private AccentColorType _accentColor;
+        private ThemeType _theme;
 
         /// <summary>
         /// Gets the save profile command.
@@ -74,22 +55,20 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _saveSettingsCommand ??
-                       (_saveSettingsCommand = new RelayCommand(_ =>
-                       {
-                           ApplyAndSaveSettings();
-                       }));
+                return _saveSettingsCommand ??= new RelayCommand(_ =>
+                {
+                    ApplyAndSaveSettings();
+                });
             }
         }
         private ICommand _saveSettingsCommand;
 
-        public SettingsViewModel()
+        public SettingsViewModel(IThemeParser themeParser)
         {
+            _themeParser = themeParser;
+            
             Culture = Properties.Settings.Default.Language;
-            Enum.TryParse(Properties.Settings.Default.BackgroundTheme, out BackgroundThemeType backgroundTheme);
-            BackgroundTheme = backgroundTheme;
-            Enum.TryParse(Properties.Settings.Default.AccentColor, out AccentColorType accentColor);
-            AccentColor = accentColor;
+            Theme = _themeParser.ConvertRealTitleToTheme(Properties.Settings.Default.Theme);
         }
 
         /// <summary>
@@ -98,8 +77,7 @@ namespace A3ServerTool.ViewModels
         private void ApplyAndSaveSettings()
         {
             App.Language = Culture;
-            App.BackgroundTheme = BackgroundTheme.ToString();
-            App.AccentColor = AccentColor.ToString();
+            App.Theme = _themeParser.ConvertThemeToRealTitle(Theme);
         }
     }
 }

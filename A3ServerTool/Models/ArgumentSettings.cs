@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
+using A3ServerTool.Properties;
 using Newtonsoft.Json;
 
 namespace A3ServerTool.Models
 {
-    public class ArgumentSettings : INotifyPropertyChanged, IDataErrorInfo
+    public sealed class ArgumentSettings : INotifyPropertyChanged, IDataErrorInfo
     {
         /// <summary>
         /// Gets or sets the name.
@@ -325,20 +325,20 @@ namespace A3ServerTool.Models
         /// </summary>
         public List<Modification> Modifications { get; set; } = new List<Modification>();
 
-        [JsonIgnore]
-        [ServerArgument(Argument = "-mod", IsQuotationMarksRequired = true)]
         /// <summary>
         /// Gets all client modifications as single string.
         /// </summary>
+        [JsonIgnore]
+        [ServerArgument(Argument = "-mod", IsQuotationMarksRequired = true)]
         public string ClientModificationsAsString => Modifications?.Any(m => m.IsClientMod) == true
             ? string.Join(";", Modifications.Where(m => m.IsClientMod).Select(s => s.Name))
             : string.Empty;
 
-        [JsonIgnore]
-        [ServerArgument(Argument = "-serverMod", IsQuotationMarksRequired = true)]
         /// <summary>
         /// Gets all client modifications as single string.
         /// </summary>
+        [JsonIgnore]
+        [ServerArgument(Argument = "-serverMod", IsQuotationMarksRequired = true)]
         public string ServerModificationsAsString => Modifications?.Any(m => m.IsServerMod) == true
             ? string.Join(";", Modifications.Where(m => m.IsServerMod).Select(s => s.Name))
             : string.Empty;
@@ -348,7 +348,7 @@ namespace A3ServerTool.Models
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

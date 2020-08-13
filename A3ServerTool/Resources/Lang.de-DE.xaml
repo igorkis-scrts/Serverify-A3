@@ -6,12 +6,24 @@
     <v:String x:Key="LocalizableCurrentProfileTitle">Aktuelle Profile:</v:String>
 
     <v:String x:Key="LocalizableSaveButton">Speichern</v:String>
+    
+    <v:String x:Key="LocalizableHamburgerMenuTitle">Menü</v:String>
 
     <v:String x:Key="LocalizableOn">An</v:String>
     <v:String x:Key="LocalizableOff">Aus</v:String>
     <v:String x:Key="LocalizableEnterSqfTitle">Eingabe SQF code</v:String>
     <v:String x:Key="LocalizableRefresh">Erneuern</v:String>
 
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTitle">Server</v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTitle">Über</v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTitle">Einstellungen</v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTitle">Profil</v:String>
+    
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTooltip"></v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTooltip"></v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTooltip"></v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTooltip"></v:String>
+    
     <v:String x:Key="LocalizableGeneralTabTitle">Allgemein</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Sicherheit</v:String>
     <v:String x:Key="LocalizableNetworkTabTitle">Netzwerk</v:String>
@@ -36,8 +48,7 @@
     <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Einstellungen</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Sprache</v:String>
-    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Hindergrund Thema</v:String>
-    <v:String x:Key="LocalizableSettingsAccentColorTitle">Akzent Farbe</v:String>
+    <v:String x:Key="LocalizableSettingsThemeTitle">Hindergrund Thema</v:String>
 
     <!--  Server view  -->
     <v:String x:Key="LocalizableServerViewTitle">Server</v:String>
@@ -81,8 +92,8 @@
     <v:String x:Key="LocalizableLocalClientTitle">Lokale Client IPs</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IPs eine nach der anderen, durch Komma getrennt</v:String>
 
-    <v:String x:Key="LocalizableVotingTresholdTitle">Abstimmungsschwelle</v:String>
-    <v:String x:Key="LocalizableVotingTresholdTooltip">Prozentsatz der Stimmen, die zur Bestaetigung einer Abstimmung benötigt werden.</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTitle">Abstimmungsschwelle</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTooltip">Prozentsatz der Stimmen, die zur Bestaetigung einer Abstimmung benötigt werden.</v:String>
 
     <v:String x:Key="LocalizableVotingMissionTitle">Missions Abstimmung Start</v:String>
     <v:String x:Key="LocalizableVotingMissionTooltip">Starten Sie die Missionsabstimmung, wenn X Spieler eine Verbindung herstellen.</v:String>
@@ -166,6 +177,7 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Version der Addon-Signaturprüfung, die auf dem Server verwendet wird.</v:String>
 
     <v:String x:Key="LocalizableServerSidePasswordTitle">Serverseitiges Scripting Passwort</v:String>
+    <v:String x:Key="LocalizableServerSidePasswordTooltip">Serverseitiges Scripting Passwort</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTitle">On Double ID-Command</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTooltip">Wird ausgeführt, wenn der zweite Benutzer mit derselben ID erkannt wurde.</v:String>
     <v:String x:Key="LocalizableUserConnectedCommandTitle">On User connected Command</v:String>
@@ -258,6 +270,9 @@
     <v:String x:Key="LocalizableCustomFileSizeTitle">Maximum Custom File Size</v:String>
     <v:String x:Key="LocalizableCustomFileSizeTooltip">Benutzer mit benutzerdefiniertem Gesicht oder benutzerdefiniertem Sound, der größer als diese Größe ist, werden beim Verbindungsversuch gekickt.</v:String>
 
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTitle">Maximale Datengröße des Steam-Protokolls</v:String>
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTooltip">Limit für maximale Steam Query-Paketlänge. Das Erhöhen dieses Werts ist gefährlich, da dies dazu führen kann, dass der Arma-Server UDP-Pakete mit einer Größe sendet, die größer als die MTU ist. Dies führt dazu, dass UDP-Pakete fragmentiert werden, was von einigen älteren Routern nicht unterstützt wird. Kann das Längenlimit für Modlisten in Arma 3 Launcher korrigieren.</v:String>
+    
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Call Extension Report Limit</v:String>
     <v:String x:Key="LocalizableCallExtensionReportLimitTooltip">Wenn die vom Server eingeleitete callExtension länger als in Millisekunden angegeben dauert, wird die Warnung in der RPT-Datei des Servers protokolliert und im Ergebnis der Rückgabe der Erweiterung wiedergegeben.</v:String>
@@ -317,7 +332,7 @@
     <v:String x:Key="LocalizableIsMissionSelected">Play</v:String>
     <v:String x:Key="LocalizableName">Name</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Schwierigkeit</v:String>
-    <v:String x:Key="LocalizableIsMissonWhitelisted">Whitelist</v:String>
+    <v:String x:Key="LocalizableIsMissionWhitelisted">Whitelist</v:String>
 
     <v:String x:Key="LocalizableAutoSelectMissionsTitle">Autoauswahl Missionen</v:String>
     <v:String x:Key="LocalizableAutoSelectMissionsTooltip">Wenn diese Option aktiviert ist, startet der Server die nächste Mission im Missionszyklus automatisch und wartet auf Spieler in der Rollenauswahl.</v:String>
@@ -422,9 +437,13 @@
 
     <v:String x:Key="LocalizableSelectAllTitle">Alles ausgewählt</v:String>
     <v:String x:Key="LocalizableDeselectAllTitle">Alles abgewählt</v:String>
+    <v:String x:Key="LocalizableAddModTitle">Mod hinzufügen</v:String>
+    <v:String x:Key="LocalizableRemoveModTitle">Mod entfernen</v:String>
 
     <v:String x:Key="LocalizableServerModTitle">Server Mod</v:String>
     <v:String x:Key="LocalizableServerModTooltip">Stellt Änderungen dar, die nur vom Server angewendet werden und von Clients nicht benötigt werden.</v:String>
+    
+    <v:String x:Key="LocalizableIsAbsolutePathModTitle">Direkter Pfad</v:String>
 
     <v:String x:Key="LocalizableClientModTitle">Wählen</v:String>
     <v:String x:Key="LocalizableRefreshModNote">Änderungen werden im selben Ordner wie die ausführbare Datei des Servers gesucht. Wenn das Raster keine Änderungen enthält, geben Sie die zuerst ausführbare Datei des Servers an.</v:String>

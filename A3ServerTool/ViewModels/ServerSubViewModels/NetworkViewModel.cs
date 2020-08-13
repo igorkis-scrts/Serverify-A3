@@ -1,9 +1,9 @@
-﻿using A3ServerTool.Models;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Interchangeable;
 using System.ComponentModel;
 using System.Windows.Navigation;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -14,7 +14,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     {
         private readonly ServerViewModel _parentViewModel;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         public int? MaxMessagesSend
         {
@@ -120,9 +120,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsUpnp
         {
-            get => CurrentProfile == null || CurrentProfile.ServerConfig == null
-                ? false
-                : CurrentProfile.ServerConfig.IsUpnp;
+            get => CurrentProfile?.ServerConfig?.IsUpnp ?? false;
             set
             {
                 if (Equals(value, CurrentProfile.ServerConfig.IsUpnp)) return;
@@ -136,13 +134,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public bool IsBandwidthAlgorithm2Enabled
         {
-            get => CurrentProfile == null || CurrentProfile.ArgumentSettings == null
-                ? false
-                : CurrentProfile.ArgumentSettings.IsBandwidthAlgorithm2Enabled;
+            get => CurrentProfile?.ArgumentSettings?.IsBandwidthAlgorithm2Enabled ?? false;
             set
             {
                 if (Equals(value, CurrentProfile?.ArgumentSettings?.IsBandwidthAlgorithm2Enabled)) return;
-                CurrentProfile.ArgumentSettings.IsBandwidthAlgorithm2Enabled = value;
+                if (CurrentProfile?.ArgumentSettings != null)
+                {
+                    CurrentProfile.ArgumentSettings.IsBandwidthAlgorithm2Enabled = value;   
+                }
                 Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
                 RaisePropertyChanged();
             }
@@ -214,6 +213,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Equals(value, CurrentProfile.ServerConfig.MaximumPacketLoss)) return;
                 CurrentProfile.ServerConfig.MaximumPacketLoss = value;
+                RaisePropertyChanged();
+            }
+        }
+        
+        public int? SteamProtocolMaxDataSize
+        {
+            get => CurrentProfile.ServerConfig.SteamProtocolMaxDataSize;
+            set
+            {
+                if (Equals(value, CurrentProfile.ServerConfig.SteamProtocolMaxDataSize)) return;
+                CurrentProfile.ServerConfig.SteamProtocolMaxDataSize = value;
                 RaisePropertyChanged();
             }
         }

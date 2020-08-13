@@ -31,12 +31,11 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding AreLogsDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                    SwitchForeground="Red"
+                    IsOn="{Binding AreLogsDisabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableDisableLogsTooltip}" />
+                <!-- SwitchForeground="Red" -->
 
                 <Label
                     Margin="{StaticResource LabelMargin}"
@@ -47,10 +46,9 @@
                 <mah:ToggleSwitch
                     Margin="{StaticResource ControlMargin}"
                     HorizontalAlignment="Left"
-                    IsChecked="{Binding IsTrafficLogged, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                    OffLabel="{DynamicResource LocalizableOff}"
-                    OnLabel="{DynamicResource LocalizableOn}"
-                    Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                    IsOn="{Binding IsTrafficLogged, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                    OffContent="{DynamicResource LocalizableOff}"
+                    OnContent="{DynamicResource LocalizableOn}"
                     ToolTip="{DynamicResource LocalizableNetlogTooltip}" />
 
                 <Label
@@ -135,6 +133,8 @@
                     Style="{StaticResource BrowseMetroTextBox}"
                     Text="{Binding AutoTestPath, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                     ToolTip="{DynamicResource LocalizableAutoTestTooltip}" />
+                
+                
             </StackPanel>
 
         </Grid>

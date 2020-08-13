@@ -6,11 +6,23 @@
     <v:String x:Key="LocalizableCurrentProfileTitle">Текущий профиль:</v:String>
 
     <v:String x:Key="LocalizableSaveButton">Сохранить</v:String>
+    
+    <v:String x:Key="LocalizableHamburgerMenuTitle">Меню</v:String>
 
     <v:String x:Key="LocalizableOn">Вкл</v:String>
     <v:String x:Key="LocalizableOff">Выкл</v:String>
     <v:String x:Key="LocalizableEnterSqfTitle">Вводить SQF-код</v:String>
     <v:String x:Key="LocalizableRefresh">Обновить</v:String>
+    
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTitle">Сервер</v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTitle">О Программе</v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTitle">Настройки</v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTitle">Профили</v:String>
+    
+    <v:String x:Key="LocalizableServerHamburgerMenuItemTooltip">Настройка игрового сервера.</v:String>
+    <v:String x:Key="LocalizableAboutHamburgerMenuItemTooltip">Информация об авторе и приложении.</v:String>
+    <v:String x:Key="LocalizableSettingsHamburgerMenuItemTooltip">Настройки приложения.</v:String>
+    <v:String x:Key="LocalizableProfilesHamburgerMenuItemTooltip">Профили сервера.</v:String>
 
     <v:String x:Key="LocalizableGeneralTabTitle">Основное</v:String>
     <v:String x:Key="LocalizableSecurityTabTitle">Безопасность</v:String>
@@ -36,8 +48,7 @@
     <!--  Settings view  -->
     <v:String x:Key="LocalizableSettingsHeader">Настройки</v:String>
     <v:String x:Key="LocalizableSettingsLanguageTitle">Язык</v:String>
-    <v:String x:Key="LocalizableSettingsBackgroundThemeTitle">Фоновая тема</v:String>
-    <v:String x:Key="LocalizableSettingsAccentColorTitle">Акцентный цвет</v:String>
+    <v:String x:Key="LocalizableSettingsThemeTitle">Фоновая тема</v:String>
 
     <!--  Server view  -->
     <v:String x:Key="LocalizableServerViewTitle">Сервер</v:String>
@@ -81,8 +92,8 @@
     <v:String x:Key="LocalizableLocalClientTitle">IP-адреса локальных клиентов</v:String>
     <v:String x:Key="LocalizableHeadlessClientWatermark">IP-адреса через запятую</v:String>
 
-    <v:String x:Key="LocalizableVotingTresholdTitle">Порог голосования</v:String>
-    <v:String x:Key="LocalizableVotingTresholdTooltip">Процент голосов, необходимый для подтверждения голосования.</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTitle">Порог голосования</v:String>
+    <v:String x:Key="LocalizableVotingThresholdTooltip">Процент голосов, необходимый для подтверждения голосования.</v:String>
 
     <v:String x:Key="LocalizableVotingMissionTitle">Голосование за миссию</v:String>
     <v:String x:Key="LocalizableVotingMissionTooltip">Количество игроков на сервере, необходимых для начала голосования за миссию.</v:String>
@@ -170,6 +181,7 @@
     <v:String x:Key="LocalizableSignatureVerificationTypeTooltip">Тип верификации сигнатур аддонов.</v:String>
 
     <v:String x:Key="LocalizableServerSidePasswordTitle">Пароль доступа к серверным скриптам</v:String>
+    <v:String x:Key="LocalizableServerSidePasswordTooltip">Пароль доступа к серверным скриптам</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTitle">OnDoubleIdCommand</v:String>
     <v:String x:Key="LocalizableDoubleIdCommandTooltip">Выполняется при обнаружении второго клиента с одинаковым ID.</v:String>
     <v:String x:Key="LocalizableUserConnectedCommandTitle">OnUserConnectedCommand</v:String>
@@ -257,6 +269,9 @@
 
     <v:String x:Key="LocalizableCustomFileSizeTitle">Максимальный размер пользовательских файлов</v:String>
     <v:String x:Key="LocalizableCustomFileSizeTooltip">Пользователи с текстурой лица или звуками при превышении указанного значении будут изгнаны из игры при подключении.</v:String>
+    
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTitle">Максимальный размер пакета для Steam Query</v:String>
+    <v:String x:Key="LocalizableSteamProtocolMaxDataSizeTooltip">Увеличение этого значения может быть опасно из-за способности заставить Arma-сервер слать UPD-пакеты размером больше чем MTU, из-за чего UPD-пакеты могут фрагментироваться, что не поддерживается некоторыми старыми роутерами. Может пофиксить проблему с длиной строки модлиста в лаунчере Arma 3.</v:String>
 
     <!--  Logging view  -->
     <v:String x:Key="LocalizableCallExtensionReportLimitTitle">Лимит логгирования при вызове расширения</v:String>
@@ -317,7 +332,7 @@
     <v:String x:Key="LocalizableIsMissionSelected">Играть на сервере</v:String>
     <v:String x:Key="LocalizableName">Название</v:String>
     <v:String x:Key="LocalizableMissionDifficulty">Сложность</v:String>
-    <v:String x:Key="LocalizableIsMissonWhitelisted">В белом списке</v:String>
+    <v:String x:Key="LocalizableIsMissionWhitelisted">В белом списке</v:String>
 
     <v:String x:Key="LocalizableAutoSelectMissionsTitle">Автовыбор миссий</v:String>
     <v:String x:Key="LocalizableAutoSelectMissionsTooltip">Когда включено, сервер автоматически запускает следующую миссию и ждёт игроков в лобби на экране выбора ролей.</v:String>
@@ -423,6 +438,8 @@
 
     <v:String x:Key="LocalizableSelectAllTitle">Выбрать всё</v:String>
     <v:String x:Key="LocalizableDeselectAllTitle">Отменить всё</v:String>
+    <v:String x:Key="LocalizableAddModTitle">Добавить мод</v:String>
+    <v:String x:Key="LocalizableRemoveModTitle">Удалить мод</v:String>
 
     <v:String x:Key="LocalizableServerModTitle">Серверный мод</v:String>
     <v:String x:Key="LocalizableServerModTooltip">Модификации, отмеченные данным флагом, будут использоваться только на сервере и не будет требоваться от подключающихся клиентов.</v:String>
@@ -430,6 +447,8 @@
     <v:String x:Key="LocalizableClientModTitle">Выбрать</v:String>
     <v:String x:Key="LocalizableRefreshModNote">Модификации ищутся в той же папке, что и исполняемый файл сервера. Если моды отсутствуют в списке - сначала укажите исполняемый файл сервера.</v:String>
     <v:String x:Key="LocalizableActionTitle">Действия</v:String>
+    
+    <v:String x:Key="LocalizableIsAbsolutePathModTitle">Прямая ссылка</v:String>
 
     <!--  Profile dialog view  -->
     <v:String x:Key="LocalizableNameTitle">Название</v:String>

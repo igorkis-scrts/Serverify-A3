@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
 {
@@ -26,9 +26,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private readonly ServerViewModel _parentViewModel;
         private readonly IDao<Mission> _missionDao;
         private readonly GameLocationFinder _locationFinder;
-        private readonly SynchronizationContext _uiContext = SynchronizationContext.Current;
 
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets or sets the forced difficulty.
@@ -89,7 +88,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ServerConfig.MissionsToServerRestartQuantity)) return;
-                CurrentProfile.ServerConfig.MissionsToServerRestartQuantity = value;
+                if (CurrentProfile != null) CurrentProfile.ServerConfig.MissionsToServerRestartQuantity = value;
                 RaisePropertyChanged();
             }
         }
@@ -103,7 +102,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 if (Equals(value, CurrentProfile?.ServerConfig.MissionsToShutdownQuantity)) return;
-                CurrentProfile.ServerConfig.MissionsToShutdownQuantity = value;
+                if (CurrentProfile != null) CurrentProfile.ServerConfig.MissionsToShutdownQuantity = value;
                 RaisePropertyChanged();
             }
         }
@@ -153,8 +152,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _refreshCommand ??
-                       (_refreshCommand = new RelayCommand(_ => RefreshMissions()));
+                return _refreshCommand ??= new RelayCommand(async _ => await RefreshMissions());
             }
         }
         private ICommand _refreshCommand;
@@ -166,14 +164,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(async _ =>
-                       {
-                           if(!Missions.Any())
-                           {
-                               await RefreshMissions().ConfigureAwait(false);
-                           }
-                       }));
+                return _windowLoadedCommand ??= new RelayCommand(async _ =>
+                {
+                    if(!Missions.Any())
+                    {
+                        await RefreshMissions().ConfigureAwait(false);
+                    }
+                });
             }
         }
 
@@ -189,66 +186,52 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             Messenger.Default.Register<string>(this, Token, DoByRequest);
         }
 
-        private Task RefreshMissions()
+        private async Task RefreshMissions()
         {
-            try
+            var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
+            if (string.IsNullOrWhiteSpace(gamePath))
             {
-                var gamePath = _locationFinder.GetGameInstallationPath(CurrentProfile);
-                if (string.IsNullOrWhiteSpace(gamePath))
+                Missions.Clear();
+                return;
+            }
+
+            var result = await Task.Run(() =>
+            {
+                if (Missions != null)
                 {
-                    Missions.Clear();
-                    return Task.FromResult<object>(null);
+                    var oldMissions = new List<Mission>(CurrentProfile.ServerConfig.Missions);
+                    var updatedMissions = new List<Mission>(_missionDao.GetAll(gamePath));
+
+                    foreach (var mission in updatedMissions)
+                    {
+                        var oldMission = oldMissions.FirstOrDefault(m => m.Name == mission.Name);
+                        if (oldMission != null)
+                        {
+                            mission.IsSelected = oldMission.IsSelected;
+                            mission.IsWhitelisted = oldMission.IsWhitelisted;
+                            mission.Difficulty = oldMission.Difficulty;
+                        }
+                    }
+
+                    return updatedMissions;
                 }
 
-                return Task.Run(() =>
-                {
-                    try
-                    {
-                        if (Missions != null)
-                        {
-                            var oldMissions = new List<Mission>(Missions);
-                            var updatedMissions = new List<Mission>(_missionDao.GetAll(gamePath));
-
-                            foreach (var mission in updatedMissions)
-                            {
-                                var oldMission = oldMissions.FirstOrDefault(m => m.Name == mission.Name);
-                                if (oldMission != null)
-                                {
-                                    mission.IsSelected = oldMission.IsSelected;
-                                    mission.IsWhitelisted = oldMission.IsWhitelisted;
-                                    mission.Difficulty = oldMission.Difficulty;
-                                }
-                            }
-
-                            CurrentProfile.ServerConfig.Missions = updatedMissions;
-                            Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
-                        }
-                        else
-                        {
-                            var missions = _missionDao.GetAll(gamePath);
-                            CurrentProfile.ServerConfig.Missions = missions.ToList();
-                            Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
-                        }
-                    }
-                    catch
-                    {
-                        throw;
-                    }
-                });
-            }
-            catch
-            {
-                throw;
-            }
+                var missions = _missionDao.GetAll(gamePath);
+                    
+                return missions.ToList();
+            });
+            
+            CurrentProfile.ServerConfig.Missions = result;
+            Missions = new ObservableCollection<Mission>(CurrentProfile.ServerConfig.Missions);
         }
 
         /// <summary>
         /// Refreshes mission list by requests from other view models.
         /// </summary>
         /// <param name="request">message to do something in this viewmodel.</param>
-        private void DoByRequest(string request)
+        private async void DoByRequest(string request)
         {
-            RefreshMissions();
+            await RefreshMissions();
         }
     }
 }

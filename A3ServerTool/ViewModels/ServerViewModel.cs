@@ -10,6 +10,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using A3ServerTool.Models.Profile;
 
 namespace A3ServerTool.ViewModels
 {
@@ -32,27 +33,26 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _startServerCommand ??
-                       (_startServerCommand = new RelayCommand(async _ =>
-                          {
-                              if (!FileHelper.CheckFileExistence(CurrentProfile.ExecutablePath))
-                              {
-                                  var dialogSettings = new MetroDialogSettings
-                                  {
-                                      AffirmativeButtonText = "OK",
-                                      ColorScheme = MetroDialogColorScheme.Accented
-                                  };
+                return _startServerCommand ??= new RelayCommand(async _ =>
+                {
+                    if (!FileHelper.CheckFileExistence(CurrentProfile.ExecutablePath))
+                    {
+                        var dialogSettings = new MetroDialogSettings
+                        {
+                            AffirmativeButtonText = "OK",
+                            ColorScheme = MetroDialogColorScheme.Accented
+                        };
 
-                                  await ((MetroWindow)Application.Current.MainWindow)
-                                     .ShowMessageAsync("Error", "Server executable not exists on specified path.", MessageDialogStyle.Affirmative, dialogSettings).ConfigureAwait(false);
-                              }
-                              else
-                              {
-                                  await SaveProfile();
-                                  _launcher.Run(CurrentProfile);
-                                  Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
-                              }
-                          }, _ => CheckValidation()));
+                        await ((MetroWindow)Application.Current.MainWindow)
+                            .ShowMessageAsync("Error", "Server executable not exists on specified path.", MessageDialogStyle.Affirmative, dialogSettings).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        await SaveProfile();
+                        _launcher.Run(CurrentProfile);
+                        Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
+                    }
+                }, _ => CheckValidation());
             }
         }
 

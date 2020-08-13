@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using Interchangeable.IO;
 using Newtonsoft.Json;
 
@@ -48,16 +47,13 @@ namespace A3ServerTool.Storage
             foreach(var folder in profileFolders)
             {
                 var files = FileHelper.GetAllFiles(folder);
-                if (files == null)
-                {
-                    continue;
-                }
 
-                Profile profile;
-                var metadata = files.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
+                var metadata = files?.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
                 if (metadata != null)
                 {
-                    profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    var profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                    if (profile == null) continue;
+                    
                     profile.ProfilePath = folder.FullName;
                     profiles.Add(profile);
                 }

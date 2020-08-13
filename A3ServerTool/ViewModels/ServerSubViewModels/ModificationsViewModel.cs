@@ -7,7 +7,9 @@ using System.Windows.Input;
 using A3ServerTool.Helpers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using A3ServerTool.Storage;
+using System.Collections.Specialized;
+using System.Windows.Forms;
+using A3ServerTool.Models.Profile;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace A3ServerTool.ViewModels.ServerSubViewModels
@@ -19,12 +21,12 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
     public class ModificationsViewModel : ViewModelBase
     {
         public const string Token = nameof(ModificationsViewModel);
-
+        
         private readonly ServerViewModel _parentViewModel;
         private readonly GameLocationFinder _locationFinder;
-        private readonly IDao<Modification> _modDao;
-
-        public Profile CurrentProfile => _parentViewModel.CurrentProfile;
+        private readonly IProfileDirector _profileDirector;
+        
+        private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
         /// <summary>
         /// Gets or sets the client modifications.
@@ -43,7 +45,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 RaisePropertyChanged();
             }
         }
-        private ObservableCollection<Modification> _mods = new ObservableCollection<Modification>();
+
+        private ObservableCollection<Modification> _mods;
 
         /// <summary>
         /// Gets or sets the selected mod.
@@ -54,7 +57,7 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             set
             {
                 _selectedMod = value;
-                if(_selectedMod != null)
+                if (_selectedMod != null)
                 {
                     _selectedMod.PropertyChanged += OnModChanged;
                 }
@@ -62,13 +65,14 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                 RaisePropertyChanged();
             }
         }
+
         private Modification _selectedMod;
 
         /// <summary>
         /// Gets the modifications counter.
         /// </summary>
         public string ModificationsCounter => Modifications != null
-            ? Modifications.Count(m => m.IsClientMod) + "/" + Modifications.Count()
+            ? Modifications.Count(m => m.IsClientMod) + "/" + Modifications.Count
             : string.Empty;
 
         /// <summary>
@@ -78,13 +82,13 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _refreshCommand ??
-                       (_refreshCommand = new RelayCommand(async _ =>
-                       {
-                           await RefreshModifications().ConfigureAwait(false);
-                       }));
+                return _refreshCommand ??= new RelayCommand(async _ =>
+                {
+                    await RefreshModifications().ConfigureAwait(false);
+                });
             }
         }
+
         private ICommand _refreshCommand;
 
         /// <summary>
@@ -94,23 +98,23 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _selectAllCommand ??
-                       (_selectAllCommand = new RelayCommand(async _ =>
-                       {
-                           if(Modifications?.Any() == true)
-                           {
-                               await Task.Run(() =>
-                               {
-                                   foreach(var mod in Modifications)
-                                   {
-                                       mod.IsClientMod = true;
-                                   }
-                               }).ConfigureAwait(false);
-                               RaisePropertyChanged("ModificationsCounter");
-                           }
-                       }));
+                return _selectAllCommand ??= new RelayCommand(async _ =>
+                {
+                    if (Modifications?.Any() != true) return;
+
+                    await Task.Run(() =>
+                    {
+                        foreach (var mod in Modifications)
+                        {
+                            mod.IsClientMod = true;
+                        }
+                    }).ConfigureAwait(false);
+
+                    RaisePropertyChanged(nameof(ModificationsCounter));
+                });
             }
         }
+
         private ICommand _selectAllCommand;
 
         /// <summary>
@@ -120,24 +124,82 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _deselectAllCommand ??
-                       (_deselectAllCommand = new RelayCommand(async _ =>
-                       {
-                           if (Modifications?.Any() == true)
-                           {
-                               await Task.Run(() =>
-                               {
-                                   foreach (var mod in Modifications)
-                                   {
-                                       mod.IsClientMod = false;
-                                   }
-                               }).ConfigureAwait(false);
-                               RaisePropertyChanged("ModificationsCounter");
-                           }
-                       }));
+                return _deselectAllCommand ??= new RelayCommand(async _ =>
+                {
+                    if (Modifications?.Any() != true) return;
+
+                    await Task.Run(() =>
+                    {
+                        foreach (var mod in Modifications)
+                        {
+                            mod.IsClientMod = false;
+                        }
+                    }).ConfigureAwait(false);
+                    RaisePropertyChanged(nameof(ModificationsCounter));
+                });
             }
         }
+
         private ICommand _deselectAllCommand;
+
+        /// <summary>
+        /// Gets the select all command.
+        /// </summary>
+        public ICommand AddModCommand
+        {
+            get
+            {
+                return _addModCommand ??= new RelayCommand(_ =>
+                {
+                    using var folderDialog = new FolderBrowserDialog();
+
+                    if (folderDialog.ShowDialog() != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    var modPath = folderDialog.SelectedPath;
+                    var isModAlreadyExists = Modifications.Any(um => um.Name == modPath);
+
+                    if (isModAlreadyExists)
+                    {
+                        return;
+                    }
+                    
+                    var mod = new Modification
+                    {
+                        Name = modPath,
+                        IsAbsolutePathMod = true
+                    };
+
+                    Modifications.Add(mod);
+                    CurrentProfile.ArgumentSettings.Modifications = new List<Modification>(Modifications);
+                    
+                    RaisePropertyChanged(nameof(ModificationsCounter));
+                });
+            }
+        }
+
+        private ICommand _addModCommand;
+
+        /// <summary>
+        /// Gets the select all command.
+        /// </summary>
+        public ICommand RemoveModCommand
+        {
+            get
+            {
+                return _removeModCommand ??= new RelayCommand(_ =>
+                {
+                    if (SelectedModification.IsAbsolutePathMod)
+                    {
+                        Modifications.Remove(SelectedModification);
+                    }
+                });
+            }
+        }
+
+        private ICommand _removeModCommand;
 
 
         /// <summary>
@@ -147,24 +209,26 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         {
             get
             {
-                return _windowLoadedCommand ??
-                       (_windowLoadedCommand = new RelayCommand(async _ =>
-                       {
-                           if (!Modifications.Any())
-                           {
-                               await RefreshModifications().ConfigureAwait(false);
-                           }
-                       }));
+                return _windowLoadedCommand ??= new RelayCommand(async _ =>
+                {
+                    if (!Modifications.Any())
+                    {
+                        await RefreshModifications().ConfigureAwait(false);
+                    }
+                });
             }
         }
+
         private ICommand _windowLoadedCommand;
 
-        public ModificationsViewModel(ServerViewModel parentViewModel, IDao<Modification> modDao,
+        public ModificationsViewModel(ServerViewModel parentViewModel, IProfileDirector profileDirector,
             GameLocationFinder locationFinder)
         {
             _parentViewModel = parentViewModel;
             _mods = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
-            _modDao = modDao;
+            _mods.CollectionChanged += ModListChanged;
+
+            _profileDirector = profileDirector;
             _locationFinder = locationFinder;
 
             Messenger.Default.Register<string>(this, Token, DoByRequest);
@@ -183,8 +247,10 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
             {
                 if (Modifications != null)
                 {
-                    var oldMods = new List<Modification>(Modifications);
-                    var updatedMods = new List<Modification>(_modDao.GetAll(gamePath));
+                    var oldMods = CurrentProfile.ArgumentSettings.Modifications.ConvertAll(mod => mod.Clone());
+                    _profileDirector.GetProfileModifications(CurrentProfile);
+
+                    var updatedMods = CurrentProfile.ArgumentSettings.Modifications;
 
                     foreach (var mod in updatedMods)
                     {
@@ -201,17 +267,20 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
                         }
                     }
 
-                    //it looks like that observable collection created by this way
-                    //contains link to CurrentProfile.ArgumentSettings.Modifications
-                    //which allows us to store data in the config file without additional code
-                    //this fact looks suspicious and might lead to an additional bugs
-                    CurrentProfile.ArgumentSettings.Modifications = updatedMods;
-                    Modifications = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
+                    foreach (var mod in oldMods.Where(x => x.IsAbsolutePathMod))
+                    {
+                        var updatedMod = updatedMods.FirstOrDefault(um => um.Name == mod.Name);
+                        if (updatedMod == null)
+                        {
+                            updatedMods.Add(mod);
+                        }
+                    }
+
+                    Modifications = new ObservableCollection<Modification>(updatedMods);
                 }
                 else
                 {
-                    var mods = _modDao.GetAll(gamePath);
-                    CurrentProfile.ArgumentSettings.Modifications = mods.ToList();
+                    _profileDirector.GetProfileModifications(CurrentProfile);
                     Modifications = new ObservableCollection<Modification>(CurrentProfile.ArgumentSettings.Modifications);
                 }
             });
@@ -219,7 +288,8 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
 
         private void OnModChanged(object sender, EventArgs e)
         {
-            RaisePropertyChanged("ModificationsCounter");
+            Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
+            RaisePropertyChanged(nameof(ModificationsCounter));
         }
 
         /// <summary>
@@ -229,6 +299,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         private void DoByRequest(string request)
         {
             RefreshModifications();
+        }
+
+        private void ModListChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (!(sender is ObservableCollection<Modification>))
+            {
+                return;
+            }
+
+            CurrentProfile.ArgumentSettings.Modifications =
+                new List<Modification>((ObservableCollection<Modification>) sender);
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
-namespace A3ServerTool.Models
+namespace A3ServerTool.Models.Profile
 {
     /// <summary>
     /// Provides an interface between VMs and DAO to interact with profiles.
@@ -40,9 +39,9 @@ namespace A3ServerTool.Models
         Profile GetById(Guid id);
 
         /// <summary>
-        /// Sets the default values.
+        /// Get mods that used by profile.
         /// </summary>
-        /// <param name="profile">The profile.</param>
-        void SetDefaultValues(Profile profile);
+        /// <param name="profile"></param>
+        void GetProfileModifications(Profile profile);
     }
 }

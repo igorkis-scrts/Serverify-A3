@@ -1,4 +1,4 @@
-<Application x:Class="A3ServerTool.App" 
+﻿<Application x:Class="A3ServerTool.App" 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:converters="clr-namespace:A3ServerTool.Converters" 
@@ -8,7 +8,8 @@
              xmlns:inter="clr-namespace:Interchangeable.Enums;assembly=Interchangeable" 
              xmlns:local="clr-namespace:A3ServerTool" 
              xmlns:models="clr-namespace:A3ServerTool.Models" 
-             xmlns:system="clr-namespace:System;assembly=mscorlib" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              d1P1:Ignorable="d" 
              DispatcherUnhandledException="App_OnDispatcherUnhandledException" 
              StartupUri="MainWindow.xaml">
@@ -24,25 +25,59 @@
         <Setter Property="FontSize" Value="24" />
         <Setter Property="HorizontalAlignment" Value="Center" />
       </Style>
+      
+      <!--  Dialog Styles  -->
+      
+      <Style x:Key="MahApps.Styles.Button.Dialogs"
+             BasedOn="{StaticResource MahApps.Styles.Button.Flat}"
+             TargetType="{x:Type Button}">
+        <Setter Property="MinWidth" Value="80" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+      </Style>
+
+      <Style x:Key="MahApps.Styles.Button.Dialogs.Accent"
+             BasedOn="{StaticResource MahApps.Styles.Button.Flat}"
+             TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+        <Setter Property="MinWidth" Value="80" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+      </Style>
+
+      <Style x:Key="MahApps.Styles.Button.Dialogs.AccentHighlight"
+             BasedOn="{StaticResource MahApps.Styles.Button.Flat}"
+             TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+        <Setter Property="MinWidth" Value="80" />
+        <Setter Property="Height" Value="42" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+      </Style>
+      
+      
+      
       <Thickness x:Key="ControlMargin">8 2 8 2</Thickness>
       <Thickness x:Key="LabelMargin">4 2 8 2</Thickness>
       <Thickness x:Key="GroupBoxMargin">12 4 12 4</Thickness>
       <Thickness x:Key="EndControlMargin">8 2 8 8</Thickness>
       <ResourceDictionary.MergedDictionaries>
         <!--  Localization  -->
-        <ResourceDictionary Source="Resources/Lang.xaml">
-        </ResourceDictionary>
-        <!--<ResourceDictionary Source="Resources/Lang.ru-RU.xaml" />-->
+        <ResourceDictionary Source="Resources/Lang.xaml"/>
+        
         <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml">
-        </ResourceDictionary>
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml">
-        </ResourceDictionary>
-        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml">
-        </ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml"/>
+
         <!--  My custom controls library  -->
-                <ResourceDictionary Source="pack://application:,,,/CustomControls;component/CustomControlsDictionary.xaml">
-                </ResourceDictionary>
+        <ResourceDictionary Source="pack://application:,,,/CustomControls;component/CustomControlsDictionary.xaml"/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>

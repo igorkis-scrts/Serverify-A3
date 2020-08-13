@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using A3ServerTool.Helpers;
-using A3ServerTool.Models;
+using A3ServerTool.Models.Profile;
 using A3ServerTool.ViewModels.ServerSubViewModels;
 using A3ServerTool.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using Interchangeable;
 using Interchangeable.Enums;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -89,19 +88,18 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _selectProfileCommand ??
-                       (_selectProfileCommand = new RelayCommand(_ =>
-                       {
-                           if(Equals(_mainViewModel.CurrentProfile, SelectedProfile.Id))
-                           {
-                               return;
-                           }
+                return _selectProfileCommand ??= new RelayCommand(_ =>
+                {
+                    if(Equals(_mainViewModel.CurrentProfile.Id, SelectedProfile.Id))
+                    {
+                        return;
+                    }
 
-                           _mainViewModel.CurrentProfile = _profileDirector.GetById(SelectedProfile.Id);
-                           Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
-                           Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
-                           Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
-                       }, _ => SelectedProfile != null));
+                    _mainViewModel.CurrentProfile = _profileDirector.GetById(SelectedProfile.Id);
+                    Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
+                    Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                    Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
+                }, _ => SelectedProfile != null);
             }
         }
         private ICommand _selectProfileCommand;
@@ -110,32 +108,31 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _saveCurrentProfileCommand ??
-                       (_saveCurrentProfileCommand = new RelayCommand(async _ =>
-                       {
-                           if (string.IsNullOrEmpty(_mainViewModel.CurrentProfile.Name))
-                           {
-                               ShowDialog();
-                               Messenger.Default.Send(_mainViewModel.CurrentProfile);
-                               Messenger.Default.Send(ViewMode.Edit);
-                           }
-                           else
-                           {
-                               _profileDirector.SaveStorage(_mainViewModel.CurrentProfile);
-                               Properties.Settings.Default.LastUsedProfile = _mainViewModel.CurrentProfile.Id;
-                               Properties.Settings.Default.Save();
+                return _saveCurrentProfileCommand ??= new RelayCommand(async _ =>
+                {
+                    if (string.IsNullOrEmpty(_mainViewModel.CurrentProfile.Name))
+                    {
+                        ShowDialog();
+                        Messenger.Default.Send(_mainViewModel.CurrentProfile);
+                        Messenger.Default.Send(ViewMode.Edit);
+                    }
+                    else
+                    {
+                        _profileDirector.SaveStorage(_mainViewModel.CurrentProfile);
+                        Properties.Settings.Default.LastUsedProfile = _mainViewModel.CurrentProfile.Id;
+                        Properties.Settings.Default.Save();
 
-                               var dialogSettings = new MetroDialogSettings
-                               {
-                                   AffirmativeButtonText = "OK",
-                                   ColorScheme = MetroDialogColorScheme.Accented
-                               };
+                        var dialogSettings = new MetroDialogSettings
+                        {
+                            AffirmativeButtonText = "OK",
+                            ColorScheme = MetroDialogColorScheme.Accented
+                        };
 
-                               await ((MetroWindow)Application.Current.MainWindow)
-                                   .ShowMessageAsync(Properties.StaticLang.SuccessTitle, Properties.StaticLang.SuccessfulSavedProfileText, MessageDialogStyle.Affirmative, dialogSettings);
-                           }
-                           RefreshData();
-                       }, _ => _mainViewModel.CurrentProfile != null));
+                        await ((MetroWindow)Application.Current.MainWindow)
+                            .ShowMessageAsync(Properties.StaticLang.SuccessTitle, Properties.StaticLang.SuccessfulSavedProfileText, MessageDialogStyle.Affirmative, dialogSettings);
+                    }
+                    RefreshData();
+                }, _ => _mainViewModel.CurrentProfile != null);
             }
         }
         private ICommand _saveCurrentProfileCommand;
@@ -144,12 +141,11 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _createProfileCommand ??
-                       (_createProfileCommand = new RelayCommand(_ =>
-                       {
-                           ShowDialog();
-                           Messenger.Default.Send(ViewMode.New);
-                       }));
+                return _createProfileCommand ??= new RelayCommand(_ =>
+                {
+                    ShowDialog();
+                    Messenger.Default.Send(ViewMode.New);
+                });
             }
         }
         private ICommand _createProfileCommand;
@@ -158,24 +154,23 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _deleteProfileCommand ??
-                       (_deleteProfileCommand = new RelayCommand(async _ =>
-                       {
-                           var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm deletion",
-                               "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
-                           if (dialogResult != MessageDialogResult.Affirmative) return;
-                           if (_mainViewModel.CurrentProfile.Id == SelectedProfile.Id)
-                           {
-                               _mainViewModel.CurrentProfile = new Profile(Guid.NewGuid());
-                               Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
-                               Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
-                               Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
-                           }
+                return _deleteProfileCommand ??= new RelayCommand(async _ =>
+                {
+                    var dialogResult = await _dialogCoordinator.ShowMessageAsync(this, "Confirm deletion",
+                        "Are you sure that you want to delete this item?", MessageDialogStyle.AffirmativeAndNegative);
+                    if (dialogResult != MessageDialogResult.Affirmative) return;
+                    if (_mainViewModel.CurrentProfile.Id == SelectedProfile.Id)
+                    {
+                        _mainViewModel.CurrentProfile = new Profile(Guid.NewGuid());
+                        Messenger.Default.Send("UpdateMissions", MissionsViewModel.Token);
+                        Messenger.Default.Send("UpdateMods", ModificationsViewModel.Token);
+                        Messenger.Default.Send("UpdateFinalString", GeneralViewModel.Token);
+                    }
 
-                           _profileDirector.Delete(SelectedProfile);
+                    _profileDirector.Delete(SelectedProfile);
 
-                           RefreshData();
-                       }, _ => SelectedProfile != null));
+                    RefreshData();
+                }, _ => SelectedProfile != null);
             }
         }
         private ICommand _deleteProfileCommand;
@@ -184,13 +179,12 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _editProfileCommand ??
-                       (_editProfileCommand = new RelayCommand(_ =>
-                       {
-                           ShowDialog();
-                           Messenger.Default.Send(SelectedProfile);
-                           Messenger.Default.Send(ViewMode.Edit);
-                       }, _ => SelectedProfile != null));
+                return _editProfileCommand ??= new RelayCommand(_ =>
+                {
+                    ShowDialog();
+                    Messenger.Default.Send(SelectedProfile);
+                    Messenger.Default.Send(ViewMode.Edit);
+                }, _ => SelectedProfile != null);
             }
         }
         private ICommand _editProfileCommand;
@@ -202,8 +196,7 @@ namespace A3ServerTool.ViewModels
         {
             get
             {
-                return _viewModelLoadedCommand ??
-                       (_viewModelLoadedCommand = new RelayCommand(_ => RefreshData()));
+                return _viewModelLoadedCommand ??= new RelayCommand(_ => RefreshData());
             }
         }
         private ICommand _viewModelLoadedCommand;
@@ -226,11 +219,6 @@ namespace A3ServerTool.ViewModels
 
             if (DialogResult.Message == MessageDialogResult.Affirmative)
             {
-                if(DialogResult.ActionType == SaveObjectActionType.Create)
-                {
-                    _profileDirector.SetDefaultValues(DialogResult.Object);
-                }
-
                 _mainViewModel.CurrentProfile = DialogResult.Object;
                 _profileDirector.SaveStorage(DialogResult.Object);
                 Properties.Settings.Default.LastUsedProfile = DialogResult.Object.Id;

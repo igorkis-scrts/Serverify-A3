@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using A3ServerTool.Annotations;
 using A3ServerTool.Attributes;
 
 namespace A3ServerTool.Models.Config
@@ -48,7 +44,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets the maximum number of players that can connect to server. 
         /// </summary>
         [ConfigProperty(PropertyName = "maxPlayers")]
-        public int? MaximumAmountOfPlayers { get; set; }
+        public int? MaximumAmountOfPlayers { get; set; } = 32;
 
         /// <summary>
         /// Gets or sets welcome messages.
@@ -126,25 +122,25 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a Server wait time before disconnecting client. 
         /// </summary>
         [ConfigProperty(PropertyName = "disconnectTimeout")]
-        public int? DisconnectTimeout { get; set; }
+        public int? DisconnectTimeout { get; set; } = 90;
 
         /// <summary>
         /// Gets or sets a max desync value until server kicks the user. 
         /// </summary>
         [ConfigProperty(PropertyName = "maxdesync")]
-        public int? MaximumDesync { get; set; }
+        public int? MaximumDesync { get; set; } = 150;
 
         /// <summary>
         /// Gets or sets a max ping value until server kick the user. 
         /// </summary>
         [ConfigProperty(PropertyName = "maxping")]
-        public int? MaximumPing { get; set; }
+        public int? MaximumPing { get; set; } = 200;
 
         /// <summary>
         /// Gets or sets a max packetloss value until server kick the user. 
         /// </summary>
         [ConfigProperty(PropertyName = "maxpacketloss")]
-        public int? MaximumPacketLoss { get; set; }
+        public int? MaximumPacketLoss { get; set; } = 50;
 
         /// <summary>
         /// Gets or sets rules for slow network players - log or log and kick.
@@ -194,37 +190,37 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a seconds for role selection. 
         /// </summary>
         [ConfigProperty(PropertyName = "roleTimeOut")]
-        public int? RoleSelectionTimeout { get; set; }
+        public int? RoleSelectionTimeout { get; set; } = 99999;
 
         /// <summary>
         /// Gets or sets a seconds for briefing. 
         /// </summary>
         [ConfigProperty(PropertyName = "briefingTimeOut")]
-        public int? BriefingTimeout { get; set; }
+        public int? BriefingTimeout { get; set; } = 60;
 
         /// <summary>
         /// Gets or sets a seconds for debriefing. 
         /// </summary>
         [ConfigProperty(PropertyName = "debriefingTimeOut")]
-        public int? DebriefingTimeout { get; set; }
+        public int? DebriefingTimeout { get; set; } = 45;
 
         /// <summary>
         /// Gets or sets a seconds for lobby idling. 
         /// </summary>
         [ConfigProperty(PropertyName = "lobbyIdleTimeout")]
-        public int? LobbyIdleTimeout { get; set; }
+        public int? LobbyIdleTimeout { get; set; } = 99999;
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling signature verification. 
         /// </summary>
         [ConfigProperty(PropertyName = "verifySignatures")]
-        public int SignatureVerificationMode { get; set; }
+        public int SignatureVerificationMode { get; set; } = 2;
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling the ability to place markers and draw lines in map. 
         /// </summary>
         [ConfigProperty(PropertyName = "drawingInMap")]
-        public bool IsDrawingOnMapAllowed { get; set; }
+        public bool IsDrawingOnMapAllowed { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling the Voice over Net. 
@@ -236,13 +232,13 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for defining VoN codec quality. 
         /// </summary>
         [ConfigProperty(PropertyName = "vonCodecQuality")]
-        public int? VoiceCodecQuality { get; set; }
+        public int? VoiceCodecQuality { get; set; } = 3;
 
         /// <summary>
         /// Gets or sets a value for defining VoN codec. 
         /// </summary>
         [ConfigProperty(PropertyName = "vonCodec")]
-        public int VoiceCodecType { get; set; }
+        public int VoiceCodecType { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets a value for skipping lobby stage for joining players. 
@@ -254,7 +250,7 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for enabling output of dedicated server console into textfile.
         /// </summary>
         [ConfigProperty(PropertyName = "logFile", IsQuotationMarksRequired = true)]
-        public string LogFileName { get; set; }
+        public string LogFileName { get; set; } = "server_console.log";
 
         /// <summary>
         /// Gets or sets a command when 2nd user with the same ID detected.
@@ -302,19 +298,19 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a command for enabling or disabling the BattlEye anti-cheat engine.
         /// </summary>
         [ConfigProperty(PropertyName = "BattlEye")]
-        public bool HasBattleEye { get; set; }
+        public bool HasBattleEye { get; set; } = true;
 
         /// <summary>
         /// Gets or sets timestamp format used on each report line in server-side RPT file.
         /// </summary>
         [ConfigProperty(PropertyName = "timeStampFormat", IsQuotationMarksRequired = true)]
-        public string TimeStampFormat { get; set; }
+        public string TimeStampFormat { get; set; } = "short";
 
         /// <summary>
         /// Gets or sets a value for manipulating RotorLib simulation on server.
         /// </summary>
         [ConfigProperty(PropertyName = "forceRotorLibSimulation")]
-        public int? RotorLibSimulationType { get; set; }
+        public int? RotorLibSimulationType { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling server running when all clients disconnected.
@@ -344,27 +340,33 @@ namespace A3ServerTool.Models.Config
         /// Gets or sets a value for only allowing files with certain extensions to be loaded via loadFile command.
         /// </summary>
         [ConfigProperty(PropertyName = "allowedLoadFileExtensions[]")]
-        public List<string> LoadFileExtensionsWhitelist { get; set; } = new List<string>();
+        public List<string> LoadFileExtensionsWhitelist { get; set; } = new List<string>(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
 
         /// <summary>
         /// Gets or sets a value for only allowing files with certain extensions 
         /// to be loaded via preprocessFile/preprocessFileLineNumber.
         /// </summary>
         [ConfigProperty(PropertyName = "allowedPreprocessFileExtensions[]")]
-        public List<string> PreprocessFileExtensionsWhitelist { get; set; } = new List<string>();
+        public List<string> PreprocessFileExtensionsWhitelist { get; set; } = new List<string>(new[] { "hpp", "sqs", "sqf", "fsm", "cpp", "paa", "txt", "xml", "inc", "ext", "sqm", "ods", "fxy", "lip", "csv", "kb", "bik", "bikb", "html", "htm", "biedi" });
 
         /// <summary>
         /// Gets or sets a value for only allowing files with certain extensions to be loaded via HTMLLoad command.
         /// </summary>
         [ConfigProperty(PropertyName = "allowedHTMLLoadExtensions[]")]
-        public List<string> HtmlFileExtensionsWhitelist { get; set; } = new List<string>();
+        public List<string> HtmlFileExtensionsWhitelist { get; set; } = new List<string>(new[] { "htm", "html", "xml", "txt" });
 
         /// <summary>
         /// Gets or sets a value for enabling or disabling collecting and sending server statistics for developers of the game.
         /// <see cref="https://community.bistudio.com/wiki/Arma_3_Analytics"/>
         /// </summary>
         [ConfigProperty(PropertyName = "statisticsEnabled")]
-        public int? HasBisAnalytics { get; set; }
+        public int? HasBisAnalytics { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets a value for limiting maximum Steam Query packet length.
+        /// </summary>
+        [ConfigProperty(PropertyName = "steamProtocolMaxDataSize")]
+        public int? SteamProtocolMaxDataSize { get; set; } = 1024;
 
         /// <summary>
         /// Gets or sets a value if missions will be autoselected.
