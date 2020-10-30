@@ -99,13 +99,13 @@ namespace A3ServerTool.Models.Config
         [ConfigProperty(PropertyName = "visionAid")]
         [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
         public int? IsVisionAidAllowed { get; set; } = 0;
-
+        
         /// <summary>
-        /// Gets or sets the value for allowing third person view.
+        /// Gets or sets the value for third person view mode.
         /// </summary>
         [ConfigProperty(PropertyName = "thirdPersonView")]
-        [WrappingClass(new string[] { "DifficultyPresets", "CustomDifficulty", "Options" })]
-        public int? IsThirdPersonViewAllowed { get; set; } = 1;
+        [WrappingClass("DifficultyPresets", "CustomDifficulty", "Options")]
+        public int? ThirdPersonViewType { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the value for allowing camera shake.

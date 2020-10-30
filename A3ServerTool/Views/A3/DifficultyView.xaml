@@ -169,6 +169,24 @@
                             SelectedValue="{Binding Path=StanceIndicatorVisibilityType}"
                             SelectedValuePath="Value"
                             ToolTip="{DynamicResource LocalizableStanceIndicatorVisibilityTypeTooltip}" />
+                        
+                        <Label
+                            Margin="{StaticResource LabelMargin}"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LocalizableThirdPersonViewAllowanceTitle}"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <ComboBox
+                            MinWidth="192"
+                            MaxWidth="192"
+                            Margin="{StaticResource ControlMargin}"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding Path=ThirdPersonViewType, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                            SelectedValue="{Binding Path=ThirdPersonViewType}"
+                            SelectedValuePath="Value"
+                            ToolTip="{DynamicResource LocalizablethirdPersonViewAllowanceTooltip}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"
@@ -211,20 +229,6 @@
                             OffContent="{DynamicResource LocalizableOff}"
                             OnContent="{DynamicResource LocalizableOn}"
                             ToolTip="{DynamicResource LocalizableVisionAidAllowanceTooltip}" />
-
-                        <Label
-                            Margin="{StaticResource LabelMargin}"
-                            HorizontalAlignment="Left"
-                            Content="{DynamicResource LocalizableThirdPersonViewAllowanceTitle}"
-                            FontSize="14"
-                            FontWeight="Bold" />
-                        <mah:ToggleSwitch
-                            Margin="{StaticResource ControlMargin}"
-                            HorizontalAlignment="Left"
-                            IsOn="{Binding IsThirdPersonViewAllowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
-                            OffContent="{DynamicResource LocalizableOff}"
-                            OnContent="{DynamicResource LocalizableOn}"
-                            ToolTip="{DynamicResource LocalizablethirdPersonViewAllowanceTooltip}" />
 
                         <Label
                             Margin="{StaticResource LabelMargin}"

@@ -302,15 +302,17 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         }
 
         /// <summary>
-        /// Gets or sets is third person allowed.
+        /// Gets or sets is third person view mode.
         /// </summary>
-        public int? IsThirdPersonViewAllowed
+        public ThirdPersonViewType ThirdPersonViewType
         {
-            get => CurrentProfile?.ArmaProfile?.IsThirdPersonViewAllowed;
+            get => CurrentProfile?.ArmaProfile?.ThirdPersonViewType != null
+                ? (ThirdPersonViewType)CurrentProfile.ArmaProfile.ThirdPersonViewType
+                : ThirdPersonViewType.Enabled;
             set
             {
-                if (Equals(value, CurrentProfile?.ArmaProfile?.IsThirdPersonViewAllowed)) return;
-                CurrentProfile.ArmaProfile.IsThirdPersonViewAllowed = value;
+                if (Equals((int)value, CurrentProfile?.ArmaProfile?.ThirdPersonViewType)) return;
+                CurrentProfile.ArmaProfile.ThirdPersonViewType = (int)value;
                 RaisePropertyChanged();
             }
         }
@@ -376,12 +378,9 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels
         /// </summary>
         public TacticalPingType TacticalPingType
         {
-            get
-            {
-                return CurrentProfile?.ArmaProfile?.TacticalPingType != null
-                     ? (TacticalPingType)CurrentProfile.ArmaProfile.TacticalPingType
-                     : TacticalPingType.Hide;
-            }
+            get => CurrentProfile?.ArmaProfile?.TacticalPingType != null
+                    ? (TacticalPingType)CurrentProfile.ArmaProfile.TacticalPingType
+                    : TacticalPingType.Hide;
             set
             {
                 if (Equals((int)value, CurrentProfile?.ArmaProfile?.TacticalPingType)) return;

@@ -305,7 +305,7 @@
     <v:String x:Key="LocalizableMaxMemoryTooltip">Überschreibt die Speicherzuweisungsbeschränkung auf einen bestimmten Wert (in Megabyte). Beachten Sie, dass ausführbare 32-Bit-Dateien (x86) und Windows-Betriebssysteme eine deutlich niedrigere Speicherobergrenze aufweisen als ausführbare 64-Bit-Dateien und Betriebssysteme.</v:String>
 
     <v:String x:Key="LocalizableLimitFpsTitle">FPS begrenzen</v:String>
-    <v:String x:Key="LocalizableLimitFpsTooltip">Überschreibt das Standard-Server-FPS-Limit. Nur mit Binärdatei für Leistung, Profilerstellung und Entwicklung verfügbar.</v:String>
+    <v:String x:Key="LocalizableLimitFpsTooltip">Überschreibt das Standard-Server-FPS-Limit.</v:String>
 
     <v:String x:Key="LocalizableHyperThreadingTitle">Hyper Threading</v:String>
     <v:String x:Key="LocalizableHyperThreadingTooltip">Ermöglicht die Verwendung aller logischen CPU-Kerne für die parallele Aufgabenbearbeitung. Wenn Ihre CPU Hyper-Threading oder eine ähnliche Technologie nicht unterstützt, wird dieser Parameter ignoriert.</v:String>
