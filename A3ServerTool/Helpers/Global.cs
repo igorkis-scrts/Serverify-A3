@@ -40,6 +40,5 @@ global using MahApps.Metro.IconPacks;
 global using System.Reflection;
 global using System.Windows.Navigation;
 global using System.Collections.Specialized;
-global using System.Windows.Forms;
 global using A3ServerTool.ViewModels;
 global using System.Diagnostics;

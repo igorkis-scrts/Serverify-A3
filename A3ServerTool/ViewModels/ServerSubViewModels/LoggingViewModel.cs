@@ -1,4 +1,5 @@
-﻿namespace A3ServerTool.ViewModels.ServerSubViewModels;
+﻿using System.Windows.Forms;
+namespace A3ServerTool.ViewModels.ServerSubViewModels;
 
 /// <summary>
 /// Represents view model with logging server properties.

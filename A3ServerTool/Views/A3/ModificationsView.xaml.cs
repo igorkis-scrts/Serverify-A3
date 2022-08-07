@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace A3ServerTool.Views.A3;
 
-namespace A3ServerTool.Views.A3
+/// <summary>
+/// Interaction logic for ModificationsView.xaml
+/// </summary>
+public partial class ModificationsView : System.Windows.Controls.UserControl
 {
-    /// <summary>
-    /// Interaction logic for ModificationsView.xaml
-    /// </summary>
-    public partial class ModificationsView : UserControl
+    public ModificationsView()
     {
-        public ModificationsView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

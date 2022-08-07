@@ -1,4 +1,6 @@
-﻿namespace A3ServerTool.ViewModels.ServerSubViewModels;
+﻿using System.Windows.Forms;
+
+namespace A3ServerTool.ViewModels.ServerSubViewModels;
 
 /// <summary>
 /// Represents common server properties.
