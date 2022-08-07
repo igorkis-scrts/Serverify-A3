@@ -1,16 +1,13 @@
-﻿using System.ComponentModel;
+﻿namespace A3ServerTool.Enums;
 
-namespace A3ServerTool.Enums
+public enum ThirdPersonViewType
 {
-    public enum ThirdPersonViewType
-    {
-        [Description("Disabled")]
-        Disabled = 0,
+    [Description("Disabled")]
+    Disabled = 0,
 
-        [Description("Enabled")]
-        Enabled = 1,
+    [Description("Enabled")]
+    Enabled = 1,
 
-        [Description("Vehicles Only")]
-        VehiclesOnly = 2,
-    }
+    [Description("Vehicles Only")]
+    VehiclesOnly = 2,
 }

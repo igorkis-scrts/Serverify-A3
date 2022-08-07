@@ -1,14 +1,11 @@
-﻿using A3ServerTool.Enums;
+﻿namespace A3ServerTool.Helpers;
 
-namespace A3ServerTool.Helpers
+/// <summary>
+/// Converts theme to real title and vice versa.
+/// </summary>
+public interface IThemeParser
 {
-    /// <summary>
-    /// Converts theme to real title and vice versa.
-    /// </summary>
-    public interface IThemeParser
-    {
-        string ConvertThemeToRealTitle(ThemeType theme);
+    string ConvertThemeToRealTitle(ThemeType theme);
 
-        ThemeType ConvertRealTitleToTheme(string title);
-    }
+    ThemeType ConvertRealTitleToTheme(string title);
 }

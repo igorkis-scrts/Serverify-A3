@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace A3ServerTool.Enums;
 
-namespace A3ServerTool.Enums
+/// <summary>
+/// Represents time stamp format type in the server logs.
+/// </summary>
+public enum TimeStampType
 {
-    /// <summary>
-    /// Represents time stamp format type in the server logs.
-    /// </summary>
-    public enum TimeStampType
-    {
-        [Description("None")]
-        None = 0,
+    [Description("None")]
+    None = 0,
 
-        [Description("Short")]
-        Short = 1,
+    [Description("Short")]
+    Short = 1,
 
-        [Description("Full")]
-        Full = 2
-    }
+    [Description("Full")]
+    Full = 2
 }
