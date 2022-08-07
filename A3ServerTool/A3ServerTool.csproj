@@ -6,7 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>A3ServerTool</RootNamespace>
     <ApplicationIcon>iconSmall.ico</ApplicationIcon>
-    <Version>1.5.0.2</Version>
+    <Version>1.5.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MahApps.Metro">
