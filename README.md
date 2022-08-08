@@ -30,12 +30,6 @@ https://forums.bohemia.net/forums/topic/224504-serverifya3-a-dedicated-server-co
 3. Launch ServerifyA3.exe, tune your dedicated server.
 4. When you're done with server's settings tuning - simply launch your server from General server screen.
 
-## Future Plans
-- Live log viewer - ability to see .rpt log updates in realtime;
-- Task manager - launch multiple server instances at once;
-- Mission Voting settings;
-- Bugfixes, UI redesign, 100% test coverage, refactoring... :smile:
-
 ## Credits
 App icon made by Hugo Alberto: [NounProject](https://thenounproject.com/hugugolplex/)
 
