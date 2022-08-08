@@ -1,13 +1,12 @@
-﻿namespace A3ServerTool.Models.Config
+﻿namespace A3ServerTool.Models.Config;
+
+/// <summary>
+/// Provides common interface for config files.
+/// </summary>
+public interface IConfig
 {
     /// <summary>
-    /// Provides common interface for config files.
+    /// Gets or sets config file location.
     /// </summary>
-    public interface IConfig
-    {
-        /// <summary>
-        /// Gets or sets config file location.
-        /// </summary>
-        string FileLocation { get; set; }
-    }
+    string FileLocation { get; set; }
 }

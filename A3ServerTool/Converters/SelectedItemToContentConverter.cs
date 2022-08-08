@@ -1,25 +1,19 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Data;
+﻿namespace A3ServerTool.Converters;
 
-namespace A3ServerTool.Converters
+public class SelectedItemToContentConverter : IMultiValueConverter
 {
-    public class SelectedItemToContentConverter : IMultiValueConverter
+    public object Convert(object[] values, Type targeTypes, object parameter, CultureInfo culture)
     {
-        public object Convert(object[] values, Type targeTypes, object parameter, CultureInfo culture)
+        if (values != null && values.Length > 1)
         {
-            if (values != null && values.Length > 1)
-            {
-                return values[0] ?? values[1];
-            }
-
-            return null;
+            return values[0] ?? values[1];
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            return targetTypes.Select(t => Binding.DoNothing).ToArray();
-        }
+        return null;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        return targetTypes.Select(t => Binding.DoNothing).ToArray();
     }
 }

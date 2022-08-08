@@ -1,61 +1,52 @@
-﻿using A3ServerTool.Helpers;
-using A3ServerTool.Models.Config;
-using Interchangeable.IO;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using A3ServerTool.Models.Profile;
+﻿namespace A3ServerTool.Storage;
 
-namespace A3ServerTool.Storage
+/// <inheritdoc/>
+public class BasicConfigDao : IConfigDao<BasicConfig>
 {
-    /// <inheritdoc/>
-    public class BasicConfigDao : IConfigDao<BasicConfig>
+    private const string ConfigFileExtension = ".cfg";
+    private const string ConfigFileName = "basic";
+
+    private readonly IUniversalParser _parser;
+
+    public BasicConfigDao(IUniversalParser parser)
     {
-        private const string ConfigFileExtension = ".cfg";
-        private const string ConfigFileName = "basic";
+        _parser = parser;
+    }
 
-        private readonly IUniversalParser _parser;
+    /// <inheritdoc/>
+    public BasicConfig Get(Profile profile)
+    {
+        var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString(),
+                ConfigFileName) + ConfigFileExtension);
+        if (file == null) return null;
 
-        public BasicConfigDao(IUniversalParser parser)
+        var properties = TextManager.ReadFileLineByLine(file);
+        if (!properties.Any()) return null;
+
+        var result = _parser.Parse<BasicConfig>(properties);
+        result.FileLocation = file.FullName;
+        return result;
+    }
+
+    /// <inheritdoc/>
+
+    /// <inheritdoc/>
+    public void Save(Profile profile)
+    {
+        var configDto = new SaveDataDto
         {
-            _parser = parser;
-        }
+            Content = string.Join("\r\n", _parser.ConvertToText(profile.BasicConfig)),
+            FileExtension = ConfigFileExtension,
+            FileName = ConfigFileName,
+            Folders = new List<string>
+                {
+                    Constants.RootFolder,
+                    Constants.ServerProfileFolder,
+                    profile.Id.ToString()
+                }
+        };
 
-        /// <inheritdoc/>
-        public BasicConfig Get(Profile profile)
-        {
-            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString(),
-                    ConfigFileName) + ConfigFileExtension);
-            if (file == null) return null;
-
-            var properties = TextManager.ReadFileLineByLine(file);
-            if (!properties.Any()) return null;
-
-            var result = _parser.Parse<BasicConfig>(properties);
-            result.FileLocation = file.FullName;
-            return result;
-        }
-
-        /// <inheritdoc/>
-
-        /// <inheritdoc/>
-        public void Save(Profile profile)
-        {
-            var configDto = new SaveDataDto
-            {
-                Content = string.Join("\r\n", _parser.ConvertToText(profile.BasicConfig)),
-                FileExtension = ConfigFileExtension,
-                FileName = ConfigFileName,
-                Folders = new List<string>
-                    {
-                        Constants.RootFolder,
-                        Constants.ServerProfileFolder,
-                        profile.Id.ToString()
-                    }
-            };
-
-            profile.BasicConfig.FileLocation = configDto.GetFullPath();
-            FileHelper.Save(configDto);
-        }
+        profile.BasicConfig.FileLocation = configDto.GetFullPath();
+        FileHelper.Save(configDto);
     }
 }

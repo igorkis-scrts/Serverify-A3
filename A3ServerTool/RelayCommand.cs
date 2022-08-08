@@ -1,46 +1,42 @@
-﻿using System;
-using System.Windows.Input;
+﻿namespace A3ServerTool;
 
-namespace A3ServerTool
+public class RelayCommand : ICommand
 {
-    public class RelayCommand : ICommand
+    private readonly Action<object> _execute;
+    private readonly Func<object, bool> _canExecute;
+
+    public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
     {
-        private readonly Action<object> _execute;
-        private readonly Func<object, bool> _canExecute;
+        _execute = execute;
+        _canExecute = canExecute;
+    }
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+    public event EventHandler CanExecuteChanged
+    {
+        add => CommandManager.RequerySuggested += value;
+        remove => CommandManager.RequerySuggested -= value;
+    }
+
+    public bool CanExecute(object parameter)
+    {
+        return _canExecute == null || _canExecute(parameter);
+    }
+
+    public void Execute(object parameter)
+    {
+        try
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            _execute(parameter);
         }
 
-        public event EventHandler CanExecuteChanged
+        catch (Exception e)
         {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
+            HandleException(e);
         }
+    }
 
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null || _canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            try
-            {
-                _execute(parameter);
-            }
-
-            catch (Exception e)
-            {
-                HandleException(e);
-            }
-        }
-
-        private void HandleException(Exception exception)
-        {
-            ExceptionHandler.Instance.ShowMessage(exception);
-        }
+    private void HandleException(Exception exception)
+    {
+        ExceptionHandler.Instance.ShowMessage(exception);
     }
 }
