@@ -148,8 +148,8 @@ namespace A3ServerTool.Tests
             Assert.NotNull(armaProfile);
             Assert.Equal(1, armaProfile.GroupIndicationType);
             Assert.Equal(2, armaProfile.AiLevelPreset);
-            Assert.True(Math.Abs(0.5F - armaProfile.AiSkill.Value) < 0.00001);
-            Assert.True(Math.Abs(0.5F - armaProfile.AiPrecision.Value) < 0.00001);
+            Assert.True(armaProfile.AiSkill != null && Math.Abs(0.5F - armaProfile.AiSkill.Value) < 0.00001);
+            Assert.True(armaProfile.AiPrecision != null && Math.Abs(0.5F - armaProfile.AiPrecision.Value) < 0.00001);
             Assert.Equal("recruit", armaProfile.DefaultDifficulty.ToLowerInvariant());
         }
 
@@ -214,8 +214,8 @@ namespace A3ServerTool.Tests
             Assert.NotNull(basicConfig);
             Assert.Equal(128, basicConfig.MaxMessagesSend);
             Assert.Equal(1400, basicConfig.MaxPacketSize);
-            Assert.True(Math.Abs(0.001F - basicConfig.MinErrorToSend.Value) < 0.00001);
-            Assert.True(Math.Abs(25F - basicConfig.TerrainGridViewDistance.Value) < 0.00001);
+            Assert.True(basicConfig.MinErrorToSend != null && Math.Abs(0.001F - basicConfig.MinErrorToSend.Value) < 0.00001);
+            Assert.True(basicConfig.TerrainGridViewDistance != null && Math.Abs(25F - basicConfig.TerrainGridViewDistance.Value) < 0.00001);
             Assert.Equal(2000, basicConfig.ObjectViewDistance);
         }
 
