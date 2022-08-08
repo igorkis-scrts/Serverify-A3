@@ -16,7 +16,7 @@ public class ModificationDao : IDao<Modification>
         var mods = new List<Modification>();
 
         var modFolders = FileHelper.GetFolder(location)?
-            .Where(f => f.Name.StartsWith("@") || new[] { "gm", "csla", "vn" }.Contains(f.Name)).ToList();
+            .Where(f => f.Name.StartsWith("@") || new[] { "gm", "csla", "vn", "WS" }.Contains(f.Name)).ToList();
         if (modFolders?.Any() != true)
         {
             return mods;
