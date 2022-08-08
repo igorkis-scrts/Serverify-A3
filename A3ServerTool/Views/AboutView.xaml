@@ -46,7 +46,7 @@
                 HorizontalAlignment="Center"
                 FontSize="14">
                 <Bold>Contributors:</Bold>
-                Socrates, Dahlgren
+                Socrates, Dahlgren, JosunLP
             </TextBlock>
             <TextBlock
                 Margin="{StaticResource ControlMargin}"
