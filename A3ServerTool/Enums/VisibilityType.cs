@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace A3ServerTool.Enums;
 
-namespace A3ServerTool.Enums
+/// <summary>
+/// Represents visibility state for some difficulty parameters.
+/// </summary>
+public enum VisibilityType
 {
-    /// <summary>
-    /// Represents visibility state for some difficulty parameters.
-    /// </summary>
-    public enum VisibilityType
-    {
-        [Description("Hide")]
-        Hide = 0,
+    [Description("Hide")]
+    Hide = 0,
 
-        [Description("Limited distance")]
-        Limited = 1,
+    [Description("Limited distance")]
+    Limited = 1,
 
-        [Description("Always show")]
-        Show = 2
-    }
+    [Description("Always show")]
+    Show = 2
 }

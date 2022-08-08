@@ -20,7 +20,7 @@ https://forums.bohemia.net/forums/topic/224504-serverifya3-a-dedicated-server-co
 ## Prerequisites
 
 - Windows 7/8/10
-- .NET Core 3.1
+- .NET 6 LTS
 - Steam account, purchased Arma 3 on it
 
 ## Installation and usage guide
@@ -36,6 +36,7 @@ App icon made by Hugo Alberto: [NounProject](https://thenounproject.com/hugugolp
 ## Contributors
 - Socrates
 - Dahlgren
+- JosunLP
 
 ## Feedback
 If you have any suggestions or reports - feel free to contact me via PM or create an issue in this repository. 

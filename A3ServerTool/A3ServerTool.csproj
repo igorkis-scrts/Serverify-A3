@@ -1,24 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>A3ServerTool</RootNamespace>
     <ApplicationIcon>iconSmall.ico</ApplicationIcon>
-    <Version>1.5.0.2</Version>
+    <Version>1.5.1.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="MahApps.Metro">
-      <Version>2.3.2</Version>
+      <Version>2.4.9</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>4.8.0</Version>
+      <Version>4.11.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
-      <Version>1.1.19</Version>
+      <Version>1.1.39</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightStd10">
       <Version>5.4.1.2</Version>
@@ -27,7 +25,6 @@
       <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <Page Update="Resources\Lang.de-DE.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,16 +95,13 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CustomControls\CustomControls.csproj" />
     <ProjectReference Include="..\Interchangeable\Interchangeable.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="iconSmall.ico" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -265,7 +259,6 @@
       <DependentUpon>AppHamburgerMenu.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Properties\StaticLang.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -280,12 +273,10 @@
       <LastGenOutput>StaticLang.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
 </Project>

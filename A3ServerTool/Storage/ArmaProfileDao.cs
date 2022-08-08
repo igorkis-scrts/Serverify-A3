@@ -1,68 +1,59 @@
-﻿using A3ServerTool.Helpers;
-using A3ServerTool.Models.Config;
-using Interchangeable.IO;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using A3ServerTool.Models.Profile;
+﻿namespace A3ServerTool.Storage;
 
-namespace A3ServerTool.Storage
+/// <summary>
+/// Provides access and manipulation methods for various armaProfile subclass.
+/// </summary>
+/// <seealso cref="A3ServerTool.Storage.IConfigDao{A3ServerTool.Models.Config.ArmaProfile}" />
+public class ArmaProfileDao : IConfigDao<ArmaProfile>
 {
-    /// <summary>
-    /// Provides access and manipulation methods for various armaProfile subclass.
-    /// </summary>
-    /// <seealso cref="A3ServerTool.Storage.IConfigDao{A3ServerTool.Models.Config.ArmaProfile}" />
-    public class ArmaProfileDao : IConfigDao<ArmaProfile>
+    private const string UserFolder = "Users";
+    private const string GameProfileFileExtension = ".Arma3Profile";
+
+    private readonly IUniversalParser _parser;
+
+    public ArmaProfileDao(IUniversalParser parser)
     {
-        private const string UserFolder = "Users";
-        private const string GameProfileFileExtension = ".Arma3Profile";
+        _parser = parser;
+    }
 
-        private readonly IUniversalParser _parser;
+    /// <inheritdoc/>
+    public ArmaProfile Get(Profile profile)
+    {
+        var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder,
+            Constants.ServerProfileFolder,
+            profile.Id.ToString(),
+            UserFolder,
+            Constants.GameProfileName,
+            Constants.GameProfileName)
+                + GameProfileFileExtension);
+        if (file == null) return null;
 
-        public ArmaProfileDao(IUniversalParser parser)
+        var properties = TextManager.ReadFileLineByLine(file);
+        if (!properties.Any()) return null;
+
+        var resultArmaProfile = _parser.Parse<ArmaProfile>(properties);
+        resultArmaProfile.FileLocation = file.FullName;
+        return resultArmaProfile;
+    }
+
+    public void Save(Profile profile)
+    {
+        var armaProfileDto = new SaveDataDto
         {
-            _parser = parser;
-        }
+            Content = string.Join("\r\n", _parser.ConvertToText(profile.ArmaProfile)),
+            FileExtension = GameProfileFileExtension,
+            FileName = Constants.GameProfileName,
+            Folders = new List<string>
+                {
+                    Constants.RootFolder,
+                    Constants.ServerProfileFolder,
+                    profile.Id.ToString(),
+                    UserFolder,
+                    Constants.GameProfileName
+                }
+        };
 
-        /// <inheritdoc/>
-        public ArmaProfile Get(Profile profile)
-        {
-            var file = FileHelper.GetFile(Path.Combine(Constants.RootFolder,
-                Constants.ServerProfileFolder,
-                profile.Id.ToString(),
-                UserFolder,
-                Constants.GameProfileName,
-                Constants.GameProfileName)
-                    + GameProfileFileExtension);
-            if (file == null) return null;
-
-            var properties = TextManager.ReadFileLineByLine(file);
-            if (!properties.Any()) return null;
-
-            var resultArmaProfile = _parser.Parse<ArmaProfile>(properties);
-            resultArmaProfile.FileLocation = file.FullName;
-            return resultArmaProfile;
-        }
-
-        public void Save(Profile profile)
-        {
-            var armaProfileDto = new SaveDataDto
-            {
-                Content = string.Join("\r\n", _parser.ConvertToText(profile.ArmaProfile)),
-                FileExtension = GameProfileFileExtension,
-                FileName = Constants.GameProfileName,
-                Folders = new List<string>
-                    {
-                        Constants.RootFolder,
-                        Constants.ServerProfileFolder,
-                        profile.Id.ToString(),
-                        UserFolder,
-                        Constants.GameProfileName
-                    }
-            };
-
-            profile.ArmaProfile.FileLocation = armaProfileDto.GetFullPath();
-            FileHelper.Save(armaProfileDto);
-        }
+        profile.ArmaProfile.FileLocation = armaProfileDto.GetFullPath();
+        FileHelper.Save(armaProfileDto);
     }
 }

@@ -1,50 +1,47 @@
-﻿using A3ServerTool.Models.Profile;
+﻿namespace A3ServerTool.Helpers.ServerLauncher;
 
-namespace A3ServerTool.Helpers.ServerLauncher
+/// <inheritdoc/>
+public class ServerLauncher : IServerLauncher
 {
-    /// <inheritdoc/>
-    public class ServerLauncher : IServerLauncher
+    private readonly IServerStringBuilder _serverStringBuilder;
+
+    public ServerLauncher(IServerStringBuilder serverStringBuilder)
     {
-        private readonly IServerStringBuilder _serverStringBuilder;
+        _serverStringBuilder = serverStringBuilder;
+    }
 
-        public ServerLauncher(IServerStringBuilder serverStringBuilder)
+    /// <inheritdoc/>
+    public void Run(Profile profile)
+    {
+        if (profile == null) return;
+
+        var finalParameterString = _serverStringBuilder.FinalArgumentString;
+        var server = new System.Diagnostics.Process
         {
-            _serverStringBuilder = serverStringBuilder;
-        }
+            StartInfo =
+            {
+                FileName = profile.ExecutablePath,
+                Arguments = finalParameterString,
+                UseShellExecute = false,
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized
+            }
+        };
+        server.Start();
 
-        /// <inheritdoc/>
-        public void Run(Profile profile)
+        var headlessClientParameterString = finalParameterString + " -client -connect=127.0.0.1 -password=" + profile.ServerConfig.Password;
+        for (int i = 0; i < profile.HeadlessClients; i++)
         {
-            if (profile == null) return;
-
-            var finalParameterString = _serverStringBuilder.FinalArgumentString;
-            var server = new System.Diagnostics.Process
+            var headlessClient = new System.Diagnostics.Process
             {
                 StartInfo =
                 {
                     FileName = profile.ExecutablePath,
-                    Arguments = finalParameterString,
+                    Arguments = headlessClientParameterString,
                     UseShellExecute = false,
                     WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized
                 }
             };
-            server.Start();
-
-            var headlessClientParameterString = finalParameterString + " -client -connect=127.0.0.1 -password=" + profile.ServerConfig.Password;
-            for (int i = 0; i < profile.HeadlessClients; i++)
-            {
-                var headlessClient = new System.Diagnostics.Process
-                {
-                    StartInfo =
-                    {
-                        FileName = profile.ExecutablePath,
-                        Arguments = headlessClientParameterString,
-                        UseShellExecute = false,
-                        WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized
-                    }
-                };
-                headlessClient.Start();
-            }
+            headlessClient.Start();
         }
     }
 }

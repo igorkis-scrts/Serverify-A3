@@ -1,127 +1,117 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using A3ServerTool.Models.Profile;
-using Interchangeable.IO;
-using Newtonsoft.Json;
+﻿namespace A3ServerTool.Storage;
 
-namespace A3ServerTool.Storage
+public class JsonProfileDao : IDao<Profile>
 {
-    public class JsonProfileDao : IDao<Profile>
+    private const string ServerProfileFileExtension = ".json";
+
+    private readonly JsonSerializerSettings _serializerSettings;
+
+    public JsonProfileDao()
     {
-        private const string ServerProfileFileExtension = ".json";
-
-        private readonly JsonSerializerSettings _serializerSettings;
-
-        public JsonProfileDao()
+        _serializerSettings = new JsonSerializerSettings
         {
-            _serializerSettings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Objects,
-                ObjectCreationHandling = ObjectCreationHandling.Replace
-            };
+            TypeNameHandling = TypeNameHandling.Objects,
+            ObjectCreationHandling = ObjectCreationHandling.Replace
+        };
 
-            if (!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder)))
-            {
-                FileHelper.CreateFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
-            }
+        if (!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder)))
+        {
+            FileHelper.CreateFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
         }
+    }
 
-        /// <summary>
-        /// Gets all stored profiles.
-        /// </summary>
-        /// <returns>Observable collection with all stored profiles.</returns>
-        public IList<Profile> GetAll()
+    /// <summary>
+    /// Gets all stored profiles.
+    /// </summary>
+    /// <returns>Observable collection with all stored profiles.</returns>
+    public IList<Profile> GetAll()
+    {
+        var profiles = new ObservableCollection<Profile>();
+        if(!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder)))
         {
-            var profiles = new ObservableCollection<Profile>();
-            if(!FileHelper.CheckFolderExistence(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder)))
-            {
-                return profiles;
-            }
-
-            var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
-            if (!profileFolders.Any()) return profiles;
-
-            foreach(var folder in profileFolders)
-            {
-                var files = FileHelper.GetAllFiles(folder);
-
-                var metadata = files?.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
-                if (metadata != null)
-                {
-                    var profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
-                    if (profile == null) continue;
-                    
-                    profile.ProfilePath = folder.FullName;
-                    profiles.Add(profile);
-                }
-            }
-
             return profiles;
         }
 
-        /// <summary>
-        /// NOT IMPLEMENTED!
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        public IList<Profile> GetAll(string location)
-        {
-            throw new NotImplementedException();
-        }
+        var profileFolders = FileHelper.GetFolder(Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder));
+        if (!profileFolders.Any()) return profiles;
 
-        /// <summary>
-        /// Gets the certain profile content.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        /// <returns>Stored profile.</returns>
-        public Profile Get(Profile item)
+        foreach(var folder in profileFolders)
         {
-            return GetAll().FirstOrDefault(p => Equals(item.Id, p.Id));
-        }
+            var files = FileHelper.GetAllFiles(folder);
 
-
-        /// <summary>
-        /// Saves the specified profile.
-        /// </summary>
-        /// <param name="profile">Profile.</param>
-        public void Save(Profile profile)
-        {
-            var metadataDto = new SaveDataDto
+            var metadata = files?.FirstOrDefault(x => x.Extension == ServerProfileFileExtension);
+            if (metadata != null)
             {
-                Content = JsonConvert.SerializeObject(profile, Formatting.Indented, _serializerSettings),
-                FileExtension = ServerProfileFileExtension,
-                FileName = "Main",
-                Folders = new List<string>
-                {
-                    Constants.RootFolder,
-                    Constants.ServerProfileFolder,
-                    profile.Id.ToString()
-                }
-            };
-
-            profile.ProfilePath = Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString());
-            FileHelper.Save(metadataDto);
+                var profile = JsonConvert.DeserializeObject<Profile>(TextManager.ReadFileAsWhole(metadata), _serializerSettings);
+                if (profile == null) continue;
+                
+                profile.ProfilePath = folder.FullName;
+                profiles.Add(profile);
+            }
         }
 
-        /// <summary>
-        /// Deletes the specified profile.
-        /// </summary>
-        /// <param name="item">Profile.</param>
-        public void Delete(Profile item)
+        return profiles;
+    }
+
+    /// <summary>
+    /// NOT IMPLEMENTED!
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    public IList<Profile> GetAll(string location)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Gets the certain profile content.
+    /// </summary>
+    /// <param name="item">The item.</param>
+    /// <returns>Stored profile.</returns>
+    public Profile Get(Profile item)
+    {
+        return GetAll().FirstOrDefault(p => Equals(item.Id, p.Id));
+    }
+
+
+    /// <summary>
+    /// Saves the specified profile.
+    /// </summary>
+    /// <param name="profile">Profile.</param>
+    public void Save(Profile profile)
+    {
+        var metadataDto = new SaveDataDto
         {
-            var dto = new SaveDataDto
+            Content = JsonConvert.SerializeObject(profile, Formatting.Indented, _serializerSettings),
+            FileExtension = ServerProfileFileExtension,
+            FileName = "Main",
+            Folders = new List<string>
             {
-                Folders = new List<string>
-                {
-                    //TODO: Fix it without path.combine
-                    Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder),
-                    item.Id.ToString()
-                }
-            };
+                Constants.RootFolder,
+                Constants.ServerProfileFolder,
+                profile.Id.ToString()
+            }
+        };
 
-            FileHelper.DeleteFolder(Path.Combine(dto.Folders.ToArray()));
-        }
+        profile.ProfilePath = Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder, profile.Id.ToString());
+        FileHelper.Save(metadataDto);
+    }
+
+    /// <summary>
+    /// Deletes the specified profile.
+    /// </summary>
+    /// <param name="item">Profile.</param>
+    public void Delete(Profile item)
+    {
+        var dto = new SaveDataDto
+        {
+            Folders = new List<string>
+            {
+                //TODO: Fix it without path.combine
+                Path.Combine(Constants.RootFolder, Constants.ServerProfileFolder),
+                item.Id.ToString()
+            }
+        };
+
+        FileHelper.DeleteFolder(Path.Combine(dto.Folders.ToArray()));
     }
 }
