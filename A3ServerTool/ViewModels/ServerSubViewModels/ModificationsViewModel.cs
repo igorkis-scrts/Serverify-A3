@@ -9,11 +9,11 @@ namespace A3ServerTool.ViewModels.ServerSubViewModels;
 public class ModificationsViewModel : ViewModelBase
 {
     public const string Token = nameof(ModificationsViewModel);
-    
+
     private readonly ServerViewModel _parentViewModel;
     private readonly GameLocationFinder _locationFinder;
     private readonly IProfileDirector _profileDirector;
-    
+
     private Profile CurrentProfile => _parentViewModel.CurrentProfile;
 
     /// <summary>
@@ -137,34 +137,41 @@ public class ModificationsViewModel : ViewModelBase
     {
         get
         {
-            return _addModCommand ??= new RelayCommand(_ =>
+            ICommand command;
+            if ((command = _addModCommand) == null)
             {
-                using var folderDialog = new FolderBrowserDialog();
-
-                if (folderDialog.ShowDialog() != DialogResult.OK)
+                command = (_addModCommand = new RelayCommand(delegate (object _)
                 {
-                    return;
-                }
+                    using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+                    {
+                        if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
+                        {
+                            return;
+                        }
 
-                var modPath = folderDialog.SelectedPath;
-                var isModAlreadyExists = Modifications.Any(um => um.Name == modPath);
+                        string[] directories = Directory.GetDirectories(folderBrowserDialog.SelectedPath);
+                        for (int i = 0; i < directories.Length; i++)
+                        {
+                            string modPath = directories[i];
+                            if (Modifications.Any((Modification um) => um.Name == modPath))
+                            {
+                                continue;
+                            }
 
-                if (isModAlreadyExists)
-                {
-                    return;
-                }
-                
-                var mod = new Modification
-                {
-                    Name = modPath,
-                    IsAbsolutePathMod = true
-                };
+                            Modification modification = new Modification
+                            {
+                                Name = modPath,
+                                IsAbsolutePathMod = true
+                            };
 
-                Modifications.Add(mod);
-                CurrentProfile.ArgumentSettings.Modifications = new List<Modification>(Modifications);
-                
-                RaisePropertyChanged(nameof(ModificationsCounter));
-            });
+                            Modifications.Add(modification);
+                            CurrentProfile.ArgumentSettings.Modifications = new List<Modification>(this.Modifications);
+                            RaisePropertyChanged("ModificationsCounter");
+                        }
+                    }
+                }, null));
+            }
+            return command;
         }
     }
 
@@ -179,10 +186,7 @@ public class ModificationsViewModel : ViewModelBase
         {
             return _removeModCommand ??= new RelayCommand(_ =>
             {
-                if (SelectedModification.IsAbsolutePathMod)
-                {
-                    Modifications.Remove(SelectedModification);
-                }
+                Modifications.Clear();
             });
         }
     }
@@ -297,6 +301,6 @@ public class ModificationsViewModel : ViewModelBase
         }
 
         CurrentProfile.ArgumentSettings.Modifications =
-            new List<Modification>((ObservableCollection<Modification>) sender);
+            new List<Modification>((ObservableCollection<Modification>)sender);
     }
 }
