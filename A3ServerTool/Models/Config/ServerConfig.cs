@@ -294,7 +294,7 @@ public class ServerConfig : IConfig
     /// Gets or sets a command for enabling or disabling the BattlEye anti-cheat engine.
     /// </summary>
     [ConfigProperty(PropertyName = "BattlEye")]
-    public bool HasBattleEye { get; set; } = true;
+    public int HasBattleEye { get; set; } = 1;
 
     /// <summary>
     /// Gets or sets timestamp format used on each report line in server-side RPT file.
