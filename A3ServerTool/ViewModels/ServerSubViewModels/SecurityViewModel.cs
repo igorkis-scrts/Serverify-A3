@@ -257,11 +257,12 @@ public class SecurityViewModel : ViewModelBase, IDataErrorInfo
     {
         get => CurrentProfile == null || CurrentProfile.ServerConfig == null
             ? false
-            : CurrentProfile.ServerConfig.HasBattleEye;
+            : (CurrentProfile.ServerConfig.HasBattleEye == 1);
         set
         {
-            if (Equals(value, CurrentProfile.ServerConfig.HasBattleEye)) return;
-            CurrentProfile.ServerConfig.HasBattleEye = value;
+            int valueInt = value ? 1 : 0;
+            if (Equals(valueInt, CurrentProfile.ServerConfig.HasBattleEye)) return;
+            CurrentProfile.ServerConfig.HasBattleEye = valueInt;
             RaisePropertyChanged();
         }
     }
